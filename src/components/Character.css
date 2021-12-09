@@ -1,6 +1,12 @@
+.o-character {
+	display: grid;
+	justify-content: center;
+	gap: 12px;
+}
+
 .m-stats {
 	display: grid;
 	grid-template-columns:
-		1fr 2fr;
+		1fr 1fr;
 	gap: 12px;
 }

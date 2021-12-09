@@ -16,8 +16,8 @@ export default class Card extends React.Component {
 			<div className="o-card">
 				<h2 className="o-card__title">{card.title}</h2>
 				<ul className="o-card__efects">
-					{ card.effects.map(effect => {
-						return <li>{effect.type} {effect.value}</li>;
+					{ card.effects.map((effect, index) => {
+						return <li key={`effect-${index}`}>{effect.type} {effect.value}</li>;
 					})}
 				</ul>
 			</div>
