@@ -1,0 +1,7 @@
+.o-card {
+	display: grid;
+	min-height: 320px;
+	padding: 12px;
+	border: 2px solid goldenrod;
+	border-radius: 12px;
+}

@@ -50,13 +50,13 @@ export default class App extends React.Component {
 
 		return (
 			<React.Fragment>
-				<div class="o-cardsList">
+				<div className="o-cardsList">
 					{ CardsDatabase.cards.map(card => {
-						return <Card card={card} />;
+						return <Card key={`card-${card.id}`} card={card} />;
 					})}
 				</div>
 				{ characters.map(character => {
-					return <Character name={character.name} stats={character.stats} />;
+					return <Character key={`character-${character.id}`} name={character.name} stats={character.stats} />;
 				}) }
 			</React.Fragment>
 		);
