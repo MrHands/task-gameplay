@@ -44,6 +44,10 @@ export default class App extends React.Component {
 				}
 			]
 		};
+
+		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
+		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
+		this.handleStartShift = this.startShift.bind(this);
 	}
 
 	setCharacterTask(owner, dropped) {
@@ -88,6 +92,25 @@ export default class App extends React.Component {
 		});
 	}
 
+	startShift() {
+		this.setState(state => {
+			const updatedCharacters = state.characters.map(character => {
+				if (character.card) {
+					character.card.effects.forEach(effect => {
+						character.stats[effect.type] += effect.value;
+					});
+					character.card = null;
+				}
+
+				return character;
+			});
+
+			return {
+				characters: updatedCharacters
+			}
+		});
+	}
+
 	render() {
 		const {
 			deck,
@@ -100,11 +123,14 @@ export default class App extends React.Component {
 					{ characters.map(character => {
 						return <Character
 							key={`character-${character.id}`}
-							onTaskDropped={this.setCharacterTask.bind(this)}
-							onTaskCleared={this.clearCharacterTask.bind(this)}
+							onTaskDropped={this.handleSetCharacterTask}
+							onTaskCleared={this.handleClearCharacterTask}
 							{...character} />;
 					}) }
 				</div>
+				<button onClick={this.handleStartShift}>
+					Start Shift
+				</button>
 				<div className="o-cardsList">
 					{ deck.map(card => {
 						return <Card key={`card-${card.id}`} card={card} />;
