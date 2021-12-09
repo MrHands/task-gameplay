@@ -9,6 +9,7 @@ export default class Character extends React.Component {
 			id,
 			name,
 			stats,
+			card,
 			onTaskDropped,
 		} = this.props;
 
@@ -23,7 +24,7 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Horny</div>
 					<div className="m-stats__value">{stats.horny}%</div>
 				</div>
-				<Card owner={id} onTaskDropped={onTaskDropped} />
+				<Card card={card} owner={id} onTaskDropped={onTaskDropped} />
 			</div>
 		);
 	}

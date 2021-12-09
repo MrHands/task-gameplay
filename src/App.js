@@ -46,8 +46,17 @@ export default class App extends React.Component {
 	}
 
 	setCharacterTask(owner, card) {
-		console.log(owner);
-		console.log(card);
+		this.setState(state => {
+			const updated = state.characters.map(character => {
+				if (character.id === owner) {
+					character.card = card;
+				}
+				return character;
+			});
+			return {
+				updated
+			}
+		});
 	}
 
 	render() {
