@@ -13,6 +13,7 @@ export default class App extends React.Component {
 		super();
 
 		this.state = {
+			deck: [...CardsDatabase.cards],
 			characters: [
 				{
 					id: 0,
@@ -45,29 +46,34 @@ export default class App extends React.Component {
 		};
 	}
 
-	setCharacterTask(owner, card) {
+	setCharacterTask(owner, dropped) {
 		this.setState(state => {
-			const updated = state.characters.map(character => {
+			const updatedDeck = state.deck.filter(card => card !== dropped);
+
+			const updatedCharacters = state.characters.map(character => {
 				if (character.id === owner) {
-					character.card = card;
+					character.card = dropped;
 				}
 				return character;
 			});
+
 			return {
-				updated
+				deck: updatedDeck,
+				characters: updatedCharacters
 			}
 		});
 	}
 
 	render() {
 		const {
+			deck,
 			characters
 		} = this.state;
 
 		return (
 			<DndProvider backend={HTML5Backend}>
 				<div className="o-cardsList">
-					{ CardsDatabase.cards.map(card => {
+					{ deck.map(card => {
 						return <Card key={`card-${card.id}`} card={card} />;
 					})}
 				</div>
