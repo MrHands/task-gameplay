@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 12px;
 }
@@ -6,8 +10,16 @@ h1, h2, h3, h4 {
 	margin: 0;
 }
 
-* {
-	box-sizing: border-box;
+button {
+	font-size: 18px;
+	text-transform: uppercase;
+	padding: 12px;
+	border: 2px solid gray;
+}
+
+button:disabled {
+	border-color: transparent;
+	color: lightgray;
 }
 
 .o-cardsList {

@@ -11,6 +11,7 @@ export default class Character extends React.Component {
 			stats,
 			card,
 			onTaskDropped,
+			onTaskCleared,
 		} = this.props;
 
 		return (
@@ -25,6 +26,9 @@ export default class Character extends React.Component {
 					<div className="m-stats__value">{stats.horny}%</div>
 				</div>
 				<Card card={card} owner={id} onTaskDropped={onTaskDropped} />
+				<button onClick={() => onTaskCleared(id)} disabled={!card}>
+					Clear
+				</button>
 			</div>
 		);
 	}

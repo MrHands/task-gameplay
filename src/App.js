@@ -64,6 +64,30 @@ export default class App extends React.Component {
 		});
 	}
 
+	clearCharacterTask(owner) {
+		this.setState(state => {
+			let card = null;
+
+			const updatedCharacters = state.characters.map(character => {
+				if (character.id === owner) {
+					card = Object.assign({}, character.card);
+					character.card = null;
+				}
+				return character;
+			});
+
+			const updatedDeck = [...state.deck];
+			if (card) {
+				updatedDeck.push(card);
+			}
+
+			return {
+				deck: updatedDeck,
+				characters: updatedCharacters
+			}
+		});
+	}
+
 	render() {
 		const {
 			deck,
@@ -82,6 +106,7 @@ export default class App extends React.Component {
 						return <Character
 							key={`character-${character.id}`}
 							onTaskDropped={this.setCharacterTask.bind(this)}
+							onTaskCleared={this.clearCharacterTask.bind(this)}
 							{...character} />;
 					}) }
 				</div>
