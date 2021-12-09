@@ -1,5 +1,172 @@
 {
 	"cards": [
-		
+		{
+			"id": "maintenance-1",
+			"title": "Maintenance 1",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": 3
+				},
+				{
+					"type": "stress",
+					"value": 2
+				}
+			]
+		},
+		{
+			"id": "maintenance-2",
+			"title": "Maintenance 2",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": 4
+				},
+				{
+					"type": "stress",
+					"value": 5
+				}
+			]
+		},
+		{
+			"id": "maintenance-3",
+			"title": "Maintenance 3",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": 5
+				},
+				{
+					"type": "stress",
+					"value": 4
+				}
+			]
+		},
+		{
+			"id": "maintenance-4",
+			"title": "Maintenance 4",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": 6
+				},
+				{
+					"type": "stress",
+					"value": 5
+				}
+			]
+		},
+		{
+			"id": "personal-1",
+			"title": "Personal 1",
+			"effects": [
+				{
+					"type": "stress",
+					"value": 1
+				},
+				{
+					"type": "horny",
+					"value": 1
+				}
+			]
+		},
+		{
+			"id": "personal-2",
+			"title": "Personal 2",
+			"effects": [
+				{
+					"type": "stress",
+					"value": 2
+				},
+				{
+					"type": "horny",
+					"value": 1
+				}
+			]
+		},
+		{
+			"id": "personal-3",
+			"title": "Personal 3",
+			"effects": [
+				{
+					"type": "stress",
+					"value": 3
+				},
+				{
+					"type": "horny",
+					"value": 1
+				}
+			]
+		},
+		{
+			"id": "personal-4",
+			"title": "Personal 4",
+			"effects": [
+				{
+					"type": "stress",
+					"value": 4
+				},
+				{
+					"type": "horny",
+					"value": 2
+				}
+			]
+		},
+		{
+			"id": "self-care-1",
+			"title": "Self-Care 1",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": -2
+				},
+				{
+					"type": "stress",
+					"value": -1
+				}
+			]
+		},
+		{
+			"id": "self-care-2",
+			"title": "Self-Care 2",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": -3
+				},
+				{
+					"type": "stress",
+					"value": -2
+				}
+			]
+		},
+		{
+			"id": "self-care-3",
+			"title": "Self-Care 3",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": -4
+				},
+				{
+					"type": "stress",
+					"value": -3
+				}
+			]
+		},
+		{
+			"id": "self-care-4",
+			"title": "Self-Care 4",
+			"effects": [
+				{
+					"type": "hunger",
+					"value": -5
+				},
+				{
+					"type": "stress",
+					"value": -4
+				}
+			]
+		}
 	]
 }

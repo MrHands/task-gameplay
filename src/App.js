@@ -4,6 +4,7 @@ import CardsDatabase from './data/CardsDatabase.json';
 import React from 'react';
 
 import Character from './components/Character';
+import Card from './components/Card';
 
 export default class App extends React.Component {
 	constructor() {
@@ -49,6 +50,11 @@ export default class App extends React.Component {
 
 		return (
 			<React.Fragment>
+				<div class="o-cardsList">
+					{ CardsDatabase.cards.map(card => {
+						return <Card card={card} />;
+					})}
+				</div>
 				{ characters.map(character => {
 					return <Character name={character.name} stats={character.stats} />;
 				}) }
