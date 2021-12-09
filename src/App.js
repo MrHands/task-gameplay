@@ -45,6 +45,10 @@ export default class App extends React.Component {
 		};
 	}
 
+	setCharacterTask(card) {
+		console.log(card);
+	}
+
 	render() {
 		const {
 			characters
@@ -59,7 +63,11 @@ export default class App extends React.Component {
 				</div>
 				<div className="o-characterList">
 					{ characters.map(character => {
-						return <Character key={`character-${character.id}`} name={character.name} stats={character.stats} />;
+						return <Character
+							key={`character-${character.id}`}
+							name={character.name}
+							stats={character.stats} 
+							onTaskDropped={this.setCharacterTask.bind(this)} />;
 					}) }
 				</div>
 			</DndProvider>

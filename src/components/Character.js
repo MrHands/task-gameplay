@@ -7,7 +7,8 @@ export default class Character extends React.Component {
 	render() {
 		const {
 			name,
-			stats
+			stats,
+			onTaskDropped,
 		} = this.props;
 
 		return (
@@ -21,7 +22,7 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Horny</div>
 					<div className="m-stats__value">{stats.horny}%</div>
 				</div>
-				<Card />
+				<Card onTaskDropped={onTaskDropped} />
 			</div>
 		);
 	}

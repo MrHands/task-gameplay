@@ -7,11 +7,12 @@ import './Card.css';
 export default class Card extends React.Component {
 	render() {
 		const {
-			card
+			card,
+			onTaskDropped,
 		} = this.props;
 
 		if (!card) {
-			return <DroppableCard className="o-card -empty" />;
+			return <DroppableCard className="o-card -empty" onTaskDropped={onTaskDropped} />;
 		}
 
 		return (

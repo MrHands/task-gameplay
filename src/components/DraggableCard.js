@@ -8,7 +8,7 @@ export default function DraggableCard(props) {
 			isdragging: (!!monitor.isDragging()).toString()
 		}),
 	}));
-	return collected.isDragging ? (
+	return collected.isdragging === 'true' ? (
 		<div ref={dragPreview} {...props} style={{ opacity: 0.1 }}/>
 	) : (
 		<div ref={drag} {...collected} {...props}>
