@@ -1,12 +1,11 @@
 import { useDrag } from 'react-dnd';
 
 export default function DraggableCard(props) {
-	console.log(props);
 	const [ collected, drag, dragPreview ] = useDrag(() => ({
 		type: 'card',
 		item: props.card,
 		collect: monitor => ({
-			isDragging: !!monitor.isDragging()
+			isdragging: (!!monitor.isDragging()).toString()
 		}),
 	}));
 	return collected.isDragging ? (

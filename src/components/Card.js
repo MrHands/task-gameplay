@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DraggableCard from './DraggableCard';
+import DroppableCard from './DroppableCard';
 import './Card.css';
 
 export default class Card extends React.Component {
@@ -10,7 +11,7 @@ export default class Card extends React.Component {
 		} = this.props;
 
 		if (!card) {
-			return <div className="o-card -empty" />;
+			return <DroppableCard className="o-card -empty" />;
 		}
 
 		return (
