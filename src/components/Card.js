@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DraggableCard from './Draggable';
 import './Card.css';
 
 export default class Card extends React.Component {
@@ -13,14 +14,14 @@ export default class Card extends React.Component {
 		}
 
 		return (
-			<div className="o-card">
+			<DraggableCard className="o-card" {...this.props}>
 				<h2 className="o-card__title">{card.title}</h2>
 				<ul className="o-card__efects">
 					{ card.effects.map((effect, index) => {
 						return <li key={`effect-${index}`}>{effect.type} {effect.value}</li>;
 					})}
 				</ul>
-			</div>
+			</DraggableCard>
 		);
 	}
 }

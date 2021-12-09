@@ -1,8 +1,10 @@
 import './App.css';
 
 import CardsDatabase from './data/CardsDatabase.json';
-import React from 'react';
 
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import Card from './components/Card';
 
@@ -49,7 +51,7 @@ export default class App extends React.Component {
 		} = this.state;
 
 		return (
-			<React.Fragment>
+			<DndProvider backend={HTML5Backend}>
 				<div className="o-cardsList">
 					{ CardsDatabase.cards.map(card => {
 						return <Card key={`card-${card.id}`} card={card} />;
@@ -60,7 +62,7 @@ export default class App extends React.Component {
 						return <Character key={`character-${character.id}`} name={character.name} stats={character.stats} />;
 					}) }
 				</div>
-			</React.Fragment>
+			</DndProvider>
 		);
 	}
 };
