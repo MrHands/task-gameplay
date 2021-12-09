@@ -5,6 +5,14 @@ import DroppableCard from './DroppableCard';
 import './Card.css';
 
 export default class Card extends React.Component {
+	effectText(value) {
+		if (value > 0) {
+			return `+${value * 10}%`;
+		} else {
+			return `${value * 10}%`;
+		}
+	}
+
 	render() {
 		const {
 			card,
@@ -24,7 +32,7 @@ export default class Card extends React.Component {
 				<h2 className="o-card__title">{card.title}</h2>
 				<ul className="o-card__efects">
 					{ card.effects.map((effect, index) => {
-						return <li key={`effect-${index}`}>{effect.type} {effect.value}</li>;
+						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect.value)}</li>;
 					})}
 				</ul>
 			</DraggableCard>
