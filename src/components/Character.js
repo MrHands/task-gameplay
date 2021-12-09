@@ -6,6 +6,7 @@ import './Character.css';
 export default class Character extends React.Component {
 	render() {
 		const {
+			id,
 			name,
 			stats,
 			onTaskDropped,
@@ -22,7 +23,7 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Horny</div>
 					<div className="m-stats__value">{stats.horny}%</div>
 				</div>
-				<Card onTaskDropped={onTaskDropped} />
+				<Card owner={id} onTaskDropped={onTaskDropped} />
 			</div>
 		);
 	}

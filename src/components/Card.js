@@ -8,11 +8,15 @@ export default class Card extends React.Component {
 	render() {
 		const {
 			card,
+			owner,
 			onTaskDropped,
 		} = this.props;
 
 		if (!card) {
-			return <DroppableCard className="o-card -empty" onTaskDropped={onTaskDropped} />;
+			return <DroppableCard
+				className="o-card -empty"
+				owner={owner}
+				onTaskDropped={onTaskDropped} />;
 		}
 
 		return (

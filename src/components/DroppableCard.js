@@ -7,8 +7,8 @@ export default function DroppableCard(props) {
 		collect: monitor => ({
 			isover: (!!monitor.isOver()).toString()
 		}),
-		drop: card => props.onTaskDropped(card),
-	}), [props.card]);
+		drop: card => props.onTaskDropped(props.owner, card),
+	}), [props.owner]);
 
 	return (
 		<div ref={drop} {...collected} {...props}>

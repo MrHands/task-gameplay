@@ -45,7 +45,8 @@ export default class App extends React.Component {
 		};
 	}
 
-	setCharacterTask(card) {
+	setCharacterTask(owner, card) {
+		console.log(owner);
 		console.log(card);
 	}
 
@@ -65,9 +66,8 @@ export default class App extends React.Component {
 					{ characters.map(character => {
 						return <Character
 							key={`character-${character.id}`}
-							name={character.name}
-							stats={character.stats} 
-							onTaskDropped={this.setCharacterTask.bind(this)} />;
+							onTaskDropped={this.setCharacterTask.bind(this)}
+							{...character} />;
 					}) }
 				</div>
 			</DndProvider>
