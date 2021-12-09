@@ -8,6 +8,10 @@ export default class Card extends React.Component {
 			card
 		} = this.props;
 
+		if (!card) {
+			return <div className="o-card -empty" />;
+		}
+
 		return (
 			<div className="o-card">
 				<h2 className="o-card__title">{card.title}</h2>

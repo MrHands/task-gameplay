@@ -55,9 +55,11 @@ export default class App extends React.Component {
 						return <Card key={`card-${card.id}`} card={card} />;
 					})}
 				</div>
-				{ characters.map(character => {
-					return <Character key={`character-${character.id}`} name={character.name} stats={character.stats} />;
-				}) }
+				<div className="o-characterList">
+					{ characters.map(character => {
+						return <Character key={`character-${character.id}`} name={character.name} stats={character.stats} />;
+					}) }
+				</div>
 			</React.Fragment>
 		);
 	}
