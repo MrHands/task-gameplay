@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DraggableCard from './Draggable';
+import DraggableCard from './DraggableCard';
 import './Card.css';
 
 export default class Card extends React.Component {

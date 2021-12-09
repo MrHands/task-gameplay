@@ -12,10 +12,12 @@
 	padding: 12px;
 	border: 2px solid goldenrod;
 	border-radius: 12px;
+	cursor: move;
 }
 
 .o-card.-empty {
 	border: 2px dashed gray;
+	cursor: initial;
 }
 
 .o-card__title {
