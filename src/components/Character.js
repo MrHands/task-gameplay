@@ -4,6 +4,10 @@ import Card from './Card';
 import './Character.css';
 
 export default class Character extends React.Component {
+	renderStat(value) {
+		return `${value * 10}%`;
+	}
+
 	render() {
 		const {
 			id,
@@ -19,11 +23,11 @@ export default class Character extends React.Component {
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					<div className="m-stats__header">Hunger</div>
-					<div className="m-stats__value">{stats.hunger}%</div>
+					<div className="m-stats__value">{this.renderStat(stats.hunger)}</div>
 					<div className="m-stats__header">Stress</div>
-					<div className="m-stats__value">{stats.stress}%</div>
+					<div className="m-stats__value">{this.renderStat(stats.stress)}</div>
 					<div className="m-stats__header">Horny</div>
-					<div className="m-stats__value">{stats.horny}%</div>
+					<div className="m-stats__value">{this.renderStat(stats.horny)}</div>
 				</div>
 				<Card card={card} owner={id} onTaskDropped={onTaskDropped} />
 				<button onClick={() => onTaskCleared(id)} disabled={!card}>
