@@ -96,11 +96,6 @@ export default class App extends React.Component {
 
 		return (
 			<DndProvider backend={HTML5Backend}>
-				<div className="o-cardsList">
-					{ deck.map(card => {
-						return <Card key={`card-${card.id}`} card={card} />;
-					})}
-				</div>
 				<div className="o-characterList">
 					{ characters.map(character => {
 						return <Character
@@ -109,6 +104,11 @@ export default class App extends React.Component {
 							onTaskCleared={this.clearCharacterTask.bind(this)}
 							{...character} />;
 					}) }
+				</div>
+				<div className="o-cardsList">
+					{ deck.map(card => {
+						return <Card key={`card-${card.id}`} card={card} />;
+					})}
 				</div>
 			</DndProvider>
 		);

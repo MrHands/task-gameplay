@@ -22,9 +22,16 @@ button:disabled {
 	color: lightgray;
 }
 
+#root {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
 .o-cardsList {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	gap: 12px;
 }
 
