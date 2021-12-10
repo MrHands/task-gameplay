@@ -20,6 +20,10 @@
 	cursor: initial;
 }
 
+.o-card.-active {
+	border: 2px dashed green;
+}
+
 .o-card__title {
 	grid-area: title;
 	text-align: center;
