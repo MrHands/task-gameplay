@@ -65,12 +65,12 @@ export default class App extends React.Component {
 			return deck.id === this.state.deck;
 		});
 
-		let deckCards = deck.cards.map(id => {
+		let deckCards = this.shuffleCards(deck.cards.map(id => {
 			return this.getCard(id);
-		});
+		}));
 
 		this.setState({
-			deckCards: [...deckCards]
+			deckCards: deckCards
 		});
 
 		// draw hand
@@ -117,6 +117,17 @@ export default class App extends React.Component {
 		return this.state.characters.find(character => {
 			return character.id === owner;
 		});
+	}
+
+	shuffleCards(cards) {
+		let copy = [];
+
+		for (let n = cards.length; n > 0; n--) {
+			let i = Math.floor(Math.random() * n);
+			copy.push(cards.splice(i, 1)[0]);
+		}
+
+		return copy;
 	}
 
 	canBePlayed(owner, card) {
