@@ -1,6 +1,7 @@
 import './App.css';
 
 import CardsDatabase from './data/CardsDatabase.json';
+import DecksDatabase from './data/DecksDatabase.json';
 
 import React from 'react';
 import { DndProvider } from 'react-dnd';
@@ -17,7 +18,8 @@ export default class App extends React.Component {
 		super();
 
 		this.state = {
-			deck: [...CardsDatabase.cards],
+			deck: 'balanced',
+			handCards: [],
 			characters: [
 				{
 					id: 0,
@@ -55,6 +57,26 @@ export default class App extends React.Component {
 		this.handleStartShift = this.startShift.bind(this);
 	}
 
+	startGame() {
+		const deck = DecksDatabase.decks.find(deck => {
+			return deck.id === this.state.deck;
+		});
+
+		let deckCards = deck.cards.map(id => {
+			return this.getCard(id);
+		});
+
+		this.setState({
+			handCards: [...deckCards]
+		});
+	}
+
+	getCard(id) {
+		return CardsDatabase.cards.find(card => {
+			return card.id === id;
+		});
+	}
+
 	getCharacter(owner) {
 		return this.state.characters.find(character => {
 			return character.id === owner;
@@ -85,7 +107,7 @@ export default class App extends React.Component {
 		}
 
 		this.setState(state => {
-			const updatedDeck = state.deck.filter(card => card !== dropped);
+			const newHand = state.handCards.filter(card => card !== dropped);
 
 			const updatedCharacters = state.characters.map(character => {
 				if (character.id === owner) {
@@ -95,7 +117,7 @@ export default class App extends React.Component {
 			});
 
 			return {
-				deck: updatedDeck,
+				handCards: newHand,
 				characters: updatedCharacters
 			}
 		});
@@ -105,7 +127,7 @@ export default class App extends React.Component {
 		this.setState(state => {
 			let card = null;
 
-			const updatedCharacters = state.characters.map(character => {
+			const newCharacters = state.characters.map(character => {
 				if (character.id === owner) {
 					card = Object.assign({}, character.card);
 					character.card = null;
@@ -113,21 +135,21 @@ export default class App extends React.Component {
 				return character;
 			});
 
-			const updatedDeck = [...state.deck];
+			const newHand = [...state.handCards];
 			if (card) {
-				updatedDeck.push(card);
+				newHand.push(card);
 			}
 
 			return {
-				deck: updatedDeck,
-				characters: updatedCharacters
+				deck: newHand,
+				characters: newCharacters
 			}
 		});
 	}
 
 	startShift() {
 		this.setState(state => {
-			const updatedCharacters = state.characters.map(character => {
+			const newCharacters = state.characters.map(character => {
 				if (character.card) {
 					character.card.effects.forEach(effect => {
 						const stat = character.stats[effect.type];
@@ -140,16 +162,22 @@ export default class App extends React.Component {
 			});
 
 			return {
-				characters: updatedCharacters
+				characters: newCharacters
 			}
 		});
 	}
 
 	render() {
 		const {
-			deck,
+			handCards,
 			characters
 		} = this.state;
+
+		if (handCards.length === 0) {
+			return (
+				<button onClick={this.startGame.bind(this)}>Start Game</button>
+			);
+		}
 
 		return (
 			<DndProvider backend={HTML5Backend}>
@@ -167,8 +195,8 @@ export default class App extends React.Component {
 					Start Shift
 				</button>
 				<div className="o-cardsList">
-					{ deck.map(card => {
-						return <Card key={`card-${card.id}`} card={card} />;
+					{ handCards.map((card, index) => {
+						return <Card key={`card-${index}`} card={card} />;
 					})}
 				</div>
 			</DndProvider>

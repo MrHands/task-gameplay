@@ -2,7 +2,7 @@
 	"cards": [
 		{
 			"id": "maintenance-1",
-			"title": "Maintenance 1",
+			"title": "Ship 1",
 			"effects": [
 				{
 					"type": "hunger",
@@ -16,7 +16,7 @@
 		},
 		{
 			"id": "maintenance-2",
-			"title": "Maintenance 2",
+			"title": "Ship 2",
 			"effects": [
 				{
 					"type": "hunger",
@@ -30,7 +30,7 @@
 		},
 		{
 			"id": "maintenance-3",
-			"title": "Maintenance 3",
+			"title": "Ship 3",
 			"effects": [
 				{
 					"type": "hunger",
@@ -44,7 +44,7 @@
 		},
 		{
 			"id": "maintenance-4",
-			"title": "Maintenance 4",
+			"title": "Ship 4",
 			"effects": [
 				{
 					"type": "hunger",
