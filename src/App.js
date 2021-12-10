@@ -188,7 +188,7 @@ export default class App extends React.Component {
 			}
 
 			return {
-				deck: newHand,
+				handCards: newHand,
 				characters: newCharacters
 			}
 		});
