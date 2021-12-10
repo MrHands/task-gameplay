@@ -19,6 +19,7 @@ export default class App extends React.Component {
 
 		this.state = {
 			deck: 'balanced',
+			deckCards: [],
 			handCards: [],
 			characters: [
 				{
@@ -58,6 +59,8 @@ export default class App extends React.Component {
 	}
 
 	startGame() {
+		// build deck
+
 		const deck = DecksDatabase.decks.find(deck => {
 			return deck.id === this.state.deck;
 		});
@@ -67,7 +70,40 @@ export default class App extends React.Component {
 		});
 
 		this.setState({
-			handCards: [...deckCards]
+			deckCards: [...deckCards]
+		});
+
+		// draw hand
+
+		this.drawHand(deckCards);
+	}
+
+	drawHand(deckCards) {
+		let {
+			handCards
+		} = this.state;
+
+		let deckMaintenanceCards = deckCards.filter(card => {
+			return card.id.startsWith('maintenance');
+		});
+		let deckOtherCards = deckCards.filter(card => {
+			return !card.id.startsWith('maintenance');
+		});
+
+		let handMaintenanceCards = handCards.filter(card => {
+			return card.id.startsWith('maintenance');
+		});
+
+		for (let i = handMaintenanceCards.length; i < 3; ++i) {
+			handCards.push(deckMaintenanceCards.pop());
+		}
+
+		for (let i = handCards.length; i < (3 * 3) + 3; ++i) {
+			handCards.push(deckOtherCards.pop());
+		}
+
+		this.setState({
+			handCards: handCards
 		});
 	}
 
