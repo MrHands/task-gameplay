@@ -8,6 +8,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import Card from './components/Card';
 
+function randomPercentage() {
+	return Math.floor(Math.random() * 10);
+}
+
 export default class App extends React.Component {
 	constructor() {
 		super();
@@ -19,27 +23,27 @@ export default class App extends React.Component {
 					id: 0,
 					name: 'Chichi',
 					stats: {
-						hunger: 0,
-						stress: 0,
-						horny: 0,
+						hunger: randomPercentage(),
+						stress: randomPercentage(),
+						horny: randomPercentage(),
 					}
 				},
 				{
 					id: 1,
 					name: 'Riya',
 					stats: {
-						hunger: 0,
-						stress: 0,
-						horny: 0,
+						hunger: randomPercentage(),
+						stress: randomPercentage(),
+						horny: randomPercentage(),
 					}
 				},
 				{
 					id: 2,
 					name: 'Bobby',
 					stats: {
-						hunger: 0,
-						stress: 0,
-						horny: 0,
+						hunger: randomPercentage(),
+						stress: randomPercentage(),
+						horny: randomPercentage(),
 					}
 				}
 			]
