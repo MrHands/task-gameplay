@@ -49,9 +49,34 @@ export default class App extends React.Component {
 			]
 		};
 
+		this.handleCanBePlayed = this.canBePlayed.bind(this);
 		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
 		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
 		this.handleStartShift = this.startShift.bind(this);
+	}
+
+	getCharacter(owner) {
+		return this.state.characters.find(character => {
+			return character.id === owner;
+		});
+	}
+
+	canBePlayed(owner, card) {
+		const character = this.getCharacter(owner);
+		if (!character) {
+			return false;
+		}
+
+		let allowed = true;
+
+		card.effects.forEach(effect => {
+			const newValue = character.stats[effect.type] + effect.value;
+			if (newValue < 0 || newValue >= 10) {
+				allowed = false;
+			}
+		});
+
+		return allowed;
 	}
 
 	setCharacterTask(owner, dropped) {
@@ -129,6 +154,7 @@ export default class App extends React.Component {
 							key={`character-${character.id}`}
 							onTaskDropped={this.handleSetCharacterTask}
 							onTaskCleared={this.handleClearCharacterTask}
+							canBePlayed={this.handleCanBePlayed}
 							{...character} />;
 					}) }
 				</div>

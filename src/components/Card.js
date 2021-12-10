@@ -18,13 +18,15 @@ export default class Card extends React.Component {
 			card,
 			owner,
 			onTaskDropped,
+			canBePlayed,
 		} = this.props;
 
 		if (!card) {
 			return <DroppableCard
 				className="o-card -empty"
 				owner={owner}
-				onTaskDropped={onTaskDropped} />;
+				onTaskDropped={onTaskDropped}
+				canBePlayed={canBePlayed} />;
 		}
 
 		return (

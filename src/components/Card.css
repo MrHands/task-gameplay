@@ -21,7 +21,11 @@
 }
 
 .o-card.-active {
-	border: 2px dashed green;
+	border: 2px solid green;
+}
+
+.o-card.-denied {
+	border: 2px solid red;
 }
 
 .o-card__title {
