@@ -71,7 +71,7 @@ export default class App extends React.Component {
 
 		card.effects.forEach(effect => {
 			const newValue = character.stats[effect.type] + effect.value;
-			if (newValue < 0 || newValue >= 10) {
+			if (effect.type !== 'horny' && newValue >= 10) {
 				allowed = false;
 			}
 		});
@@ -80,6 +80,10 @@ export default class App extends React.Component {
 	}
 
 	setCharacterTask(owner, dropped) {
+		if (!this.canBePlayed(owner, dropped)) {
+			return;
+		}
+
 		this.setState(state => {
 			const updatedDeck = state.deck.filter(card => card !== dropped);
 
@@ -126,7 +130,8 @@ export default class App extends React.Component {
 			const updatedCharacters = state.characters.map(character => {
 				if (character.card) {
 					character.card.effects.forEach(effect => {
-						character.stats[effect.type] += effect.value;
+						const stat = character.stats[effect.type];
+						character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 9));
 					});
 					character.card = null;
 				}
