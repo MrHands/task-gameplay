@@ -2,7 +2,9 @@ import { useDrag } from 'react-dnd';
 
 export default function DraggableCard(props) {
 	const {
-		card
+		card,
+		className,
+		children
 	} = props;
 
 	const [ { isDragging }, drag, dragPreview ] = useDrag(() => ({
@@ -11,17 +13,17 @@ export default function DraggableCard(props) {
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
 		}),
-	}));
+	}), [card]);
 
 	if (isDragging) {
 		console.log(card);
 	}
 
 	return isDragging ? (
-		<div ref={dragPreview} {...props} style={{ opacity: 0.1 }}/>
+		<div ref={dragPreview} className={className} card-id={card.handId} style={{ opacity: 0.1 }}/>
 	) : (
-		<div ref={drag} {...props}>
-			{props.children}
+		<div ref={drag} className={className} card-id={card.handId}>
+			{children}
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import { useDrop } from 'react-dnd';
 export default function DroppableCard(props) {
 	let {
 		className,
+		children,
 		owner,
 		onTaskDropped,
 		canBePlayed,
@@ -15,8 +16,8 @@ export default function DroppableCard(props) {
 			canDrop: monitor.canDrop(),
 			card: monitor.getItem(),
 		}),
-		drop: card => onTaskDropped(props.owner, card),
-	}), [props.owner]);
+		drop: card => onTaskDropped(owner, card),
+	}), [owner]);
 
 	if (isOver && canDrop) {
 		if (canBePlayed(owner, card)) {
@@ -28,7 +29,7 @@ export default function DroppableCard(props) {
 
 	return (
 		<div ref={drop} className={className}>
-			{props.children}
+			{children}
 		</div>
 	);
 }
