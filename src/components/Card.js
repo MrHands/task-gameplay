@@ -37,6 +37,7 @@ export default class Card extends React.Component {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect.value)}</li>;
 					})}
 				</ul>
+				<h3>{card.handId}</h3>
 			</DraggableCard>
 		);
 	}

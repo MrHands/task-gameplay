@@ -66,7 +66,7 @@ export default class App extends React.Component {
 		});
 
 		let deckCards = this.shuffleCards(deck.cards.map(id => {
-			return this.getCard(id);
+			return Object.assign({}, this.getCard(id));
 		}));
 
 		this.setState({
@@ -95,11 +95,15 @@ export default class App extends React.Component {
 		});
 
 		for (let i = handMaintenanceCards.length; i < 3; ++i) {
-			handCards.push(deckMaintenanceCards.pop());
+			const card = deckMaintenanceCards.pop();
+			card.handId = handCards.length;
+			handCards.push(card);
 		}
 
 		for (let i = handCards.length; i < (3 * 3) + 3; ++i) {
-			handCards.push(deckOtherCards.pop());
+			const card = deckOtherCards.pop();
+			card.handId = handCards.length;
+			handCards.push(card);
 		}
 
 		this.setState({
@@ -154,7 +158,10 @@ export default class App extends React.Component {
 		}
 
 		this.setState(state => {
-			const newHand = state.handCards.filter(card => card !== dropped);
+			const newHand = state.handCards.filter(card => card.handId !== dropped.handId);
+			newHand.sort((left, right) => {
+				return left.handId < right.handId ? -1 : 1;
+			});
 
 			const updatedCharacters = state.characters.map(character => {
 				if (character.id === owner) {
@@ -186,6 +193,9 @@ export default class App extends React.Component {
 			if (card) {
 				newHand.push(card);
 			}
+			newHand.sort((left, right) => {
+				return left.handId < right.handId ? -1 : 1;
+			});
 
 			return {
 				handCards: newHand,
