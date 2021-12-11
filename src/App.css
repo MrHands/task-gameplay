@@ -40,4 +40,5 @@ button:disabled {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 12px;
+	width: 80vw;
 }

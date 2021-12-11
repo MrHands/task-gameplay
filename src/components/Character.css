@@ -1,6 +1,6 @@
 .o-character {
 	display: grid;
-	justify-content: center;
+	justify-items: center;
 	gap: 12px;
 }
 
@@ -9,4 +9,5 @@
 	grid-template-columns:
 		1fr 1fr;
 	gap: 12px;
+	width: 100%;
 }
