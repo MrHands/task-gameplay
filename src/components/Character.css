@@ -11,3 +11,7 @@
 	gap: 12px;
 	width: 100%;
 }
+
+.m-stats__header {
+	text-align: right;
+}

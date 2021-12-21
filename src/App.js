@@ -158,15 +158,26 @@ export default class App extends React.Component {
 		}
 
 		this.setState(state => {
+			const taskPreviousCharacter = state.characters.find(character => character.card === dropped);
+
 			const newHand = state.handCards.filter(card => card.handId !== dropped.handId);
 			newHand.sort((left, right) => {
 				return left.handId < right.handId ? -1 : 1;
 			});
 
 			const updatedCharacters = state.characters.map(character => {
+				// clear card from previous owner
+
+				if (character.id === taskPreviousCharacter?.id) {
+					character.card = null;
+				}
+
+				// assign card to owner
+
 				if (character.id === owner) {
 					character.card = dropped;
 				}
+
 				return character;
 			});
 
