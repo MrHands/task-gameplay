@@ -8,6 +8,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import Card from './components/Card';
+import ShiftHud from './ShiftHud';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 10);
@@ -259,9 +260,9 @@ export default class App extends React.Component {
 							{...character} />;
 					}) }
 				</div>
-				<button onClick={this.handleStartShift}>
-					Start Shift
-				</button>
+				<ShiftHud
+					characters={characters}
+					handleStartShift={this.handleStartShift} />
 				<div className="o-cardsList">
 					{ handCards.map((card, index) => {
 						return <Card key={`card-${index}`} card={card} />;
