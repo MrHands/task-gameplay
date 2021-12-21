@@ -263,6 +263,7 @@ export default class App extends React.Component {
 				<ShiftHud
 					characters={characters}
 					handleStartShift={this.handleStartShift} />
+				<h3 className="a-explain">Click and drag tasks from your hand to a character slot</h3>
 				<div className="o-cardsList">
 					{ handCards.map((card, index) => {
 						return <Card key={`card-${index}`} card={card} />;

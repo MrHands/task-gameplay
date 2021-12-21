@@ -1,0 +1,8 @@
+.m-shiftHud {
+	display: grid;
+	grid-template-rows:
+		min-content
+		1fr;
+	gap: 12px;
+	justify-items: center;
+}

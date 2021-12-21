@@ -18,9 +18,12 @@ export default class ShiftHud extends React.Component {
 		}
 
 		return (
-			<button onClick={handleStartShift} disabled={disabled}>
-				Start Shift
-			</button>
+			<div className="m-shiftHud">
+				<h3 className="a-explain">All characters must be assigned a task for their shift</h3>
+				<button onClick={handleStartShift} disabled={disabled}>
+					Start Shift
+				</button>
+			</div>
 		);
 	}
 }

@@ -19,7 +19,8 @@ button {
 
 button:disabled {
 	border-color: transparent;
-	color: lightgray;
+	background: darkgray;
+	color: gray;
 }
 
 #root {
@@ -41,4 +42,9 @@ button:disabled {
 	grid-template-columns: repeat(3, 1fr);
 	gap: 12px;
 	width: 80vw;
+}
+
+.a-explain {
+	text-transform: uppercase;
+	color: gray;
 }
