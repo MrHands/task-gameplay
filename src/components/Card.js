@@ -22,11 +22,19 @@ export default class Card extends React.Component {
 		} = this.props;
 
 		if (!card) {
-			return <DroppableCard
+			return (
+			<DroppableCard
 				className="o-card -empty"
 				owner={owner}
 				onTaskDropped={onTaskDropped}
-				canBePlayed={canBePlayed} />;
+				canBePlayed={canBePlayed}>
+				<h2 className="o-card__title">Resting</h2>
+				<ul className="o-card__effects">
+					<li>stamina +50%</li>
+					<li>pleasure -10%</li>
+				</ul>
+			</DroppableCard>
+			);
 		}
 
 		return (

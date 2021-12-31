@@ -211,13 +211,27 @@ export default class App extends React.Component {
 	startShift() {
 		this.setState(state => {
 			const newCharacters = state.characters.map(character => {
-				if (character.card) {
-					character.card.effects.forEach(effect => {
-						const stat = character.stats[effect.type];
-						character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 100));
-					});
-					character.card = null;
+				if (!character.card) {
+					character.card = {
+						effects: [
+							{
+								type: 'stamina',
+								value: 50,
+							},
+							{
+								type: 'pleasure',
+								value: -10,
+							}
+						]
+					}
 				}
+
+				character.card.effects.forEach(effect => {
+					const stat = character.stats[effect.type];
+					character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 100));
+				});
+
+				character.card = null;
 
 				return character;
 			});
