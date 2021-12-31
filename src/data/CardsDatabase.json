@@ -5,12 +5,12 @@
 			"title": "Ship 1",
 			"effects": [
 				{
-					"type": "hunger",
-					"value": 3
+					"type": "stamina",
+					"value": -30
 				},
 				{
-					"type": "stress",
-					"value": 2
+					"type": "pleasure",
+					"value": -10
 				}
 			]
 		},
@@ -19,12 +19,12 @@
 			"title": "Ship 2",
 			"effects": [
 				{
-					"type": "hunger",
-					"value": 4
+					"type": "stamina",
+					"value": -40
 				},
 				{
-					"type": "stress",
-					"value": 5
+					"type": "pleasure",
+					"value": -20
 				}
 			]
 		},
@@ -33,12 +33,12 @@
 			"title": "Ship 3",
 			"effects": [
 				{
-					"type": "hunger",
-					"value": 5
+					"type": "stamina",
+					"value": -50
 				},
 				{
-					"type": "stress",
-					"value": 4
+					"type": "pleasure",
+					"value": -30
 				}
 			]
 		},
@@ -47,12 +47,12 @@
 			"title": "Ship 4",
 			"effects": [
 				{
-					"type": "hunger",
-					"value": 6
+					"type": "stamina",
+					"value": -60
 				},
 				{
-					"type": "stress",
-					"value": 5
+					"type": "pleasure",
+					"value": -40
 				}
 			]
 		},
@@ -61,12 +61,20 @@
 			"title": "Personal 1",
 			"effects": [
 				{
-					"type": "stress",
-					"value": 1
+					"type": "stamina",
+					"value": -10
 				},
 				{
-					"type": "horny",
-					"value": 1
+					"type": "pleasure",
+					"value": 10
+				},
+				{
+					"type": "passionate",
+					"value": 10
+				},
+				{
+					"type": "intimate",
+					"value": 10
 				}
 			]
 		},
@@ -75,12 +83,20 @@
 			"title": "Personal 2",
 			"effects": [
 				{
-					"type": "stress",
-					"value": 2
+					"type": "stamina",
+					"value": -20
 				},
 				{
-					"type": "horny",
-					"value": 1
+					"type": "pleasure",
+					"value": 30
+				},
+				{
+					"type": "passionate",
+					"value": 5
+				},
+				{
+					"type": "dominant",
+					"value": 25
 				}
 			]
 		},
@@ -89,12 +105,20 @@
 			"title": "Personal 3",
 			"effects": [
 				{
-					"type": "stress",
-					"value": 3
+					"type": "stamina",
+					"value": -30
 				},
 				{
-					"type": "horny",
-					"value": 1
+					"type": "pleasure",
+					"value": 30
+				},
+				{
+					"type": "intimate",
+					"value": 15
+				},
+				{
+					"type": "dominant",
+					"value": 15
 				}
 			]
 		},
@@ -103,68 +127,20 @@
 			"title": "Personal 4",
 			"effects": [
 				{
-					"type": "stress",
-					"value": 4
+					"type": "stamina",
+					"value": -40
 				},
 				{
-					"type": "horny",
-					"value": 2
-				}
-			]
-		},
-		{
-			"id": "self-care-1",
-			"title": "Self-Care 1",
-			"effects": [
-				{
-					"type": "hunger",
-					"value": -2
+					"type": "pleasure",
+					"value": 50
 				},
 				{
-					"type": "stress",
-					"value": -1
-				}
-			]
-		},
-		{
-			"id": "self-care-2",
-			"title": "Self-Care 2",
-			"effects": [
-				{
-					"type": "hunger",
-					"value": -3
+					"type": "passionate",
+					"value": 25
 				},
 				{
-					"type": "stress",
-					"value": -2
-				}
-			]
-		},
-		{
-			"id": "self-care-3",
-			"title": "Self-Care 3",
-			"effects": [
-				{
-					"type": "hunger",
-					"value": -4
-				},
-				{
-					"type": "stress",
-					"value": -3
-				}
-			]
-		},
-		{
-			"id": "self-care-4",
-			"title": "Self-Care 4",
-			"effects": [
-				{
-					"type": "hunger",
-					"value": -5
-				},
-				{
-					"type": "stress",
-					"value": -4
+					"type": "intimate",
+					"value": 15
 				}
 			]
 		}

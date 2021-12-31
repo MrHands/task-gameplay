@@ -11,7 +11,7 @@ import Card from './components/Card';
 import ShiftHud from './ShiftHud';
 
 function randomPercentage() {
-	return Math.floor(Math.random() * 10);
+	return Math.floor(Math.random() * 100);
 }
 
 export default class App extends React.Component {
@@ -27,42 +27,33 @@ export default class App extends React.Component {
 					id: 0,
 					name: 'Chichi',
 					stats: {
-						stamina: randomPercentage(),
+						stamina: 100,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,
-						dominant: 0,
-						hunger: randomPercentage(),
-						stress: randomPercentage(),
-						horny: randomPercentage(),
+						dominant: 0
 					}
 				},
 				{
 					id: 1,
 					name: 'Riya',
 					stats: {
-						stamina: randomPercentage(),
+						stamina: 100,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,
-						dominant: 0,
-						hunger: randomPercentage(),
-						stress: randomPercentage(),
-						horny: randomPercentage(),
+						dominant: 0
 					}
 				},
 				{
 					id: 2,
 					name: 'Bobby',
 					stats: {
-						stamina: randomPercentage(),
+						stamina: 100,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,
-						dominant: 0,
-						hunger: randomPercentage(),
-						stress: randomPercentage(),
-						horny: randomPercentage(),
+						dominant: 0
 					}
 				}
 			]
@@ -160,7 +151,7 @@ export default class App extends React.Component {
 
 		card.effects.forEach(effect => {
 			const newValue = character.stats[effect.type] + effect.value;
-			if (effect.type !== 'horny' && newValue >= 10) {
+			if (effect.type !== 'pleasure' && newValue >= 100) {
 				allowed = false;
 			}
 		});
@@ -237,7 +228,7 @@ export default class App extends React.Component {
 				if (character.card) {
 					character.card.effects.forEach(effect => {
 						const stat = character.stats[effect.type];
-						character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 9));
+						character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 100));
 					});
 					character.card = null;
 				}

@@ -7,9 +7,9 @@ import './Card.css';
 export default class Card extends React.Component {
 	effectText(value) {
 		if (value > 0) {
-			return `+${value * 10}%`;
+			return `+${value}%`;
 		} else {
-			return `${value * 10}%`;
+			return `${value}%`;
 		}
 	}
 
@@ -32,7 +32,7 @@ export default class Card extends React.Component {
 		return (
 			<DraggableCard className="o-card" {...this.props}>
 				<h2 className="o-card__title">{card.title}</h2>
-				<ul className="o-card__efects">
+				<ul className="o-card__effects">
 					{ card.effects.map((effect, index) => {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect.value)}</li>;
 					})}

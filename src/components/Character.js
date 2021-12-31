@@ -5,11 +5,11 @@ import './Character.css';
 
 export default class Character extends React.Component {
 	renderStat(type, value, card) {
-		let result = `${value * 10}%`;
+		let result = `${value}%`;
 		if (card) {
 			const found = card.effects.find(effect => effect.type === type);
 			if (found) {
-				result += ` ➔ ${(value + found.value) * 10}%`;
+				result += ` ➔ ${value + found.value}%`;
 			}
 		}
 		return result;
