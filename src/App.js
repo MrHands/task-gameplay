@@ -87,28 +87,14 @@ export default class App extends React.Component {
 
 	drawHand(deckCards) {
 		let {
+			characters,
 			handCards
 		} = this.state;
 
-		let deckMaintenanceCards = deckCards.filter(card => {
-			return card.id.startsWith('maintenance');
-		});
-		let deckOtherCards = deckCards.filter(card => {
-			return !card.id.startsWith('maintenance');
-		});
+		handCards.length = 0;
 
-		let handMaintenanceCards = handCards.filter(card => {
-			return card.id.startsWith('maintenance');
-		});
-
-		for (let i = handMaintenanceCards.length; i < 3; ++i) {
-			const card = deckMaintenanceCards.pop();
-			card.handId = handCards.length;
-			handCards.push(card);
-		}
-
-		for (let i = handCards.length; i < (3 * 3) + 3; ++i) {
-			const card = deckOtherCards.pop();
+		for (let i = 0; i < characters.length + 1; ++i) {
+			const card = deckCards.pop();
 			card.handId = handCards.length;
 			handCards.push(card);
 		}
@@ -240,6 +226,10 @@ export default class App extends React.Component {
 				characters: newCharacters
 			}
 		});
+
+		// draw new hand
+
+		this.drawHand(this.state.deckCards);
 	}
 
 	render() {
