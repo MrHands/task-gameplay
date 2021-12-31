@@ -9,8 +9,9 @@ export default class ShiftHud extends React.Component {
 			handleStartShift
 		} = this.props;
 
-		const withCards = characters.filter(character => character.card);
 		let disabled;
+
+		const withCards = characters.filter(character => character.card);
 		if (withCards.length === characters.length) {
 			disabled = '';
 		} else {

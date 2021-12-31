@@ -30,12 +30,16 @@ export default class Character extends React.Component {
 			<div className="o-character">
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
-					<div className="m-stats__header">Hunger</div>
-					<div className="m-stats__value">{this.renderStat('hunger', stats.hunger, card)}</div>
-					<div className="m-stats__header">Stress</div>
-					<div className="m-stats__value">{this.renderStat('stress', stats.stress, card)}</div>
-					<div className="m-stats__header">Horny</div>
-					<div className="m-stats__value">{this.renderStat('horny', stats.horny, card)}</div>
+					<div className="m-stats__header">Stamina</div>
+					<div className="m-stats__value">{this.renderStat('stamina', stats.stamina, card)}</div>
+					<div className="m-stats__header">Pleasure</div>
+					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, card)}</div>
+					<div className="m-stats__header">Passionate</div>
+					<div className="m-stats__value">{this.renderStat('passionate', stats.passionate, card)}</div>
+					<div className="m-stats__header">Intimate</div>
+					<div className="m-stats__value">{this.renderStat('intimate', stats.intimate, card)}</div>
+					<div className="m-stats__header">Dominant</div>
+					<div className="m-stats__value">{this.renderStat('dominant', stats.dominant, card)}</div>
 				</div>
 				<Card card={card} owner={id} onTaskDropped={onTaskDropped} canBePlayed={canBePlayed} />
 				<button onClick={() => onTaskCleared(id)} disabled={!card}>
