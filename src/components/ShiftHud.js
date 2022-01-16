@@ -5,21 +5,15 @@ import './ShiftHud.css';
 export default class ShiftHud extends React.Component {
 	render() {
 		const {
-			characters,
+			shift,
 			handleStartShift
 		} = this.props;
 
-		let disabled;
-
-		const withCards = characters.filter(character => character.card);
-		if (withCards.length === characters.length) {
-			disabled = '';
-		} else {
-			disabled = 'disabled';
-		}
+		const ShiftText = [ 'morning', 'afternoon', 'evening', 'night' ];
 
 		return (
 			<div className="m-shiftHud">
+				<h2 className="m-shiftHud__title">{ShiftText[shift]}</h2>
 				<button onClick={handleStartShift}>
 					Start Shift
 				</button>

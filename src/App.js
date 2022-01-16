@@ -8,7 +8,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import Card from './components/Card';
-import ShiftHud from './ShiftHud';
+import ShiftHud from './components/ShiftHud';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
@@ -19,6 +19,7 @@ export default class App extends React.Component {
 		super();
 
 		this.state = {
+			shift: 0,
 			deck: 'balanced',
 			deckCards: [],
 			handCards: [],
@@ -210,7 +211,12 @@ export default class App extends React.Component {
 
 	startShift() {
 		this.setState(state => {
-			const newCharacters = state.characters.map(character => {
+			const {
+				characters,
+				shift,
+			} = state;
+
+			const newCharacters = characters.map(character => {
 				if (!character.card) {
 					character.card = {
 						effects: [
@@ -237,7 +243,8 @@ export default class App extends React.Component {
 			});
 
 			return {
-				characters: newCharacters
+				characters: newCharacters,
+				shift: shift + 1,
 			}
 		});
 
@@ -249,7 +256,8 @@ export default class App extends React.Component {
 	render() {
 		const {
 			handCards,
-			characters
+			characters,
+			shift,
 		} = this.state;
 
 		if (handCards.length === 0) {
@@ -271,6 +279,7 @@ export default class App extends React.Component {
 					}) }
 				</div>
 				<ShiftHud
+					shift={shift}
 					characters={characters}
 					handleStartShift={this.handleStartShift} />
 				<h3 className="a-explain">Click and drag tasks from your hand to a character slot</h3>
