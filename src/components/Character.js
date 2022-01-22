@@ -18,6 +18,20 @@ export default class Character extends React.Component {
 		return result;
 	}
 
+	renderPersistentStat(type, value, card) {
+		let result = `${value}`;
+		if (card) {
+			const found = card.effects.find(effect => effect.type === type);
+			if (found) {
+				const newValue = value + found.value;
+				if (newValue !== value) {
+					result += ` ➔ ${newValue}`;
+				}
+			}
+		}
+		return result;
+	}
+
 	render() {
 		const {
 			id,
@@ -54,11 +68,11 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Pleasure</div>
 					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, cardShown)}</div>
 					<div className="m-stats__header">Passionate</div>
-					<div className="m-stats__value">{this.renderStat('passionate', stats.passionate, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('passionate', stats.passionate, cardShown)}</div>
 					<div className="m-stats__header">Intimate</div>
-					<div className="m-stats__value">{this.renderStat('intimate', stats.intimate, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('intimate', stats.intimate, cardShown)}</div>
 					<div className="m-stats__header">Dominant</div>
-					<div className="m-stats__value">{this.renderStat('dominant', stats.dominant, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, cardShown)}</div>
 				</div>
 				<Card card={card} owner={id} onTaskDropped={onTaskDropped} canBePlayed={canBePlayed} />
 				<button onClick={() => onTaskCleared(id)} disabled={!card}>

@@ -5,11 +5,21 @@ import DroppableCard from './DroppableCard';
 import './Card.css';
 
 export default class Card extends React.Component {
-	effectText(value) {
-		if (value > 0) {
-			return `+${value}%`;
+	effectText(effect) {
+		const { type, value } = effect;
+
+		if (type === 'stamina' || type === 'pleasure') {
+			if (value > 0) {
+				return `+${value}%`;
+			} else {
+				return `${value}%`;
+			}
 		} else {
-			return `${value}%`;
+			if (value > 0) {
+				return `+${value}`;
+			} else {
+				return `${value}`;
+			}
 		}
 	}
 
@@ -42,7 +52,7 @@ export default class Card extends React.Component {
 				<h2 className="o-card__title">{card.title}</h2>
 				<ul className="o-card__effects">
 					{ card.effects.map((effect, index) => {
-						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect.value)}</li>;
+						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
 					})}
 				</ul>
 				<h3>{card.handId}</h3>
