@@ -28,7 +28,7 @@ export default class App extends React.Component {
 					id: 0,
 					name: 'Chichi',
 					stats: {
-						stamina: 100,
+						stamina: 5,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,
@@ -39,7 +39,7 @@ export default class App extends React.Component {
 					id: 1,
 					name: 'Riya',
 					stats: {
-						stamina: 100,
+						stamina: 5,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,
@@ -50,7 +50,7 @@ export default class App extends React.Component {
 					id: 2,
 					name: 'Bobby',
 					stats: {
-						stamina: 100,
+						stamina: 5,
 						pleasure: randomPercentage(),
 						passionate: 0,
 						intimate: 0,

@@ -8,17 +8,20 @@ export default class Card extends React.Component {
 	effectText(effect) {
 		const { type, value } = effect;
 
-		if (type === 'stamina' || type === 'pleasure') {
-			if (value > 0) {
-				return `+${value}%`;
-			} else {
-				return `${value}%`;
+		switch (type) {
+			case 'pleasure': {
+				if (value > 0) {
+					return `+${value}%`;
+				} else {
+					return `${value}%`;
+				}
 			}
-		} else {
-			if (value > 0) {
-				return `+${value}`;
-			} else {
-				return `${value}`;
+			default: {
+				if (value > 0) {
+					return `+${value}`;
+				} else {
+					return `${value}`;
+				}
 			}
 		}
 	}
@@ -32,18 +35,29 @@ export default class Card extends React.Component {
 		} = this.props;
 
 		if (!card) {
+			const effects = [
+				{
+					type: 'stamina',
+					value: 2,
+				},
+				{
+					type: 'pleasure',
+					value: -10,
+				}
+			];
 			return (
-			<DroppableCard
-				className="o-card -empty"
-				owner={owner}
-				onTaskDropped={onTaskDropped}
-				canBePlayed={canBePlayed}>
-				<h2 className="o-card__title">Resting</h2>
-				<ul className="o-card__effects">
-					<li>stamina +50%</li>
-					<li>pleasure -10%</li>
-				</ul>
-			</DroppableCard>
+				<DroppableCard
+					className="o-card -empty"
+					owner={owner}
+					onTaskDropped={onTaskDropped}
+					canBePlayed={canBePlayed}>
+					<h2 className="o-card__title">Resting</h2>
+					<ul className="o-card__effects">
+						{ effects.map((effect, index) => {
+							return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
+						})}
+					</ul>
+				</DroppableCard>
 			);
 		}
 

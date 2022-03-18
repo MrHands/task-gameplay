@@ -49,7 +49,7 @@ export default class Character extends React.Component {
 				effects: [
 					{
 						type: 'stamina',
-						value: 50,
+						value: 2,
 					},
 					{
 						type: 'pleasure',
@@ -64,7 +64,7 @@ export default class Character extends React.Component {
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					<div className="m-stats__header">Stamina</div>
-					<div className="m-stats__value">{this.renderStat('stamina', stats.stamina, cardShown)}</div>
+					<div className="m-stats__value">{stats.stamina} / 5</div>
 					<div className="m-stats__header">Pleasure</div>
 					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, cardShown)}</div>
 					<div className="m-stats__header">Passionate</div>

@@ -6,7 +6,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -30
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -20,7 +20,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -40
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -34,7 +34,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -50
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -48,7 +48,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -60
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -62,7 +62,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -10
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -84,7 +84,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -20
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -106,7 +106,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -30
+					"value": -1
 				},
 				{
 					"type": "pleasure",
@@ -128,7 +128,7 @@
 			"effects": [
 				{
 					"type": "stamina",
-					"value": -40
+					"value": -1
 				},
 				{
 					"type": "pleasure",
