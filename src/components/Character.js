@@ -43,21 +43,7 @@ export default class Character extends React.Component {
 			canBePlayed,
 		} = this.props;
 
-		let cardShown = card;
-		if (!cardShown) {
-			cardShown = {
-				effects: [
-					{
-						type: 'stamina',
-						value: 2,
-					},
-					{
-						type: 'pleasure',
-						value: -10,
-					}
-				]
-			}
-		}
+		const cardShown = null;
 
 		return (
 			<div className="o-character">
@@ -74,10 +60,6 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Dominant</div>
 					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, cardShown)}</div>
 				</div>
-				<Card card={card} owner={id} onTaskDropped={onTaskDropped} canBePlayed={canBePlayed} />
-				<button onClick={() => onTaskCleared(id)} disabled={!card}>
-					Clear
-				</button>
 			</div>
 		);
 	}
