@@ -1,3 +1,29 @@
 .o-task {
-	border: 2px solid blue;
+	display: grid;
+	grid-template-areas:
+		'title    '
+		'effects  ';
+	grid-template-rows:
+		min-content
+		1fr;
+	gap: 12px;
+	max-width: 180px;
+	min-height: 240px;
+	aspect-ratio: 240/320;
+	padding: 12px;
+	border: 2px solid goldenrod;
+	border-radius: 12px;
+	cursor: move;
+}
+
+.o-task__title {
+	grid-area: title;
+	text-align: center;
+}
+
+.o-task__effects {
+	grid-area: effects;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
