@@ -2,7 +2,7 @@
 	"decks": [
 		{
 			"id": "balanced",
-			"cards": [
+			"tasks": [
 				"maintenance-1",
 				"maintenance-1",
 				"maintenance-1",
@@ -31,6 +31,12 @@
 				"personal-3",
 
 				"personal-4"
+			]
+		},
+		{
+			"id": "rest",
+			"tasks": [
+				"rest"
 			]
 		}
 	]

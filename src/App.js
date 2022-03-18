@@ -2,6 +2,7 @@ import './App.css';
 
 import CardsDatabase from './data/CardsDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
+import TasksDatabase from './data/TasksDatabase.json';
 
 import React from 'react';
 import { DndProvider } from 'react-dnd';
@@ -9,6 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import Card from './components/Card';
 import ShiftHud from './components/ShiftHud';
+import Task from './components/Task';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
@@ -23,6 +25,10 @@ export default class App extends React.Component {
 			deck: 'balanced',
 			deckCards: [],
 			handCards: [],
+
+			tasksDeck: [],
+			restDeck: [],
+
 			characters: [
 				{
 					id: 0,
@@ -69,21 +75,31 @@ export default class App extends React.Component {
 	startGame() {
 		// build deck
 
-		const deck = DecksDatabase.decks.find(deck => {
+		const deckTasks = DecksDatabase.decks.find(deck => {
 			return deck.id === this.state.deck;
 		});
 
-		let deckCards = this.shuffleCards(deck.cards.map(id => {
+		const tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
+			return Object.assign({}, this.getCard(id));
+		}));
+
+		const deckRest = DecksDatabase.decks.find(deck => {
+			return deck.id === 'rest';
+		});
+
+		const restDeck = this.shuffleCards(deckRest.tasks.map(id => {
 			return Object.assign({}, this.getCard(id));
 		}));
 
 		this.setState({
-			deckCards: deckCards
+			deckCards: tasksDeck,
+			tasksDeck,
+			restDeck
 		});
 
 		// draw hand
 
-		this.drawHand(deckCards);
+		this.drawHand(tasksDeck);
 	}
 
 	drawHand(deckCards) {
@@ -108,6 +124,12 @@ export default class App extends React.Component {
 	getCard(id) {
 		return CardsDatabase.cards.find(card => {
 			return card.id === id;
+		});
+	}
+
+	getTask(id) {
+		return TasksDatabase.tasks.find(task => {
+			return task.id === id;
 		});
 	}
 
@@ -258,6 +280,7 @@ export default class App extends React.Component {
 			handCards,
 			characters,
 			shift,
+			tasksDeck,
 		} = this.state;
 
 		if (handCards.length === 0) {
@@ -268,6 +291,11 @@ export default class App extends React.Component {
 
 		return (
 			<DndProvider backend={HTML5Backend}>
+				<ul className="o-cardsList">
+					{ tasksDeck.map((task, index) => {
+						return <Task key={`task-${index}`} task={task} />;
+					})}
+				</ul>
 				<div className="o-characterList">
 					{ characters.map(character => {
 						return <Character

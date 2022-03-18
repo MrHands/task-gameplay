@@ -1,0 +1,162 @@
+{
+	"tasks": [
+		{
+			"id": "maintenance-1",
+			"title": "Ship 1",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": -10
+				}
+			]
+		},
+		{
+			"id": "maintenance-2",
+			"title": "Ship 2",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": -20
+				}
+			]
+		},
+		{
+			"id": "maintenance-3",
+			"title": "Ship 3",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": -30
+				}
+			]
+		},
+		{
+			"id": "maintenance-4",
+			"title": "Ship 4",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": -40
+				}
+			]
+		},
+		{
+			"id": "personal-1",
+			"title": "Personal 1",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": 10
+				},
+				{
+					"type": "passionate",
+					"value": 10
+				},
+				{
+					"type": "intimate",
+					"value": 10
+				}
+			]
+		},
+		{
+			"id": "personal-2",
+			"title": "Personal 2",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": 30
+				},
+				{
+					"type": "passionate",
+					"value": 5
+				},
+				{
+					"type": "dominant",
+					"value": 25
+				}
+			]
+		},
+		{
+			"id": "personal-3",
+			"title": "Personal 3",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": 30
+				},
+				{
+					"type": "intimate",
+					"value": 15
+				},
+				{
+					"type": "dominant",
+					"value": 15
+				}
+			]
+		},
+		{
+			"id": "personal-4",
+			"title": "Personal 4",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": -1
+				},
+				{
+					"type": "pleasure",
+					"value": 50
+				},
+				{
+					"type": "passionate",
+					"value": 25
+				},
+				{
+					"type": "intimate",
+					"value": 15
+				}
+			]
+		},
+		{
+			"id": "rest",
+			"title": "Rest",
+			"effects": [
+				{
+					"type": "stamina",
+					"value": 2
+				},
+				{
+					"type": "pleasure",
+					"value": -10
+				}
+			]
+		}
+	]
+}
