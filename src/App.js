@@ -8,7 +8,6 @@ import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
-import Card from './components/Card';
 import ShiftHud from './components/ShiftHud';
 import Task from './components/Task';
 
@@ -72,52 +71,64 @@ export default class App extends React.Component {
 		this.handleStartShift = this.startShift.bind(this);
 	}
 
-	startGame() {
+	componentDidMount() {
 		// build deck
 
 		const deckTasks = DecksDatabase.decks.find(deck => {
 			return deck.id === this.state.deck;
 		});
+		console.log(deckTasks);
 
 		const tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
-			return Object.assign({}, this.getCard(id));
+			return Object.assign({}, this.getTask(id));
 		}));
+		console.log(tasksDeck);
 
 		const deckRest = DecksDatabase.decks.find(deck => {
 			return deck.id === 'rest';
 		});
 
 		const restDeck = this.shuffleCards(deckRest.tasks.map(id => {
-			return Object.assign({}, this.getCard(id));
+			return Object.assign({}, this.getTask(id));
 		}));
 
 		this.setState({
 			deckCards: tasksDeck,
-			tasksDeck,
-			restDeck
+			tasksDeck: tasksDeck,
+			restDeck: restDeck
 		});
-
-		// draw hand
-
-		this.drawHand(tasksDeck);
+		console.log(this.state);
 	}
 
-	drawHand(deckCards) {
-		let {
+	startGame() {
+		// draw hand
+
+		this.drawHand();
+	}
+
+	drawHand() {
+		const {
 			characters,
-			handCards
+			tasksDeck,
+			restDeck
 		} = this.state;
 
-		handCards.length = 0;
+		const handCards = [];
 
-		for (let i = 0; i < characters.length + 1; ++i) {
-			const card = deckCards.pop();
-			card.handId = handCards.length;
-			handCards.push(card);
+		for (let i = 0; i < characters.length; ++i) {
+			const task = tasksDeck.pop();
+			task.handId = handCards.length;
+			handCards.push(task);
+		}
+
+		for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
+			const task = Object.assign({}, restDeck[0]);
+			task.handId = handCards.length;
+			handCards.push(task);
 		}
 
 		this.setState({
-			handCards: handCards
+			handCards: this.shuffleCards(handCards)
 		});
 	}
 
@@ -140,7 +151,7 @@ export default class App extends React.Component {
 	}
 
 	shuffleCards(cards) {
-		let copy = [];
+		const copy = [];
 
 		for (let n = cards.length; n > 0; n--) {
 			let i = Math.floor(Math.random() * n);
@@ -272,7 +283,7 @@ export default class App extends React.Component {
 
 		// draw new hand
 
-		this.drawHand(this.state.deckCards);
+		this.drawHand();
 	}
 
 	render() {
@@ -280,7 +291,6 @@ export default class App extends React.Component {
 			handCards,
 			characters,
 			shift,
-			tasksDeck,
 		} = this.state;
 
 		if (handCards.length === 0) {
@@ -292,7 +302,7 @@ export default class App extends React.Component {
 		return (
 			<DndProvider backend={HTML5Backend}>
 				<ul className="o-cardsList">
-					{ tasksDeck.map((task, index) => {
+					{ handCards.map((task, index) => {
 						return <Task key={`task-${index}`} task={task} />;
 					})}
 				</ul>
@@ -311,11 +321,6 @@ export default class App extends React.Component {
 					characters={characters}
 					handleStartShift={this.handleStartShift} />
 				<h3 className="a-explain">Click and drag tasks from your hand to a character slot</h3>
-				<div className="o-cardsList">
-					{ handCards.map((card, index) => {
-						return <Card key={`card-${index}`} card={card} />;
-					})}
-				</div>
 			</DndProvider>
 		);
 	}
