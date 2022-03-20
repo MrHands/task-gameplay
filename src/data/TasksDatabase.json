@@ -12,7 +12,8 @@
 					"type": "pleasure",
 					"value": -10
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "maintenance-2",
@@ -26,7 +27,8 @@
 					"type": "pleasure",
 					"value": -20
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "maintenance-3",
@@ -40,7 +42,8 @@
 					"type": "pleasure",
 					"value": -30
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "maintenance-4",
@@ -54,7 +57,8 @@
 					"type": "pleasure",
 					"value": -40
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "personal-1",
@@ -76,7 +80,8 @@
 					"type": "intimate",
 					"value": 10
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "personal-2",
@@ -98,7 +103,8 @@
 					"type": "dominant",
 					"value": 25
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "personal-3",
@@ -120,7 +126,8 @@
 					"type": "dominant",
 					"value": 15
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "personal-4",
@@ -142,7 +149,8 @@
 					"type": "intimate",
 					"value": 15
 				}
-			]
+			],
+			"difficulty": 12
 		},
 		{
 			"id": "rest",
@@ -156,7 +164,8 @@
 					"type": "pleasure",
 					"value": -10
 				}
-			]
+			],
+			"difficulty": 0
 		}
 	]
 }

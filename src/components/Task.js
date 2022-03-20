@@ -58,7 +58,7 @@ export default class Task extends React.Component {
 				<div className="o-task__character">
 					{characterDropped}
 				</div>
-				<Carousel className="o-task__carousel"></Carousel>
+				<Carousel className="o-task__carousel" difficulty={task.difficulty}></Carousel>
 			</div>
 		);
 	}

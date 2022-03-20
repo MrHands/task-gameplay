@@ -6,31 +6,23 @@ import './Carousel.css';
 
 export default class Carousel extends React.Component {
 	render() {
-		const outcomes = [
-			TaskOutcome.CRITIAL_FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
+		const {
+			difficulty
+		} = this.props;
 
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
-			TaskOutcome.FAIL,
+		const outcomes = [];
 
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.SUCCESS,
-			TaskOutcome.CRITICAL_SUCCESS,
-		];
+		for (let i = 0; i < 20; ++i) {
+			if (i === 0) {
+				outcomes.push(TaskOutcome.CRITIAL_FAIL);
+			} else if (i === 19) {
+				outcomes.push(TaskOutcome.CRITICAL_SUCCESS);
+			} else if (i < difficulty) {
+				outcomes.push(TaskOutcome.FAIL);
+			} else {
+				outcomes.push(TaskOutcome.SUCCESS);
+			}
+		}
 
 		return (<div className={['m-carousel', this.props.className].join(' ')}>
 			{outcomes.map((outcome, index) => {
