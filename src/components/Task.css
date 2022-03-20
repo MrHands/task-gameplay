@@ -1,9 +1,10 @@
 .o-task {
 	display: grid;
 	grid-template-areas:
-		'title    title     '
-		'effects  character '
-		'carousel carousel  ';
+		'title       title       '
+		'effects     character   '
+		'carousel    carousel    '
+		'difficulty  difficulty  ';
 	grid-template-rows:
 		min-content
 		1fr;
@@ -33,4 +34,13 @@
 
 .o-task__carousel {
 	grid-area: carousel;
+}
+
+.o-task__difficulty {
+	grid-area: difficulty;
+	border: 2px solid lightcoral;
+	color: lightcoral;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 12px;
 }
