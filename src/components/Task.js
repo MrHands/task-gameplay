@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Character from './Character';
 import DroppableCard from './DroppableCard';
 import Card from './Card';
 
@@ -32,6 +33,19 @@ export default class Task extends React.Component {
 			task,
 		} = this.props;
 
+		console.log(task.character);
+
+		let characterDropped = null;
+		if (task.character !== null) {
+			characterDropped = <Character {...task.character} />;
+		} else {
+			characterDropped = (
+				<DroppableCard className="o-card -empty" {...this.props}>
+					<h3 className="o-card__title">Drag character here</h3>
+				</DroppableCard>
+			);
+		}
+
 		return (
 			<div className="o-task">
 				<h2 className="o-task__title">{task.title}</h2>
@@ -40,11 +54,9 @@ export default class Task extends React.Component {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
 					})}
 				</ul>
-				<ul className="o-task__character">
-				<DroppableCard className="o-card -empty" {...this.props}>
-					<h3 className="o-card__title">Drag character here</h3>
-				</DroppableCard>
-				</ul>
+				<div className="o-task__character">
+					{characterDropped}
+				</div>
 			</div>
 		);
 	}

@@ -37,7 +37,8 @@ export default class App extends React.Component {
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
-					}
+					},
+					task: ''
 				},
 				{
 					id: 1,
@@ -48,7 +49,8 @@ export default class App extends React.Component {
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
-					}
+					},
+					task: ''
 				},
 				{
 					id: 2,
@@ -59,7 +61,8 @@ export default class App extends React.Component {
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
-					}
+					},
+					task: ''
 				}
 			],
 
@@ -135,6 +138,10 @@ export default class App extends React.Component {
 			handCards.push(task);
 		}
 
+		handCards.forEach(task => {
+			task.character = null;
+		});
+
 		this.setState({
 			handCards: this.shuffleCards(handCards)
 		});
@@ -191,18 +198,14 @@ export default class App extends React.Component {
 		return allowed;
 	}
 
-	setCharacterTask(task, id) {
-		console.log(task);
-		console.log(id);
-
-		/* if (!this.canBePlayed(owner, dropped)) {
-			return;
-		}
-
+	setCharacterTask(task, dropped) {
 		this.setState(state => {
-			const taskPreviousCharacter = state.characters.find(character => character.card === dropped);
+			const character = state.characters.find(character => character.id === dropped);
+			character.task = task.id;
 
-			const newHand = state.handCards.filter(card => card.handId !== dropped.handId);
+			task.character = character;
+
+			/* const newHand = state.handCards.filter(card => card.handId !== dropped.handId);
 			newHand.sort((left, right) => {
 				return left.handId < right.handId ? -1 : 1;
 			});
@@ -210,7 +213,7 @@ export default class App extends React.Component {
 			const updatedCharacters = state.characters.map(character => {
 				// clear card from previous owner
 
-				if (character.id === taskPreviousCharacter?.id) {
+				if (character.id === character?.id) {
 					character.card = null;
 				}
 
@@ -221,13 +224,14 @@ export default class App extends React.Component {
 				}
 
 				return character;
-			});
+			}); */
+
+			const charactersUnplaced = state.characters.filter(character => character.task === '');
 
 			return {
-				handCards: newHand,
-				characters: updatedCharacters
+				charactersUnplaced
 			}
-		}); */
+		});
 	}
 
 	clearCharacterTask(owner) {

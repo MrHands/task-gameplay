@@ -16,7 +16,7 @@ export default function DroppableCard(props) {
 			canDrop: monitor.canDrop(),
 			character: monitor.getItem(),
 		}),
-		drop: id => onCharacterDropped(task, id),
+		drop: character => onCharacterDropped(task, character.id),
 	}), [task]);
 
 	if (isOver && canDrop) {
