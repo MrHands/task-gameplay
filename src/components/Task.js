@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DroppableCard from './DroppableCard';
+import Card from './Card';
 
 import './Task.css';
 

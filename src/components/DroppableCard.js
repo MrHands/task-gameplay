@@ -5,22 +5,22 @@ export default function DroppableCard(props) {
 		className,
 		children,
 		owner,
-		onTaskDropped,
-		canBePlayed,
+		onCharacterDropped,
+		canBePlaced,
 	} = props;
 
-	const [ { isOver, canDrop, card }, drop ] = useDrop(() => ({
-		accept: 'card',
+	const [ { isOver, canDrop, id }, drop ] = useDrop(() => ({
+		accept: 'character',
 		collect: monitor => ({
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
-			card: monitor.getItem(),
+			id: monitor.getItem(),
 		}),
-		drop: card => onTaskDropped(owner, card),
-	}), [owner]);
+		drop: id => onCharacterDropped(id),
+	}), []);
 
 	if (isOver && canDrop) {
-		if (canBePlayed(owner, card)) {
+		if (canBePlaced(id)) {
 			className += ' -active';
 		} else {
 			className += ' -denied';

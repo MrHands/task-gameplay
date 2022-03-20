@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import DraggableCard from './DraggableCard';
 
 import './Character.css';
 
@@ -46,7 +46,7 @@ export default class Character extends React.Component {
 		const cardShown = null;
 
 		return (
-			<div className="o-character">
+			<DraggableCard className="o-character" {...this.props}>
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					<div className="m-stats__header">Stamina</div>
@@ -60,7 +60,7 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Dominant</div>
 					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, cardShown)}</div>
 				</div>
-			</div>
+			</DraggableCard>
 		);
 	}
 }
