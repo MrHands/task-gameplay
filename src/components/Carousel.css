@@ -2,9 +2,10 @@
 	display: grid;
 	grid-template-columns: repeat(10, 24px);
 	gap: 6px;
-	justify-self: center;
 }
 
 .m-carousel__item {
+	width: 24px;
+	height: 24px;
 	background: green;
 }
