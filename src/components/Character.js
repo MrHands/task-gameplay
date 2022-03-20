@@ -34,13 +34,8 @@ export default class Character extends React.Component {
 
 	render() {
 		const {
-			id,
 			name,
 			stats,
-			card,
-			onTaskDropped,
-			onTaskCleared,
-			canBePlayed,
 		} = this.props;
 
 		const cardShown = null;

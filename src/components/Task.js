@@ -41,8 +41,7 @@ export default class Task extends React.Component {
 					})}
 				</ul>
 				<ul className="o-task__character">
-				<DroppableCard
-					className="o-card -empty">
+				<DroppableCard className="o-card -empty" {...this.props}>
 					<h3 className="o-card__title">Drag character here</h3>
 				</DroppableCard>
 				</ul>

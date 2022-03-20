@@ -65,7 +65,7 @@ export default class App extends React.Component {
 			]
 		};
 
-		this.handleCanBePlayed = this.canBePlayed.bind(this);
+		this.handleCanBePlaced = this.canBePlaced.bind(this);
 		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
 		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
 		this.handleStartShift = this.startShift.bind(this);
@@ -161,6 +161,10 @@ export default class App extends React.Component {
 		return copy;
 	}
 
+	canBePlaced(id) {
+		return true;
+	}
+
 	canBePlayed(owner, card) {
 		const character = this.getCharacter(owner);
 		if (!character) {
@@ -179,8 +183,10 @@ export default class App extends React.Component {
 		return allowed;
 	}
 
-	setCharacterTask(owner, dropped) {
-		if (!this.canBePlayed(owner, dropped)) {
+	setCharacterTask(task, id) {
+		
+
+		/* if (!this.canBePlayed(owner, dropped)) {
 			return;
 		}
 
@@ -212,7 +218,7 @@ export default class App extends React.Component {
 				handCards: newHand,
 				characters: updatedCharacters
 			}
-		});
+		}); */
 	}
 
 	clearCharacterTask(owner) {
@@ -303,16 +309,19 @@ export default class App extends React.Component {
 			<DndProvider backend={HTML5Backend}>
 				<ul className="o-cardsList">
 					{ handCards.map((task, index) => {
-						return <Task key={`task-${index}`} task={task} />;
+						return <Task
+							key={`task-${index}`}
+							task={task}
+							canBePlaced={this.handleCanBePlaced}
+							onCharacterDropped={this.handleSetCharacterTask} />;
 					})}
 				</ul>
 				<div className="o-characterList">
 					{ characters.map(character => {
 						return <Character
 							key={`character-${character.id}`}
-							onTaskDropped={this.handleSetCharacterTask}
 							onTaskCleared={this.handleClearCharacterTask}
-							canBePlayed={this.handleCanBePlayed}
+							canBePlaced={this.handleCanBePlaced}
 							{...character} />;
 					}) }
 				</div>

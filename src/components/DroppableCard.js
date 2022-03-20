@@ -4,7 +4,6 @@ export default function DroppableCard(props) {
 	let {
 		className,
 		children,
-		owner,
 		onCharacterDropped,
 		canBePlaced,
 	} = props;
