@@ -1,0 +1,10 @@
+.m-carousel {
+	display: grid;
+	grid-template-columns: repeat(10, 24px);
+	gap: 6px;
+	justify-self: center;
+}
+
+.m-carousel__item {
+	background: green;
+}

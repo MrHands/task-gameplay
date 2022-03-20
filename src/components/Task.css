@@ -2,7 +2,8 @@
 	display: grid;
 	grid-template-areas:
 		'title    title     '
-		'effects  character ';
+		'effects  character '
+		'carousel carousel  ';
 	grid-template-rows:
 		min-content
 		1fr;
@@ -27,4 +28,8 @@
 
 .o-task__character {
 	grid-area: character;
+}
+
+.o-task__carousel {
+	grid-area: carousel;
 }

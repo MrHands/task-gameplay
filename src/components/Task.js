@@ -5,6 +5,7 @@ import DroppableCard from './DroppableCard';
 import Card from './Card';
 
 import './Task.css';
+import Carousel from './Carousel';
 
 export default class Task extends React.Component {
 	effectText(effect) {
@@ -57,6 +58,7 @@ export default class Task extends React.Component {
 				<div className="o-task__character">
 					{characterDropped}
 				</div>
+				<Carousel className="o-task__carousel"></Carousel>
 			</div>
 		);
 	}
