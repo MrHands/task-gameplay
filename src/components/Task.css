@@ -3,9 +3,9 @@
 	grid-template-areas:
 		'title       title       '
 		'effects     character   '
-		'carousel    carousel    '
-		'difficulty  difficulty  ';
+		'carousel    carousel    ';
 	grid-template-rows:
+		min-content
 		min-content
 		1fr;
 	gap: 12px;
@@ -34,10 +34,17 @@
 
 .o-task__carousel {
 	grid-area: carousel;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
 }
 
 .o-task__difficulty {
-	grid-area: difficulty;
+	display: table-caption;
+	width: min-content;
+	text-align: center;
 	border: 2px solid lightcoral;
 	color: lightcoral;
 	text-transform: uppercase;

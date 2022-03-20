@@ -42,7 +42,12 @@ export default class Task extends React.Component {
 		if (task.character !== null) {
 			characterDropped = <Character {...task.character} taskEffects={task.effects} />;
 
-			difficulty = <Carousel className="o-task__carousel" difficulty={task.difficulty}></Carousel>;
+			difficulty = (
+				<div className="o-task__carousel">
+					<Carousel difficulty={task.difficulty}></Carousel>
+					<button>Start Task</button>
+				</div>
+			);
 		} else {
 			characterDropped = (
 				<DroppableCard className="o-card -empty" {...this.props}>
@@ -50,7 +55,11 @@ export default class Task extends React.Component {
 				</DroppableCard>
 			);
 
-			difficulty = <div className="o-task__difficulty">Difficulty {task.difficulty}</div>
+			difficulty = (
+				<div className="o-task__carousel">
+					<div className="o-task__difficulty">Difficulty {task.difficulty}</div>
+				</div>
+			);
 		}
 
 		return (
