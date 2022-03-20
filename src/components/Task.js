@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DroppableCard from './DroppableCard';
+
 import './Task.css';
 
 export default class Task extends React.Component {
@@ -36,6 +38,12 @@ export default class Task extends React.Component {
 					{ task.effects.map((effect, index) => {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
 					})}
+				</ul>
+				<ul className="o-task__character">
+				<DroppableCard
+					className="o-card -empty">
+					<h3 className="o-card__title">Drag character here</h3>
+				</DroppableCard>
 				</ul>
 			</div>
 		);

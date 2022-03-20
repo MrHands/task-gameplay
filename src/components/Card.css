@@ -17,6 +17,8 @@
 }
 
 .o-card.-empty {
+	display: flex;
+	align-items: center;
 	border: 2px dashed gray;
 	cursor: initial;
 }
@@ -32,6 +34,8 @@
 .o-card__title {
 	grid-area: title;
 	text-align: center;
+	color: gray;
+	text-transform: uppercase;
 }
 
 .o-card__effects {
