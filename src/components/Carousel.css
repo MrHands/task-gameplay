@@ -7,5 +7,20 @@
 .m-carousel__item {
 	width: 24px;
 	height: 24px;
+}
+
+.m-carousel__item.-success {
+	background: lightgreen;
+}
+
+.m-carousel__item.-fail {
+	background: lightcoral;
+}
+
+.m-carousel__item.-critical_success {
 	background: green;
+}
+
+.m-carousel__item.-critical_fail {
+	background: red;
 }

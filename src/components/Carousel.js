@@ -32,9 +32,12 @@ export default class Carousel extends React.Component {
 			TaskOutcome.CRITICAL_SUCCESS,
 		];
 
-		const classes = ['m-carousel', this.props.className].join(' ');
-		return (<div className={classes}>
-			{outcomes.map((outcome, index) => <div className="m-carousel__item" key={`outcome-${index}`}></div>)}
+		return (<div className={['m-carousel', this.props.className].join(' ')}>
+			{outcomes.map((outcome, index) => {
+				const classes = ['m-carousel__item', `-${outcome.toLowerCase()}`].join(' ');
+
+				return <div className={classes} key={`outcome-${index}`}></div>
+			})}
 		</div>);
 	}
 }
