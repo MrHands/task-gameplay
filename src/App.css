@@ -28,7 +28,7 @@ button:disabled {
 	grid-template-areas:
 		'tasks   characters  '
 		'hud     hud         ';
-	grid-template-columns: 3fr 240px;
+	grid-template-columns: 3fr 180px;
 	align-items: center;
 	gap: 24px;
 }
