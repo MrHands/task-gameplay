@@ -1,4 +1,6 @@
 .o-character {
+	min-height: 240px;
+	aspect-ratio: 240/320;
 	display: grid;
 	justify-items: center;
 	gap: 12px;

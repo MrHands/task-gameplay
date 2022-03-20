@@ -22,7 +22,6 @@ export default class App extends React.Component {
 		this.state = {
 			shift: 0,
 			deck: 'balanced',
-			deckCards: [],
 			handCards: [],
 
 			tasksDeck: [],
@@ -62,7 +61,9 @@ export default class App extends React.Component {
 						dominant: 0
 					}
 				}
-			]
+			],
+
+			charactersUnplaced: []
 		};
 
 		this.handleCanBePlaced = this.canBePlaced.bind(this);
@@ -93,14 +94,21 @@ export default class App extends React.Component {
 		}));
 
 		this.setState({
-			deckCards: tasksDeck,
-			tasksDeck: tasksDeck,
-			restDeck: restDeck
+			tasksDeck,
+			restDeck
 		});
-		console.log(this.state);
 	}
 
 	startGame() {
+		const {
+			characters
+		} = this.state;
+
+		this.setState({
+			charactersUnplaced: characters
+		});
+
+
 		// draw hand
 
 		this.drawHand();
@@ -184,7 +192,8 @@ export default class App extends React.Component {
 	}
 
 	setCharacterTask(task, id) {
-		
+		console.log(task);
+		console.log(id);
 
 		/* if (!this.canBePlayed(owner, dropped)) {
 			return;
@@ -295,7 +304,7 @@ export default class App extends React.Component {
 	render() {
 		const {
 			handCards,
-			characters,
+			charactersUnplaced,
 			shift,
 		} = this.state;
 
@@ -317,7 +326,7 @@ export default class App extends React.Component {
 					})}
 				</ul>
 				<div className="o-characterList">
-					{ characters.map(character => {
+					{ charactersUnplaced.map(character => {
 						return <Character
 							key={`character-${character.id}`}
 							onTaskCleared={this.handleClearCharacterTask}
@@ -327,7 +336,7 @@ export default class App extends React.Component {
 				</div>
 				<ShiftHud
 					shift={shift}
-					characters={characters}
+					characters={charactersUnplaced}
 					handleStartShift={this.handleStartShift} />
 				<h3 className="a-explain">Click and drag tasks from your hand to a character slot</h3>
 			</DndProvider>

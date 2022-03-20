@@ -9,7 +9,7 @@ export default function DraggableCard(props) {
 
 	const [ { isDragging }, drag, dragPreview ] = useDrag(() => ({
 		type: 'character',
-		item: id,
+		item: { id },
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
 		}),
