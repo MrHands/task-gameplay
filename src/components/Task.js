@@ -37,7 +37,7 @@ export default class Task extends React.Component {
 
 		let characterDropped = null;
 		if (task.character !== null) {
-			characterDropped = <Character {...task.character} />;
+			characterDropped = <Character {...task.character} taskEffects={task.effects} />;
 		} else {
 			characterDropped = (
 				<DroppableCard className="o-card -empty" {...this.props}>

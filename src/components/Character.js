@@ -4,10 +4,10 @@ import DraggableCard from './DraggableCard';
 import './Character.css';
 
 export default class Character extends React.Component {
-	renderStat(type, value, card) {
+	renderStat(type, value, taskEffects) {
 		let result = `${value}%`;
-		if (card) {
-			const found = card.effects.find(effect => effect.type === type);
+		if (taskEffects) {
+			const found = taskEffects.find(effect => effect.type === type);
 			if (found) {
 				const newValue = Math.max(0, Math.min(value + found.value, 100));
 				if (newValue !== value) {
@@ -18,10 +18,10 @@ export default class Character extends React.Component {
 		return result;
 	}
 
-	renderPersistentStat(type, value, card) {
+	renderPersistentStat(type, value, taskEffects) {
 		let result = `${value}`;
-		if (card) {
-			const found = card.effects.find(effect => effect.type === type);
+		if (taskEffects) {
+			const found = taskEffects.find(effect => effect.type === type);
 			if (found) {
 				const newValue = value + found.value;
 				if (newValue !== value) {
@@ -36,9 +36,8 @@ export default class Character extends React.Component {
 		const {
 			name,
 			stats,
+			taskEffects,
 		} = this.props;
-
-		const cardShown = null;
 
 		return (
 			<DraggableCard className="o-character" {...this.props}>
@@ -47,13 +46,13 @@ export default class Character extends React.Component {
 					<div className="m-stats__header">Stamina</div>
 					<div className="m-stats__value">{stats.stamina} / 5</div>
 					<div className="m-stats__header">Pleasure</div>
-					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, cardShown)}</div>
+					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, taskEffects)}</div>
 					<div className="m-stats__header">Passionate</div>
-					<div className="m-stats__value">{this.renderPersistentStat('passionate', stats.passionate, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('passionate', stats.passionate, taskEffects)}</div>
 					<div className="m-stats__header">Intimate</div>
-					<div className="m-stats__value">{this.renderPersistentStat('intimate', stats.intimate, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('intimate', stats.intimate, taskEffects)}</div>
 					<div className="m-stats__header">Dominant</div>
-					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, cardShown)}</div>
+					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, taskEffects)}</div>
 				</div>
 			</DraggableCard>
 		);

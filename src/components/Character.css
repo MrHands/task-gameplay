@@ -1,5 +1,5 @@
 .o-character {
-	max-width: 180px;
+	max-width: 200px;
 	aspect-ratio: 240/320;
 	display: grid;
 	justify-items: center;
@@ -12,8 +12,8 @@
 .m-stats {
 	display: grid;
 	grid-template-columns:
-		1fr 1fr;
-	gap: 12px;
+		1fr 2fr;
+	column-gap: 12px;
 	width: 100%;
 }
 
