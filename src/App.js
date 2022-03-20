@@ -320,7 +320,7 @@ export default class App extends React.Component {
 
 		return (
 			<DndProvider backend={HTML5Backend}>
-				<ul className="o-cardsList">
+				<div className="m-tasksList o-app__tasks">
 					{ handCards.map((task, index) => {
 						return <Task
 							key={`task-${index}`}
@@ -328,8 +328,8 @@ export default class App extends React.Component {
 							canBePlaced={this.handleCanBePlaced}
 							onCharacterDropped={this.handleSetCharacterTask} />;
 					})}
-				</ul>
-				<div className="o-characterList">
+				</div>
+				<div className="o-characterList o-app__characters">
 					{ charactersUnplaced.map(character => {
 						return <Character
 							key={`character-${character.id}`}
@@ -339,6 +339,7 @@ export default class App extends React.Component {
 					}) }
 				</div>
 				<ShiftHud
+					className="o-app__hud"
 					shift={shift}
 					characters={charactersUnplaced}
 					handleStartShift={this.handleStartShift} />

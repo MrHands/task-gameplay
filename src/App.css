@@ -23,23 +23,37 @@ button:disabled {
 	color: gray;
 }
 
-#root {
-	display: flex;
-	flex-direction: column;
+.o-app {
+	display: grid;
+	grid-template-areas:
+		'tasks   characters  '
+		'hud     hud         ';
+	grid-template-columns: 3fr 240px;
 	align-items: center;
 	gap: 24px;
 }
 
-.o-cardsList {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+.o-app__tasks {
+	grid-area: tasks;
+}
+
+.o-app__characters {
+	grid-area: characters;
+}
+
+.o-app__hud {
+	grid-area: hud;
+}
+
+.m-tasksList {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 	gap: 12px;
 }
 
 .o-characterList {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	display: flex;
+	flex-direction: column;
 	gap: 12px;
 }
 

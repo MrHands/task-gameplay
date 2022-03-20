@@ -1,5 +1,5 @@
 .o-character {
-	min-height: 240px;
+	max-width: 240px;
 	aspect-ratio: 240/320;
 	display: grid;
 	justify-items: center;
