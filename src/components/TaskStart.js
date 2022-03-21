@@ -36,7 +36,10 @@ export default class TaskStart extends React.Component {
 			);
 		} else {
 			return (
-				<div className="o-task__difficulty">Difficulty {difficulty}</div>
+				<div className={['o-task__difficulty', this.props.className].join(' ')}>
+					<span>Difficulty</span>
+					<span>{difficulty} / 20</span>
+				</div>
 			);
 		}
 	}

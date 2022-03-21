@@ -401,6 +401,11 @@ export default class App extends React.Component {
 
 		return (
 			<DndProvider backend={HTML5Backend}>
+				<ShiftHud
+					className="o-app__hud"
+					shift={shift}
+					characters={charactersUnplaced}
+					handleStartShift={this.handleStartShift} />
 				<div className="m-tasksList o-app__tasks">
 					{ handCards.map((task, index) => {
 						return <Task
@@ -422,12 +427,6 @@ export default class App extends React.Component {
 							{...character} />;
 					}) }
 				</div>
-				<ShiftHud
-					className="o-app__hud"
-					shift={shift}
-					characters={charactersUnplaced}
-					handleStartShift={this.handleStartShift} />
-				<h3 className="a-explain">Click and drag tasks from your hand to a character slot</h3>
 			</DndProvider>
 		);
 	}

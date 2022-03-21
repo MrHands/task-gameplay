@@ -12,10 +12,10 @@ export default class ShiftHud extends React.Component {
 		const ShiftText = [ 'morning', 'afternoon', 'evening', 'night' ];
 
 		return (
-			<div className="m-shiftHud">
+			<div className={['m-shiftHud', this.props.className].join(' ')}>
 				<h2 className="m-shiftHud__title">{ShiftText[shift]}</h2>
 				<button onClick={handleStartShift}>
-					Start Shift
+					Finish Shift
 				</button>
 			</div>
 		);

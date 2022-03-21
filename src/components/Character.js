@@ -42,7 +42,7 @@ export default class Character extends React.Component {
 		} = this.props;
 
 		return (
-			<DraggableCard className="o-character" {...this.props}>
+			<DraggableCard className={['o-character', this.props.className].join(' ')} {...this.props}>
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					{['stamina', 'pleasure', 'passionate', 'intimate', 'dominant'].map((type, index) => {

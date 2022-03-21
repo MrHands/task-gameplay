@@ -53,7 +53,8 @@
 }
 
 .o-task__difficulty {
-	display: table-caption;
+	display: flex;
+	flex-direction: column;
 	width: min-content;
 	text-align: center;
 	border: 2px solid lightcoral;
