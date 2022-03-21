@@ -3,6 +3,28 @@ import React from 'react';
 import './StatsItem.css';
 
 export default class StatsItem extends React.Component {
+	effectText(type, value) {
+		switch (type) {
+			case 'stamina': {
+				return `${value} / 5`
+			}
+			case 'pleasure': {
+				if (value > 0) {
+					return `+${value}%`;
+				} else {
+					return `${value}%`;
+				}
+			}
+			default: {
+				if (value > 0) {
+					return `+${value}`;
+				} else {
+					return `${value}`;
+				}
+			}
+		}
+	}
+
 	render() {
 		const {
 			type,
@@ -13,23 +35,20 @@ export default class StatsItem extends React.Component {
 		const classes = [ 'm-statsItem' ];
 		const value = stats[type];
 
-		let result = `${value}%`;
-		if (type === 'stamina') {
-			result = `${value} / 5`;
-		} else if (effects) {
+		let result = this.effectText(type, value);
+		if (effects) {
 			const found = effects.find(effect => effect.type === type);
 			if (found) {
 				const newValue = Math.max(0, Math.min(value + found.value, 100));
-				result += ` ➔ ${newValue}%`;
 
 				if (newValue > value) {
-					result = `${newValue}% ▲`;
+					result = `${this.effectText(type, newValue)} ▲`;
 					classes.push('-up');
 				} else if (newValue < value) {
-					result = `${newValue}% ▼`;
+					result = `${this.effectText(type, newValue)} ▼`;
 					classes.push('-down');
 				} else {
-					result = `${newValue}% −`;
+					result = `${this.effectText(type, newValue)}} −`;
 					classes.push('-same');
 				}
 			}
