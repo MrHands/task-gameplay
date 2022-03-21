@@ -75,6 +75,7 @@ export default class App extends React.Component {
 		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
 		this.handleTaskStart = this.startTask.bind(this);
 		this.handleFinishShift = this.finishShift.bind(this);
+		this.handleStaminaChange = this.staminaChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -158,7 +159,7 @@ export default class App extends React.Component {
 			}
 	
 			handCards.forEach(task => {
-				task.character = null;
+				task.characterId = null;
 				task.roll = -1;
 				task.outcome = '';
 			});
@@ -181,10 +182,10 @@ export default class App extends React.Component {
 		});
 	}
 
-	getCharacter(owner) {
+	getCharacter(id) {
 		return this.state.characters.find(character => {
-			return character.id === owner;
-		});
+			return character.id === id;
+		}) || null;
 	}
 
 	clampCharacterStat(type, value) {
@@ -245,7 +246,7 @@ export default class App extends React.Component {
 			const character = state.characters.find(character => character.id === dropped);
 			character.task = task;
 
-			task.character = character;
+			task.characterId = character.id;
 
 			return {
 				charactersUnplaced: state.characters.filter(character => character.task === '')
@@ -383,6 +384,27 @@ export default class App extends React.Component {
 		this.drawHand();
 	}
 
+	staminaChange(character, amount) {
+		this.setState(state => {
+			const {
+				characters,
+			} = state;
+
+			return {
+				characters: characters.map(it => {
+					if (it.id === character.id) {
+						const staminaCost = Math.max(1, Math.min(it.staminaCost + amount, it.stats.stamina));
+						console.log(`character ${character.id} amount ${amount} staminaCost ${staminaCost}`);
+						console.log(character.task.characterId);
+						return Object.assign({}, it, {staminaCost});
+					} else {
+						return it;
+					}
+				}),
+			}
+		});
+	}
+
 	render() {
 		const {
 			handCards,
@@ -409,9 +431,11 @@ export default class App extends React.Component {
 						return <Task
 							key={`task-${index}`}
 							task={task}
+							character={this.getCharacter(task.characterId)}
 							clampCharacterStat={this.clampCharacterStat}
 							canBePlaced={this.handleCanBePlaced}
 							onCharacterDropped={this.handleSetCharacterTask}
+							onStaminaChange={this.handleStaminaChange}
 							onTaskStart={this.handleTaskStart} />;
 					})}
 				</div>

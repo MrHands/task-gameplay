@@ -12,7 +12,8 @@ export default class TaskStart extends React.Component {
 			difficulty,
 			roll,
 			outcome,
-			onTaskStart
+			onStaminaChange,
+			onTaskStart,
 		} = this.props;
 
 		let start = null;
@@ -28,10 +29,10 @@ export default class TaskStart extends React.Component {
 			
 			if (difficulty > 0) {
 				stamina = (
-					<div class="o-task__stamina">
-						<button>-</button>
+					<div className="o-task__stamina">
+						<button onClick={() => onStaminaChange(character, -1)}>-</button>
 						<div>{character.staminaCost}</div>
-						<button>+</button>
+						<button onClick={() => onStaminaChange(character, 1)}>+</button>
 					</div>
 				);
 

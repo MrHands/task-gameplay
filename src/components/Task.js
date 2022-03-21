@@ -31,20 +31,22 @@ export default class Task extends React.Component {
 	render() {
 		const {
 			task,
+			character,
+			onStaminaChange,
 			onTaskStart,
 			clampCharacterStat,
 		} = this.props;
 
 		let characterDropped = null;
 
-		if (task.character !== null) {
+		if (character !== null) {
 			const outcomeEffects = task.outcome !== '' ? task.effects : null;
 
 			characterDropped = (
 				<Character
 					taskEffects={outcomeEffects}
 					clampCharacterStat={clampCharacterStat}
-					{...task.character}
+					{...character}
 				/>
 			);
 		} else {
@@ -70,7 +72,12 @@ export default class Task extends React.Component {
 					{characterDropped}
 				</div>
 				<div className="o-task__carousel">
-					<TaskStart {...task} onTaskStart={onTaskStart} />
+					<TaskStart
+						onStaminaChange={onStaminaChange}
+						onTaskStart={onTaskStart}
+						character={character}
+						{...task}
+					/>
 				</div>
 			</div>
 		);
