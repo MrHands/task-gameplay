@@ -264,6 +264,56 @@ export default class App extends React.Component {
 				task.outcome = TaskOutcome.SUCCESS;
 			}
 
+			// apply outcome to effects
+
+			switch (task.outcome) {
+				case TaskOutcome.FAIL: {
+					task.effects.forEach(effect => {
+						switch (effect.type) {
+							case 'stamina':
+								break;
+							case 'pleasure': {
+								if (effect.value < 0) {
+									effect.value *= 2;
+								} else {
+									effect.value /= 2;
+								}
+								break;
+							}
+							default:
+								effect.value /= 2;
+								break;
+						}
+
+						effect.value = Math.floor(effect.value);
+					});
+					break;
+				}
+				case TaskOutcome.CRITICAL_SUCCESS: {
+					task.effects.forEach(effect => {
+						switch (effect.type) {
+							case 'stamina':
+								break;
+							case 'pleasure': {
+								if (effect.value < 0) {
+									effect.value /= 2;
+								} else {
+									effect.value *= 2;
+								}
+								break;
+							}
+							default:
+								effect.value *= 2;
+								break;
+						}
+
+						effect.value = Math.floor(effect.value);
+					});
+					break;
+				}
+				default: break;
+			}
+
 			console.log(`task ${task.handId}: roll ${task.roll} outcome ${task.outcome}`);
 
 			return {
