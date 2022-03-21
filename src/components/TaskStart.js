@@ -23,13 +23,24 @@ export default class TaskStart extends React.Component {
 		}
 
 		if (character !== null) {
+			let stamina = null;
 			let carousel = null;
+			
 			if (difficulty > 0) {
+				stamina = (
+					<div class="o-task__stamina">
+						<button>-</button>
+						<div>{character.staminaCost}</div>
+						<button>+</button>
+					</div>
+				);
+
 				carousel = <Carousel difficulty={difficulty} roll={roll}/>;
 			}
 
 			return (
 				<>
+					{stamina}
 					{carousel}
 					{start}
 				</>

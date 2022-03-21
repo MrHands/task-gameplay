@@ -105,19 +105,34 @@ export default class App extends React.Component {
 	}
 
 	startGame() {
+		this.setUpCharacters();
+		this.drawHand();
+	}
+
+	setUpCharacters() {
 		this.setState(state => {
 			const {
-				characters
+				characters,
 			} = state;
 
+			const newCharacters = characters.map(character => {
+				if (character.task) {
+					character.task.effects.forEach(effect => {
+						const statValue = character.stats[effect.type];
+						character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+					});
+					character.task = '';
+				}
+
+				character.staminaCost = 1;
+
+				return character;
+			});
+
 			return {
-				charactersUnplaced: characters
+				charactersUnplaced: newCharacters,
 			}
 		});
-
-		// draw hand
-
-		this.drawHand();
 	}
 
 	drawHand() {
@@ -347,31 +362,21 @@ export default class App extends React.Component {
 	}
 
 	finishShift() {
+		// update shift
+
 		this.setState(state => {
 			const {
-				characters,
 				shift,
 			} = state;
 
-			const newCharacters = characters.map(character => {
-				if (character.task) {
-					character.task.effects.forEach(effect => {
-						const statValue = character.stats[effect.type];
-						character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
-					});
-					character.task = '';
-				}
-
-				return character;
-			});
-
-			console.log(newCharacters);
-
 			return {
-				charactersUnplaced: newCharacters,
 				shift: shift + 1,
 			}
 		});
+
+		// update characters
+
+		this.setUpCharacters();
 
 		// draw new hand
 
@@ -391,8 +396,6 @@ export default class App extends React.Component {
 				<button onClick={this.startGame.bind(this)}>Start Game</button>
 			);
 		}
-
-		console.log(charactersUnplaced);
 
 		return (
 			<DndProvider backend={HTML5Backend}>
