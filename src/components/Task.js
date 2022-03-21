@@ -32,6 +32,7 @@ export default class Task extends React.Component {
 	render() {
 		const {
 			task,
+			onTaskStart,
 		} = this.props;
 
 		let characterDropped = null;
@@ -58,7 +59,7 @@ export default class Task extends React.Component {
 					{characterDropped}
 				</div>
 				<div className="o-task__carousel">
-					<TaskStart assigned={task.character} difficulty={task.difficulty}></TaskStart>
+					<TaskStart {...task} onTaskStart={onTaskStart} />
 				</div>
 			</div>
 		);

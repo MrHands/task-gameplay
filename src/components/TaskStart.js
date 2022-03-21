@@ -7,15 +7,17 @@ import './TaskStart.css';
 export default class TaskStart extends React.Component {
 	render() {
 		const {
-			assigned,
-			difficulty
+			handId,
+			character,
+			difficulty,
+			onTaskStart
 		} = this.props;
 
-		if (assigned !== null) {
+		if (character !== null) {
 			return (
 				<>
 					<Carousel difficulty={difficulty}></Carousel>
-					<button>Start Task</button>
+					<button onClick={() => onTaskStart(handId)}>Start Task</button>
 				</>
 			);
 		} else {

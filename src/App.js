@@ -10,6 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import ShiftHud from './components/ShiftHud';
 import Task from './components/Task';
+import { TaskOutcome } from './components/TaskOutcome';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
@@ -72,6 +73,7 @@ export default class App extends React.Component {
 		this.handleCanBePlaced = this.canBePlaced.bind(this);
 		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
 		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
+		this.handleTaskStart = this.startTask.bind(this);
 		this.handleStartShift = this.startShift.bind(this);
 	}
 
@@ -111,7 +113,6 @@ export default class App extends React.Component {
 			charactersUnplaced: characters
 		});
 
-
 		// draw hand
 
 		this.drawHand();
@@ -140,6 +141,8 @@ export default class App extends React.Component {
 
 		handCards.forEach(task => {
 			task.character = null;
+			task.roll = 0;
+			task.outcome = '';
 		});
 
 		this.setState({
@@ -205,31 +208,8 @@ export default class App extends React.Component {
 
 			task.character = character;
 
-			/* const newHand = state.handCards.filter(card => card.handId !== dropped.handId);
-			newHand.sort((left, right) => {
-				return left.handId < right.handId ? -1 : 1;
-			});
-
-			const updatedCharacters = state.characters.map(character => {
-				// clear card from previous owner
-
-				if (character.id === character?.id) {
-					character.card = null;
-				}
-
-				// assign card to owner
-
-				if (character.id === owner) {
-					character.card = dropped;
-				}
-
-				return character;
-			}); */
-
-			const charactersUnplaced = state.characters.filter(character => character.task === '');
-
 			return {
-				charactersUnplaced
+				charactersUnplaced: state.characters.filter(character => character.task === '')
 			}
 		});
 	}
@@ -257,6 +237,33 @@ export default class App extends React.Component {
 			return {
 				handCards: newHand,
 				characters: newCharacters
+			}
+		});
+	}
+
+	startTask(id) {
+		this.setState(state => {
+			const task = state.handCards.find(task => task.id === id);
+
+			console.log(task);
+
+			task.roll = Math.floor(Math.random() * 20);
+			console.log(task.roll);
+
+			if (task.roll === 0) {
+				task.outcome = TaskOutcome.CRITIAL_FAIL;
+			} else if (task.roll === 19) {
+				task.outcome = TaskOutcome.CRITICAL_SUCCESS;
+			} else if (task.roll > task.difficulty) {
+				task.outcome = TaskOutcome.SUCCESS;
+			} else {
+				task.outcome = TaskOutcome.FAIL;
+			}
+
+			console.log(task.outcome);
+
+			return {
+				handCards: state.handCards
 			}
 		});
 	}
@@ -326,7 +333,8 @@ export default class App extends React.Component {
 							key={`task-${index}`}
 							task={task}
 							canBePlaced={this.handleCanBePlaced}
-							onCharacterDropped={this.handleSetCharacterTask} />;
+							onCharacterDropped={this.handleSetCharacterTask}
+							onTaskStart={this.handleTaskStart} />;
 					})}
 				</div>
 				<div className="o-characterList o-app__characters">
