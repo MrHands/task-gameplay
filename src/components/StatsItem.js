@@ -17,31 +17,12 @@ export default class StatsItem extends React.Component {
 		}
 	}
 
-	clampedValue(type, value) {
-		let maxValue = Infinity;
-
-		switch (type) {
-			case 'stamina': {
-				maxValue = 5;
-				break;
-			}
-			case 'pleasure': {
-				maxValue = 100;
-				break;
-			}
-			default: {
-				break;
-			}
-		}
-
-		return Math.max(0, Math.min(value, maxValue));
-	}
-
 	render() {
 		const {
 			type,
 			stats,
 			effects,
+			clampCharacterStat,
 		} = this.props;
 
 		const classes = [ 'm-statsItem' ];
@@ -51,7 +32,7 @@ export default class StatsItem extends React.Component {
 		if (effects) {
 			const found = effects.find(effect => effect.type === type);
 			if (found) {
-				const newValue = this.clampedValue(type, value + found.value);
+				const newValue = clampCharacterStat(type, value + found.value);
 
 				if (newValue > value) {
 					result = `${this.effectText(type, newValue)} ▲`;

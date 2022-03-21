@@ -168,6 +168,26 @@ export default class App extends React.Component {
 		});
 	}
 
+	clampCharacterStat(type, value) {
+		let maxValue = Infinity;
+
+		switch (type) {
+			case 'stamina': {
+				maxValue = 5;
+				break;
+			}
+			case 'pleasure': {
+				maxValue = 100;
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+
+		return Math.max(0, Math.min(value, maxValue));
+	}
+
 	shuffleCards(cards) {
 		const copy = [];
 
@@ -250,6 +270,8 @@ export default class App extends React.Component {
 		this.setState(state => {
 			const task = state.handCards.find(task => task.handId === handId);
 
+			// determine outcome based on difficulty and roll
+
 			if (task.difficulty > 0) {
 				task.roll = roll;
 				if (task.roll === 19) {
@@ -284,7 +306,6 @@ export default class App extends React.Component {
 								effect.value /= 2;
 								break;
 						}
-
 						effect.value = Math.floor(effect.value);
 					});
 					break;
@@ -306,7 +327,6 @@ export default class App extends React.Component {
 								effect.value *= 2;
 								break;
 						}
-
 						effect.value = Math.floor(effect.value);
 					});
 					break;
@@ -386,6 +406,7 @@ export default class App extends React.Component {
 						return <Task
 							key={`task-${index}`}
 							task={task}
+							clampCharacterStat={this.clampCharacterStat}
 							canBePlaced={this.handleCanBePlaced}
 							onCharacterDropped={this.handleSetCharacterTask}
 							onTaskStart={this.handleTaskStart} />;
@@ -395,6 +416,7 @@ export default class App extends React.Component {
 					{ charactersUnplaced.map(character => {
 						return <Character
 							key={`character-${character.id}`}
+							clampCharacterStat={this.clampCharacterStat}
 							onTaskCleared={this.handleClearCharacterTask}
 							canBePlaced={this.handleCanBePlaced}
 							{...character} />;

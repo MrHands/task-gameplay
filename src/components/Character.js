@@ -38,6 +38,7 @@ export default class Character extends React.Component {
 			name,
 			stats,
 			taskEffects,
+			clampCharacterStat,
 		} = this.props;
 
 		return (
@@ -45,7 +46,13 @@ export default class Character extends React.Component {
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					{['stamina', 'pleasure', 'passionate', 'intimate', 'dominant'].map((type, index) => {
-						return (<StatsItem type={type} stats={stats} effects={taskEffects} />)
+						return (
+							<StatsItem
+								type={type}
+								stats={stats}
+								effects={taskEffects}
+								clampCharacterStat={clampCharacterStat} />
+						);
 					})}
 				</div>
 			</DraggableCard>

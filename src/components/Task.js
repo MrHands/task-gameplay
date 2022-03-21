@@ -32,6 +32,7 @@ export default class Task extends React.Component {
 		const {
 			task,
 			onTaskStart,
+			clampCharacterStat,
 		} = this.props;
 
 		let characterDropped = null;
@@ -39,7 +40,13 @@ export default class Task extends React.Component {
 		if (task.character !== null) {
 			const outcomeEffects = task.outcome !== '' ? task.effects : null;
 
-			characterDropped = <Character {...task.character} taskEffects={outcomeEffects} />;
+			characterDropped = (
+				<Character
+					taskEffects={outcomeEffects}
+					clampCharacterStat={clampCharacterStat}
+					{...task.character}
+				/>
+			);
 		} else {
 			characterDropped = (
 				<DroppableCard className="o-character -empty" {...this.props}>
