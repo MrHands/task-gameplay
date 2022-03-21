@@ -10,7 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Character from './components/Character';
 import ShiftHud from './components/ShiftHud';
 import Task from './components/Task';
-import { TaskOutcome } from './components/TaskOutcome';
+import { TaskOutcome } from './enums/TaskOutcome';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);

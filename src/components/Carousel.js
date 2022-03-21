@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TaskOutcome } from './TaskOutcome';
+import { TaskOutcome } from '../enums/TaskOutcome';
 
 import './Carousel.css';
 
