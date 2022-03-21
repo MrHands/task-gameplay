@@ -249,22 +249,22 @@ export default class App extends React.Component {
 
 		this.setState(state => {
 			const task = state.handCards.find(task => task.handId === handId);
-			console.log(task);
 
-			task.roll = roll;
-			console.log(task.roll);
-
-			if (task.roll === 19) {
-				task.outcome = TaskOutcome.CRITICAL_SUCCESS;
-			} else if (task.roll >= task.difficulty) {
-				task.outcome = TaskOutcome.SUCCESS;
+			if (task.difficulty > 0) {
+				task.roll = roll;
+				if (task.roll === 19) {
+					task.outcome = TaskOutcome.CRITICAL_SUCCESS;
+				} else if (task.roll >= task.difficulty) {
+					task.outcome = TaskOutcome.SUCCESS;
+				} else {
+					task.outcome = TaskOutcome.FAIL;
+				}
 			} else {
-				task.outcome = TaskOutcome.FAIL;
+				task.roll = 0;
+				task.outcome = TaskOutcome.SUCCESS;
 			}
 
-			console.log(task.outcome);
-
-			console.log(state.handCards);
+			console.log(`task ${task.handId}: roll ${task.roll} outcome ${task.outcome}`);
 
 			return {
 				handCards: state.handCards

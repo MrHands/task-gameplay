@@ -23,9 +23,14 @@ export default class TaskStart extends React.Component {
 		}
 
 		if (character !== null) {
+			let carousel = null;
+			if (difficulty > 0) {
+				carousel = <Carousel difficulty={difficulty} roll={roll}/>;
+			}
+
 			return (
 				<>
-					<Carousel difficulty={difficulty} roll={roll}></Carousel>
+					{carousel}
 					{start}
 				</>
 			);
