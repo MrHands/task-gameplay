@@ -36,7 +36,13 @@ export default class TaskStart extends React.Component {
 					</div>
 				);
 
-				carousel = <Carousel difficulty={difficulty} roll={roll}/>;
+				carousel = (
+					<Carousel
+						difficulty={difficulty}
+						bonus={character.staminaCost - 1}
+						roll={roll}
+					/>
+				);
 			}
 
 			return (

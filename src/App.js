@@ -39,6 +39,7 @@ export default class App extends React.Component {
 						intimate: 0,
 						dominant: 0
 					},
+					staminaCost: 0,
 					task: ''
 				},
 				{
@@ -51,6 +52,7 @@ export default class App extends React.Component {
 						intimate: 0,
 						dominant: 0
 					},
+					staminaCost: 0,
 					task: ''
 				},
 				{
@@ -63,6 +65,7 @@ export default class App extends React.Component {
 						intimate: 0,
 						dominant: 0
 					},
+					staminaCost: 0,
 					task: ''
 				}
 			],
@@ -116,22 +119,29 @@ export default class App extends React.Component {
 				characters,
 			} = state;
 
-			const newCharacters = characters.map(character => {
-				if (character.task) {
-					character.task.effects.forEach(effect => {
-						const statValue = character.stats[effect.type];
-						character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
-					});
-					character.task = '';
-				}
-
-				character.staminaCost = 1;
-
-				return character;
-			});
-
 			return {
-				charactersUnplaced: newCharacters,
+				charactersUnplaced: characters.map(character => {
+					const clone = Object.assign({}, character);
+
+					// apply task effects
+	
+					if (clone.task) {
+						clone.task.effects.forEach(effect => {
+							const statValue = clone.stats[effect.type];
+							clone.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+						});
+						clone.task = '';
+					}
+	
+					// modify stamina
+	
+					console.log(`before ${clone.stats.stamina}`);
+					clone.stats.stamina = this.clampCharacterStat('stamina', clone.stats.stamina - clone.staminaCost);
+					console.log(`after ${clone.stats.stamina}`);
+					clone.staminaCost = 1;
+	
+					return clone;
+				}),
 			}
 		});
 	}
@@ -248,6 +258,12 @@ export default class App extends React.Component {
 
 			task.characterId = character.id;
 
+			if (task.difficulty === 0) {
+				character.staminaCost = 0;
+			} else {
+				character.staminaCost = 1;
+			}
+
 			return {
 				charactersUnplaced: state.characters.filter(character => character.task === '')
 			}
@@ -290,13 +306,15 @@ export default class App extends React.Component {
 		this.setState(state => {
 			const task = state.handCards.find(task => task.handId === handId);
 
+			const character = this.getCharacter(task.characterId);
+
 			// determine outcome based on difficulty and roll
 
 			if (task.difficulty > 0) {
 				task.roll = roll;
 				if (task.roll === 19) {
 					task.outcome = TaskOutcome.CRITICAL_SUCCESS;
-				} else if (task.roll >= task.difficulty) {
+				} else if (task.roll >= task.difficulty - character.staminaCost - 1) {
 					task.outcome = TaskOutcome.SUCCESS;
 				} else {
 					task.outcome = TaskOutcome.FAIL;

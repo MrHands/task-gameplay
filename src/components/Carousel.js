@@ -8,6 +8,7 @@ export default class Carousel extends React.Component {
 	render() {
 		const {
 			difficulty,
+			bonus,
 			roll
 		} = this.props;
 
@@ -16,7 +17,7 @@ export default class Carousel extends React.Component {
 		for (let i = 0; i < 20; ++i) {
 			if (i === 19) {
 				outcomes.push(TaskOutcome.CRITICAL_SUCCESS);
-			} else if (i < difficulty) {
+			} else if (i < difficulty - bonus) {
 				outcomes.push(TaskOutcome.FAIL);
 			} else {
 				outcomes.push(TaskOutcome.SUCCESS);
@@ -27,7 +28,11 @@ export default class Carousel extends React.Component {
 			{outcomes.map((outcome, index) => {
 				const classes = ['m-carousel__item', `-${outcome.toLowerCase()}`];
 
-				if (index === roll) {
+				if (roll === -1) {
+					if (index >= difficulty - bonus && index < difficulty) {
+						classes.push('-selected');
+					}
+				} else if (index === roll) {
 					classes.push('-selected');
 				}
 
