@@ -7,7 +7,8 @@ import './Carousel.css';
 export default class Carousel extends React.Component {
 	render() {
 		const {
-			difficulty
+			difficulty,
+			roll
 		} = this.props;
 
 		const outcomes = [];
@@ -26,9 +27,13 @@ export default class Carousel extends React.Component {
 
 		return (<div className={['m-carousel', this.props.className].join(' ')}>
 			{outcomes.map((outcome, index) => {
-				const classes = ['m-carousel__item', `-${outcome.toLowerCase()}`].join(' ');
+				const classes = ['m-carousel__item', `-${outcome.toLowerCase()}`];
 
-				return <div className={classes} key={`outcome-${index}`}></div>
+				if (index === roll) {
+					classes.push('-selected');
+				}
+
+				return <div className={classes.join(' ')} key={`outcome-${index}`}></div>
 			})}
 		</div>);
 	}

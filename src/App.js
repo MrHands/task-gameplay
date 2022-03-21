@@ -141,7 +141,7 @@ export default class App extends React.Component {
 
 		handCards.forEach(task => {
 			task.character = null;
-			task.roll = 0;
+			task.roll = -1;
 			task.outcome = '';
 		});
 

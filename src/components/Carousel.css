@@ -5,6 +5,7 @@
 }
 
 .m-carousel__item {
+	box-sizing: border-box;
 	width: 24px;
 	height: 24px;
 }
@@ -23,4 +24,8 @@
 
 .m-carousel__item.-critical_fail {
 	background: red;
+}
+
+.m-carousel__item.-selected {
+	border: 4px solid indigo;
 }

@@ -10,6 +10,7 @@ export default class TaskStart extends React.Component {
 			handId,
 			character,
 			difficulty,
+			roll,
 			outcome,
 			onTaskStart
 		} = this.props;
@@ -24,7 +25,7 @@ export default class TaskStart extends React.Component {
 		if (character !== null) {
 			return (
 				<>
-					<Carousel difficulty={difficulty}></Carousel>
+					<Carousel difficulty={difficulty} roll={roll}></Carousel>
 					{start}
 				</>
 			);
