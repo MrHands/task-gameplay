@@ -241,10 +241,11 @@ export default class App extends React.Component {
 		});
 	}
 
-	startTask(id) {
-		this.setState(state => {
-			const task = state.handCards.find(task => task.id === id);
+	startTask(handId) {
+		console.log(`startTask ${handId}`);
 
+		this.setState(state => {
+			const task = state.handCards.find(task => task.handId === handId);
 			console.log(task);
 
 			task.roll = Math.floor(Math.random() * 20);
@@ -261,6 +262,8 @@ export default class App extends React.Component {
 			}
 
 			console.log(task.outcome);
+
+			console.log(state.handCards);
 
 			return {
 				handCards: state.handCards

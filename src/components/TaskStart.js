@@ -10,14 +10,22 @@ export default class TaskStart extends React.Component {
 			handId,
 			character,
 			difficulty,
+			outcome,
 			onTaskStart
 		} = this.props;
+
+		let start = null;
+		if (outcome === '') {
+			start = <button onClick={() => onTaskStart(handId)}>Start Task</button>;
+		} else {
+			start = <h2>{outcome}</h2>;
+		}
 
 		if (character !== null) {
 			return (
 				<>
 					<Carousel difficulty={difficulty}></Carousel>
-					<button onClick={() => onTaskStart(handId)}>Start Task</button>
+					{start}
 				</>
 			);
 		} else {
