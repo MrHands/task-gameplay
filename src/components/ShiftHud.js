@@ -12,6 +12,8 @@ export default class ShiftHud extends React.Component {
 
 		const ShiftText = [ 'morning', 'afternoon', 'evening', 'night' ];
 
+		console.log(characters);
+
 		const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
 
 		let hint = null;

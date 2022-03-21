@@ -105,12 +105,14 @@ export default class App extends React.Component {
 	}
 
 	startGame() {
-		const {
-			characters
-		} = this.state;
+		this.setState(state => {
+			const {
+				characters
+			} = state;
 
-		this.setState({
-			charactersUnplaced: characters
+			return {
+				charactersUnplaced: characters
+			}
 		});
 
 		// draw hand
@@ -119,34 +121,36 @@ export default class App extends React.Component {
 	}
 
 	drawHand() {
-		const {
-			characters,
-			tasksDeck,
-			restDeck
-		} = this.state;
+		this.setState(state => {
+			const {
+				characters,
+				tasksDeck,
+				restDeck
+			} = state;
+	
+			const handCards = [];
+	
+			for (let i = 0; i < characters.length; ++i) {
+				const task = tasksDeck.pop();
+				task.handId = handCards.length;
+				handCards.push(task);
+			}
+	
+			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
+				const task = Object.assign({}, restDeck[0]);
+				task.handId = handCards.length;
+				handCards.push(task);
+			}
+	
+			handCards.forEach(task => {
+				task.character = null;
+				task.roll = -1;
+				task.outcome = '';
+			});
 
-		const handCards = [];
-
-		for (let i = 0; i < characters.length; ++i) {
-			const task = tasksDeck.pop();
-			task.handId = handCards.length;
-			handCards.push(task);
-		}
-
-		for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
-			const task = Object.assign({}, restDeck[0]);
-			task.handId = handCards.length;
-			handCards.push(task);
-		}
-
-		handCards.forEach(task => {
-			task.character = null;
-			task.roll = -1;
-			task.outcome = '';
-		});
-
-		this.setState({
-			handCards: this.shuffleCards(handCards)
+			return {
+				handCards: this.shuffleCards(handCards)
+			}
 		});
 	}
 
@@ -355,11 +359,13 @@ export default class App extends React.Component {
 						const statValue = character.stats[effect.type];
 						character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
 					});
-					character.task = null;
+					character.task = '';
 				}
 
 				return character;
 			});
+
+			console.log(newCharacters);
 
 			return {
 				charactersUnplaced: newCharacters,
@@ -385,6 +391,8 @@ export default class App extends React.Component {
 				<button onClick={this.startGame.bind(this)}>Start Game</button>
 			);
 		}
+
+		console.log(charactersUnplaced);
 
 		return (
 			<DndProvider backend={HTML5Backend}>
