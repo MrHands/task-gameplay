@@ -69,13 +69,10 @@ export default class App extends React.Component {
 					task: ''
 				}
 			],
-
-			charactersUnplaced: []
 		};
 
 		this.handleCanBePlaced = this.canBePlaced.bind(this);
 		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
-		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
 		this.handleTaskStart = this.startTask.bind(this);
 		this.handleFinishShift = this.finishShift.bind(this);
 		this.handleStaminaChange = this.staminaChange.bind(this);
@@ -120,7 +117,7 @@ export default class App extends React.Component {
 			} = state;
 
 			return {
-				charactersUnplaced: characters.map(character => {
+				characters: characters.map(character => {
 					const clone = Object.assign({}, character);
 
 					// apply task effects
@@ -135,9 +132,7 @@ export default class App extends React.Component {
 	
 					// modify stamina
 	
-					console.log(`before ${clone.stats.stamina}`);
 					clone.stats.stamina = this.clampCharacterStat('stamina', clone.stats.stamina - clone.staminaCost);
-					console.log(`after ${clone.stats.stamina}`);
 					clone.staminaCost = 1;
 	
 					return clone;
@@ -233,66 +228,27 @@ export default class App extends React.Component {
 		return true;
 	}
 
-	canBePlayed(owner, card) {
-		const character = this.getCharacter(owner);
-		if (!character) {
-			return false;
-		}
-
-		let allowed = true;
-
-		card.effects.forEach(effect => {
-			const newValue = character.stats[effect.type] + effect.value;
-			if (effect.type !== 'pleasure' && newValue >= 100) {
-				allowed = false;
-			}
-		});
-
-		return allowed;
-	}
-
 	setCharacterTask(task, dropped) {
 		this.setState(state => {
-			const character = state.characters.find(character => character.id === dropped);
-			character.task = task;
-
-			task.characterId = character.id;
-
-			if (task.difficulty === 0) {
-				character.staminaCost = 0;
-			} else {
-				character.staminaCost = 1;
-			}
-
 			return {
-				charactersUnplaced: state.characters.filter(character => character.task === '')
-			}
-		});
-	}
+				characters: state.characters.map(character => {
+					if (character.id !== dropped) {
+						return character;
+					}
 
-	clearCharacterTask(owner) {
-		this.setState(state => {
-			let card = null;
+					const clone = {...character};
 
-			const newCharacters = state.characters.map(character => {
-				if (character.id === owner) {
-					card = Object.assign({}, character.card);
-					character.card = null;
-				}
-				return character;
-			});
+					clone.task = task;
+					task.characterId = clone.id;
 
-			const newHand = [...state.handCards];
-			if (card) {
-				newHand.push(card);
-			}
-			newHand.sort((left, right) => {
-				return left.handId < right.handId ? -1 : 1;
-			});
+					if (task.difficulty === 0) {
+						clone.staminaCost = 0;
+					} else {
+						clone.staminaCost = 1;
+					}
 
-			return {
-				handCards: newHand,
-				characters: newCharacters
+					return clone;
+				})
 			}
 		});
 	}
@@ -443,9 +399,10 @@ export default class App extends React.Component {
 		const {
 			handCards,
 			characters,
-			charactersUnplaced,
 			shift,
 		} = this.state;
+
+		const charactersUnplaced = characters.filter(character => character.task === '');
 
 		if (handCards.length === 0) {
 			return (
