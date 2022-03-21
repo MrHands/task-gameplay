@@ -152,13 +152,14 @@ export default class App extends React.Component {
 			const handCards = [];
 	
 			for (let i = 0; i < characters.length; ++i) {
-				const task = tasksDeck.pop();
+				const task = Object.assign({}, tasksDeck.pop());
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
+			console.log(tasksDeck);
 	
 			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
-				const task = Object.assign({}, restDeck[0]);
+				const task = {...restDeck[0]};
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
@@ -170,7 +171,8 @@ export default class App extends React.Component {
 			});
 
 			return {
-				handCards: this.shuffleCards(handCards)
+				handCards: this.shuffleCards(handCards),
+				tasksDeck
 			}
 		});
 	}
@@ -263,7 +265,7 @@ export default class App extends React.Component {
 						return task;
 					}
 
-					const clone = {...task};
+					const clone = Object.assign({}, task);
 
 					const character = this.getCharacter(clone.characterId);
 
@@ -345,6 +347,13 @@ export default class App extends React.Component {
 					}
 
 					console.log(`task ${clone.handId}: roll ${clone.roll} outcome ${clone.outcome}`);
+
+					// notify character
+
+					character.task = clone;
+
+					console.log(TasksDatabase.tasks);
+					console.log(state.handCards);
 
 					return clone;
 				})

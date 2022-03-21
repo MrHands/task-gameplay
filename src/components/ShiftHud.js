@@ -15,6 +15,7 @@ export default class ShiftHud extends React.Component {
 		console.log(characters);
 
 		const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
+		console.log(charactersNotDone);
 
 		let hint = null;
 		if (charactersNotDone.length > 0) {
