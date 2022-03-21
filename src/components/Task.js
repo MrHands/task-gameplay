@@ -2,7 +2,6 @@ import React from 'react';
 
 import Character from './Character';
 import DroppableCard from './DroppableCard';
-import Card from './Card';
 
 import './Task.css';
 import TaskStart from './TaskStart';
@@ -41,8 +40,8 @@ export default class Task extends React.Component {
 			characterDropped = <Character {...task.character} taskEffects={task.effects} />;
 		} else {
 			characterDropped = (
-				<DroppableCard className="o-card -empty" {...this.props}>
-					<h3 className="o-card__title">Drag character here</h3>
+				<DroppableCard className="o-character -empty" {...this.props}>
+					<h3 className="o-character__title">Drag character here</h3>
 				</DroppableCard>
 			);
 		}

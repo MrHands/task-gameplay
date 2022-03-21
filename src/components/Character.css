@@ -9,6 +9,19 @@
 	border-radius: 12px;
 }
 
+.o-character.-empty {
+	display: flex;
+	align-items: center;
+	border: 2px dashed gray;
+	cursor: initial;
+}
+
+.o-character__title {
+	text-align: center;
+	color: gray;
+	text-transform: uppercase;
+}
+
 .m-stats {
 	display: grid;
 	grid-template-columns:
