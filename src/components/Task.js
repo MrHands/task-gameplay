@@ -51,11 +51,14 @@ export default class Task extends React.Component {
 		return (
 			<div className="o-task">
 				<h2 className="o-task__title">{task.title}</h2>
-				<ul className="o-task__effects">
+				<div className="o-task__effects">
+					<h3>Rewards</h3>
+					<ul className="o-task__rewards">
 					{ task.effects.map((effect, index) => {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
 					})}
-				</ul>
+					</ul>
+				</div>
 				<div className="o-task__character">
 					{characterDropped}
 				</div>

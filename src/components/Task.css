@@ -23,6 +23,14 @@
 
 .o-task__effects {
 	grid-area: effects;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	justify-content: center;
+	align-items: center;
+}
+
+.o-task__rewards {
 	list-style: none;
 	margin: 0;
 	padding: 0;
