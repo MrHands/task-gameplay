@@ -256,7 +256,7 @@ export default class App extends React.Component {
 
 			if (task.roll === 19) {
 				task.outcome = TaskOutcome.CRITICAL_SUCCESS;
-			} else if (task.roll > task.difficulty) {
+			} else if (task.roll >= task.difficulty) {
 				task.outcome = TaskOutcome.SUCCESS;
 			} else {
 				task.outcome = TaskOutcome.FAIL;

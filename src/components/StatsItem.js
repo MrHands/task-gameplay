@@ -9,18 +9,10 @@ export default class StatsItem extends React.Component {
 				return `${value} / 5`
 			}
 			case 'pleasure': {
-				if (value > 0) {
-					return `+${value}%`;
-				} else {
-					return `${value}%`;
-				}
+				return `${value}%`;
 			}
 			default: {
-				if (value > 0) {
-					return `+${value}`;
-				} else {
-					return `${value}`;
-				}
+				return `${value}`;
 			}
 		}
 	}
