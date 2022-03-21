@@ -43,16 +43,26 @@ export default class Character extends React.Component {
 			<DraggableCard className="o-character" {...this.props}>
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
-					<div className="m-stats__header">Stamina</div>
-					<div className="m-stats__value">{stats.stamina} / 5</div>
-					<div className="m-stats__header">Pleasure</div>
-					<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, taskEffects)}</div>
-					<div className="m-stats__header">Passionate</div>
-					<div className="m-stats__value">{this.renderPersistentStat('passionate', stats.passionate, taskEffects)}</div>
-					<div className="m-stats__header">Intimate</div>
-					<div className="m-stats__value">{this.renderPersistentStat('intimate', stats.intimate, taskEffects)}</div>
-					<div className="m-stats__header">Dominant</div>
-					<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, taskEffects)}</div>
+					<div className="m-stats__item">
+						<div className="m-stats__header">Stamina</div>
+						<div className="m-stats__value">{stats.stamina} / 5</div>
+					</div>
+					<div className="m-stats__item">
+						<div className="m-stats__header">Pleasure</div>
+						<div className="m-stats__value">{this.renderStat('pleasure', stats.pleasure, taskEffects)}</div>
+					</div>
+					<div className="m-stats__item">
+						<div className="m-stats__header">Passionate</div>
+						<div className="m-stats__value">{this.renderPersistentStat('passionate', stats.passionate, taskEffects)}</div>
+					</div>
+					<div className="m-stats__item">
+						<div className="m-stats__header">Intimate</div>
+						<div className="m-stats__value">{this.renderPersistentStat('intimate', stats.intimate, taskEffects)}</div>
+					</div>
+					<div className="m-stats__item">
+						<div className="m-stats__header">Dominant</div>
+						<div className="m-stats__value">{this.renderPersistentStat('dominant', stats.dominant, taskEffects)}</div>
+					</div>
 				</div>
 			</DraggableCard>
 		);

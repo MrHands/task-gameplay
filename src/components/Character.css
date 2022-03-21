@@ -25,11 +25,13 @@
 .m-stats {
 	display: grid;
 	grid-template-columns:
-		1fr 2fr;
-	column-gap: 12px;
+		1fr 1fr;
+	column-gap: 6px;
 	width: 100%;
 }
 
-.m-stats__header {
-	text-align: right;
+.m-stats__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
