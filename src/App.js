@@ -375,6 +375,7 @@ export default class App extends React.Component {
 	render() {
 		const {
 			handCards,
+			characters,
 			charactersUnplaced,
 			shift,
 		} = this.state;
@@ -390,7 +391,7 @@ export default class App extends React.Component {
 				<ShiftHud
 					className="o-app__hud"
 					shift={shift}
-					characters={charactersUnplaced}
+					characters={characters}
 					handleFinishShift={this.handleFinishShift} />
 				<div className="m-tasksList o-app__tasks">
 					{ handCards.map((task, index) => {
