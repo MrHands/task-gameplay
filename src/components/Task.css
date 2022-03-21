@@ -4,6 +4,9 @@
 		'title       title       '
 		'effects     character   '
 		'carousel    carousel    ';
+	grid-template-columns:
+		1fr
+		min-content;
 	grid-template-rows:
 		min-content
 		min-content
