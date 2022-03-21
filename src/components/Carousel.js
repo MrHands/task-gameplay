@@ -14,9 +14,7 @@ export default class Carousel extends React.Component {
 		const outcomes = [];
 
 		for (let i = 0; i < 20; ++i) {
-			if (i === 0) {
-				outcomes.push(TaskOutcome.CRITIAL_FAIL);
-			} else if (i === 19) {
+			if (i === 19) {
 				outcomes.push(TaskOutcome.CRITICAL_SUCCESS);
 			} else if (i < difficulty) {
 				outcomes.push(TaskOutcome.FAIL);

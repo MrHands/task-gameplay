@@ -19,7 +19,7 @@ export default class TaskStart extends React.Component {
 		if (outcome === '') {
 			start = <button onClick={() => onTaskStart(handId)}>Start Task</button>;
 		} else {
-			start = <h2>{outcome}</h2>;
+			start = <h2>{outcome.replace('_', ' ')}</h2>;
 		}
 
 		if (character !== null) {

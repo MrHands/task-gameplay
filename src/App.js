@@ -244,16 +244,17 @@ export default class App extends React.Component {
 	startTask(handId) {
 		console.log(`startTask ${handId}`);
 
+		// prevent react weirdness where it recalculates after setting the value??
+		const roll = Math.floor(Math.random() * 20);
+
 		this.setState(state => {
 			const task = state.handCards.find(task => task.handId === handId);
 			console.log(task);
 
-			task.roll = Math.floor(Math.random() * 20);
+			task.roll = roll;
 			console.log(task.roll);
 
-			if (task.roll === 0) {
-				task.outcome = TaskOutcome.CRITIAL_FAIL;
-			} else if (task.roll === 19) {
+			if (task.roll === 19) {
 				task.outcome = TaskOutcome.CRITICAL_SUCCESS;
 			} else if (task.roll > task.difficulty) {
 				task.outcome = TaskOutcome.SUCCESS;
