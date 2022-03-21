@@ -300,95 +300,98 @@ export default class App extends React.Component {
 	startTask(handId) {
 		console.log(`startTask ${handId}`);
 
-		// prevent react weirdness where it recalculates after setting the value??
-		const roll = Math.floor(Math.random() * 20);
-
 		this.setState(state => {
-			const task = state.handCards.find(task => task.handId === handId);
-
-			const character = this.getCharacter(task.characterId);
-
-			// determine outcome based on difficulty and roll
-
-			if (task.difficulty > 0) {
-				task.roll = roll;
-				if (task.roll === 19) {
-					task.outcome = TaskOutcome.CRITICAL_SUCCESS;
-				} else if (task.roll >= task.difficulty - character.staminaCost - 1) {
-					task.outcome = TaskOutcome.SUCCESS;
-				} else {
-					task.outcome = TaskOutcome.FAIL;
-				}
-			} else {
-				task.roll = 0;
-				task.outcome = TaskOutcome.SUCCESS;
-			}
-
-			// apply outcome to effects
-
-			switch (task.outcome) {
-				case TaskOutcome.FAIL: {
-					task.effects.forEach(effect => {
-						switch (effect.type) {
-							case 'stamina':
-								break;
-							case 'pleasure': {
-								if (effect.value < 0) {
-									effect.value *= 2;
-								} else {
-									effect.value /= 2;
-								}
-								break;
-							}
-							default:
-								effect.value /= 2;
-								break;
-						}
-						effect.value = Math.floor(effect.value);
-					});
-					break;
-				}
-				case TaskOutcome.CRITICAL_SUCCESS: {
-					task.effects.forEach(effect => {
-						switch (effect.type) {
-							case 'stamina':
-								break;
-							case 'pleasure': {
-								if (effect.value < 0) {
-									effect.value /= 2;
-								} else {
-									effect.value *= 2;
-								}
-								break;
-							}
-							default:
-								effect.value *= 2;
-								break;
-						}
-						effect.value = Math.floor(effect.value);
-					});
-					break;
-				}
-				default: break;
-			}
-
-			// add stamina to effects
-
-			let staminaEffect = task.effects.find(effect => effect.type === 'stamina');
-			if (staminaEffect) {
-				staminaEffect.value = -character.staminaCost;
-			} else {
-				staminaEffect = {
-					type: 'stamina',
-					value: -character.staminaCost
-				};
-				task.effects.push(staminaEffect);
-			}
-
-			console.log(`task ${task.handId}: roll ${task.roll} outcome ${task.outcome}`);
-
 			return {
-				handCards: state.handCards
+				handCards: state.handCards.map(task => {
+					if (task.handId !== handId) {
+						return task;
+					}
+
+					const clone = {...task};
+
+					const character = this.getCharacter(clone.characterId);
+
+					// determine outcome based on difficulty and roll
+
+					if (clone.difficulty > 0) {
+						clone.roll = Math.floor(Math.random() * 20);
+						if (clone.roll === 19) {
+							clone.outcome = TaskOutcome.CRITICAL_SUCCESS;
+						} else if (clone.roll >= clone.difficulty - character.staminaCost - 1) {
+							clone.outcome = TaskOutcome.SUCCESS;
+						} else {
+							clone.outcome = TaskOutcome.FAIL;
+						}
+					} else {
+						clone.roll = 0;
+						clone.outcome = TaskOutcome.SUCCESS;
+					}
+
+					// apply outcome to effects
+
+					switch (clone.outcome) {
+						case TaskOutcome.FAIL: {
+							clone.effects.forEach(effect => {
+								switch (effect.type) {
+									case 'stamina':
+										break;
+									case 'pleasure': {
+										if (effect.value < 0) {
+											effect.value *= 2;
+										} else {
+											effect.value /= 2;
+										}
+										break;
+									}
+									default:
+										effect.value /= 2;
+										break;
+								}
+								effect.value = Math.floor(effect.value);
+							});
+							break;
+						}
+						case TaskOutcome.CRITICAL_SUCCESS: {
+							clone.effects.forEach(effect => {
+								switch (effect.type) {
+									case 'stamina':
+										break;
+									case 'pleasure': {
+										if (effect.value < 0) {
+											effect.value /= 2;
+										} else {
+											effect.value *= 2;
+										}
+										break;
+									}
+									default:
+										effect.value *= 2;
+										break;
+								}
+								effect.value = Math.floor(effect.value);
+							});
+							break;
+						}
+						default: break;
+					}
+
+					// add stamina to effects
+
+					let staminaEffect = clone.effects.find(effect => effect.type === 'stamina');
+					if (staminaEffect) {
+						staminaEffect.value = -character.staminaCost;
+					} else {
+						staminaEffect = {
+							type: 'stamina',
+							value: -character.staminaCost
+						};
+						clone.effects.push(staminaEffect);
+					}
+
+					console.log(`task ${clone.handId}: roll ${clone.roll} outcome ${clone.outcome}`);
+
+					return clone;
+				})
 			}
 		});
 	}
