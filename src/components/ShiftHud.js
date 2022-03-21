@@ -6,7 +6,7 @@ export default class ShiftHud extends React.Component {
 	render() {
 		const {
 			shift,
-			handleStartShift
+			handleFinishShift 
 		} = this.props;
 
 		const ShiftText = [ 'morning', 'afternoon', 'evening', 'night' ];
@@ -14,7 +14,7 @@ export default class ShiftHud extends React.Component {
 		return (
 			<div className={['m-shiftHud', this.props.className].join(' ')}>
 				<h2 className="m-shiftHud__title">{ShiftText[shift]}</h2>
-				<button onClick={handleStartShift}>
+				<button onClick={handleFinishShift}>
 					Finish Shift
 				</button>
 			</div>

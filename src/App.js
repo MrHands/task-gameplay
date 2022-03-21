@@ -74,7 +74,7 @@ export default class App extends React.Component {
 		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
 		this.handleClearCharacterTask = this.clearCharacterTask.bind(this);
 		this.handleTaskStart = this.startTask.bind(this);
-		this.handleStartShift = this.startShift.bind(this);
+		this.handleFinishShift = this.finishShift.bind(this);
 	}
 
 	componentDidMount() {
@@ -224,7 +224,7 @@ export default class App extends React.Component {
 	setCharacterTask(task, dropped) {
 		this.setState(state => {
 			const character = state.characters.find(character => character.id === dropped);
-			character.task = task.id;
+			character.task = task;
 
 			task.character = character;
 
@@ -342,7 +342,7 @@ export default class App extends React.Component {
 		});
 	}
 
-	startShift() {
+	finishShift() {
 		this.setState(state => {
 			const {
 				characters,
@@ -350,33 +350,19 @@ export default class App extends React.Component {
 			} = state;
 
 			const newCharacters = characters.map(character => {
-				if (!character.card) {
-					character.card = {
-						effects: [
-							{
-								type: 'stamina',
-								value: 50,
-							},
-							{
-								type: 'pleasure',
-								value: -10,
-							}
-						]
-					}
+				if (character.task) {
+					character.task.effects.forEach(effect => {
+						const statValue = character.stats[effect.type];
+						character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+					});
+					character.task = null;
 				}
-
-				character.card.effects.forEach(effect => {
-					const stat = character.stats[effect.type];
-					character.stats[effect.type] = Math.max(0, Math.min(stat + effect.value, 100));
-				});
-
-				character.card = null;
 
 				return character;
 			});
 
 			return {
-				characters: newCharacters,
+				charactersUnplaced: newCharacters,
 				shift: shift + 1,
 			}
 		});
@@ -405,7 +391,7 @@ export default class App extends React.Component {
 					className="o-app__hud"
 					shift={shift}
 					characters={charactersUnplaced}
-					handleStartShift={this.handleStartShift} />
+					handleFinishShift={this.handleFinishShift} />
 				<div className="m-tasksList o-app__tasks">
 					{ handCards.map((task, index) => {
 						return <Task
