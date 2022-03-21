@@ -372,6 +372,19 @@ export default class App extends React.Component {
 				default: break;
 			}
 
+			// add stamina to effects
+
+			let staminaEffect = task.effects.find(effect => effect.type === 'stamina');
+			if (staminaEffect) {
+				staminaEffect.value = -character.staminaCost;
+			} else {
+				staminaEffect = {
+					type: 'stamina',
+					value: -character.staminaCost
+				};
+				task.effects.push(staminaEffect);
+			}
+
 			console.log(`task ${task.handId}: roll ${task.roll} outcome ${task.outcome}`);
 
 			return {
