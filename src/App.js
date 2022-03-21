@@ -150,16 +150,18 @@ export default class App extends React.Component {
 			} = state;
 	
 			const handCards = [];
+
+			// deep copy to avoid copying effects array as references!
 	
 			for (let i = 0; i < characters.length; ++i) {
-				const task = Object.assign({}, tasksDeck.pop());
+				const task = JSON.parse(JSON.stringify(tasksDeck.pop()));
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
 			console.log(tasksDeck);
 	
 			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
-				const task = {...restDeck[0]};
+				const task = JSON.parse(JSON.stringify(restDeck[0]));
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
