@@ -338,15 +338,17 @@ export default class App extends React.Component {
 
 					// add stamina to effects
 
-					let staminaEffect = clone.effects.find(effect => effect.type === 'stamina');
-					if (staminaEffect) {
-						staminaEffect.value = -character.staminaCost;
-					} else {
-						staminaEffect = {
-							type: 'stamina',
-							value: -character.staminaCost
-						};
-						clone.effects.push(staminaEffect);
+					if (clone.difficulty > 0) {
+						let staminaEffect = clone.effects.find(effect => effect.type === 'stamina');
+						if (staminaEffect) {
+							staminaEffect.value = -character.staminaCost;
+						} else {
+							staminaEffect = {
+								type: 'stamina',
+								value: -character.staminaCost
+							};
+							clone.effects.push(staminaEffect);
+						}
 					}
 
 					console.log(`task ${clone.handId}: roll ${clone.roll} difficulty ${clone.difficulty} bonus ${bonus} outcome ${clone.outcome}`);
