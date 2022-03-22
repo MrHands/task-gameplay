@@ -1,16 +1,15 @@
-import './App.css';
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import CardsDatabase from './data/CardsDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
 import TasksDatabase from './data/TasksDatabase.json';
-
-import React from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import Character from './components/Character';
-import ShiftHud from './components/ShiftHud';
-import Task from './components/Task';
 import { TaskOutcome } from './enums/TaskOutcome';
+import GameStart from './states/GameStart';
+import DayShift from './states/DayShift';
+
+import './App.css';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
@@ -415,42 +414,35 @@ export default class App extends React.Component {
 
 		const charactersUnplaced = characters.filter(character => character.task === '');
 
+		let gameState = null;
+
 		if (handCards.length === 0) {
-			return (
-				<button onClick={this.startGame.bind(this)}>Start Game</button>
+			gameState = (
+				<GameStart
+					onStartGame={this.startGame.bind(this)}
+				/>
+			);
+		} else {
+			gameState = (
+				<DayShift
+					shift={shift}
+					characters={characters}
+					charactersUnplaced={charactersUnplaced}
+					handCards={handCards}
+					getCharacter={this.getCharacter.bind(this)}
+					clampCharacterStat={this.clampCharacterStat.bind(this)}
+					canBePlaced={this.canBePlaced.bind(this)}
+					onCharacterDropped={this.setCharacterTask.bind(this)}
+					onStaminaChange={this.staminaChange.bind(this)}
+					onTaskStart={this.startTask.bind(this)}
+					onShiftFinish={this.finishShift.bind(this)}
+				/>
 			);
 		}
 
 		return (
 			<DndProvider backend={HTML5Backend}>
-				<ShiftHud
-					className="o-app__hud"
-					shift={shift}
-					characters={characters}
-					handleFinishShift={this.handleFinishShift} />
-				<div className="m-tasksList o-app__tasks">
-					{ handCards.map((task, index) => {
-						return <Task
-							key={`task-${index}`}
-							task={task}
-							character={this.getCharacter(task.characterId)}
-							clampCharacterStat={this.clampCharacterStat}
-							canBePlaced={this.handleCanBePlaced}
-							onCharacterDropped={this.handleSetCharacterTask}
-							onStaminaChange={this.handleStaminaChange}
-							onTaskStart={this.handleTaskStart} />;
-					})}
-				</div>
-				<div className="o-characterList o-app__characters">
-					{ charactersUnplaced.map(character => {
-						return <Character
-							key={`character-${character.id}`}
-							clampCharacterStat={this.clampCharacterStat}
-							onTaskCleared={this.handleClearCharacterTask}
-							canBePlaced={this.handleCanBePlaced}
-							{...character} />;
-					}) }
-				</div>
+				{gameState}
 			</DndProvider>
 		);
 	}
