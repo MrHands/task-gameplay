@@ -1,18 +1,18 @@
 import React from 'react';
+import { Shift } from '../enums/Shift';
 
 import './ShiftHud.css';
 
 export default class ShiftHud extends React.Component {
 	render() {
 		const {
-			characters,
+			day,
 			shift,
+			characters,
 			handleFinishShift 
 		} = this.props;
 
-		const ShiftText = [ 'morning', 'afternoon', 'evening', 'night' ];
-
-		console.log(characters);
+		const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
 
 		const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
 		console.log(charactersNotDone);
@@ -24,7 +24,7 @@ export default class ShiftHud extends React.Component {
 
 		return (
 			<div className={['m-shiftHud', this.props.className].join(' ')}>
-				<h2 className="m-shiftHud__title">{ShiftText[shift]}</h2>
+				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
 				<button onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
 					Finish Shift
 				</button>

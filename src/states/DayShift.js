@@ -9,6 +9,7 @@ import './DayShift.css';
 export default class DayShift extends React.Component {
 	render() {
 		const {
+			day,
 			shift,
 			characters,
 			handCards,
@@ -26,6 +27,7 @@ export default class DayShift extends React.Component {
 			<article className="o-dayShift">
 				<ShiftHud
 					className="o-dayShift__hud"
+					day={day}
 					shift={shift}
 					characters={characters}
 					handleFinishShift={onShiftFinish} />

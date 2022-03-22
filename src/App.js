@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import CardsDatabase from './data/CardsDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
 import TasksDatabase from './data/TasksDatabase.json';
+import { Shift } from './enums/Shift';
 import { TaskOutcome } from './enums/TaskOutcome';
 import GameStart from './states/GameStart';
 import DayShift from './states/DayShift';
@@ -20,7 +21,9 @@ export default class App extends React.Component {
 		super();
 
 		this.state = {
-			shift: 0,
+			day: 1,
+			shift: Shift.MORNING,
+
 			deck: 'balanced',
 			handCards: [],
 
@@ -69,12 +72,6 @@ export default class App extends React.Component {
 				}
 			],
 		};
-
-		this.handleCanBePlaced = this.canBePlaced.bind(this);
-		this.handleSetCharacterTask = this.setCharacterTask.bind(this);
-		this.handleTaskStart = this.startTask.bind(this);
-		this.handleFinishShift = this.finishShift.bind(this);
-		this.handleStaminaChange = this.staminaChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -371,12 +368,21 @@ export default class App extends React.Component {
 		// update shift
 
 		this.setState(state => {
-			const {
+			let {
 				shift,
+				day,
 			} = state;
 
+			if (shift === Shift.NIGHT) {
+				shift = Shift.MORNING;
+				day++;
+			} else {
+				shift++;
+			}
+
 			return {
-				shift: shift + 1,
+				day,
+				shift
 			}
 		});
 
@@ -400,7 +406,6 @@ export default class App extends React.Component {
 					if (it.id === character.id) {
 						const staminaCost = Math.max(1, Math.min(it.staminaCost + amount, it.stats.stamina));
 						console.log(`character ${character.id} amount ${amount} staminaCost ${staminaCost}`);
-						// return Object.assign({}, it, {staminaCost});
 						return {...it, staminaCost};
 					} else {
 						return it;
@@ -412,9 +417,10 @@ export default class App extends React.Component {
 
 	render() {
 		const {
+			day,
+			shift,
 			handCards,
 			characters,
-			shift,
 		} = this.state;
 
 		const charactersUnplaced = characters.filter(character => character.task === '');
@@ -430,6 +436,7 @@ export default class App extends React.Component {
 		} else {
 			gameState = (
 				<DayShift
+					day={day}
 					shift={shift}
 					characters={characters}
 					charactersUnplaced={charactersUnplaced}

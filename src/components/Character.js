@@ -20,6 +20,7 @@ export default class Character extends React.Component {
 					{['stamina', 'pleasure', 'passionate', 'intimate', 'dominant'].map((type, index) => {
 						return (
 							<StatsItem
+								key={`task-${index}`}
 								type={type}
 								stats={stats}
 								effects={taskEffects}
