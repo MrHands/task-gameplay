@@ -227,15 +227,20 @@ export default class App extends React.Component {
 		return copy;
 	}
 
-	canBePlaced(id) {
-		return true;
+	canBePlaced(characterId, task) {
+		const character = this.getCharacter(characterId);
+		return (task.difficulty === 0) || (character.stats.stamina > 0);
 	}
 
-	setCharacterTask(task, dropped) {
+	setCharacterTask(characterId, task) {
+		if (!this.canBePlaced(characterId, task)) {
+			return;
+		}
+
 		this.setState(state => {
 			return {
 				characters: state.characters.map(character => {
-					if (character.id !== dropped) {
+					if (character.id !== characterId) {
 						return character;
 					}
 

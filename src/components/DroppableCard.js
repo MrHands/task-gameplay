@@ -16,11 +16,11 @@ export default function DroppableCard(props) {
 			canDrop: monitor.canDrop(),
 			character: monitor.getItem(),
 		}),
-		drop: character => onCharacterDropped(task, character.id),
+		drop: character => onCharacterDropped(character.id, task),
 	}), [task]);
 
 	if (isOver && canDrop) {
-		if (canBePlaced(character)) {
+		if (canBePlaced(character.id, task)) {
 			className += ' -active';
 		} else {
 			className += ' -denied';

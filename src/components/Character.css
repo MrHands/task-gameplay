@@ -16,6 +16,11 @@
 	cursor: initial;
 }
 
+.o-character.-active {
+	border: 2px solid lawngreen;
+	background: lightgreen;
+}
+
 .o-character__title {
 	text-align: center;
 	color: gray;
