@@ -87,7 +87,7 @@ export default class App extends React.Component {
 		console.log(deckTasks);
 
 		const tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
-			return Object.assign({}, this.getTask(id));
+			return JSON.parse(JSON.stringify(this.getTask(id)));
 		}));
 		console.log(tasksDeck);
 
@@ -96,7 +96,7 @@ export default class App extends React.Component {
 		});
 
 		const restDeck = this.shuffleCards(deckRest.tasks.map(id => {
-			return Object.assign({}, this.getTask(id));
+			return JSON.parse(JSON.stringify(this.getTask(id)));
 		}));
 
 		this.setState({
@@ -118,7 +118,7 @@ export default class App extends React.Component {
 
 			return {
 				characters: characters.map(character => {
-					const clone = Object.assign({}, character);
+					const clone = {...character};
 
 					// apply task effects
 	
@@ -267,9 +267,10 @@ export default class App extends React.Component {
 						return task;
 					}
 
-					const clone = Object.assign({}, task);
+					const clone = {...task};
 
 					const character = this.getCharacter(clone.characterId);
+					const bonus = character.staminaCost - 1;
 
 					// determine outcome based on difficulty and roll
 
@@ -277,7 +278,7 @@ export default class App extends React.Component {
 						clone.roll = Math.floor(Math.random() * 20);
 						if (clone.roll === 19) {
 							clone.outcome = TaskOutcome.CRITICAL_SUCCESS;
-						} else if (clone.roll >= clone.difficulty - character.staminaCost - 1) {
+						} else if (clone.roll >= clone.difficulty - bonus) {
 							clone.outcome = TaskOutcome.SUCCESS;
 						} else {
 							clone.outcome = TaskOutcome.FAIL;
@@ -348,14 +349,11 @@ export default class App extends React.Component {
 						clone.effects.push(staminaEffect);
 					}
 
-					console.log(`task ${clone.handId}: roll ${clone.roll} outcome ${clone.outcome}`);
+					console.log(`task ${clone.handId}: roll ${clone.roll} difficulty ${clone.difficulty} bonus ${bonus} outcome ${clone.outcome}`);
 
 					// notify character
 
 					character.task = clone;
-
-					console.log(TasksDatabase.tasks);
-					console.log(state.handCards);
 
 					return clone;
 				})
@@ -396,8 +394,8 @@ export default class App extends React.Component {
 					if (it.id === character.id) {
 						const staminaCost = Math.max(1, Math.min(it.staminaCost + amount, it.stats.stamina));
 						console.log(`character ${character.id} amount ${amount} staminaCost ${staminaCost}`);
-						console.log(character.task.characterId);
-						return Object.assign({}, it, {staminaCost});
+						// return Object.assign({}, it, {staminaCost});
+						return {...it, staminaCost};
 					} else {
 						return it;
 					}

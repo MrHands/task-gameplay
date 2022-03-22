@@ -28,13 +28,15 @@ export default class TaskStart extends React.Component {
 			let carousel = null;
 			
 			if (difficulty > 0) {
-				stamina = (
-					<div className="o-task__stamina">
-						<button onClick={() => onStaminaChange(character, -1)}>-</button>
-						<div>{character.staminaCost}</div>
-						<button onClick={() => onStaminaChange(character, 1)}>+</button>
-					</div>
-				);
+				if (outcome === '') {
+					stamina = (
+						<div className="o-task__stamina">
+							<button onClick={() => onStaminaChange(character, -1)}>-</button>
+							<div>{character.staminaCost}</div>
+							<button onClick={() => onStaminaChange(character, 1)}>+</button>
+						</div>
+					);
+				}
 
 				carousel = (
 					<Carousel
