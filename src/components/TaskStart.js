@@ -30,11 +30,14 @@ export default class TaskStart extends React.Component {
 			if (difficulty > 0) {
 				if (outcome === '') {
 					stamina = (
-						<div className="o-task__stamina">
-							<button onClick={() => onStaminaChange(character, -1)}>-</button>
-							<div>{character.staminaCost}</div>
-							<button onClick={() => onStaminaChange(character, 1)}>+</button>
-						</div>
+						<>
+							<h3>Stamina Cost</h3>
+							<div className="o-task__stamina">
+								<button onClick={() => onStaminaChange(character, -1)}>-</button>
+								<div>{character.staminaCost}</div>
+								<button onClick={() => onStaminaChange(character, 1)}>+</button>
+							</div>
+						</>
 					);
 				}
 
@@ -48,15 +51,15 @@ export default class TaskStart extends React.Component {
 			}
 
 			return (
-				<>
+				<div className={['m-taskStart', this.props.className].join(' ')}>
 					{stamina}
 					{carousel}
 					{start}
-				</>
+				</div>
 			);
 		} else {
 			return (
-				<div className={['o-task__difficulty', this.props.className].join(' ')}>
+				<div className="o-task__difficulty">
 					<span>Difficulty</span>
 					<span>{difficulty} / 20</span>
 				</div>

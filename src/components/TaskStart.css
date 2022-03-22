@@ -1,0 +1,10 @@
+.m-taskStart {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+
+.m-taskStart h3 {
+	text-transform: uppercase;
+}

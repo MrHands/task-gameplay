@@ -46,10 +46,6 @@
 .o-task__carousel {
 	grid-area: carousel;
 	align-self: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 12px;
 }
 
 .o-task__difficulty {
