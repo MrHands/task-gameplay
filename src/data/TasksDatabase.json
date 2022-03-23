@@ -134,6 +134,13 @@
 				}
 			],
 			"difficulty": 0
+		},
+		{
+			"id": "night",
+			"title": "Night",
+			"effects": [
+			],
+			"difficulty": 0
 		}
 	]
 }

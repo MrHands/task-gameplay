@@ -465,8 +465,12 @@ export default class App extends React.Component {
 				<NightShift
 					day={day}
 					shift={shift}
+					nightTask={this.getTask('night')}
 					characters={characters}
 					charactersUnplaced={charactersUnplaced}
+					clampCharacterStat={this.clampCharacterStat.bind(this)}
+					canBePlaced={this.canBePlaced.bind(this)}
+					onCharacterDropped={this.setCharacterTask.bind(this)}
 				/>
 			);
 		} else {

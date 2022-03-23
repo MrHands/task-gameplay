@@ -9,9 +9,14 @@ import './NightShift.scss';
 export default class NightShift extends React.Component {
 	render() {
 		const {
+			day,
+			shift,
+			nightTask,
 			characters,
+			charactersUnplaced,
 			clampCharacterStat,
 			canBePlaced,
+			onCharacterDropped,
 		} = this.props;
 
 		let selected = characters.find(character => character.task !== '') ?? null;
@@ -27,7 +32,12 @@ export default class NightShift extends React.Component {
 			);
 		} else {
 			characterDropped = (
-				<DroppableCard className="o-character -empty" {...this.props}>
+				<DroppableCard
+					className="o-character -empty"
+					task={nightTask}
+					onCharacterDropped={onCharacterDropped}
+					canBePlaced={canBePlaced}
+				>
 					<h3 className="o-character__title">Drag character here</h3>
 				</DroppableCard>
 			);
@@ -42,7 +52,7 @@ export default class NightShift extends React.Component {
 				</div>
 				<CharacterList
 					className="o-nightShift__characters"
-					characters={characters}
+					characters={charactersUnplaced}
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
 				/>
