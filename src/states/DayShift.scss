@@ -1,21 +1,24 @@
+@import '../globals';
+
 .o-dayShift {
 	display: grid;
 	grid-template-areas:
 		'hud     hud         '
 		'tasks   characters  ';
-	grid-template-columns: 3fr 200px;
+	grid-template-columns: 3fr $card-size;
 	align-items: center;
 	gap: 24px;
+
+	&__tasks {
+		grid-area: tasks;
+	}
+	
+	&__characters {
+		grid-area: characters;
+	}
+	
+	&__hud {
+		grid-area: hud;
+	}
 }
 
-.o-dayShift__tasks {
-	grid-area: tasks;
-}
-
-.o-dayShift__characters {
-	grid-area: characters;
-}
-
-.o-dayShift__hud {
-	grid-area: hud;
-}

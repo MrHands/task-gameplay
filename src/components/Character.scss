@@ -1,5 +1,7 @@
+@import '../globals';
+
 .o-character {
-	min-width: 200px;
+	min-width: $card-size;
 	aspect-ratio: 240/320;
 	display: grid;
 	justify-items: center;
@@ -7,24 +9,25 @@
 	padding: 12px;
 	border: 2px solid gray;
 	border-radius: 12px;
-}
 
-.o-character.-empty {
-	display: flex;
-	align-items: center;
-	border: 2px dashed gray;
-	cursor: initial;
-}
-
-.o-character.-active {
-	border: 2px solid lawngreen;
-	background: lightgreen;
-}
-
-.o-character__title {
-	text-align: center;
-	color: gray;
-	text-transform: uppercase;
+	&.-empty {
+		display: flex;
+		align-items: center;
+		border: 2px dashed gray;
+		cursor: initial;
+	}
+	
+	&.-active {
+		border: 2px solid lawngreen;
+		background: lightgreen;
+	}
+	
+	&__title {
+		width: 100%;
+		text-align: center;
+		text-transform: uppercase;
+		color: gray;
+	}
 }
 
 .m-stats {
