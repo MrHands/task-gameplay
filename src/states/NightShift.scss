@@ -19,6 +19,8 @@
 
 	&__moves {
 		grid-area: moves;
+		display: flex;
+		flex-direction: column;
 	}
 
 	&__characters {

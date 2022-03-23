@@ -2,9 +2,9 @@ import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import CardsDatabase from './data/CardsDatabase.json';
-import DecksDatabase from './data/DecksDatabase.json';
 import TasksDatabase from './data/TasksDatabase.json';
+import DecksDatabase from './data/DecksDatabase.json';
+import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Shift } from './enums/Shift';
 import { TaskOutcome } from './enums/TaskOutcome';
 import DayShift from './states/DayShift';
@@ -201,9 +201,9 @@ export default class App extends React.Component {
 		});
 	}
 
-	getCard(id) {
-		return CardsDatabase.cards.find(card => {
-			return card.id === id;
+	getCharacter(id) {
+		return this.state.characters.find(character => {
+			return character.id === id;
 		});
 	}
 
@@ -213,10 +213,10 @@ export default class App extends React.Component {
 		});
 	}
 
-	getCharacter(id) {
-		return this.state.characters.find(character => {
-			return character.id === id;
-		}) || null;
+	getSexMove(id) {
+		return SexMovesDatabase.sexMoves.find(move => {
+			return move.id === id;
+		});
 	}
 
 	clampCharacterStat(type, value) {
@@ -468,6 +468,7 @@ export default class App extends React.Component {
 					nightTask={this.getTask('night')}
 					characters={characters}
 					charactersUnplaced={charactersUnplaced}
+					sexMoves={SexMovesDatabase.sexMoves}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}

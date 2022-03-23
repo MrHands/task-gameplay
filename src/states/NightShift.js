@@ -3,6 +3,7 @@ import React from 'react';
 import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
 import DroppableCard from '../components/DroppableCard';
+import SexMove from '../components/SexMove';
 
 import './NightShift.scss';
 
@@ -14,6 +15,7 @@ export default class NightShift extends React.Component {
 			nightTask,
 			characters,
 			charactersUnplaced,
+			sexMoves,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -49,6 +51,14 @@ export default class NightShift extends React.Component {
 					{characterDropped}
 				</div>
 				<div className="o-nightShift__moves">
+					{sexMoves.map((sexMove, index) => {
+						return (
+							<SexMove
+								key={`sex-move-${index}`}
+								{...sexMove}
+							/>
+						);
+					})}
 				</div>
 				<CharacterList
 					className="o-nightShift__characters"
