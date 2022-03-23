@@ -13,6 +13,7 @@ export default class SexMove extends React.Component {
 		return (
 			<div className={['m-sexMove', this.props.className].join(' ')}>
 				<h2 className="m-sexMove__title">{title}</h2>
+				<h2 className="m-sexMove__requirements">{lustMinimum}</h2>
 				<ul className="m-sexMove__effects">
 					{effects.map((effect, index) => {
 						return (

@@ -21,6 +21,11 @@
 		grid-area: moves;
 		display: flex;
 		flex-direction: column;
+		gap: 1rem;
+		justify-self: end;
+		min-width: 20rem;
+		padding: 1rem;
+		overflow-y: scroll;
 	}
 
 	&__characters {
