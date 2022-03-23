@@ -72,6 +72,8 @@ export default class App extends React.Component {
 					task: ''
 				}
 			],
+
+			nightLust: 0,
 		};
 	}
 
@@ -282,6 +284,14 @@ export default class App extends React.Component {
 				})
 			}
 		});
+
+		if (this.state.shift === Shift.NIGHT) {
+			const character = this.getCharacter(characterId);
+
+			this.setState({
+				nightLust: character.stats.pleasure
+			});
+		}
 	}
 
 	startTask(handId) {
@@ -447,6 +457,7 @@ export default class App extends React.Component {
 			shift,
 			handCards,
 			characters,
+			nightLust,
 		} = this.state;
 
 		const charactersUnplaced = characters.filter(character => character.task === '');
@@ -469,6 +480,7 @@ export default class App extends React.Component {
 					characters={characters}
 					charactersUnplaced={charactersUnplaced}
 					sexMoves={SexMovesDatabase.sexMoves}
+					nightLust={nightLust}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}

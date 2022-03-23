@@ -16,6 +16,7 @@ export default class NightShift extends React.Component {
 			characters,
 			charactersUnplaced,
 			sexMoves,
+			nightLust,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -66,6 +67,9 @@ export default class NightShift extends React.Component {
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
 				/>
+				<div className="o-nightShift__lust">
+					{nightLust}
+				</div>
 			</article>
 		);
 	}

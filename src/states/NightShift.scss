@@ -2,15 +2,21 @@
 
 .o-nightShift {
 	display: grid;
-	grid-template-columns: min-content 1fr $card-size;
+	grid-template-columns:
+		min-content
+		1fr
+		20rem
+		$card-size;
 	grid-template-rows:
 		1fr
-		1fr;
+		1fr
+		4rem;
 	grid-template-areas:
-		'.     moves   characters  '
-		'drop  moves   characters  ';
+		'.     .     moves   characters  '
+		'drop  .     moves   characters  '
+		'lust  lust  moves   characters  ';
 	gap: 1rem;
-	min-height: calc(100vh - 24px);
+	height: calc(100vh - 24px);
 
 	&__drop {
 		grid-area: drop;
@@ -23,7 +29,7 @@
 		flex-direction: column;
 		gap: 1rem;
 		justify-self: end;
-		min-width: 20rem;
+		width: 100%;
 		padding: 1rem;
 		overflow-y: scroll;
 	}
@@ -31,5 +37,15 @@
 	&__characters {
 		grid-area: characters;
 		display: flex;
+	}
+
+	&__lust {
+		grid-area: lust;
+		display: flex;
+		align-items: center;
+		border: 0.2rem solid hotpink;
+		border-radius: 0.4rem;
+		padding: 0.4rem;
+		color: hotpink;
 	}
 }
