@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './NightShift.css';
+import './NightShift.scss';
 
 export default class NightShift extends React.Component {
 	render() {

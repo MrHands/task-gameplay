@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TaskOutcome } from '../enums/TaskOutcome';
 
-import './Carousel.css';
+import './Carousel.scss';
 
 export default class Carousel extends React.Component {
 	render() {

@@ -4,7 +4,7 @@ import Character from '../components/Character';
 import ShiftHud from '../components/ShiftHud';
 import Task from '../components/Task';
 
-import './DayShift.css';
+import './DayShift.scss';
 
 export default class DayShift extends React.Component {
 	render() {

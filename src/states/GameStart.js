@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './GameStart.css';
+import './GameStart.scss';
 
 export default class GameStart extends React.Component {
 	render() {

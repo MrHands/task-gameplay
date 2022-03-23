@@ -3,7 +3,7 @@ import React from 'react';
 import Character from './Character';
 import DroppableCard from './DroppableCard';
 
-import './Task.css';
+import './Task.scss';
 import TaskStart from './TaskStart';
 
 export default class Task extends React.Component {

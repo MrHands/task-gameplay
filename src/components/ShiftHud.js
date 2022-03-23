@@ -1,7 +1,7 @@
 import React from 'react';
 import { Shift } from '../enums/Shift';
 
-import './ShiftHud.css';
+import './ShiftHud.scss';
 
 export default class ShiftHud extends React.Component {
 	render() {

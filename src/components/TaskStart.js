@@ -2,7 +2,7 @@ import React from 'react';
 
 import Carousel from './Carousel';
 
-import './TaskStart.css';
+import './TaskStart.scss';
 
 export default class TaskStart extends React.Component {
 	render() {

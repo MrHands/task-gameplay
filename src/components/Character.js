@@ -2,7 +2,7 @@ import React from 'react';
 import DraggableCard from './DraggableCard';
 import StatsItem from './StatsItem';
 
-import './Character.css';
+import './Character.scss';
 
 export default class Character extends React.Component {
 	render() {

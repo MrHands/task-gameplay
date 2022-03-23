@@ -7,11 +7,11 @@ import DecksDatabase from './data/DecksDatabase.json';
 import TasksDatabase from './data/TasksDatabase.json';
 import { Shift } from './enums/Shift';
 import { TaskOutcome } from './enums/TaskOutcome';
-import GameStart from './states/GameStart';
 import DayShift from './states/DayShift';
-
-import './App.css';
+import GameStart from './states/GameStart';
 import NightShift from './states/NightShift';
+
+import './App.scss';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);

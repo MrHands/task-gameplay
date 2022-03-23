@@ -2,7 +2,7 @@ import React from 'react';
 
 import DraggableCard from './DraggableCard';
 import DroppableCard from './DroppableCard';
-import './Card.css';
+import './Card.scss';
 
 export default class Card extends React.Component {
 	effectText(effect) {

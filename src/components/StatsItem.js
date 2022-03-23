@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './StatsItem.css';
+import './StatsItem.scss';
 
 export default class StatsItem extends React.Component {
 	effectText(type, value) {
