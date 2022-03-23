@@ -466,6 +466,7 @@ export default class App extends React.Component {
 					day={day}
 					shift={shift}
 					characters={characters}
+					charactersUnplaced={charactersUnplaced}
 				/>
 			);
 		} else {
