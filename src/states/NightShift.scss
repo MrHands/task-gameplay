@@ -3,4 +3,15 @@
 .o-nightShift {
 	display: grid;
 	grid-template-columns: 3fr $card-size;
+	grid-template-areas:
+		'moves   characters  ';
+
+	&__moves {
+		grid-area: moves;
+	}
+
+	&__characters {
+		grid-area: characters;
+		display: flex;
+	}
 }

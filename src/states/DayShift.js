@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Character from '../components/Character';
+import CharacterList from '../components/CharacterList';
 import ShiftHud from '../components/ShiftHud';
 import Task from '../components/Task';
 
@@ -44,15 +44,12 @@ export default class DayShift extends React.Component {
 							onTaskStart={onTaskStart} />;
 					})}
 				</div>
-				<div className="o-characterList o-dayShift__characters">
-					{ charactersUnplaced.map(character => {
-						return <Character
-							key={`character-${character.id}`}
-							clampCharacterStat={clampCharacterStat}
-							canBePlaced={canBePlaced}
-							{...character} />;
-					}) }
-				</div>
+				<CharacterList
+					className="o-dayShift__characters"
+					characters={charactersUnplaced}
+					clampCharacterStat={clampCharacterStat}
+					canBePlaced={canBePlaced}
+				/>
 			</article>
 		);
 	}

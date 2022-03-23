@@ -463,6 +463,9 @@ export default class App extends React.Component {
 		} else if (shift === Shift.NIGHT) {
 			gameState = (
 				<NightShift
+					day={day}
+					shift={shift}
+					characters={characters}
 				/>
 			);
 		} else {
