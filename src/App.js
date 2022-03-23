@@ -11,6 +11,7 @@ import GameStart from './states/GameStart';
 import DayShift from './states/DayShift';
 
 import './App.css';
+import NightShift from './states/NightShift';
 
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
@@ -36,7 +37,7 @@ export default class App extends React.Component {
 					name: 'Chichi',
 					stats: {
 						stamina: 5,
-						pleasure: randomPercentage(),
+						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
@@ -49,7 +50,7 @@ export default class App extends React.Component {
 					name: 'Riya',
 					stats: {
 						stamina: 5,
-						pleasure: randomPercentage(),
+						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
@@ -62,7 +63,7 @@ export default class App extends React.Component {
 					name: 'Bobby',
 					stats: {
 						stamina: 5,
-						pleasure: randomPercentage(),
+						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
 						dominant: 0
@@ -103,6 +104,31 @@ export default class App extends React.Component {
 
 	startGame() {
 		this.setUpCharacters();
+		this.drawHand();
+	}
+
+	jumpToNight() {
+		this.setUpCharacters();
+
+		// set pleasure to a random value
+
+		this.setState(state => {
+			const {
+				characters,
+			} = state;
+
+			return {
+				characters: characters.map(character => {
+					const clone = {...character};
+
+					clone.stats.pleasure = randomPercentage();
+
+					return clone;
+				}),
+				shift: Shift.NIGHT
+			};
+		});
+
 		this.drawHand();
 	}
 
@@ -431,6 +457,12 @@ export default class App extends React.Component {
 			gameState = (
 				<GameStart
 					onStartGame={this.startGame.bind(this)}
+					onJumpToNight={this.jumpToNight.bind(this)}
+				/>
+			);
+		} else if (shift === Shift.NIGHT) {
+			gameState = (
+				<NightShift
 				/>
 			);
 		} else {
