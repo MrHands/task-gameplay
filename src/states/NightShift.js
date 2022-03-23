@@ -68,7 +68,7 @@ export default class NightShift extends React.Component {
 					canBePlaced={canBePlaced}
 				/>
 				<div className="o-nightShift__lust">
-					{nightLust}
+					<progress value={nightLust} max="100">{`${nightLust}%`}</progress>
 				</div>
 			</article>
 		);
