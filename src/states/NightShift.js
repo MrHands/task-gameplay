@@ -19,6 +19,8 @@ export default class NightShift extends React.Component {
 			nightLust,
 			sexMoves,
 			sexMovesPlayed,
+			canSexMoveBePlayed,
+			playSexMove,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -48,7 +50,7 @@ export default class NightShift extends React.Component {
 			);
 		}
 
-		const movesSelected = sexMovesPlayed;
+		const movesSelected = [...sexMovesPlayed];
 		if (sexMovesPlayed.length < 5) {
 			movesSelected.push({
 				id: -1
@@ -65,6 +67,8 @@ export default class NightShift extends React.Component {
 						return (
 							<SexMove
 								key={`sex-move-${index}`}
+								canSexMoveBePlayed={canSexMoveBePlayed}
+								playSexMove={playSexMove}
 								{...sexMove}
 							/>
 						);
@@ -89,6 +93,7 @@ export default class NightShift extends React.Component {
 						return (
 							<SexMove
 								key={`selected-move-${index}`}
+								canSexMoveBePlayed={canSexMoveBePlayed}
 								{...sexMove}
 							/>
 						);

@@ -460,6 +460,21 @@ export default class App extends React.Component {
 		});
 	}
 
+	canSexMoveBePlayed(sexMoveId) {
+		const sexMove = this.getSexMove(sexMoveId);
+		return (this.state.nightLust>= sexMove.lustMinimum);
+	}
+
+	playSexMove(sexMoveId) {
+		const sexMove = {...this.getSexMove(sexMoveId)};
+
+		this.setState(state => {
+			return {
+				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
+			}
+		});
+	}
+
 	render() {
 		const {
 			day,
@@ -495,6 +510,8 @@ export default class App extends React.Component {
 					nightLust={nightLust}
 					sexMoves={SexMovesDatabase.sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
+					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}
+					playSexMove={this.playSexMove.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}

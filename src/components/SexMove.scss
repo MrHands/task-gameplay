@@ -23,6 +23,12 @@
 		}
 	}
 
+	&[disabled] {
+		color: darkgray;
+		background: lightgray;
+		border-color: darkgray;
+	}
+
 	&__title {
 		.-empty > & {
 			text-transform: uppercase;

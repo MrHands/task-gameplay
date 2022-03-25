@@ -11,7 +11,11 @@ export default class SexMove extends React.Component {
 			title,
 			lustMinimum,
 			effects,
+			canSexMoveBePlayed,
+			playSexMove,
 		} = this.props;
+
+		console.log(this.props);
 
 		if (id === -1) {
 			return (
@@ -22,7 +26,11 @@ export default class SexMove extends React.Component {
 		}
 
 		return (
-			<div className={['m-sexMove', this.props.className].join(' ')}>
+			<div
+				className={['m-sexMove', this.props.className].join(' ')}
+				onClick={() => playSexMove(id)}
+				disabled={canSexMoveBePlayed(id) ? '' : 'disabled'}
+			>
 				<h2 className="m-sexMove__title">{title}</h2>
 				<h2 className="m-sexMove__requirements">{lustMinimum}</h2>
 				<ul className="m-sexMove__effects">
