@@ -11,10 +11,8 @@ import './NightShift.scss';
 export default class NightShift extends React.Component {
 	render() {
 		const {
-			day,
-			shift,
 			nightTask,
-			characters,
+			nightCharacter,
 			charactersUnplaced,
 			nightLust,
 			sexMoves,
@@ -26,15 +24,13 @@ export default class NightShift extends React.Component {
 			onCharacterDropped,
 		} = this.props;
 
-		let characterSelected = characters.find(character => character.task !== '') ?? null;
-
 		let characterDropped = null;
 
-		if (characterSelected !== null) {
+		if (nightCharacter !== null) {
 			characterDropped = (
 				<Character
 					clampCharacterStat={clampCharacterStat}
-					{...characterSelected}
+					{...nightCharacter}
 				/>
 			);
 		} else {
@@ -51,7 +47,7 @@ export default class NightShift extends React.Component {
 		}
 
 		const movesSelected = [...sexMovesPlayed];
-		if (sexMovesPlayed.length < 5) {
+		if (nightCharacter !== null && sexMovesPlayed.length < 5) {
 			movesSelected.push({
 				id: -1
 			});

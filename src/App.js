@@ -185,7 +185,6 @@ export default class App extends React.Component {
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
-			console.log(tasksDeck);
 	
 			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
 				const task = JSON.parse(JSON.stringify(restDeck[0]));
@@ -467,6 +466,7 @@ export default class App extends React.Component {
 
 	playSexMove(sexMoveId) {
 		const sexMove = {...this.getSexMove(sexMoveId)};
+		sexMove.played = true;
 
 		this.setState(state => {
 			return {
@@ -500,12 +500,14 @@ export default class App extends React.Component {
 				sexMovesPlayed,
 			} = this.state;
 
+			const nightCharacter = characters.find(character => character.task?.id === 'night') ?? null;
+
 			gameState = (
 				<NightShift
 					day={day}
 					shift={shift}
 					nightTask={this.getTask('night')}
-					characters={characters}
+					nightCharacter={nightCharacter}
 					charactersUnplaced={charactersUnplaced}
 					nightLust={nightLust}
 					sexMoves={SexMovesDatabase.sexMoves}
