@@ -16,8 +16,9 @@ export default class NightShift extends React.Component {
 			nightTask,
 			characters,
 			charactersUnplaced,
-			sexMoves,
 			nightLust,
+			sexMoves,
+			sexMovesPlayed,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -47,13 +48,12 @@ export default class NightShift extends React.Component {
 			);
 		}
 
-		const movesSelected = [
-			{ id: -1 },
-			{ id: -1 },
-			{ id: -1 },
-			{ id: -1 },
-			{ id: -1 },
-		];
+		const movesSelected = sexMovesPlayed;
+		if (sexMovesPlayed.length < 5) {
+			movesSelected.push({
+				id: -1
+			});
+		}
 
 		return (
 			<article className="o-nightShift">

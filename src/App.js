@@ -74,6 +74,7 @@ export default class App extends React.Component {
 			],
 
 			nightLust: 0,
+			sexMovesPlayed: [],
 		};
 	}
 
@@ -127,7 +128,9 @@ export default class App extends React.Component {
 
 					return clone;
 				}),
-				shift: Shift.NIGHT
+				shift: Shift.NIGHT,
+				nightLust: 0,
+				sexMovesPlayed: [],
 			};
 		});
 
@@ -401,6 +404,12 @@ export default class App extends React.Component {
 	}
 
 	finishShift() {
+		if (this.state.shift === Shift.EVENING) {
+			this.jumpToNight();
+
+			return;
+		}
+
 		// update shift
 
 		this.setState(state => {
@@ -457,7 +466,6 @@ export default class App extends React.Component {
 			shift,
 			handCards,
 			characters,
-			nightLust,
 		} = this.state;
 
 		const charactersUnplaced = characters.filter(character => character.task === '');
@@ -472,6 +480,11 @@ export default class App extends React.Component {
 				/>
 			);
 		} else if (shift === Shift.NIGHT) {
+			const {
+				nightLust,
+				sexMovesPlayed,
+			} = this.state;
+
 			gameState = (
 				<NightShift
 					day={day}
@@ -479,8 +492,9 @@ export default class App extends React.Component {
 					nightTask={this.getTask('night')}
 					characters={characters}
 					charactersUnplaced={charactersUnplaced}
-					sexMoves={SexMovesDatabase.sexMoves}
 					nightLust={nightLust}
+					sexMoves={SexMovesDatabase.sexMoves}
+					sexMovesPlayed={sexMovesPlayed}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}

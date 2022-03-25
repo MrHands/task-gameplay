@@ -16,7 +16,7 @@ export default class SexMove extends React.Component {
 		if (id === -1) {
 			return (
 				<DroppableCard className="m-sexMove -empty" {...this.props}>
-					<h2 className="m-sexMove__title">Drag sex move here</h2>
+					<h2 className="m-sexMove__title">Select next move</h2>
 				</DroppableCard>
 			)
 		}

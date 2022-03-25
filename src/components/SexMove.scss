@@ -7,11 +7,20 @@
 	border-radius: 0.4rem;
 	padding: 0.4rem;
 	color: hotpink;
+	transition: background-color 0.4s;
+
+	&:hover {
+		background: pink;
+	}
 
 	&.-empty {
 		border-style: dashed;
 		justify-content: center;
 		align-items: center;
+
+		&:hover {
+			background: initial;
+		}
 	}
 
 	&__title {
