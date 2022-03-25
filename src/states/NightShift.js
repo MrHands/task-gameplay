@@ -3,6 +3,7 @@ import React from 'react';
 import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
 import DroppableCard from '../components/DroppableCard';
+import LustBar from '../components/LustBar';
 import SexMove from '../components/SexMove';
 
 import './NightShift.scss';
@@ -68,7 +69,12 @@ export default class NightShift extends React.Component {
 					canBePlaced={canBePlaced}
 				/>
 				<div className="o-nightShift__lust">
-					<progress value={nightLust} max="100">{`${nightLust}%`}</progress>
+					<h2>Lust</h2>
+					<LustBar
+						className="o-nightShift__lust__bar"
+						value={nightLust}
+						max="100"
+					/>
 				</div>
 			</article>
 		);

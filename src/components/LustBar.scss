@@ -1,0 +1,13 @@
+.m-lustBar {
+	border: 0.2rem solid hotpink;
+	border-radius: 2rem;
+	padding: 0.2rem;
+	color: hotpink;
+
+	&__foreground {
+		width: 0%;
+		height: 1rem;
+		border-radius: 2rem;
+		background: hotpink;
+	}
+}

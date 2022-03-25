@@ -43,13 +43,14 @@
 		grid-area: lust;
 		display: flex;
 		align-items: center;
+		gap: 1rem;
 		border: 0.2rem solid hotpink;
 		border-radius: 0.4rem;
 		padding: 0.4rem;
 		color: hotpink;
 
-		> progress {
-			height: 100%;
+		&__bar {
+			width: 100%;
 		}
 	}
 }
