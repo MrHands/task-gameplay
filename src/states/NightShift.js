@@ -23,15 +23,15 @@ export default class NightShift extends React.Component {
 			onCharacterDropped,
 		} = this.props;
 
-		let selected = characters.find(character => character.task !== '') ?? null;
+		let characterSelected = characters.find(character => character.task !== '') ?? null;
 
 		let characterDropped = null;
 
-		if (selected !== null) {
+		if (characterSelected !== null) {
 			characterDropped = (
 				<Character
 					clampCharacterStat={clampCharacterStat}
-					{...selected}
+					{...characterSelected}
 				/>
 			);
 		} else {
@@ -46,6 +46,14 @@ export default class NightShift extends React.Component {
 				</DroppableCard>
 			);
 		}
+
+		const movesSelected = [
+			{ id: -1 },
+			{ id: -1 },
+			{ id: -1 },
+			{ id: -1 },
+			{ id: -1 },
+		];
 
 		return (
 			<article className="o-nightShift">
@@ -75,6 +83,16 @@ export default class NightShift extends React.Component {
 						value={nightLust}
 						max="100"
 					/>
+				</div>
+				<div className="o-nightShift__selected">
+					{movesSelected.map((sexMove, index) => {
+						return (
+							<SexMove
+								key={`selected-move-${index}`}
+								{...sexMove}
+							/>
+						);
+					})}
 				</div>
 			</article>
 		);

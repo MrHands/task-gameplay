@@ -1,14 +1,25 @@
 import React from 'react';
 
+import DroppableCard from './DroppableCard';
+
 import './SexMove.scss';
 
 export default class SexMove extends React.Component {
 	render() {
 		const {
+			id,
 			title,
 			lustMinimum,
 			effects,
 		} = this.props;
+
+		if (id === -1) {
+			return (
+				<DroppableCard className="m-sexMove -empty" {...this.props}>
+					<h2 className="m-sexMove__title">Drag sex move here</h2>
+				</DroppableCard>
+			)
+		}
 
 		return (
 			<div className={['m-sexMove', this.props.className].join(' ')}>

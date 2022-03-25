@@ -2,6 +2,11 @@
 
 .o-nightShift {
 	display: grid;
+	grid-template-areas:
+		'.         .         moves     characters  '
+		'drop      .         moves     characters  '
+		'lust      lust      moves     characters  '
+		'selected  selected  selected  characters  ';
 	grid-template-columns:
 		min-content
 		1fr
@@ -10,11 +15,8 @@
 	grid-template-rows:
 		1fr
 		1fr
-		4rem;
-	grid-template-areas:
-		'.     .     moves   characters  '
-		'drop  .     moves   characters  '
-		'lust  lust  moves   characters  ';
+		4rem
+		1fr;
 	gap: 1rem;
 	height: calc(100vh - 24px);
 
@@ -52,5 +54,11 @@
 		&__bar {
 			width: 100%;
 		}
+	}
+
+	&__selected {
+		grid-area: selected;
+		display: flex;
+		gap: 1rem;
 	}
 }
