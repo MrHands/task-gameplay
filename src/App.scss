@@ -3,7 +3,7 @@
 }
 
 body {
-	margin: 12px;
+	padding: 0.5rem;
 }
 
 h1, h2, h3, h4 {
@@ -11,10 +11,10 @@ h1, h2, h3, h4 {
 }
 
 button {
-	font-size: 18px;
+	font-size: 1rem;
 	text-transform: uppercase;
-	padding: 12px;
-	border: 2px solid gray;
+	padding: 0.5rem;
+	border: 0.1rem solid gray;
 }
 
 button:disabled {
@@ -24,15 +24,7 @@ button:disabled {
 }
 
 .o-app {
-	display: grid;
-	grid-template-rows:
-		min-content
-		80vh;
+	display: flex;
+	flex-direction: column;
 	gap: 1rem;
-	overflow: hidden;
-}
-
-.a-explain {
-	text-transform: uppercase;
-	color: gray;
 }
