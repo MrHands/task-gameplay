@@ -34,12 +34,19 @@ export default class SexMoveCategory extends React.Component {
 			classes.push('-expanded');
 		}
 
+		const sexMovesAvailable = sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove.id));
+		if (sexMovesAvailable.length > 0) {
+			classes.push('-available');
+		}
+
+		classes.push(this.props.className);
+
 		return (
 			<div
 				className={classes.join(' ')}
 				onClick={() => this.toggleExpand()}
 			>
-				<h3 className="m-sexMoveCategory__title">{category}</h3>
+				<h3 className="m-sexMoveCategory__title">{`${category} (${sexMovesAvailable.length})`}</h3>
 				<div className="m-sexMoveCategory__moves">
 					{sexMoves.map((sexMove, index) => {
 						return (
