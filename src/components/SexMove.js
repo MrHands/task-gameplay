@@ -54,8 +54,8 @@ export default class SexMove extends React.Component {
 					{effects.map((effect, index) => {
 						return (
 							<li key={`sex-move-effect-${index}`}>
-								<h3>{effect.type}</h3>
-								<h3>{this.effectText(effect)}</h3>
+								<p>{effect.type}</p>
+								<p>{this.effectText(effect)}</p>
 							</li>
 						);
 					})}
