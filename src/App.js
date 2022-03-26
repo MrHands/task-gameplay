@@ -214,19 +214,19 @@ export default class App extends React.Component {
 	getCharacter(id) {
 		return this.state.characters.find(character => {
 			return character.id === id;
-		});
+		}) || null;
 	}
 
 	getTask(id) {
 		return TasksDatabase.tasks.find(task => {
 			return task.id === id;
-		});
+		}) || null;
 	}
 
 	getSexMove(id) {
 		return SexMovesDatabase.sexMoves.find(move => {
 			return move.id === id;
-		});
+		}) || null;
 	}
 
 	clampCharacterStat(type, value) {
