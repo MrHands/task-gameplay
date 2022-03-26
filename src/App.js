@@ -561,6 +561,7 @@ export default class App extends React.Component {
 					lust={lust}
 					sexMoves={SexMovesDatabase.sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
+					getSexMove={this.getSexMove.bind(this)}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}
 					playSexMove={this.playSexMove.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}

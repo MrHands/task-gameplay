@@ -3,10 +3,11 @@
 .o-nightShift {
 	display: grid;
 	grid-template-areas:
-		'.           drop        moves      '
-		'lust        lust        moves      '
-		'scrolling   scrolling   moves      ';
+		'.           .           drop        moves      '
+		'lust        sexergy     sexergy     moves      '
+		'scrolling   scrolling   scrolling   moves      ';
 	grid-template-columns:
+		4fr
 		1fr
 		min-content
 		20rem;
@@ -33,7 +34,7 @@
 		gap: 1rem;
 		justify-self: end;
 		width: 100%;
-		padding: 1rem;
+		padding: 0 1rem;
 		overflow-y: scroll;
 		max-height: 80vh;
 	}
@@ -44,23 +45,33 @@
 		flex-direction: row;
 	}
 
-	&__lust {
-		grid-area: lust;
+	@mixin stat-bar() {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
 		border: 0.2rem solid hotpink;
 		border-radius: 0.4rem;
-		padding: 0.4rem;
+		padding: 0.8rem 0.4rem;
 		color: hotpink;
 
 		&__title {
 			text-transform: uppercase;
 		}
+	}
+
+	&__lust {
+		grid-area: lust;
+		@include stat-bar();
 
 		&__bar {
 			width: 100%;
 		}
+	}
+
+	&__sexergy {
+		grid-area: sexergy;
+		@include stat-bar();
+		justify-content: space-between;
 	}
 
 	&__selected {

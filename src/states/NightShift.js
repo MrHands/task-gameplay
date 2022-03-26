@@ -9,6 +9,31 @@ import SexMove from '../components/SexMove';
 import './NightShift.scss';
 
 export default class NightShift extends React.Component {
+	constructor() {
+		super();
+
+		this.state = {
+			sexergyEarned: 0
+		}
+	}
+
+	playSexMove(sexMoveId) {
+		this.setState(state => {
+			const {
+				sexergyEarned
+			} = state;
+
+			const sexMove = this.props.getSexMove(sexMoveId);
+			const sexergyEffect = sexMove.effects.find(effect => effect.type === 'sexergy');
+
+			return {
+				sexergyEarned: sexergyEarned + sexergyEffect.value
+			};
+		});
+
+		this.props.playSexMove(sexMoveId);
+	}
+
 	renderCharacters(props) {
 		const {
 			nightCharacter,
@@ -64,11 +89,14 @@ export default class NightShift extends React.Component {
 			sexMoves,
 			sexMovesPlayed,
 			canSexMoveBePlayed,
-			playSexMove,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
 		} = this.props;
+
+		const {
+			sexergyEarned
+		} = this.state;
 
 		let characterDropped = null;
 
@@ -110,7 +138,7 @@ export default class NightShift extends React.Component {
 							<SexMove
 								key={`sex-move-${index}`}
 								canSexMoveBePlayed={canSexMoveBePlayed}
-								playSexMove={playSexMove}
+								playSexMove={this.playSexMove.bind(this)}
 								{...sexMove}
 							/>
 						);
@@ -124,6 +152,10 @@ export default class NightShift extends React.Component {
 						max="100"
 					/>
 					<h2 className="o-nightShift__lust__amount">{`${lust}%`}</h2>
+				</div>
+				<div className="o-nightShift__sexergy">
+					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
+					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
 				</div>
 				<div className="o-nightShift__scrolling">
 					{this.renderCharacters(this.props)}
