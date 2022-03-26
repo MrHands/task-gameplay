@@ -5,6 +5,25 @@ import DroppableCard from './DroppableCard';
 import './SexMove.scss';
 
 export default class SexMove extends React.Component {
+	effectText(effect) {
+		const {
+			type,
+			value
+		} = effect;
+
+		const valueText = value > 0 ? `+${value}` : value;
+
+		switch (type) {
+			case 'lust':
+			case 'pleasure': {
+				return `${valueText}%`;
+			}
+			default: {
+				return `${valueText}`;
+			}
+		}
+	}
+
 	render() {
 		const {
 			id,
@@ -14,8 +33,6 @@ export default class SexMove extends React.Component {
 			canSexMoveBePlayed,
 			playSexMove,
 		} = this.props;
-
-		console.log(this.props);
 
 		if (id === -1) {
 			return (
@@ -37,7 +54,7 @@ export default class SexMove extends React.Component {
 					{effects.map((effect, index) => {
 						return (
 							<li key={`sex-move-effect-${index}`}>
-								<h3>{effect.type} {effect.value}</h3>
+								<h3>{effect.type} {this.effectText(effect)}</h3>
 							</li>
 						);
 					})}

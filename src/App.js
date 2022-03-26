@@ -13,6 +13,10 @@ import NightShift from './states/NightShift';
 
 import './App.scss';
 
+Math.clamp = (value, min, max) => {
+	return Math.max(min, Math.min(value, max));
+}
+
 function randomPercentage() {
 	return Math.floor(Math.random() * 100);
 }
@@ -24,6 +28,7 @@ export default class App extends React.Component {
 		this.state = {
 			day: 1,
 			shift: Shift.MORNING,
+			sexergy: 0,
 
 			deck: 'balanced',
 			handCards: [],
@@ -73,7 +78,7 @@ export default class App extends React.Component {
 				}
 			],
 
-			nightLust: 0,
+			lust: 0,
 			sexMovesPlayed: [],
 		};
 	}
@@ -129,7 +134,7 @@ export default class App extends React.Component {
 					return clone;
 				}),
 				shift: Shift.NIGHT,
-				nightLust: 0,
+				lust: 0,
 				sexMovesPlayed: [],
 			};
 		});
@@ -240,7 +245,7 @@ export default class App extends React.Component {
 			}
 		}
 
-		return Math.max(0, Math.min(value, maxValue));
+		return Math.clamp(value, 0, maxValue);
 	}
 
 	shuffleCards(cards) {
@@ -291,7 +296,7 @@ export default class App extends React.Component {
 			const character = this.getCharacter(characterId);
 
 			this.setState({
-				nightLust: character.stats.pleasure
+				lust: character.stats.pleasure
 			});
 		}
 	}
@@ -459,22 +464,51 @@ export default class App extends React.Component {
 		});
 	}
 
+	get nightCharacter() {
+		return this.state.characters.find(character => character.task?.id === 'night') ?? null;
+	}
+
 	canSexMoveBePlayed(sexMoveId) {
-		const nightCharacter = this.state.characters.find(character => character.task?.id === 'night') ?? null;
-		if (!nightCharacter) {
+		if (!this.nightCharacter) {
 			return false;
 		}
 
 		const sexMove = this.getSexMove(sexMoveId);
-		return (this.state.nightLust>= sexMove.lustMinimum);
+		return (this.state.lust>= sexMove.lustMinimum);
 	}
 
 	playSexMove(sexMoveId) {
+		const character = this.nightCharacter;
+		if (!character) {
+			return;
+		}
+
 		const sexMove = {...this.getSexMove(sexMoveId)};
 		sexMove.played = true;
 
 		this.setState(state => {
+			let {
+				lust,
+				sexergy
+			} = state;
+
+			sexMove.effects.forEach(effect => {
+				switch (effect.type) {
+					case 'lust': {
+						lust = Math.clamp(lust + effect.value, 0, 100);
+						break;
+					}
+					case 'sexergy': {
+						sexergy += effect.value;
+						break;
+					}
+					default: break;
+				}
+			});
+
 			return {
+				lust,
+				sexergy,
 				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
 			}
 		});
@@ -501,20 +535,18 @@ export default class App extends React.Component {
 			);
 		} else if (shift === Shift.NIGHT) {
 			const {
-				nightLust,
+				lust,
 				sexMovesPlayed,
 			} = this.state;
-
-			const nightCharacter = characters.find(character => character.task?.id === 'night') ?? null;
 
 			gameState = (
 				<NightShift
 					day={day}
 					shift={shift}
 					nightTask={this.getTask('night')}
-					nightCharacter={nightCharacter}
+					nightCharacter={this.nightCharacter}
 					charactersUnplaced={charactersUnplaced}
-					nightLust={nightLust}
+					lust={lust}
 					sexMoves={SexMovesDatabase.sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}

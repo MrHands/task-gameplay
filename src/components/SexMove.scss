@@ -21,6 +21,7 @@
 	}
 
 	&.-empty {
+		display: flex;
 		border-style: dashed;
 		justify-content: center;
 		align-items: center;

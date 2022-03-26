@@ -14,7 +14,7 @@ export default class NightShift extends React.Component {
 			nightTask,
 			nightCharacter,
 			charactersUnplaced,
-			nightLust,
+			lust,
 			sexMoves,
 			sexMovesPlayed,
 			canSexMoveBePlayed,
@@ -80,10 +80,10 @@ export default class NightShift extends React.Component {
 					<h2 className="o-nightShift__lust__title">Lust</h2>
 					<LustBar
 						className="o-nightShift__lust__bar"
-						value={nightLust}
+						value={lust}
 						max="100"
 					/>
-					<h2 className="o-nightShift__lust__amount">{`${nightLust}%`}</h2>
+					<h2 className="o-nightShift__lust__amount">{`${lust}%`}</h2>
 				</div>
 				<div className="o-nightShift__selected">
 					{movesSelected.map((sexMove, index) => {
