@@ -77,12 +77,13 @@ export default class NightShift extends React.Component {
 					canBePlaced={canBePlaced}
 				/>
 				<div className="o-nightShift__lust">
-					<h2>Lust</h2>
+					<h2 className="o-nightShift__lust__title">Lust</h2>
 					<LustBar
 						className="o-nightShift__lust__bar"
 						value={nightLust}
 						max="100"
 					/>
+					<h2 className="o-nightShift__lust__amount">{`${nightLust}%`}</h2>
 				</div>
 				<div className="o-nightShift__selected">
 					{movesSelected.map((sexMove, index) => {

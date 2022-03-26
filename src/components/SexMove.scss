@@ -1,8 +1,15 @@
 @import '../globals';
 
 .m-sexMove {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-areas:
+		'title         '
+		'effects       '
+		'requirements  ';
+	grid-template-rows:
+		min-content
+		1fr
+		min-content;
 	border: 0.2rem solid hotpink;
 	border-radius: 0.4rem;
 	padding: 0.4rem;
@@ -30,9 +37,22 @@
 	}
 
 	&__title {
+		grid-area: title;
+		justify-self: center;
+
 		.-empty > & {
 			text-transform: uppercase;
 			text-align: center;
 		}
+	}
+
+	&__requirements {
+		grid-area: requirements;
+		text-transform: uppercase;
+		justify-self: end;
+	}
+
+	&__effects {
+		grid-area: effects;
 	}
 }
