@@ -84,33 +84,6 @@ export default class App extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		// build deck
-
-		const deckTasks = DecksDatabase.decks.find(deck => {
-			return deck.id === this.state.deck;
-		});
-		console.log(deckTasks);
-
-		const tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
-			return JSON.parse(JSON.stringify(this.getTask(id)));
-		}));
-		console.log(tasksDeck);
-
-		const deckRest = DecksDatabase.decks.find(deck => {
-			return deck.id === 'rest';
-		});
-
-		const restDeck = this.shuffleCards(deckRest.tasks.map(id => {
-			return JSON.parse(JSON.stringify(this.getTask(id)));
-		}));
-
-		this.setState({
-			tasksDeck,
-			restDeck
-		});
-	}
-
 	startGame() {
 		this.setUpCharacters();
 		this.drawHand();
@@ -176,13 +149,35 @@ export default class App extends React.Component {
 
 	drawHand() {
 		this.setState(state => {
-			const {
+			let {
 				characters,
 				tasksDeck,
 				restDeck
 			} = state;
 	
 			const handCards = [];
+
+			if (tasksDeck.length <= characters.length) {
+				// build deck
+
+				const deckTasks = DecksDatabase.decks.find(deck => {
+					return deck.id === this.state.deck;
+				});
+				console.log(deckTasks);
+
+				tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
+					return JSON.parse(JSON.stringify(this.getTask(id)));
+				}));
+				console.log(tasksDeck);
+
+				const deckRest = DecksDatabase.decks.find(deck => {
+					return deck.id === 'rest';
+				});
+
+				restDeck = this.shuffleCards(deckRest.tasks.map(id => {
+					return JSON.parse(JSON.stringify(this.getTask(id)));
+				}));
+			}
 
 			// deep copy to avoid copying effects array as references!
 	
@@ -206,7 +201,8 @@ export default class App extends React.Component {
 
 			return {
 				handCards: this.shuffleCards(handCards),
-				tasksDeck
+				tasksDeck,
+				restDeck,
 			}
 		});
 	}
