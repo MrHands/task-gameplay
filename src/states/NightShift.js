@@ -9,11 +9,57 @@ import SexMove from '../components/SexMove';
 import './NightShift.scss';
 
 export default class NightShift extends React.Component {
+	renderCharacters(props) {
+		const {
+			nightCharacter,
+			charactersUnplaced,
+			clampCharacterStat,
+			canBePlaced,
+		} = props;
+
+		if (nightCharacter !== null) {
+			return <div className="o-nightShift__characters" />;
+		}
+
+		return (
+			<CharacterList
+				className="o-nightShift__characters"
+				characters={charactersUnplaced}
+				clampCharacterStat={clampCharacterStat}
+				canBePlaced={canBePlaced}
+			/>
+		);
+	}
+
+	renderSelected(props, movesSelected) {
+		const {
+			nightCharacter,
+			canSexMoveBePlayed
+		} = props;
+
+		if (nightCharacter === null) {
+			return <div className="o-nightShift__selected" />;
+		}
+
+		return (
+			<div className="o-nightShift__selected">
+				{movesSelected.map((sexMove, index) => {
+					return (
+						<SexMove
+							key={`selected-move-${index}`}
+							canSexMoveBePlayed={canSexMoveBePlayed}
+							{...sexMove}
+						/>
+					);
+				})}
+			</div>
+		);
+	}
+
 	render() {
 		const {
 			nightTask,
 			nightCharacter,
-			charactersUnplaced,
 			lust,
 			sexMoves,
 			sexMovesPlayed,
@@ -70,12 +116,6 @@ export default class NightShift extends React.Component {
 						);
 					})}
 				</div>
-				<CharacterList
-					className="o-nightShift__characters"
-					characters={charactersUnplaced}
-					clampCharacterStat={clampCharacterStat}
-					canBePlaced={canBePlaced}
-				/>
 				<div className="o-nightShift__lust">
 					<h2 className="o-nightShift__lust__title">Lust</h2>
 					<LustBar
@@ -85,16 +125,9 @@ export default class NightShift extends React.Component {
 					/>
 					<h2 className="o-nightShift__lust__amount">{`${lust}%`}</h2>
 				</div>
-				<div className="o-nightShift__selected">
-					{movesSelected.map((sexMove, index) => {
-						return (
-							<SexMove
-								key={`selected-move-${index}`}
-								canSexMoveBePlayed={canSexMoveBePlayed}
-								{...sexMove}
-							/>
-						);
-					})}
+				<div className="o-nightShift__scrolling">
+					{this.renderCharacters(this.props)}
+					{this.renderSelected(this.props, movesSelected)}
 				</div>
 			</article>
 		);
