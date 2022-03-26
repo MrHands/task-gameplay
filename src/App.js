@@ -460,6 +460,11 @@ export default class App extends React.Component {
 	}
 
 	canSexMoveBePlayed(sexMoveId) {
+		const nightCharacter = this.state.characters.find(character => character.task?.id === 'night') ?? null;
+		if (!nightCharacter) {
+			return false;
+		}
+
 		const sexMove = this.getSexMove(sexMoveId);
 		return (this.state.nightLust>= sexMove.lustMinimum);
 	}
