@@ -10,6 +10,7 @@
 		min-content
 		1fr
 		min-content;
+	gap: 2rem;
 	border: 0.2rem solid hotpink;
 	border-radius: 0.4rem;
 	padding: 0.4rem;
@@ -25,6 +26,8 @@
 		border-style: dashed;
 		justify-content: center;
 		align-items: center;
+		color: pink;
+		border-color: pink;
 
 		&:hover {
 			background: initial;
@@ -55,5 +58,13 @@
 
 	&__effects {
 		grid-area: effects;
+		align-self: center;
+		padding: 0;
+		margin: 0 10%;
+
+		li {
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 }
