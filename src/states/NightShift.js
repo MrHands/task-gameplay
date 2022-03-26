@@ -5,6 +5,7 @@ import CharacterList from '../components/CharacterList';
 import DroppableCard from '../components/DroppableCard';
 import LustBar from '../components/LustBar';
 import SexMove from '../components/SexMove';
+import SexMoveCategory from '../components/SexMoveCategory';
 
 import './NightShift.scss';
 
@@ -127,19 +128,33 @@ export default class NightShift extends React.Component {
 			});
 		}
 
+		const categories = [
+			'Petting',
+			'Oral',
+			'Sex',
+			'Anal',
+			'Kinky'
+		];
+		const movesByCategory = {};
+		categories.forEach(category => {
+			movesByCategory[category] = sexMoves.filter(sexMove => sexMove.category === category);
+		});
+		console.log(movesByCategory);
+
 		return (
 			<article className="o-nightShift">
 				<div className="o-nightShift__drop">
 					{characterDropped}
 				</div>
 				<div className="o-nightShift__moves">
-					{sexMoves.map((sexMove, index) => {
+					{Object.entries(movesByCategory).map((category, index) => {
 						return (
-							<SexMove
-								key={`sex-move-${index}`}
+							<SexMoveCategory
+								key={`sex-move-category-${index}`}
+								category={category[0]}
+								sexMoves={category[1]}
 								canSexMoveBePlayed={canSexMoveBePlayed}
 								playSexMove={this.playSexMove.bind(this)}
-								{...sexMove}
 							/>
 						);
 					})}

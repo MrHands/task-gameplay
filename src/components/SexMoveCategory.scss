@@ -1,0 +1,13 @@
+.m-sexMoveCategory {
+	&__title {
+		&:before {
+			content: '▶';
+		}
+
+		.-expanded & {
+			&:before {
+				content: '▼';
+			}
+		}
+	}
+}
