@@ -1,5 +1,13 @@
 .m-sexMoveCategory {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	overflow: hidden;
+
 	&__title {
+		display: flex;
+		gap: 0.4rem;
+
 		&:before {
 			content: '▶';
 		}
@@ -8,6 +16,15 @@
 			&:before {
 				content: '▼';
 			}
+		}
+	}
+
+	&__moves {
+		height: 0;
+		overflow: hidden;
+
+		.-expanded & {
+			height: auto;
 		}
 	}
 }
