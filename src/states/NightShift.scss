@@ -3,24 +3,36 @@
 .o-nightShift {
 	display: grid;
 	grid-template-areas:
-		'drop      .         moves     characters  '
-		'lust      lust      moves     characters  '
-		'selected  selected  selected  characters  ';
+		'characters  .         drop      moves     '
+		'characters  lust      lust      moves     '
+		'characters  selected  selected  selected  ';
 	grid-template-columns:
+		$card-size
+		1fr
 		min-content
-		1fr
-		20rem
-		$card-size;
+		20rem;
 	grid-template-rows:
-		1fr
+		minmax(10vh, 1fr)
 		4rem
-		15rem;
+		minmax(10rem, 15rem);
 	gap: 1rem;
-	height: calc(100vh - 24px);
 
 	&__drop {
 		grid-area: drop;
 		align-self: end;
+	}
+
+	&__scrolling {
+		grid-area: scrolling;
+		display: grid;
+		grid-template-areas:
+			'moves   characters';
+		grid-template-columns:
+			20rem
+			min-content;
+		grid-template-rows:
+			min-content;
+		gap: 1rem;
 	}
 
 	&__moves {

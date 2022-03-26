@@ -16,16 +16,16 @@ export default class ShiftHud extends React.Component {
 
 		let hint = null;
 		if (charactersNotDone.length > 0) {
-			hint = <h3>All characters must perform a task to finish the shift</h3>
+			hint = 'All characters must perform a task to finish the shift';
 		}
 
 		return (
 			<div className={['m-shiftHud', this.props.className].join(' ')}>
 				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
-				<button onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
+				<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
 					Finish Shift
 				</button>
-				{hint}
+				<h3 className="m-shiftHud__hint">{hint}</h3>
 			</div>
 		);
 	}
