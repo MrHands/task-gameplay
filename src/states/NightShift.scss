@@ -3,7 +3,6 @@
 .o-nightShift {
 	display: grid;
 	grid-template-areas:
-		'.         .         moves     characters  '
 		'drop      .         moves     characters  '
 		'lust      lust      moves     characters  '
 		'selected  selected  selected  characters  ';
@@ -13,7 +12,6 @@
 		20rem
 		$card-size;
 	grid-template-rows:
-		1fr
 		1fr
 		4rem
 		15rem;

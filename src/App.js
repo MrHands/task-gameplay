@@ -2,6 +2,7 @@ import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+import ShiftHud from './components/ShiftHud';
 import TasksDatabase from './data/TasksDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
@@ -525,6 +526,7 @@ export default class App extends React.Component {
 		const charactersUnplaced = characters.filter(character => character.task === '');
 
 		let gameState = null;
+		let hud = null;
 
 		if (handCards.length === 0) {
 			gameState = (
@@ -539,12 +541,26 @@ export default class App extends React.Component {
 				sexMovesPlayed,
 			} = this.state;
 
+			const charactersNotDone = [];
+
+			hud = (
+				<ShiftHud
+					className="o-app__hud"
+					day={day}
+					shift={shift}
+					charactersNotDone={charactersNotDone}
+					handleFinishShift={this.finishShift.bind(this)}
+				/>
+			);
+
 			gameState = (
 				<NightShift
+					className="o-app__state"
 					day={day}
 					shift={shift}
 					nightTask={this.getTask('night')}
 					nightCharacter={this.nightCharacter}
+					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					lust={lust}
 					sexMoves={SexMovesDatabase.sexMoves}
@@ -554,14 +570,29 @@ export default class App extends React.Component {
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}
+					onShiftFinish={this.finishShift.bind(this)}
 				/>
 			);
 		} else {
+			const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
+
+			hud = (
+				<ShiftHud
+					className="o-app__hud"
+					day={day}
+					shift={shift}
+					charactersNotDone={charactersNotDone}
+					handleFinishShift={this.finishShift.bind(this)}
+				/>
+			);
+
 			gameState = (
 				<DayShift
+					className="o-app__state"
 					day={day}
 					shift={shift}
 					characters={characters}
+					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					handCards={handCards}
 					getCharacter={this.getCharacter.bind(this)}
@@ -577,6 +608,7 @@ export default class App extends React.Component {
 
 		return (
 			<DndProvider backend={HTML5Backend}>
+				{hud}
 				{gameState}
 			</DndProvider>
 		);

@@ -8,14 +8,11 @@ export default class ShiftHud extends React.Component {
 		const {
 			day,
 			shift,
-			characters,
+			charactersNotDone,
 			handleFinishShift 
 		} = this.props;
 
 		const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
-
-		const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
-		console.log(charactersNotDone);
 
 		let hint = null;
 		if (charactersNotDone.length > 0) {

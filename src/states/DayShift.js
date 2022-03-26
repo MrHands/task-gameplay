@@ -1,7 +1,6 @@
 import React from 'react';
 
 import CharacterList from '../components/CharacterList';
-import ShiftHud from '../components/ShiftHud';
 import Task from '../components/Task';
 
 import './DayShift.scss';
@@ -9,9 +8,6 @@ import './DayShift.scss';
 export default class DayShift extends React.Component {
 	render() {
 		const {
-			day,
-			shift,
-			characters,
 			handCards,
 			charactersUnplaced,
 			getCharacter,
@@ -20,17 +16,10 @@ export default class DayShift extends React.Component {
 			onCharacterDropped,
 			onStaminaChange,
 			onTaskStart,
-			onShiftFinish,
 		} = this.props;
 
 		return (
 			<article className="o-dayShift">
-				<ShiftHud
-					className="o-dayShift__hud"
-					day={day}
-					shift={shift}
-					characters={characters}
-					handleFinishShift={onShiftFinish} />
 				<div className="m-tasksList o-dayShift__tasks">
 					{ handCards.map((task, index) => {
 						return <Task

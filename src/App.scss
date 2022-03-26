@@ -23,6 +23,14 @@ button:disabled {
 	color: gray;
 }
 
+.o-app {
+	display: grid;
+	grid-template-rows:
+		min-content
+		1fr;
+	gap: 1rem;
+}
+
 .m-tasksList {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
