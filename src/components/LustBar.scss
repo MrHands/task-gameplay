@@ -1,28 +1,54 @@
 .o-lustBar {
+	--lust-width: 0%;
+	--overload-width: 0%;
+
 	display: grid;
-	grid-template-columns: min-content 6fr 1fr;
+	grid-template-columns:
+		min-content
+		1fr
+		5rem;
 	justify-items: center;
 	align-items: center;
 	gap: 1rem;
 
 	&__title {
+		transition: color 1s;
 		text-transform: uppercase;
 		color: gray;
 	}
 
 	&__bar {
+		position: relative;
 		width: 100%;
+		height: 100%;
 		color: hotpink;
-		padding: 0.2rem;
 		border: 0.2rem solid hotpink;
 		border-radius: 2rem;
 	
 		&__foreground {
 			transition: width 1s;
-			width: 0%;
-			height: 1rem;
+			position: absolute;
+			left: 0.2rem;
+			top: 0.2rem;
+			width: calc(var(--lust-width) - 0.4rem);
+			height: calc(100% - 0.4rem);
 			border-radius: 2rem;
 			background: hotpink;
+
+			&.-overload {
+				width: calc(var(--overload-width) - 0.4rem);
+				background: gold;
+			}
+		}
+	}
+
+	&__amount {
+		color: hotpink;
+		padding: 0 0.6rem;
+		border-radius: 1rem;
+
+		.-overload & {
+			background: gold;
 		}
 	}
 }

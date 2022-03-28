@@ -245,7 +245,7 @@ export default class App extends React.Component {
 				break;
 			}
 			case 'pleasure': {
-				maxValue = 100;
+				maxValue = 200;
 				break;
 			}
 			default: {
@@ -518,7 +518,7 @@ export default class App extends React.Component {
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'lust': {
-						lust = Math.clamp(lust + effect.value, 0, 100);
+						lust = this.clampCharacterStat('lust', lust + effect.value);
 						break;
 					}
 					case 'sexergy': {

@@ -168,7 +168,6 @@ export default class NightShift extends React.Component {
 				<LustBar
 					className="o-nightShift__lust"
 					lust={lust}
-					max="100"
 				/>
 				<div className="o-nightShift__sexergy">
 					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>

@@ -58,7 +58,7 @@
 	}
 
 	@mixin stat-bar($display: flex) {
-		padding: 0.4rem 0.8rem;
+		padding: 0.8rem;
 		border: 0.2rem solid gray;
 		border-radius: 0.4rem;
 		color: hotpink;
@@ -73,9 +73,9 @@
 		grid-area: sexergy;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 1rem;
 		@include stat-bar();
-		justify-content: space-between;
 
 		&__title {
 			text-transform: uppercase;
