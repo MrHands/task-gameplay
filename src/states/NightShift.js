@@ -15,11 +15,20 @@ export default class NightShift extends React.Component {
 		super();
 
 		this.state = {
-			sexergyEarned: 0
+			sexergyEarned: 0,
+			categoriesExpanded: {
+				Petting: false,
+				Oral: false,
+				Sex: false,
+				Anal: false,
+				Kinky: false,
+			}
 		}
 	}
 
 	playSexMove(sexMoveId) {
+		this.props.playSexMove(sexMoveId);
+
 		this.setState(state => {
 			const {
 				sexergyEarned
@@ -32,8 +41,6 @@ export default class NightShift extends React.Component {
 				sexergyEarned: sexergyEarned + sexergyEffect.value
 			};
 		});
-
-		this.props.playSexMove(sexMoveId);
 	}
 
 	renderCharacters(props) {
@@ -81,6 +88,20 @@ export default class NightShift extends React.Component {
 				})}
 			</div>
 		);
+	}
+
+	toggleExpand(category) {
+		this.setState(state => {
+			const newState = {
+				categoriesExpanded: {
+					...state.categoriesExpanded,
+					[category]: !state.categoriesExpanded[category]
+				}
+			};
+			console.log(newState);
+
+			return newState;
+		})
 	}
 
 	render() {
@@ -142,20 +163,24 @@ export default class NightShift extends React.Component {
 		});
 		console.log(movesByCategory);
 
+		console.log(this.state.categoriesExpanded);
+
 		return (
 			<article className="o-nightShift">
 				<div className="o-nightShift__drop">
 					{characterDropped}
 				</div>
 				<div className="o-nightShift__moves">
-					{Object.entries(movesByCategory).map((category, index) => {
+					{Object.entries(movesByCategory).map((category) => {
 						return (
 							<SexMoveCategory
-								key={`sex-move-category-${index}`}
+								key={`category-${category[0]}`}
 								category={category[0]}
 								sexMoves={category[1]}
 								canSexMoveBePlayed={canSexMoveBePlayed}
 								playSexMove={this.playSexMove.bind(this)}
+								expanded={this.state.categoriesExpanded[category[0]]}
+								toggleExpand={this.toggleExpand.bind(this)}
 							/>
 						);
 					})}

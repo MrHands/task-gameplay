@@ -5,32 +5,20 @@ import SexMove from './SexMove';
 import './SexMoveCategory.scss';
 
 export default class SexMoveCategory extends React.Component {
-	constructor() {
-		super();
-
-		this.state = {
-			expanded: false
-		};
-	}
-
-	toggleExpand() {
-		this.setState(state => {
-			return {
-				expanded: !state.expanded
-			};
-		})
-	}
-	
 	render() {
 		const {
 			category,
 			sexMoves,
 			canSexMoveBePlayed,
 			playSexMove,
+			expanded,
+			toggleExpand,
 		} = this.props;
 
+		console.log(this.props);
+
 		const classes = ['m-sexMoveCategory'];
-		if (this.state.expanded) {
+		if (expanded) {
 			classes.push('-expanded');
 		}
 
@@ -53,7 +41,7 @@ export default class SexMoveCategory extends React.Component {
 		return (
 			<div
 				className={classes.join(' ')}
-				onClick={() => this.toggleExpand()}
+				onClick={() => toggleExpand(category)}
 			>
 				<h3 className="m-sexMoveCategory__title">{`${category} (${sexMovesAvailable.length})`}</h3>
 				<div className="m-sexMoveCategory__moves">
