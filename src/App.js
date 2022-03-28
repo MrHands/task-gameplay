@@ -18,8 +18,8 @@ Math.clamp = (value, min, max) => {
 	return Math.max(min, Math.min(value, max));
 }
 
-function randomPercentage() {
-	return Math.floor(Math.random() * 100);
+function randomValue(min, max) {
+	return min + Math.floor(Math.random() * (max - min));
 }
 
 export default class App extends React.Component {
@@ -99,7 +99,7 @@ export default class App extends React.Component {
 	jumpToNight() {
 		this.setUpCharacters();
 
-		// set pleasure to a random value
+		// set up characters
 
 		this.setState(state => {
 			const {
@@ -110,7 +110,10 @@ export default class App extends React.Component {
 				characters: characters.map(character => {
 					const clone = {...character};
 
-					clone.stats.pleasure = randomPercentage();
+					clone.stats.pleasure = randomValue(0, 100);
+					clone.stats.passionate = randomValue(0, 100);
+					clone.stats.intimate = randomValue(0, 100);
+					clone.stats.dominant = randomValue(0, 100);
 
 					return clone;
 				}),
@@ -412,12 +415,6 @@ export default class App extends React.Component {
 	}
 
 	finishShift() {
-		if (this.state.shift === Shift.EVENING) {
-			this.jumpToNight();
-
-			return;
-		}
-
 		// update shift
 
 		this.setState(state => {
