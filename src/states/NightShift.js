@@ -85,7 +85,6 @@ export default class NightShift extends React.Component {
 
 	render() {
 		const {
-			nightTask,
 			nightCharacter,
 			lust,
 			sexMoves,
@@ -93,36 +92,11 @@ export default class NightShift extends React.Component {
 			categoriesExpanded,
 			toggleExpandCategory,
 			canSexMoveBePlayed,
-			clampCharacterStat,
-			canBePlaced,
-			onCharacterDropped,
 		} = this.props;
 
 		const {
 			sexergyEarned
 		} = this.state;
-
-		let characterDropped = null;
-
-		if (nightCharacter !== null) {
-			characterDropped = (
-				<Character
-					clampCharacterStat={clampCharacterStat}
-					{...nightCharacter}
-				/>
-			);
-		} else {
-			characterDropped = (
-				<DroppableCard
-					className="o-character -empty"
-					task={nightTask}
-					onCharacterDropped={onCharacterDropped}
-					canBePlaced={canBePlaced}
-				>
-					<h3 className="o-character__title">Drag character here</h3>
-				</DroppableCard>
-			);
-		}
 
 		const movesSelected = [...sexMovesPlayed];
 		if (nightCharacter !== null && sexMovesPlayed.length < 5) {
@@ -162,38 +136,31 @@ export default class NightShift extends React.Component {
 						<h2 className="o-nightShift__title__sexergy__title">Sexergy Earned</h2>
 						<h2 className="o-nightShift__title__sexergy__value">{sexergyEarned}</h2>
 					</div>
-					<h2 className="o-nightShift__title__moves">Sex Moves</h2>
 				</div>
 				<div className="o-nightShift__moves">
-					<div className="o-nightShift__moves__scroll">
-						{Object.entries(movesByCategory).map((category) => {
-							return (
-								<SexMoveCategory
-									key={`category-${category[0]}`}
-									category={category[0]}
-									sexMoves={category[1]}
-									canSexMoveBePlayed={canSexMoveBePlayed}
-									playSexMove={this.playSexMove.bind(this)}
-									expanded={categoriesExpanded[category[0]]}
-									toggleExpand={toggleExpandCategory}
-								/>
-							);
-						})}
+				<h2 className="o-nightShift__moves__title">Sex Moves</h2>
+					<div className="o-nightShift__moves__container">
+						<div className="o-nightShift__moves__scroll">
+							{Object.entries(movesByCategory).map((category) => {
+								return (
+									<SexMoveCategory
+										key={`category-${category[0]}`}
+										category={category[0]}
+										sexMoves={category[1]}
+										canSexMoveBePlayed={canSexMoveBePlayed}
+										playSexMove={this.playSexMove.bind(this)}
+										expanded={categoriesExpanded[category[0]]}
+										toggleExpand={toggleExpandCategory}
+									/>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 				<NightPlayArea
 					{...this.props}
 					className="o-nightShift__play"
 				/>
-				{/* <ul className="o-nightShift__log">
-					{nightLog.map(entry => {
-						return <li>{entry}</li>;
-					})}
-				</ul>
-				<div className="o-nightShift__drop">
-					{characterDropped}
-				</div>
-				{this.renderCharacters(this.props)} */}
 			</article>
 		);
 	}
