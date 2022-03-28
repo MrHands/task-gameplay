@@ -79,6 +79,7 @@ export default class App extends React.Component {
 				}
 			],
 
+			nightLog: [],
 			lust: 0,
 			sexMoves: [],
 			sexMovesPlayed: [],
@@ -90,6 +91,14 @@ export default class App extends React.Component {
 				Kinky: false,
 			},
 		};
+	}
+
+	addToNightLog(text) {
+		this.setState(state => {
+			return {
+				nightLog: [...state.nightLog, text]
+			}
+		});
 	}
 
 	startGame() {
@@ -303,6 +312,9 @@ export default class App extends React.Component {
 		if (this.state.shift === Shift.NIGHT) {
 			const character = this.getCharacter(characterId);
 
+			this.addToNightLog(`Selected ${character.name} for night shift`);
+			this.addToNightLog(`Starting lust at ${character.stats.pleasure}%`);
+
 			this.setState({
 				lust: character.stats.pleasure,
 				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
@@ -451,7 +463,8 @@ export default class App extends React.Component {
 
 			return {
 				day,
-				shift
+				shift,
+				nightLog: []
 			}
 		});
 
@@ -509,8 +522,14 @@ export default class App extends React.Component {
 		const sexMove = {...this.getSexMove(sexMoveId)};
 		sexMove.played = true;
 
+		const logEffects = sexMove.effects.map(effect => {
+			return `${effect.type} +${effect.value}`;
+		});
+		this.addToNightLog(`${sexMove.title} (${logEffects.join(', ')})`);
+
 		this.setState(state => {
 			let {
+				nightLog,
 				lust,
 				sexergy
 			} = state;
@@ -527,16 +546,25 @@ export default class App extends React.Component {
 					}
 					default: break;
 				}
+
+				logEffects.push(`${effect.type} +${effect.value}`);
 			});
 
 			// orgasm!
 
 			if (lust >= 200) {
+				const sexergyFrom = sexergy;
+
 				lust = 50;
 				sexergy *= 2;
+
+				nightLog.push(`${character.name} had an orgasm!`);
+				nightLog.push(`Resetting lust to 50%`);
+				nightLog.push(`Sexergy ${sexergyFrom} => ${sexergy}`);
 			}
 
 			return {
+				nightLog,
 				lust,
 				sexergy,
 				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
@@ -580,6 +608,7 @@ export default class App extends React.Component {
 			);
 		} else if (shift === Shift.NIGHT) {
 			const {
+				nightLog,
 				lust,
 				sexMoves,
 				sexMovesPlayed,
@@ -601,6 +630,7 @@ export default class App extends React.Component {
 			gameState = (
 				<NightShift
 					className="o-app__state"
+					nightLog={nightLog}
 					day={day}
 					shift={shift}
 					nightTask={this.getTask('night')}

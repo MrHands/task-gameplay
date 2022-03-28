@@ -84,6 +84,7 @@ export default class NightShift extends React.Component {
 
 	render() {
 		const {
+			nightLog,
 			nightTask,
 			nightCharacter,
 			lust,
@@ -144,6 +145,11 @@ export default class NightShift extends React.Component {
 
 		return (
 			<article className="o-nightShift">
+				<ul className="o-nightShift__log">
+					{nightLog.map(entry => {
+						return <li>{entry}</li>;
+					})}
+				</ul>
 				<div className="o-nightShift__drop">
 					{characterDropped}
 				</div>
