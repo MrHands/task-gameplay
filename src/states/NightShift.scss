@@ -11,12 +11,13 @@
 	grid-row: 1 / 3;
 	display: grid;
 	grid-template-areas:
-		'mood    lust     moves  '
-		'play    play     moves  '
-		'shift   sexergy  moves  ';
+		'mood     lust     lust     moves  '
+		'play     play     play     moves  '
+		'sexergy  sexergy  shift    moves  ';
 	grid-template-columns:
 		1fr
 		3fr
+		1fr
 		2fr;
 	grid-template-rows:
 		min-content
