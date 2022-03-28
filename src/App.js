@@ -231,7 +231,7 @@ export default class App extends React.Component {
 	}
 
 	getSexMove(id) {
-		return SexMovesDatabase.sexMoves.find(move => {
+		return this.state.sexMoves.find(move => {
 			return move.id === id;
 		}) || null;
 	}
@@ -528,6 +528,13 @@ export default class App extends React.Component {
 					default: break;
 				}
 			});
+
+			// orgasm!
+
+			if (lust >= 200) {
+				lust = 50;
+				sexergy *= 2;
+			}
 
 			return {
 				lust,
