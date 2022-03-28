@@ -49,7 +49,7 @@ export default class NightShift extends React.Component {
 
 		return (
 			<CharacterList
-				className="o-nightShift__interact"
+				className="o-nightShift__interact -night"
 				characters={charactersUnplaced}
 				clampCharacterStat={clampCharacterStat}
 				canBePlaced={canBePlaced}
@@ -181,8 +181,6 @@ export default class NightShift extends React.Component {
 						})}
 					</div>
 				</div>
-				
-				
 				{this.renderCharacters(this.props)}
 			</article>
 		);

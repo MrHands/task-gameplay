@@ -26,6 +26,8 @@ export default class StatsItem extends React.Component {
 		} = this.props;
 
 		const classes = [ 'm-statsItem' ];
+		classes.push(`-${type}`);
+
 		const value = stats[type];
 
 		let result = this.effectText(type, value);
