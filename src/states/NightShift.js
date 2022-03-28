@@ -44,12 +44,12 @@ export default class NightShift extends React.Component {
 		} = props;
 
 		if (nightCharacter !== null) {
-			return <div className="o-nightShift__characters" />;
+			return null;
 		}
 
 		return (
 			<CharacterList
-				className="o-nightShift__characters"
+				className="o-nightShift__interact"
 				characters={charactersUnplaced}
 				clampCharacterStat={clampCharacterStat}
 				canBePlaced={canBePlaced}
@@ -179,10 +179,7 @@ export default class NightShift extends React.Component {
 					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
 					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
 				</div>
-				<div className="o-nightShift__interact">
-					{this.renderCharacters(this.props)}
-					{this.renderSelected(this.props, movesSelected)}
-				</div>
+				{this.renderCharacters(this.props)}
 			</article>
 		);
 	}
