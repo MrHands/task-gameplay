@@ -14,7 +14,7 @@
 	grid-template-rows:
 		1fr
 		4rem
-		min-content;
+		16rem;
 	gap: 1rem;
 
 	&__drop {
@@ -95,6 +95,5 @@
 		grid-template-columns: repeat(5, 1fr);
 		gap: 1rem;
 		width: 100%;
-		min-height: 15rem;
 	}
 }
