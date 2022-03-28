@@ -4,15 +4,16 @@
 			"id": "petting-1",
 			"title": "Kissing",
 			"category": "Petting",
+			"type": "intimate",
 			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 25
+					"value": 20
 				},
 				{
 					"type": "sexergy",
-					"value": 0
+					"value": 10
 				}
 			]
 		},
@@ -20,45 +21,29 @@
 			"id": "petting-2",
 			"title": "Boob Massage",
 			"category": "Petting",
+			"type": "intimate",
 			"lustMinimum": 10,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 25
+					"value": 30
 				},
 				{
 					"type": "sexergy",
-					"value": 0
+					"value": 15
 				}
 			]
 		},
-
 		{
-			"id": "oral-1",
-			"title": "Blowjob",
-			"category": "Oral",
+			"id": "petting-3",
+			"title": "Cunnilingus",
+			"category": "Petting",
+			"type": "intimate",
 			"lustMinimum": 50,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 15
-				},
-				{
-					"type": "sexergy",
-					"value": 50
-				}
-			]
-		},
-		{
-			"id": "oral-2",
-			"title": "Cunnilingus",
-			"category": "Oral",
-			"lustMinimum": 0,
-			"lustMaximum": 50,
-			"effects": [
-				{
-					"type": "lust",
-					"value": 30
+					"value": 40
 				},
 				{
 					"type": "sexergy",
@@ -68,10 +53,63 @@
 		},
 
 		{
+			"id": "oral-1",
+			"title": "Shaft Licking",
+			"category": "Oral",
+			"type": "intimate",
+			"lustMinimum": 20,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 5
+				},
+				{
+					"type": "sexergy",
+					"value": 50
+				}
+			]
+		},
+		{
+			"id": "oral-2",
+			"title": "Blowjob",
+			"category": "Oral",
+			"type": "passionate",
+			"lustMinimum": 40,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 15
+				},
+				{
+					"type": "sexergy",
+					"value": 100
+				}
+			]
+		},
+		{
+			"id": "oral-3",
+			"title": "Deepthroat",
+			"category": "Oral",
+			"type": "dominant",
+			"lustMinimum": 60,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 10
+				},
+				{
+					"type": "sexergy",
+					"value": 150
+				}
+			]
+		},
+
+		{
 			"id": "sex-1",
 			"title": "Missionary",
 			"category": "Sex",
-			"lustMinimum": 100,
+			"type": "intimate",
+			"lustMinimum": 60,
 			"effects": [
 				{
 					"type": "lust",
@@ -87,7 +125,8 @@
 			"id": "sex-2",
 			"title": "Cowgirl",
 			"category": "Sex",
-			"lustMinimum": 100,
+			"type": "passionate",
+			"lustMinimum": 80,
 			"effects": [
 				{
 					"type": "lust",
@@ -99,37 +138,124 @@
 				}
 			]
 		},
-
 		{
-			"id": "anal-1",
-			"title": "Anal Doggy Style",
-			"category": "Anal",
+			"id": "sex-3",
+			"title": "Piledriver",
+			"category": "Sex",
+			"type": "dominant",
 			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 0
+					"value": 50
 				},
 				{
 					"type": "sexergy",
-					"value": 100
+					"value": 150
+				}
+			]
+		},
+
+		{
+			"id": "anal-1",
+			"title": "Rimjob",
+			"category": "Anal",
+			"type": "intimate",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 30
+				},
+				{
+					"type": "sexergy",
+					"value": 10
+				}
+			]
+		},
+		{
+			"id": "anal-2",
+			"title": "Anal Fingering",
+			"category": "Anal",
+			"type": "passionate",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 50
+				},
+				{
+					"type": "sexergy",
+					"value": 20
+				}
+			]
+		},
+		{
+			"id": "anal-3",
+			"title": "Anal Doggy Style",
+			"category": "Anal",
+			"type": "dominant",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 70
+				},
+				{
+					"type": "sexergy",
+					"value": 30
 				}
 			]
 		},
 
 		{
 			"id": "kinky-1",
-			"title": "Whipping",
+			"title": "Spanking",
 			"category": "Kinky",
-			"lustMinimum": 0,
+			"type": "dominant",
+			"lustMinimum": 60,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 10
+					"value": 50
 				},
 				{
 					"type": "sexergy",
 					"value": 10
+				}
+			]
+		},
+		{
+			"id": "kinky-2",
+			"title": "Nipple Clamps",
+			"category": "Kinky",
+			"type": "dominant",
+			"lustMinimum": 80,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 50
+				},
+				{
+					"type": "sexergy",
+					"value": 15
+				}
+			]
+		},
+		{
+			"id": "kinky-2",
+			"title": "Hogtied",
+			"category": "Kinky",
+			"type": "dominant",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 50
+				},
+				{
+					"type": "sexergy",
+					"value": 20
 				}
 			]
 		}

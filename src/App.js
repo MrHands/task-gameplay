@@ -80,6 +80,7 @@ export default class App extends React.Component {
 			],
 
 			lust: 0,
+			sexMoves: [],
 			sexMovesPlayed: [],
 			categoriesExpanded: {
 				Petting: false,
@@ -303,7 +304,25 @@ export default class App extends React.Component {
 			const character = this.getCharacter(characterId);
 
 			this.setState({
-				lust: character.stats.pleasure
+				lust: character.stats.pleasure,
+				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
+					const clone = JSON.parse(JSON.stringify(sexMove));
+
+					clone.effects.forEach(effect => {
+						switch (effect.type) {
+							case 'sexergy': {
+								if (effect.value > 0) {
+									effect.value += character.stats[clone.type];
+								}
+								break;
+							}
+							default:
+								break;
+						}
+					});
+
+					return clone;
+				}),
 			});
 		}
 	}
@@ -555,6 +574,7 @@ export default class App extends React.Component {
 		} else if (shift === Shift.NIGHT) {
 			const {
 				lust,
+				sexMoves,
 				sexMovesPlayed,
 				categoriesExpanded,
 			} = this.state;
@@ -581,7 +601,7 @@ export default class App extends React.Component {
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					lust={lust}
-					sexMoves={SexMovesDatabase.sexMoves}
+					sexMoves={sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
 					categoriesExpanded={categoriesExpanded}
 					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
