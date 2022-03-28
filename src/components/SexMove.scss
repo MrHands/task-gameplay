@@ -4,9 +4,11 @@
 	display: grid;
 	grid-template-areas:
 		'title         '
+		'type          '
 		'effects       '
 		'requirements  ';
 	grid-template-rows:
+		min-content
 		min-content
 		1fr
 		min-content;
@@ -48,6 +50,14 @@
 			text-transform: uppercase;
 			text-align: center;
 		}
+	}
+
+	&__type {
+		grid-area: type;
+		place-self: center;
+		text-transform: uppercase;
+		padding: 0 0.4rem;
+		border: 0.1rem solid currentcolor;
 	}
 
 	&__requirements {

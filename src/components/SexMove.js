@@ -28,6 +28,7 @@ export default class SexMove extends React.Component {
 		const {
 			id,
 			title,
+			type,
 			lustMinimum,
 			effects,
 			canSexMoveBePlayed,
@@ -52,6 +53,7 @@ export default class SexMove extends React.Component {
 				disabled={canSexMoveBePlayed(id) ? '' : 'disabled'}
 			>
 				<h2 className="m-sexMove__title">{title}</h2>
+				<div className="m-sexMove__type">{type}</div>
 				<h3 className="m-sexMove__requirements">{`Lust >= ${lustMinimum}`}</h3>
 				<ul className="m-sexMove__effects">
 					{effects.map((effect, index) => {
