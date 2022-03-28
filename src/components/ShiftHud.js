@@ -19,12 +19,19 @@ export default class ShiftHud extends React.Component {
 			hint = 'All characters must perform a task to finish the shift';
 		}
 
-		return (
-			<div className={['m-shiftHud', this.props.className].join(' ')}>
-				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
+		let finishButton = null;
+		if (handleFinishShift) {
+			finishButton = (
 				<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
 					Finish Shift
 				</button>
+			);
+		}
+
+		return (
+			<div className={['m-shiftHud', this.props.className].join(' ')}>
+				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
+				{finishButton}
 				<h3 className="m-shiftHud__hint">{hint}</h3>
 			</div>
 		);

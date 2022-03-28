@@ -46,7 +46,7 @@ export default class NightPlayArea extends React.Component {
 						day={day}
 						shift={shift}
 						charactersNotDone={charactersNotDone}
-						handleFinishShift={handleFinishShift}
+						handleFinishShift={null}
 					/>
 					<div className="m-nightPlayArea__drop">
 						<DroppableCard
