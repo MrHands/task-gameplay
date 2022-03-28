@@ -4,6 +4,7 @@ import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
 import DroppableCard from '../components/DroppableCard';
 import LustBar from '../components/LustBar';
+import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
 
@@ -84,7 +85,6 @@ export default class NightShift extends React.Component {
 
 	render() {
 		const {
-			nightLog,
 			nightTask,
 			nightCharacter,
 			lust,
@@ -164,14 +164,6 @@ export default class NightShift extends React.Component {
 					</div>
 					<h2 className="o-nightShift__title__moves">Sex Moves</h2>
 				</div>
-				<ul className="o-nightShift__log">
-					{nightLog.map(entry => {
-						return <li>{entry}</li>;
-					})}
-				</ul>
-				<div className="o-nightShift__drop">
-					{characterDropped}
-				</div>
 				<div className="o-nightShift__moves">
 					<div className="o-nightShift__moves__scroll">
 						{Object.entries(movesByCategory).map((category) => {
@@ -189,7 +181,19 @@ export default class NightShift extends React.Component {
 						})}
 					</div>
 				</div>
-				{this.renderCharacters(this.props)}
+				<NightPlayArea
+					{...this.props}
+					className="o-nightShift__play"
+				/>
+				{/* <ul className="o-nightShift__log">
+					{nightLog.map(entry => {
+						return <li>{entry}</li>;
+					})}
+				</ul>
+				<div className="o-nightShift__drop">
+					{characterDropped}
+				</div>
+				{this.renderCharacters(this.props)} */}
 			</article>
 		);
 	}

@@ -1,0 +1,42 @@
+.m-nightPlayArea {
+	display: grid;
+	grid-template-areas:
+		'hud         '
+		'drop        '
+		'characters  ';
+	grid-template-rows:
+		min-content
+		1fr
+		15rem;
+
+	&__log {
+		grid-area: log;
+		list-style: none;
+		padding: 0 0.4rem;
+		margin: 0;
+		overflow-y: scroll;
+	}
+
+	&__hud {
+		grid-area: hud;
+	}
+
+	&__drop {
+		grid-area: drop;
+		align-self: center;
+		display: flex;
+		place-content: center;
+
+		> * {
+			max-width: 12rem;
+		}
+	}
+
+	&__characters {
+		grid-area: characters;
+		place-self: center;
+		display: flex;
+		flex-direction: row;
+		min-height: 16rem;
+	}
+}

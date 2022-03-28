@@ -618,7 +618,7 @@ export default class App extends React.Component {
 
 			const charactersNotDone = [];
 
-			hud = (
+			/* hud = (
 				<ShiftHud
 					className="o-app__hud"
 					day={day}
@@ -626,7 +626,7 @@ export default class App extends React.Component {
 					charactersNotDone={charactersNotDone}
 					handleFinishShift={this.finishShift.bind(this)}
 				/>
-			);
+			); */
 
 			gameState = (
 				<NightShift
