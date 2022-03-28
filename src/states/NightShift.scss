@@ -57,8 +57,8 @@
 		flex-direction: row;
 	}
 
-	@mixin stat-bar() {
-		display: flex;
+	@mixin stat-bar($display: flex) {
+		display: $display;
 		align-items: center;
 		gap: 1rem;
 		border: 0.2rem solid gray;
@@ -74,7 +74,9 @@
 
 	&__lust {
 		grid-area: lust;
-		@include stat-bar();
+		@include stat-bar($display: grid);
+		grid-template-columns: min-content 6fr 1fr;
+		justify-items: center;
 
 		&__bar {
 			width: 100%;
