@@ -39,7 +39,16 @@ export default class SexMoveCategory extends React.Component {
 			classes.push('-available');
 		}
 
-		classes.push(this.props.className);
+		sexMoves.sort((left, right) => {
+			const leftPlayable = canSexMoveBePlayed(left);
+			const rightPlayable = canSexMoveBePlayed(right);
+
+			if (leftPlayable === rightPlayable) {
+				return left.id < right.id ? -1 : 1;
+			} else {
+				return leftPlayable ? -1 : 1;
+			}
+		});
 
 		return (
 			<div

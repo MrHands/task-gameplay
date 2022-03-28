@@ -470,8 +470,11 @@ export default class App extends React.Component {
 			return false;
 		}
 
-		const sexMove = this.getSexMove(sexMoveId);
-		return (this.state.lust>= sexMove.lustMinimum);
+		const sexMove = typeof sexMoveId === 'string'
+			? this.getSexMove(sexMoveId)
+			: sexMoveId;
+
+		return (this.state.lust >= sexMove.lustMinimum);
 	}
 
 	playSexMove(sexMoveId) {
