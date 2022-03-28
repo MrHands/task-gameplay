@@ -1,7 +1,7 @@
 {
 	"sexMoves": [
 		{
-			"id": "sex-move-1",
+			"id": "petting-kissing",
 			"title": "Kissing",
 			"category": "Petting",
 			"lustMinimum": 0,
@@ -17,7 +17,24 @@
 			]
 		},
 		{
-			"id": "sex-move-2",
+			"id": "petting-boob-massage",
+			"title": "Boob Massage",
+			"category": "Petting",
+			"lustMinimum": 10,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 25
+				},
+				{
+					"type": "sexergy",
+					"value": 0
+				}
+			]
+		},
+
+		{
+			"id": "oral-blowjob",
 			"title": "Blowjob",
 			"category": "Oral",
 			"lustMinimum": 50,
@@ -28,29 +45,64 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 10
+					"value": 50
 				}
 			]
 		},
 		{
-			"id": "sex-move-3",
+			"id": "oral-cunnilingus",
+			"title": "Cunnilingus",
+			"category": "Oral",
+			"lustMinimum": 0,
+			"lustMaximum": 50,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 30
+				},
+				{
+					"type": "sexergy",
+					"value": 20
+				}
+			]
+		},
+
+		{
+			"id": "sex-missionary",
 			"title": "Missionary",
 			"category": "Sex",
 			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "lust",
-					"value": 10
+					"value": 20
 				},
 				{
 					"type": "sexergy",
-					"value": 50
+					"value": 100
 				}
 			]
 		},
 		{
-			"id": "sex-move-4",
-			"title": "Doggy Style",
+			"id": "sex-cowgirl",
+			"title": "Cowgirl",
+			"category": "Sex",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "lust",
+					"value": 30
+				},
+				{
+					"type": "sexergy",
+					"value": 100
+				}
+			]
+		},
+
+		{
+			"id": "anal-doggy",
+			"title": "Anal Doggy Style",
 			"category": "Anal",
 			"lustMinimum": 100,
 			"effects": [
@@ -64,8 +116,9 @@
 				}
 			]
 		},
+
 		{
-			"id": "sex-move-5",
+			"id": "kinky=whipping",
 			"title": "Whipping",
 			"category": "Kinky",
 			"lustMinimum": 0,
