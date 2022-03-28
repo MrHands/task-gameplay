@@ -16,14 +16,7 @@ export default class NightShift extends React.Component {
 
 		this.state = {
 			sexergyEarned: 0,
-			categoriesExpanded: {
-				Petting: false,
-				Oral: false,
-				Sex: false,
-				Anal: false,
-				Kinky: false,
-			}
-		}
+		};
 	}
 
 	playSexMove(sexMoveId) {
@@ -90,20 +83,6 @@ export default class NightShift extends React.Component {
 		);
 	}
 
-	toggleExpand(category) {
-		this.setState(state => {
-			const newState = {
-				categoriesExpanded: {
-					...state.categoriesExpanded,
-					[category]: !state.categoriesExpanded[category]
-				}
-			};
-			console.log(newState);
-
-			return newState;
-		})
-	}
-
 	render() {
 		const {
 			nightTask,
@@ -111,6 +90,8 @@ export default class NightShift extends React.Component {
 			lust,
 			sexMoves,
 			sexMovesPlayed,
+			categoriesExpanded,
+			toggleExpandCategory,
 			canSexMoveBePlayed,
 			clampCharacterStat,
 			canBePlaced,
@@ -161,9 +142,6 @@ export default class NightShift extends React.Component {
 		categories.forEach(category => {
 			movesByCategory[category] = sexMoves.filter(sexMove => sexMove.category === category);
 		});
-		console.log(movesByCategory);
-
-		console.log(this.state.categoriesExpanded);
 
 		return (
 			<article className="o-nightShift">
@@ -179,8 +157,8 @@ export default class NightShift extends React.Component {
 								sexMoves={category[1]}
 								canSexMoveBePlayed={canSexMoveBePlayed}
 								playSexMove={this.playSexMove.bind(this)}
-								expanded={this.state.categoriesExpanded[category[0]]}
-								toggleExpand={this.toggleExpand.bind(this)}
+								expanded={categoriesExpanded[category[0]]}
+								toggleExpand={toggleExpandCategory}
 							/>
 						);
 					})}

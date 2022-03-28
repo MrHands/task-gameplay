@@ -43,7 +43,7 @@ export default class SexMoveCategory extends React.Component {
 				className={classes.join(' ')}
 				onClick={() => toggleExpand(category)}
 			>
-				<h3 className="m-sexMoveCategory__title">{`${category} (${sexMovesAvailable.length})`}</h3>
+				<h3 className="m-sexMoveCategory__title">{`${category} (${sexMovesAvailable.length} / ${sexMoves.length})`}</h3>
 				<div className="m-sexMoveCategory__moves">
 					{sexMoves.map((sexMove, index) => {
 						return (

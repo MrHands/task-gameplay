@@ -81,6 +81,13 @@ export default class App extends React.Component {
 
 			lust: 0,
 			sexMovesPlayed: [],
+			categoriesExpanded: {
+				Petting: false,
+				Oral: false,
+				Sex: false,
+				Anal: false,
+				Kinky: false,
+			},
 		};
 	}
 
@@ -514,6 +521,20 @@ export default class App extends React.Component {
 		});
 	}
 
+	toggleExpandCategory(category) {
+		this.setState(state => {
+			const newState = {
+				categoriesExpanded: {
+					...state.categoriesExpanded,
+					[category]: !state.categoriesExpanded[category]
+				}
+			};
+			console.log(newState);
+
+			return newState;
+		})
+	}
+
 	render() {
 		const {
 			day,
@@ -538,6 +559,7 @@ export default class App extends React.Component {
 			const {
 				lust,
 				sexMovesPlayed,
+				categoriesExpanded,
 			} = this.state;
 
 			const charactersNotDone = [];
@@ -564,6 +586,8 @@ export default class App extends React.Component {
 					lust={lust}
 					sexMoves={SexMovesDatabase.sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
+					categoriesExpanded={categoriesExpanded}
+					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
 					getSexMove={this.getSexMove.bind(this)}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}
 					playSexMove={this.playSexMove.bind(this)}
