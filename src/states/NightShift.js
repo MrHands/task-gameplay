@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
-import DroppableCard from '../components/DroppableCard';
 import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';

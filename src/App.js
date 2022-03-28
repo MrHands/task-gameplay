@@ -81,6 +81,7 @@ export default class App extends React.Component {
 
 			nightLog: [],
 			lust: 0,
+			mood: '',
 			sexMoves: [],
 			sexMovesPlayed: [],
 			categoriesExpanded: {
@@ -104,6 +105,15 @@ export default class App extends React.Component {
 	startGame() {
 		this.setUpCharacters();
 		this.drawHand();
+	}
+
+	startNight() {
+		this.setState({
+			nightLog: [],
+			lust: 0,
+			mood: 'passionate',
+			sexMovesPlayed: [],
+		});
 	}
 
 	jumpToNight() {
@@ -448,24 +458,25 @@ export default class App extends React.Component {
 	finishShift() {
 		// update shift
 
-		this.setState(state => {
-			let {
-				shift,
-				day,
-			} = state;
+		let {
+			shift,
+			day,
+		} = this.state;
 
-			if (shift === Shift.NIGHT) {
-				shift = Shift.MORNING;
-				day++;
-			} else {
-				shift++;
-			}
+		if (shift === Shift.NIGHT) {
+			shift = Shift.MORNING;
+			day++;
+		} else {
+			shift++;
+		}
 
-			return {
-				day,
-				shift,
-				nightLog: []
-			}
+		if (shift === Shift.NIGHT) {
+			this.startNight();
+		}
+
+		this.setState({
+			day,
+			shift
 		});
 
 		// update characters
@@ -611,22 +622,13 @@ export default class App extends React.Component {
 			const {
 				nightLog,
 				lust,
+				mood,
 				sexMoves,
 				sexMovesPlayed,
 				categoriesExpanded,
 			} = this.state;
 
 			const charactersNotDone = [];
-
-			/* hud = (
-				<ShiftHud
-					className="o-app__hud"
-					day={day}
-					shift={shift}
-					charactersNotDone={charactersNotDone}
-					handleFinishShift={this.finishShift.bind(this)}
-				/>
-			); */
 
 			gameState = (
 				<NightShift
@@ -639,6 +641,7 @@ export default class App extends React.Component {
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					lust={lust}
+					mood={mood}
 					sexMoves={sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
 					categoriesExpanded={categoriesExpanded}
