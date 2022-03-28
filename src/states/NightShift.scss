@@ -19,7 +19,7 @@
 		1fr
 		20rem;
 	grid-template-rows:
-		4rem
+		min-content
 		min-content
 		1fr
 		min-content;
@@ -60,6 +60,9 @@
 		&__lust {
 			grid-area: lust;
 			@include stat-bar();
+			display: flex;
+			flex-direction: column;
+			gap: 0.4rem;
 		}
 	
 		&__sexergy {
