@@ -45,7 +45,10 @@ export default class SexMove extends React.Component {
 		return (
 			<div
 				className={['m-sexMove', this.props.className].join(' ')}
-				onClick={() => playSexMove(id)}
+				onClick={(event) => {
+					event.stopPropagation();
+					playSexMove(id);
+				}}
 				disabled={canSexMoveBePlayed(id) ? '' : 'disabled'}
 			>
 				<h2 className="m-sexMove__title">{title}</h2>
