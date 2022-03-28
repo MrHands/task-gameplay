@@ -1,21 +1,32 @@
 import React from 'react';
+import CountUp from 'react-countup';
 
 import './LustBar.scss';
 
 export default class LustBar extends React.Component {
 	render() {
 		const {
-			value,
+			lust,
 			max,
 		} = this.props;
 
 		const style = {
-			width: `${(value / max) * 100}%`
+			width: `${(lust / max) * 100}%`
 		}
 
 		return (
-			<div className={['m-lustBar', this.props.className].join(' ')}>
-				<div className="m-lustBar__foreground" style={style}></div>
+			<div className={['o-lustBar', this.props.className].join(' ')}>
+				<h2 className="o-lustBar__title">Lust</h2>
+				<div className="o-lustBar__bar">
+					<div className="o-lustBar__bar__foreground" style={style}></div>
+				</div>
+				<h2 className="o-nightShift__lust__amount">
+					<CountUp
+						end={lust}
+						duration={1}
+						suffix="%"
+					/>
+				</h2>
 			</div>
 		);
 	}

@@ -1,14 +1,28 @@
-.m-lustBar {
-	border: 0.2rem solid hotpink;
-	border-radius: 2rem;
-	padding: 0.2rem;
-	color: hotpink;
+.o-lustBar {
+	display: grid;
+	grid-template-columns: min-content 6fr 1fr;
+	justify-items: center;
+	align-items: center;
+	gap: 1rem;
 
-	&__foreground {
-		transition: width 1s;
-		width: 0%;
-		height: 1rem;
+	&__title {
+		text-transform: uppercase;
+		color: gray;
+	}
+
+	&__bar {
+		width: 100%;
+		color: hotpink;
+		padding: 0.2rem;
+		border: 0.2rem solid hotpink;
 		border-radius: 2rem;
-		background: hotpink;
+	
+		&__foreground {
+			transition: width 1s;
+			width: 0%;
+			height: 1rem;
+			border-radius: 2rem;
+			background: hotpink;
+		}
 	}
 }
