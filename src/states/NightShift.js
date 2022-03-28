@@ -145,6 +145,17 @@ export default class NightShift extends React.Component {
 
 		return (
 			<article className="o-nightShift">
+				<div className="o-nightShift__title">
+					<LustBar
+						className="o-nightShift__title__lust"
+						lust={lust}
+					/>
+					<div className="o-nightShift__title__sexergy">
+						<h2 className="o-nightShift__title__sexergy__title">Sexergy Earned</h2>
+						<h2 className="o-nightShift__title__sexergy__value">{sexergyEarned}</h2>
+					</div>
+					<h2 className="o-nightShift__title__moves">Sex Moves</h2>
+				</div>
 				<ul className="o-nightShift__log">
 					{nightLog.map(entry => {
 						return <li>{entry}</li>;
@@ -153,7 +164,6 @@ export default class NightShift extends React.Component {
 				<div className="o-nightShift__drop">
 					{characterDropped}
 				</div>
-				<h2 className="o-nightShift__title">Sex Moves</h2>
 				<div className="o-nightShift__moves">
 					<div className="o-nightShift__moves__scroll">
 						{Object.entries(movesByCategory).map((category) => {
@@ -171,14 +181,8 @@ export default class NightShift extends React.Component {
 						})}
 					</div>
 				</div>
-				<LustBar
-					className="o-nightShift__lust"
-					lust={lust}
-				/>
-				<div className="o-nightShift__sexergy">
-					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
-					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
-				</div>
+				
+				
 				{this.renderCharacters(this.props)}
 			</article>
 		);

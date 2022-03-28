@@ -1,9 +1,16 @@
 @import '../globals';
 
+@mixin stat-bar($display: flex) {
+	padding: 0.8rem;
+	border: 0.2rem solid gray;
+	border-radius: 0.4rem;
+	color: hotpink;
+}
+
 .o-nightShift {
 	display: grid;
 	grid-template-areas:
-		'sexergy     lust        title     '
+		'title       title       title     '
 		'drop        log         moves     '
 		'.           log         moves     '
 		'interact    interact    interact  ';
@@ -41,9 +48,40 @@
 
 	&__title {
 		grid-area: title;
-		text-transform: uppercase;
-		color: hotpink;
-		place-self: center;
+		display: grid;
+		grid-template-areas:
+			'lust    sexergy   moves';
+		grid-template-columns:
+			2fr
+			1fr
+			20rem;
+		gap: 1rem;
+
+		&__lust {
+			grid-area: lust;
+			@include stat-bar();
+		}
+	
+		&__sexergy {
+			grid-area: sexergy;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			@include stat-bar();
+	
+			&__title {
+				text-transform: uppercase;
+				color: gray;
+			}
+		}
+
+		&__moves {
+			grid-area: moves;
+			text-transform: uppercase;
+			color: hotpink;
+			place-self: center;
+		}
 	}
 
 	&__moves {
@@ -65,31 +103,6 @@
 		}
 	}
 
-	@mixin stat-bar($display: flex) {
-		padding: 0.8rem;
-		border: 0.2rem solid gray;
-		border-radius: 0.4rem;
-		color: hotpink;
-	}
-
-	&__lust {
-		grid-area: lust;
-		@include stat-bar();
-	}
-
-	&__sexergy {
-		grid-area: sexergy;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		@include stat-bar();
-
-		&__title {
-			text-transform: uppercase;
-			color: gray;
-		}
-	}
 
 	&__selected {
 		grid-area: selected;
