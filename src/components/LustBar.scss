@@ -5,6 +5,7 @@
 	color: hotpink;
 
 	&__foreground {
+		transition: width 1s;
 		width: 0%;
 		height: 1rem;
 		border-radius: 2rem;
