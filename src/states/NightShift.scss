@@ -22,8 +22,9 @@
 	&__log {
 		grid-area: log;
 		list-style: none;
-		padding: 0;
+		padding: 0 0.4rem;
 		margin: 0;
+		overflow-y: scroll;
 	}
 
 	&__drop {
@@ -40,6 +41,7 @@
 		grid-area: title;
 		text-transform: uppercase;
 		color: hotpink;
+		place-self: center;
 	}
 
 	&__moves {

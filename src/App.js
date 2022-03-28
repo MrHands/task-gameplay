@@ -522,17 +522,18 @@ export default class App extends React.Component {
 		const sexMove = {...this.getSexMove(sexMoveId)};
 		sexMove.played = true;
 
-		const logEffects = sexMove.effects.map(effect => {
-			return `${effect.type} +${effect.value}`;
-		});
-		this.addToNightLog(`${sexMove.title} (${logEffects.join(', ')})`);
-
 		this.setState(state => {
 			let {
-				nightLog,
 				lust,
 				sexergy
 			} = state;
+
+			const nightLog = [...state.nightLog];
+
+			const logEffects = sexMove.effects.map(effect => {
+				return `${effect.type} +${effect.value}`;
+			});
+			nightLog.push(`${sexMove.title} (${logEffects.join(', ')})`);
 
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
