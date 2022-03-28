@@ -1,4 +1,5 @@
 import React from 'react';
+import CountUp from 'react-countup';
 
 import Character from '../components/Character';
 import CharacterList from '../components/CharacterList';
@@ -166,7 +167,13 @@ export default class NightShift extends React.Component {
 						value={lust}
 						max="100"
 					/>
-					<h2 className="o-nightShift__lust__amount">{`${lust}%`}</h2>
+					<h2 className="o-nightShift__lust__amount">
+						<CountUp
+							end={lust}
+							duration={1}
+							suffix="%"
+						/>
+					</h2>
 				</div>
 				<div className="o-nightShift__sexergy">
 					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
