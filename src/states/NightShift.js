@@ -147,9 +147,9 @@ export default class NightShift extends React.Component {
 				<div className="o-nightShift__drop">
 					{characterDropped}
 				</div>
+				<h2 className="o-nightShift__title">Sex Moves</h2>
 				<div className="o-nightShift__moves">
 					<div className="o-nightShift__moves__scroll">
-					<h2 className="o-nightShift__moves__title">Sex Moves</h2>
 						{Object.entries(movesByCategory).map((category) => {
 							return (
 								<SexMoveCategory

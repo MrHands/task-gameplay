@@ -3,17 +3,19 @@
 .o-nightShift {
 	display: grid;
 	grid-template-areas:
-		'.           .           drop        moves      '
-		'lust        sexergy     sexergy     moves      '
-		'interact    interact    interact   moves      ';
+		'lust        sexergy     sexergy     title     '
+		'log         .           .           moves     '
+		'log         .           drop        moves     '
+		'interact    interact    interact    moves     ';
 	grid-template-columns:
 		4fr
 		1fr
 		min-content
 		20rem;
 	grid-template-rows:
-		1fr
 		4rem
+		1fr
+		min-content
 		16rem;
 	gap: 1rem;
 
@@ -27,18 +29,19 @@
 		display: flex;
 	}
 
+	&__title {
+		grid-area: title;
+		text-transform: uppercase;
+		color: hotpink;
+	}
+
 	&__moves {
-		position: relative;
 		grid-area: moves;
+		position: relative;
 		justify-self: end;
 		width: 100%;
 		overflow-y: scroll;
 		max-height: 80vh;
-
-		&__title {
-			text-transform: uppercase;
-			color: hotpink;
-		}
 
 		&__scroll {
 			position: absolute;
