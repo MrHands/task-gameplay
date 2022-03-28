@@ -5,7 +5,7 @@
 	grid-template-areas:
 		'.           .           drop        moves      '
 		'lust        sexergy     sexergy     moves      '
-		'scrolling   scrolling   scrolling   moves      ';
+		'interact    interact    interact   moves      ';
 	grid-template-columns:
 		4fr
 		1fr
@@ -22,21 +22,28 @@
 		align-self: end;
 	}
 
-	&__scrolling {
-		grid-area: scrolling;
+	&__interact {
+		grid-area: interact;
 		display: flex;
 	}
 
 	&__moves {
+		position: relative;
 		grid-area: moves;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		justify-self: end;
 		width: 100%;
-		padding-right: 1rem;
 		overflow-y: scroll;
 		max-height: 80vh;
+
+		&__scroll {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: calc(100% - 1rem);
+		}
 	}
 
 	&__characters {

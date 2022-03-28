@@ -24,7 +24,10 @@ button:disabled {
 }
 
 .o-app {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-rows:
+		min-content
+		1fr;
 	gap: 1rem;
+	min-height: calc(100vh - 2rem);
 }

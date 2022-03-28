@@ -149,19 +149,21 @@ export default class NightShift extends React.Component {
 					{characterDropped}
 				</div>
 				<div className="o-nightShift__moves">
-					{Object.entries(movesByCategory).map((category) => {
-						return (
-							<SexMoveCategory
-								key={`category-${category[0]}`}
-								category={category[0]}
-								sexMoves={category[1]}
-								canSexMoveBePlayed={canSexMoveBePlayed}
-								playSexMove={this.playSexMove.bind(this)}
-								expanded={categoriesExpanded[category[0]]}
-								toggleExpand={toggleExpandCategory}
-							/>
-						);
-					})}
+					<div className="o-nightShift__moves__scroll">
+						{Object.entries(movesByCategory).map((category) => {
+							return (
+								<SexMoveCategory
+									key={`category-${category[0]}`}
+									category={category[0]}
+									sexMoves={category[1]}
+									canSexMoveBePlayed={canSexMoveBePlayed}
+									playSexMove={this.playSexMove.bind(this)}
+									expanded={categoriesExpanded[category[0]]}
+									toggleExpand={toggleExpandCategory}
+								/>
+							);
+						})}
+					</div>
 				</div>
 				<div className="o-nightShift__lust">
 					<h2 className="o-nightShift__lust__title">Lust</h2>
@@ -182,7 +184,7 @@ export default class NightShift extends React.Component {
 					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
 					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
 				</div>
-				<div className="o-nightShift__scrolling">
+				<div className="o-nightShift__interact">
 					{this.renderCharacters(this.props)}
 					{this.renderSelected(this.props, movesSelected)}
 				</div>
