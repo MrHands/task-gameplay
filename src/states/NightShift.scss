@@ -11,51 +11,63 @@
 	grid-row: 1 / 3;
 	display: grid;
 	grid-template-areas:
-		'title       moves     '
-		'play        moves     ';
+		'mood    lust     moves  '
+		'play    play     moves  '
+		'shift   sexergy  moves  ';
 	grid-template-columns:
-		2fr
-		1fr;
+		1fr
+		3fr
+		2fr;
 	grid-template-rows:
 		min-content
-		1fr;
+		1fr
+		min-content;
 	gap: 1rem;
 
 	&__play {
 		grid-area: play;
 	}
 
-	&__title {
-		grid-area: title;
-		display: grid;
-		grid-template-areas:
-			'lust    sexergy  ';
-		grid-template-columns:
-			2fr
-			1fr;
-		gap: 1rem;
+	&__lust {
+		grid-area: lust;
+		@include stat-bar();
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
 
-		&__lust {
-			grid-area: lust;
-			@include stat-bar();
-			display: flex;
-			flex-direction: column;
-			gap: 0.4rem;
+	&__sexergy {
+		grid-area: sexergy;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		@include stat-bar();
+
+		&__title {
+			text-transform: uppercase;
+			color: gray;
 		}
-	
-		&__sexergy {
-			grid-area: sexergy;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 1rem;
-			@include stat-bar();
-	
-			&__title {
-				text-transform: uppercase;
-				color: gray;
-			}
+	}
+
+	&__mood {
+		grid-area: mood;
+		@include stat-bar();
+		display: flex;
+		flex-direction: column;
+		place-content: center;
+
+		&__title {
+			text-align: center;
+			text-transform: uppercase;
 		}
+	}
+
+	&__shift {
+		grid-area: shift;
+		@include stat-bar();
+		display: flex;
+		place-content: center;
 	}
 
 	&__moves {

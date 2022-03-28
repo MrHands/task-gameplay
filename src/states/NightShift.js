@@ -92,6 +92,7 @@ export default class NightShift extends React.Component {
 			categoriesExpanded,
 			toggleExpandCategory,
 			canSexMoveBePlayed,
+			handleFinishShift,
 		} = this.props;
 
 		const {
@@ -119,23 +120,30 @@ export default class NightShift extends React.Component {
 
 		return (
 			<article className="o-nightShift">
-				<div className="o-nightShift__title">
-					<div className="o-nightShift__title__lust">
-						<LustBar
-							className="o-nightShift__title__lust__captain -captain"
-							name={'Captain'}
-							lust={0}
-						/>
-						<LustBar
-							className="o-nightShift__title__lust__crew"
-							name={nightCharacter?.name || 'Crew'}
-							lust={lust}
-						/>
-					</div>
-					<div className="o-nightShift__title__sexergy">
-						<h2 className="o-nightShift__title__sexergy__title">Sexergy Earned</h2>
-						<h2 className="o-nightShift__title__sexergy__value">{sexergyEarned}</h2>
-					</div>
+				<div className="o-nightShift__lust">
+					<LustBar
+						className="o-nightShift__lust__captain -captain"
+						name={'Captain'}
+						lust={0}
+					/>
+					<LustBar
+						className="o-nightShift__lust__crew"
+						name={nightCharacter?.name || 'Crew'}
+						lust={lust}
+					/>
+				</div>
+				<div className="o-nightShift__sexergy">
+					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
+					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
+				</div>
+				<div className="o-nightShift__shift">
+					<button className="o-nightShift__shift__finish" onClick={handleFinishShift}>
+						Finish Shift
+					</button>
+				</div>
+				<div className="o-nightShift__mood">
+					<h2 className="o-nightShift__mood__title">Mood</h2>
+					<h2 className="o-nightShift__mood__value">{}</h2>
 				</div>
 				<div className="o-nightShift__moves">
 				<h2 className="o-nightShift__moves__title">Sex Moves</h2>
