@@ -148,7 +148,8 @@ export default class NightShift extends React.Component {
 				<div className="o-nightShift__title">
 					<LustBar
 						className="o-nightShift__title__lust"
-						lust={lust}
+						nameCrew={nightCharacter?.name || 'Crew'}
+						lustCrew={lust}
 					/>
 					<div className="o-nightShift__title__sexergy">
 						<h2 className="o-nightShift__title__sexergy__title">Sexergy Earned</h2>

@@ -6,16 +6,17 @@ import './LustBar.scss';
 export default class LustBar extends React.Component {
 	render() {
 		const {
-			lust,
+			nameCrew,
+			lustCrew,
 		} = this.props;
 
 		const style = {
-			'--lust-width': `${Math.min(lust, 100)}%`,
-			'--overload-width': `${Math.max(lust - 100, 0)}%`,
+			'--lust-width': `${Math.min(lustCrew, 100)}%`,
+			'--overload-width': `${Math.max(lustCrew - 100, 0)}%`,
 		};
 
 		const classes = ['o-lustBar'];
-		if (lust > 100) {
+		if (lustCrew > 100) {
 			classes.push('-overload');
 		}
 		classes.push(this.props.className);
@@ -25,14 +26,14 @@ export default class LustBar extends React.Component {
 				className={classes.join(' ')}
 				style={style}
 			>
-				<h2 className="o-lustBar__title">Lust</h2>
+				<h2 className="o-lustBar__title">{nameCrew}</h2>
 				<div className="o-lustBar__bar">
 					<div className="o-lustBar__bar__foreground"></div>
 					<div className="o-lustBar__bar__foreground -overload"></div>
 				</div>
 				<h2 className="o-lustBar__amount">
 					<CountUp
-						end={lust}
+						end={lustCrew}
 						duration={1}
 						suffix="%"
 					/>

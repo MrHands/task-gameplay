@@ -10,18 +10,17 @@
 	justify-items: center;
 	align-items: center;
 	gap: 1rem;
+	color: hotpink;
 
 	&__title {
 		transition: color 1s;
 		text-transform: uppercase;
-		color: gray;
 	}
 
 	&__bar {
 		position: relative;
 		width: 100%;
 		height: 100%;
-		color: hotpink;
 		border: 0.2rem solid hotpink;
 		border-radius: 2rem;
 	
@@ -43,7 +42,6 @@
 	}
 
 	&__amount {
-		color: hotpink;
 		padding: 0 0.6rem;
 		border-radius: 1rem;
 
