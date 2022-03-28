@@ -23,15 +23,20 @@ export default class NightPlayArea extends React.Component {
 		} = this.props;
 
 		const classes = ['m-nightPlayArea'];
+		if (nightCharacter !== null) {
+			classes.push('-playing');
+		}
 		classes.push(this.props.className);
 
 		if (nightCharacter !== null) {
 			return (
-				<ul className="m-nightPlayArea__log">
-					{nightLog.map(entry => {
-						return <li>{entry}</li>;
-					})}
-				</ul>
+				<div className={classes.join(' ')}>
+					<ul className="m-nightPlayArea__log">
+						{nightLog.map(entry => {
+							return <li>{entry}</li>;
+						})}
+					</ul>
+				</div>
 			)
 		} else {
 			return (

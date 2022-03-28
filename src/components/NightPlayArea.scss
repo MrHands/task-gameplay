@@ -9,8 +9,13 @@
 		1fr
 		15rem;
 
+	&.-playing {
+		display: flex;
+	}
+
 	&__log {
 		grid-area: log;
+		width: 100%;
 		list-style: none;
 		padding: 0 0.4rem;
 		margin: 0;
