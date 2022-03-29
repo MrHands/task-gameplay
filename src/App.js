@@ -116,7 +116,7 @@ export default class App extends React.Component {
 			sexergyGenerated: 0,
 			crewLust: 0,
 			captainLust: 0,
-			mood: 'passionate',
+			mood: '',
 			sexMovesPlayed: [],
 		});
 	}
@@ -325,10 +325,33 @@ export default class App extends React.Component {
 		if (this.state.shift === Shift.NIGHT) {
 			const character = this.getCharacter(characterId);
 
+			let mood = '';
+
+			const moodRoll = randomValue(0, 3);
+			switch (moodRoll) {
+				case 0: {
+					mood = Mood.PASSIONATE;
+					break;
+				}
+				case 1: {
+					mood = Mood.INTIMATE;
+					break;
+				}
+				case 2: {
+					mood = Mood.DOMINANT;
+					break;
+				}
+				default:
+					break;
+			}
+
 			this.addToNightLog(`Selected **${character.name}** (passionate: ${character.stats.passionate}, intimate: ${character.stats.intimate}, dominant: ${character.stats.dominant}) for night shift`);
-			this.addToNightLog(`Starting crew lust at ${character.stats.pleasure}%`);
+			this.addToNightLog(`Captain lust starts at 0%`);
+			this.addToNightLog(`Crew lust starts at ${character.stats.pleasure}%`);
+			this.addToNightLog(`Starting mood is **${mood}**`);
 
 			this.setState({
+				mood,
 				crewLust: character.stats.pleasure,
 				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
 					const clone = JSON.parse(JSON.stringify(sexMove));
@@ -600,6 +623,8 @@ export default class App extends React.Component {
 				default:
 					break;
 			}
+
+			nightLog.push(`Changed mood to **${mood}**`);
 
 			// crew orgasm!
 

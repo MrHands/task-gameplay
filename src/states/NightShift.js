@@ -110,7 +110,7 @@ export default class NightShift extends React.Component {
 					/>
 				</div>
 				<div className="o-nightShift__sexergy">
-					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
+					<h2 className="o-nightShift__sexergy__title">Sexergy Generated</h2>
 					<h2 className="o-nightShift__sexergy__value">
 						<CountUp
 							end={sexergyGenerated}
