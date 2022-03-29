@@ -39,6 +39,8 @@ export default class SexMove extends React.Component {
 
 		switch (type) {
 			case 'lust':
+			case 'crew':
+			case 'captain':
 			case 'pleasure': {
 				return `${valueText}%`;
 			}
