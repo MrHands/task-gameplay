@@ -373,9 +373,9 @@ export default class App extends React.Component {
 			}
 
 			this.addToNightLog(`Selected **${character.name}** (passionate: ${character.stats.passionate}, intimate: ${character.stats.intimate}, submissive: ${character.stats.submissive}) for night shift`);
-			this.addToNightLog(`Captain lust starts at 0%`);
-			this.addToNightLog(`Crew lust starts at ${character.stats.pleasure}%`);
-			this.addToNightLog(`Starting mood is **${mood}**`);
+			this.addToNightLog(`Captain starts at 0% lust`);
+			this.addToNightLog(`${character.name} starts at ${character.stats.pleasure}% lust`);
+			this.addToNightLog(`${character.name}'s mood is **${mood}**`);
 
 			this.setState({
 				mood,
@@ -690,7 +690,7 @@ export default class App extends React.Component {
 					break;
 			}
 
-			nightLog.push(`Changed mood to **${mood}**`);
+			nightLog.push(`${character.name} changed to a(n) **${mood}** mood`);
 
 			const gameOver = captainLust >= 100;
 
