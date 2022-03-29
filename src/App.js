@@ -544,6 +544,19 @@ export default class App extends React.Component {
 			day++;
 
 			newDay = true;
+
+			// lock in sexergy gains
+
+			this.setState(state => {
+				const {
+					sexergy,
+					sexergyGenerated
+				} = state;
+
+				return {
+					sexergy: sexergy + sexergyGenerated
+				}
+			})
 		} else {
 			shift++;
 		}
