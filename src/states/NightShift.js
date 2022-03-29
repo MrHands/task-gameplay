@@ -73,7 +73,7 @@ export default class NightShift extends React.Component {
 			categoriesExpanded,
 			toggleExpandCategory,
 			canSexMoveBePlayed,
-			handleFinishShift,
+			onShiftFinish,
 		} = this.props;
 
 		const movesSelected = [...sexMovesPlayed];
@@ -121,8 +121,7 @@ export default class NightShift extends React.Component {
 				<div className="o-nightShift__shift">
 					<button
 						className="o-nightShift__shift__finish"
-						onClick={handleFinishShift}
-						disabled={captainLust >= 100 ? '' : 'disabled'}
+						onClick={onShiftFinish}
 					>
 						End Night
 					</button>

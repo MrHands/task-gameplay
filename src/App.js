@@ -494,6 +494,8 @@ export default class App extends React.Component {
 			day,
 		} = this.state;
 
+		console.log(`finishShift shift ${shift} day ${day}`);
+
 		if (shift === Shift.NIGHT) {
 			shift = Shift.MORNING;
 			day++;
