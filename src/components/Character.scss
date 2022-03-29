@@ -21,7 +21,11 @@
 		border: 2px solid lawngreen;
 		background: lightgreen;
 	}
-	
+
+	&.-draggable {
+		cursor: grabbing;
+	}
+
 	&__title {
 		width: 100%;
 		text-align: center;

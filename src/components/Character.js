@@ -7,10 +7,16 @@ import './Character.scss';
 export default class Character extends React.Component {
 	get classes() {
 		const {
-			className
+			className,
+			task
 		} = this.props;
 
 		const classes = ['o-character'];
+
+		if (task === '') {
+			classes.push('-draggable');
+		}
+
 		classes.push(className);
 
 		return classes;
