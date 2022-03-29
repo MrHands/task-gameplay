@@ -83,6 +83,7 @@ export default class NightShift extends React.Component {
 
 	render() {
 		const {
+			mood,
 			nightCharacter,
 			lust,
 			sexMoves,
@@ -140,8 +141,8 @@ export default class NightShift extends React.Component {
 					</button>
 				</div>
 				<div className="o-nightShift__mood">
-					<h2 className="o-nightShift__mood__title">Mood</h2>
-					<h2 className="o-nightShift__mood__value">{}</h2>
+					<h3 className="o-nightShift__mood__title">Mood</h3>
+					<h2 className="o-nightShift__mood__value">{mood}</h2>
 				</div>
 				<div className="o-nightShift__moves">
 				<h2 className="o-nightShift__moves__title">Sex Moves</h2>

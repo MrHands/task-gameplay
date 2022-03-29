@@ -6,6 +6,7 @@ import ShiftHud from './components/ShiftHud';
 import TasksDatabase from './data/TasksDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
+import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
 import { TaskOutcome } from './enums/TaskOutcome';
 import DayShift from './states/DayShift';
@@ -81,7 +82,7 @@ export default class App extends React.Component {
 
 			nightLog: [],
 			lust: 0,
-			mood: '',
+			mood: Mood.DOMINANT,
 			sexMoves: [],
 			sexMovesPlayed: [],
 			categoriesExpanded: {
@@ -537,7 +538,8 @@ export default class App extends React.Component {
 		this.setState(state => {
 			let {
 				lust,
-				sexergy
+				sexergy,
+				mood,
 			} = state;
 
 			const nightLog = [...state.nightLog];
@@ -559,9 +561,23 @@ export default class App extends React.Component {
 					}
 					default: break;
 				}
-
-				logEffects.push(`${effect.type} +${effect.value}`);
 			});
+
+			// cycle mood
+
+			switch (mood) {
+				case Mood.PASSIONATE:
+					mood = Mood.INTIMATE;
+					break;
+				case Mood.INTIMATE:
+					mood = Mood.DOMINANT;
+					break;
+				case Mood.DOMINANT:
+					mood = Mood.PASSIONATE;
+					break;
+				default:
+					break;
+			}
 
 			// orgasm!
 
@@ -580,6 +596,7 @@ export default class App extends React.Component {
 				nightLog,
 				lust,
 				sexergy,
+				mood,
 				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
 			}
 		});
