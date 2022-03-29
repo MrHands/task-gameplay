@@ -4,7 +4,7 @@
 			"id": "petting-1",
 			"title": "Kissing",
 			"category": "Petting",
-			"type": "intimate",
+			"type": "passionate",
 			"lustMinimum": 0,
 			"effects": [
 				{
@@ -46,7 +46,7 @@
 			"id": "petting-3",
 			"title": "Cunnilingus",
 			"category": "Petting",
-			"type": "intimate",
+			"type": "dominant",
 			"lustMinimum": 50,
 			"effects": [
 				{
@@ -261,7 +261,7 @@
 			"title": "Spanking",
 			"category": "Kinky",
 			"type": "dominant",
-			"lustMinimum": 60,
+			"lustMinimum": 40,
 			"effects": [
 				{
 					"type": "captain",
