@@ -152,6 +152,7 @@ export default class NightShift extends React.Component {
 								return (
 									<SexMoveCategory
 										key={`category-${category[0]}`}
+										mood={mood}
 										category={category[0]}
 										sexMoves={category[1]}
 										canSexMoveBePlayed={canSexMoveBePlayed}

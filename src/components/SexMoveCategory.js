@@ -36,6 +36,7 @@ export default class SexMoveCategory extends React.Component {
 
 	render() {
 		const {
+			mood,
 			category,
 			sexMoves,
 			canSexMoveBePlayed,
@@ -65,6 +66,7 @@ export default class SexMoveCategory extends React.Component {
 						return (
 							<SexMove
 								key={`sex-move-${index}`}
+								mood={mood}
 								canSexMoveBePlayed={canSexMoveBePlayed}
 								playSexMove={playSexMove}
 								{...sexMove}

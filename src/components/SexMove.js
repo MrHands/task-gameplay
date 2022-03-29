@@ -8,25 +8,34 @@ export default class SexMove extends React.Component {
 	get classes() {
 		const {
 			className,
+			mood,
 			id,
+			type,
 		} = this.props;
 
 		const classes = ['m-sexMove'];
+
 		if (id === -1) {
 			classes.push('-empty');
 		}
+
+		if (mood === type) {
+			classes.push('-match');
+		}
+
 		classes.push(className);
 
 		return classes;
 	}
 
-	effectText(effect) {
+	effectText(effect, match) {
 		const {
 			type,
 			value
 		} = effect;
 
-		const valueText = value > 0 ? `+${value}` : value;
+		const valueBonus = (match && type === 'lust') ? (value * 2) : value;
+		const valueText = (valueBonus > 0) ? `+${valueBonus}` : valueBonus;
 
 		switch (type) {
 			case 'lust':
@@ -41,6 +50,7 @@ export default class SexMove extends React.Component {
 
 	render() {
 		const {
+			mood,
 			id,
 			title,
 			type,
@@ -76,9 +86,17 @@ export default class SexMove extends React.Component {
 				<ul className="m-sexMove__effects">
 					{effects.map((effect, index) => {
 						return (
-							<li key={`sex-move-effect-${index}`}>
-								<p>{effect.type}</p>
-								<p>{this.effectText(effect)}</p>
+							<li
+								key={`sex-move-effect-${index}`}
+								className="m-sexMove__effects__item"
+								data-type={effect.type}
+							>
+								<p className="m-sexMove__effects__item__title">
+									{effect.type}
+								</p>
+								<p className="m-sexMove__effects__item__value">
+									{this.effectText(effect, mood === type)}
+								</p>
 							</li>
 						);
 					})}
