@@ -28,7 +28,6 @@ button:disabled {
 	grid-template-rows:
 		min-content
 		1fr;
-	justify-content: center;
 	gap: 1rem;
 	min-height: calc(100vh - 2rem);
 }
