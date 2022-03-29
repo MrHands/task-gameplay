@@ -163,30 +163,31 @@ export default class App extends React.Component {
 
 			return {
 				characters: characters.map(character => {
-					const clone = deepClone(character);
+					const cloneCharacter = deepClone(character);
 
 					if (newDay) {
-						clone.task = '';
-						clone.stats.stamina = 5;
+						cloneCharacter.task = '';
+						cloneCharacter.stats.stamina = 5;
 					} else {
 						// apply task effects
 		
-						if (clone.task) {
-							clone.task.effects.forEach(effect => {
-								const statValue = clone.stats[effect.type];
-								clone.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+						if (cloneCharacter.task) {
+							console.log(`applying task ${cloneCharacter.task} to ${cloneCharacter.name}`);
+
+							cloneCharacter.task.effects.forEach(effect => {
+								const statValue = cloneCharacter.stats[effect.type];
+								// console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
+								cloneCharacter.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
 							});
-							clone.task = '';
+							cloneCharacter.task = '';
 						}
-		
-						// modify stamina
-		
-						clone.stats.stamina = this.clampCharacterStat('stamina', clone.stats.stamina - clone.staminaCost);
 					}
 
-					clone.staminaCost = 1;
+					// reset stamina cost
+
+					cloneCharacter.staminaCost = 1;
 	
-					return clone;
+					return cloneCharacter;
 				}),
 			}
 		});
@@ -321,18 +322,18 @@ export default class App extends React.Component {
 						return character;
 					}
 
-					const clone = deepClone(character);
+					const characterClone = deepClone(character);
 
-					clone.task = task;
-					task.characterId = clone.id;
+					characterClone.task = task;
+					task.characterId = characterClone.id;
 
 					if (task.difficulty === 0) {
-						clone.staminaCost = 0;
+						characterClone.staminaCost = 0;
 					} else {
-						clone.staminaCost = 1;
+						characterClone.staminaCost = 1;
 					}
 
-					return clone;
+					return characterClone;
 				})
 			}
 		});
@@ -394,104 +395,123 @@ export default class App extends React.Component {
 		console.log(`startTask ${handId}`);
 
 		this.setState(state => {
+			let {
+				characters,
+				handCards,
+			} = this.state;
+
+			const taskClone = deepClone(handCards.find(task => task.handId === handId));
+			if (!taskClone) {
+				return {
+					characters,
+					handCards,
+				};
+			}
+
+			const characterClone = deepClone(this.getCharacter(taskClone.characterId));
+
+			const bonus = characterClone.staminaCost - 1;
+
+			// determine outcome based on difficulty and roll
+
+			if (taskClone.difficulty > 0) {
+				taskClone.roll = Math.floor(Math.random() * 20);
+				if (taskClone.roll === 19) {
+					taskClone.outcome = TaskOutcome.CRITICAL_SUCCESS;
+				} else if (taskClone.roll >= taskClone.difficulty - bonus) {
+					taskClone.outcome = TaskOutcome.SUCCESS;
+				} else {
+					taskClone.outcome = TaskOutcome.FAIL;
+				}
+			} else {
+				taskClone.roll = 0;
+				taskClone.outcome = TaskOutcome.SUCCESS;
+			}
+
+			// apply outcome to effects
+
+			switch (taskClone.outcome) {
+				case TaskOutcome.FAIL: {
+					taskClone.effects.forEach(effect => {
+						switch (effect.type) {
+							case 'stamina':
+								break;
+							case 'pleasure': {
+								if (effect.value < 0) {
+									effect.value *= 2;
+								} else {
+									effect.value /= 2;
+								}
+								break;
+							}
+							default:
+								effect.value /= 2;
+								break;
+						}
+						effect.value = Math.floor(effect.value);
+					});
+					break;
+				}
+				case TaskOutcome.CRITICAL_SUCCESS: {
+					taskClone.effects.forEach(effect => {
+						switch (effect.type) {
+							case 'stamina':
+								break;
+							case 'pleasure': {
+								if (effect.value < 0) {
+									effect.value /= 2;
+								} else {
+									effect.value *= 2;
+								}
+								break;
+							}
+							default:
+								effect.value *= 2;
+								break;
+						}
+						effect.value = Math.floor(effect.value);
+					});
+					break;
+				}
+				default: break;
+			}
+
+			// add stamina to effects
+
+			if (taskClone.difficulty > 0) {
+				let staminaEffect = taskClone.effects.find(effect => effect.type === 'stamina');
+				if (staminaEffect) {
+					staminaEffect.value = -characterClone.staminaCost;
+				} else {
+					staminaEffect = {
+						type: 'stamina',
+						value: -characterClone.staminaCost
+					};
+					taskClone.effects.push(staminaEffect);
+				}
+			}
+
+			console.log(`task ${taskClone.handId}: roll ${taskClone.roll} difficulty ${taskClone.difficulty} bonus ${bonus} outcome ${taskClone.outcome}`);
+
+			// notify character
+
+			characterClone.task = taskClone;
+
 			return {
-				handCards: state.handCards.map(task => {
+				characters: characters.map(character => {
+					if (character.id !== characterClone.id) {
+						return character;
+					}
+
+					return characterClone;
+				}),
+				handCards: handCards.map(task => {
 					if (task.handId !== handId) {
 						return task;
 					}
 
-					const clone = deepClone(task);
-
-					const character = this.getCharacter(clone.characterId);
-					const bonus = character.staminaCost - 1;
-
-					// determine outcome based on difficulty and roll
-
-					if (clone.difficulty > 0) {
-						clone.roll = Math.floor(Math.random() * 20);
-						if (clone.roll === 19) {
-							clone.outcome = TaskOutcome.CRITICAL_SUCCESS;
-						} else if (clone.roll >= clone.difficulty - bonus) {
-							clone.outcome = TaskOutcome.SUCCESS;
-						} else {
-							clone.outcome = TaskOutcome.FAIL;
-						}
-					} else {
-						clone.roll = 0;
-						clone.outcome = TaskOutcome.SUCCESS;
-					}
-
-					// apply outcome to effects
-
-					switch (clone.outcome) {
-						case TaskOutcome.FAIL: {
-							clone.effects.forEach(effect => {
-								switch (effect.type) {
-									case 'stamina':
-										break;
-									case 'pleasure': {
-										if (effect.value < 0) {
-											effect.value *= 2;
-										} else {
-											effect.value /= 2;
-										}
-										break;
-									}
-									default:
-										effect.value /= 2;
-										break;
-								}
-								effect.value = Math.floor(effect.value);
-							});
-							break;
-						}
-						case TaskOutcome.CRITICAL_SUCCESS: {
-							clone.effects.forEach(effect => {
-								switch (effect.type) {
-									case 'stamina':
-										break;
-									case 'pleasure': {
-										if (effect.value < 0) {
-											effect.value /= 2;
-										} else {
-											effect.value *= 2;
-										}
-										break;
-									}
-									default:
-										effect.value *= 2;
-										break;
-								}
-								effect.value = Math.floor(effect.value);
-							});
-							break;
-						}
-						default: break;
-					}
-
-					// add stamina to effects
-
-					if (clone.difficulty > 0) {
-						let staminaEffect = clone.effects.find(effect => effect.type === 'stamina');
-						if (staminaEffect) {
-							staminaEffect.value = -character.staminaCost;
-						} else {
-							staminaEffect = {
-								type: 'stamina',
-								value: -character.staminaCost
-							};
-							clone.effects.push(staminaEffect);
-						}
-					}
-
-					console.log(`task ${clone.handId}: roll ${clone.roll} difficulty ${clone.difficulty} bonus ${bonus} outcome ${clone.outcome}`);
-
-					// notify character
-
-					character.task = clone;
-
-					return clone;
-				})
+					return taskClone;
+				}),
 			}
 		});
 	}
