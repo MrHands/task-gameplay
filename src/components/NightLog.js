@@ -23,7 +23,13 @@ export default class NightLog extends React.Component {
 
 		return (
 			<div className={this.classes.join(' ')}>
-				{nightLog.map(entry => <ReactMarkdown>{entry}</ReactMarkdown>)}
+				{nightLog.map((entry, index) => {
+					return (
+						<ReactMarkdown key={`log-${index}`}>
+							{entry}
+						</ReactMarkdown>
+					);
+				})}
 			</div>
 		);
 	}
