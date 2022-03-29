@@ -119,8 +119,12 @@ export default class NightShift extends React.Component {
 					</h2>
 				</div>
 				<div className="o-nightShift__shift">
-					<button className="o-nightShift__shift__finish" onClick={handleFinishShift}>
-						Finish Shift
+					<button
+						className="o-nightShift__shift__finish"
+						onClick={handleFinishShift}
+						disabled={captainLust >= 100 ? '' : 'disabled'}
+					>
+						End Night
 					</button>
 				</div>
 				<div className="o-nightShift__mood">

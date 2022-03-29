@@ -266,8 +266,13 @@ export default class App extends React.Component {
 				maxValue = 5;
 				break;
 			}
-			case 'pleasure': {
+			case 'pleasure':
+			case 'crew': {
 				maxValue = 200;
+				break;
+			}
+			case 'captain': {
+				maxValue = 100;
 				break;
 			}
 			default: {
@@ -576,6 +581,8 @@ export default class App extends React.Component {
 				captainLust,
 				sexergy,
 				sexergyGenerated,
+				sexMoves,
+				sexMovesPlayed,
 				mood,
 			} = state;
 
@@ -584,7 +591,19 @@ export default class App extends React.Component {
 			const nightLog = [...state.nightLog];
 
 			const logEffects = sexMove.effects.map(effect => {
-				return `${effect.type} +${effect.value}`;
+				let result = `${effect.type} `;
+				switch (effect.type) {
+					case 'crew':
+					case 'captain': {
+						result += `+${effect.value}%`;
+						break;
+					}
+					default: {
+						result += `+${effect.value}`;
+						break;
+					}
+				}
+				return result;
 			});
 			nightLog.push(`Played **${sexMove.title}** (${logEffects.join(', ')})`);
 
@@ -639,15 +658,31 @@ export default class App extends React.Component {
 				nightLog.push(`2x Sexergy generated from ${from} to **${sexergyGenerated}**`);
 			}
 
+			// captain orgasm!
+
+			if (captainLust >= 100) {
+				sexergyGenerated += 1000;
+				sexergy += sexergyGenerated;
+
+				sexMoves = [];
+
+				nightLog.push(`*Captain had an orgasm!*`);
+				nightLog.push(`Sexergy bonus of **1000**`);
+				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
+				nightLog.push(`*End of night shift*`);
+			}
+
 			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
 
 			return {
 				nightLog,
 				crewLust,
 				captainLust,
+				sexergy,
 				sexergyGenerated,
 				mood,
-				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
+				sexMoves,
+				sexMovesPlayed: [...sexMovesPlayed, sexMove]
 			}
 		});
 	}
