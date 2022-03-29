@@ -1,4 +1,5 @@
 import React from 'react';
+import CountUp from 'react-countup';
 
 import CharacterList from '../components/CharacterList';
 import LustBar from '../components/LustBar';
@@ -9,29 +10,8 @@ import SexMoveCategory from '../components/SexMoveCategory';
 import './NightShift.scss';
 
 export default class NightShift extends React.Component {
-	constructor() {
-		super();
-
-		this.state = {
-			sexergyEarned: 0,
-		};
-	}
-
 	playSexMove(sexMoveId) {
 		this.props.playSexMove(sexMoveId);
-
-		this.setState(state => {
-			const {
-				sexergyEarned
-			} = state;
-
-			const sexMove = this.props.getSexMove(sexMoveId);
-			const sexergyEffect = sexMove.effects.find(effect => effect.type === 'sexergy');
-
-			return {
-				sexergyEarned: sexergyEarned + sexergyEffect.value
-			};
-		});
 	}
 
 	renderCharacters(props) {
@@ -89,15 +69,12 @@ export default class NightShift extends React.Component {
 			captainLust,
 			sexMoves,
 			sexMovesPlayed,
+			sexergyGenerated,
 			categoriesExpanded,
 			toggleExpandCategory,
 			canSexMoveBePlayed,
 			handleFinishShift,
 		} = this.props;
-
-		const {
-			sexergyEarned
-		} = this.state;
 
 		const movesSelected = [...sexMovesPlayed];
 		if (nightCharacter !== null && sexMovesPlayed.length < 5) {
@@ -134,7 +111,12 @@ export default class NightShift extends React.Component {
 				</div>
 				<div className="o-nightShift__sexergy">
 					<h2 className="o-nightShift__sexergy__title">Sexergy Earned</h2>
-					<h2 className="o-nightShift__sexergy__value">{sexergyEarned}</h2>
+					<h2 className="o-nightShift__sexergy__value">
+						<CountUp
+							end={sexergyGenerated}
+							duration={1}
+						/>
+					</h2>
 				</div>
 				<div className="o-nightShift__shift">
 					<button className="o-nightShift__shift__finish" onClick={handleFinishShift}>

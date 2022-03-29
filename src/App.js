@@ -31,6 +31,7 @@ export default class App extends React.Component {
 			day: 1,
 			shift: Shift.MORNING,
 			sexergy: 0,
+			sexergyGenerated: 0,
 
 			deck: 'balanced',
 			handCards: [],
@@ -112,6 +113,7 @@ export default class App extends React.Component {
 	startNight() {
 		this.setState({
 			nightLog: [],
+			sexergyGenerated: 0,
 			crewLust: 0,
 			captainLust: 0,
 			mood: 'passionate',
@@ -323,8 +325,8 @@ export default class App extends React.Component {
 		if (this.state.shift === Shift.NIGHT) {
 			const character = this.getCharacter(characterId);
 
-			this.addToNightLog(`Selected **${character.name}** for night shift`);
-			this.addToNightLog(`Starting lust at ${character.stats.pleasure}%`);
+			this.addToNightLog(`Selected **${character.name}** (passionate: ${character.stats.passionate}, intimate: ${character.stats.intimate}, dominant: ${character.stats.dominant}) for night shift`);
+			this.addToNightLog(`Starting crew lust at ${character.stats.pleasure}%`);
 
 			this.setState({
 				crewLust: character.stats.pleasure,
@@ -550,8 +552,11 @@ export default class App extends React.Component {
 				crewLust,
 				captainLust,
 				sexergy,
+				sexergyGenerated,
 				mood,
 			} = state;
+
+			// logging
 
 			const nightLog = [...state.nightLog];
 
@@ -573,7 +578,7 @@ export default class App extends React.Component {
 						break;
 					}
 					case 'sexergy': {
-						sexergy += effect.value;
+						sexergyGenerated += effect.value;
 						break;
 					}
 					default: break;
@@ -596,24 +601,26 @@ export default class App extends React.Component {
 					break;
 			}
 
-			// orgasm!
+			// crew orgasm!
 
 			if (crewLust >= 200) {
-				const sexergyFrom = sexergy;
+				const from = sexergyGenerated;
 
 				crewLust = 50;
-				sexergy *= 2;
+				sexergyGenerated *= 2;
 
 				nightLog.push(`*${character.name} had an orgasm!*`);
 				nightLog.push(`Resetting ${character.name}'s lust to 50%`);
-				nightLog.push(`Sexergy ${sexergyFrom} => ${sexergy}`);
+				nightLog.push(`2x Sexergy generated from ${from} to **${sexergyGenerated}**`);
 			}
+
+			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
 
 			return {
 				nightLog,
 				crewLust,
 				captainLust,
-				sexergy,
+				sexergyGenerated,
 				mood,
 				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
 			}
@@ -662,6 +669,7 @@ export default class App extends React.Component {
 				mood,
 				sexMoves,
 				sexMovesPlayed,
+				sexergyGenerated,
 				categoriesExpanded,
 			} = this.state;
 
@@ -682,6 +690,7 @@ export default class App extends React.Component {
 					mood={mood}
 					sexMoves={sexMoves}
 					sexMovesPlayed={sexMovesPlayed}
+					sexergyGenerated={sexergyGenerated}
 					categoriesExpanded={categoriesExpanded}
 					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
 					getSexMove={this.getSexMove.bind(this)}
