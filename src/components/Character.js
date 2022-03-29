@@ -34,7 +34,7 @@ export default class Character extends React.Component {
 			>
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
-					{['stamina', 'pleasure', 'passionate', 'intimate', 'dominant'].map((type, index) => {
+					{['stamina', 'pleasure', 'passionate', 'intimate', 'submissive'].map((type, index) => {
 						return (
 							<StatsItem
 								key={`task-${index}`}

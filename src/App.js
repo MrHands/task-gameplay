@@ -52,7 +52,7 @@ export default class App extends React.Component {
 						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
-						dominant: 0
+						submissive: 0
 					},
 					staminaCost: 0,
 					task: ''
@@ -65,7 +65,7 @@ export default class App extends React.Component {
 						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
-						dominant: 0
+						submissive: 0
 					},
 					staminaCost: 0,
 					task: ''
@@ -78,7 +78,7 @@ export default class App extends React.Component {
 						pleasure: 0,
 						passionate: 0,
 						intimate: 0,
-						dominant: 0
+						submissive: 0
 					},
 					staminaCost: 0,
 					task: ''
@@ -88,7 +88,7 @@ export default class App extends React.Component {
 			nightLog: [],
 			crewLust: 0,
 			captainLust: 0,
-			mood: Mood.DOMINANT,
+			mood: Mood.SUBMISSIVE,
 			sexMoves: [],
 			sexMovesPlayed: [],
 			categoriesExpanded: {
@@ -142,7 +142,7 @@ export default class App extends React.Component {
 					clone.stats.pleasure = randomValue(0, 100);
 					clone.stats.passionate = randomValue(0, 100);
 					clone.stats.intimate = randomValue(0, 100);
-					clone.stats.dominant = randomValue(0, 100);
+					clone.stats.submissive = randomValue(0, 100);
 
 					return clone;
 				}),
@@ -365,14 +365,14 @@ export default class App extends React.Component {
 					break;
 				}
 				case 2: {
-					mood = Mood.DOMINANT;
+					mood = Mood.SUBMISSIVE;
 					break;
 				}
 				default:
 					break;
 			}
 
-			this.addToNightLog(`Selected **${character.name}** (passionate: ${character.stats.passionate}, intimate: ${character.stats.intimate}, dominant: ${character.stats.dominant}) for night shift`);
+			this.addToNightLog(`Selected **${character.name}** (passionate: ${character.stats.passionate}, intimate: ${character.stats.intimate}, submissive: ${character.stats.submissive}) for night shift`);
 			this.addToNightLog(`Captain lust starts at 0%`);
 			this.addToNightLog(`Crew lust starts at ${character.stats.pleasure}%`);
 			this.addToNightLog(`Starting mood is **${mood}**`);
@@ -681,9 +681,9 @@ export default class App extends React.Component {
 					mood = Mood.INTIMATE;
 					break;
 				case Mood.INTIMATE:
-					mood = Mood.DOMINANT;
+					mood = Mood.SUBMISSIVE;
 					break;
-				case Mood.DOMINANT:
+				case Mood.SUBMISSIVE:
 					mood = Mood.PASSIONATE;
 					break;
 				default:
