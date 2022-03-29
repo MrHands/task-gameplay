@@ -15,6 +15,10 @@ import NightShift from './states/NightShift';
 
 import './App.scss';
 
+function deepClone(object) {
+	return JSON.parse(JSON.stringify(object));
+}
+
 Math.clamp = (value, min, max) => {
 	return Math.max(min, Math.min(value, max));
 }
@@ -133,7 +137,7 @@ export default class App extends React.Component {
 
 			return {
 				characters: characters.map(character => {
-					const clone = {...character};
+					const clone = deepClone(character);
 
 					clone.stats.pleasure = randomValue(0, 100);
 					clone.stats.passionate = randomValue(0, 100);
@@ -159,7 +163,7 @@ export default class App extends React.Component {
 
 			return {
 				characters: characters.map(character => {
-					const clone = {...character};
+					const clone = deepClone(character);
 
 					if (newDay) {
 						clone.task = '';
@@ -207,7 +211,7 @@ export default class App extends React.Component {
 				console.log(deckTasks);
 
 				tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
-					return JSON.parse(JSON.stringify(this.getTask(id)));
+					return deepClone(this.getTask(id));
 				}));
 				console.log(tasksDeck);
 
@@ -216,20 +220,20 @@ export default class App extends React.Component {
 				});
 
 				restDeck = this.shuffleCards(deckRest.tasks.map(id => {
-					return JSON.parse(JSON.stringify(this.getTask(id)));
+					return deepClone(this.getTask(id));
 				}));
 			}
 
 			// deep copy to avoid copying effects array as references!
 	
 			for (let i = 0; i < characters.length; ++i) {
-				const task = JSON.parse(JSON.stringify(tasksDeck.pop()));
+				const task = deepClone(tasksDeck.pop());
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
 	
 			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
-				const task = JSON.parse(JSON.stringify(restDeck[0]));
+				const task = deepClone(restDeck[0]);
 				task.handId = handCards.length;
 				handCards.push(task);
 			}
@@ -317,7 +321,7 @@ export default class App extends React.Component {
 						return character;
 					}
 
-					const clone = {...character};
+					const clone = deepClone(character);
 
 					clone.task = task;
 					task.characterId = clone.id;
@@ -365,7 +369,7 @@ export default class App extends React.Component {
 				mood,
 				crewLust: character.stats.pleasure,
 				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
-					const clone = JSON.parse(JSON.stringify(sexMove));
+					const clone = deepClone(sexMove);
 
 					clone.effects.forEach(effect => {
 						switch (effect.type) {
@@ -396,7 +400,7 @@ export default class App extends React.Component {
 						return task;
 					}
 
-					const clone = {...task};
+					const clone = deepClone(task);
 
 					const character = this.getCharacter(clone.characterId);
 					const bonus = character.staminaCost - 1;
@@ -572,7 +576,7 @@ export default class App extends React.Component {
 
 		// apply mood bonus
 
-		const sexMove = {...this.getSexMove(sexMoveId)};
+		const sexMove = deepClone(this.getSexMove(sexMoveId));
 		sexMove.effects.forEach(effect => {
 			switch (effect.type) {
 				case 'crew': {
