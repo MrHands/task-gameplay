@@ -17,6 +17,7 @@ export default class ShiftHud extends React.Component {
 
 	render() {
 		const {
+			sexergy,
 			day,
 			shift,
 			charactersNotDone,
@@ -30,20 +31,24 @@ export default class ShiftHud extends React.Component {
 			hint = 'All characters must perform a task to finish the shift';
 		}
 
-		let finishButton = null;
-		if (handleFinishShift) {
-			finishButton = (
-				<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
-					Finish Shift
-				</button>
-			);
-		}
-
 		return (
 			<div className={this.classes.join(' ')}>
-				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
-				{finishButton}
-				<h3 className="m-shiftHud__hint">{hint}</h3>
+				<h2 className="m-shiftHud__sexergy">
+					<div className="m-shiftHud__sexergy__title">Sexergy</div>
+					<div className="m-shiftHud__sexergy__value">{sexergy}</div>
+				</h2>
+				<h2 className="m-shiftHud__day">
+					{`Day ${day}`}
+				</h2>
+				<h2 className="m-shiftHud__shift">
+					{`${shiftName}`}
+				</h2>
+				<div className="m-shiftHud__next">
+					<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
+						Finish Shift
+					</button>
+					<h3 className="m-shiftHud__hint">{hint}</h3>
+				</div>
 			</div>
 		);
 	}

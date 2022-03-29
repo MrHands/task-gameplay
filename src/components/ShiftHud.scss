@@ -1,12 +1,49 @@
 .m-shiftHud {
 	display: grid;
-	grid-template-rows:
-		min-content
-		1fr;
-	gap: 12px;
-	justify-items: center;
-}
+	grid-template-areas:
+		'sexergy   day   shift   next';
+	grid-template-columns:
+		1fr
+		1fr
+		1fr
+		3fr;
+	gap: 1rem;
+	place-items: center;
 
-.m-shiftHud__title {
-	text-transform: uppercase;
+	&__sexergy {
+		grid-area: sexergy;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		padding: 0 1rem;
+		text-transform: uppercase;
+
+		&__title {
+			color: gray;
+		}
+
+		&__value {
+			color: hotpink;
+		}
+	}
+
+	&__day {
+		grid-area: day;
+		text-transform: uppercase;
+	}
+
+	&__shift {
+		grid-area: shift;
+	}
+
+	&__next {
+		grid-area: next;
+		display: grid;
+		grid-template-rows:
+			min-content
+			1rem;
+		gap: 1rem;
+		place-items: center;
+	}
 }

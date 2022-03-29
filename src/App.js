@@ -762,6 +762,7 @@ export default class App extends React.Component {
 
 	render() {
 		const {
+			sexergy,
 			day,
 			shift,
 			handCards,
@@ -833,6 +834,7 @@ export default class App extends React.Component {
 			hud = (
 				<ShiftHud
 					className="o-app__hud"
+					sexergy={sexergy}
 					day={day}
 					shift={shift}
 					charactersNotDone={charactersNotDone}
