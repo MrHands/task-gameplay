@@ -166,8 +166,19 @@ export default class App extends React.Component {
 					const cloneCharacter = deepClone(character);
 
 					if (newDay) {
+						// reset task
+
 						cloneCharacter.task = '';
-						cloneCharacter.stats.stamina = 5;
+
+						// reset pleasure
+
+						if (cloneCharacter.id === this.nightCharacter?.id) {
+							cloneCharacter.stats.pleasure = 0;
+						}
+
+						// add stamina
+
+						cloneCharacter.stats.stamina = this.clampCharacterStat('stamina', cloneCharacter.stats.stamina + 2);
 					} else {
 						// apply task effects
 		
@@ -398,7 +409,7 @@ export default class App extends React.Component {
 			let {
 				characters,
 				handCards,
-			} = this.state;
+			} = state;
 
 			const taskClone = deepClone(handCards.find(task => task.handId === handId));
 			if (!taskClone) {
