@@ -6,7 +6,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 10
+					"value": 20
 				}
 			],
 			"difficulty": 6
@@ -17,7 +17,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 20
+					"value": 40
 				}
 			],
 			"difficulty": 8
@@ -28,7 +28,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 30
+					"value": 60
 				}
 			],
 			"difficulty": 10
@@ -39,7 +39,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 40
+					"value": 80
 				}
 			],
 			"difficulty": 12
@@ -69,15 +69,15 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 10
+					"value": 20
 				},
 				{
 					"type": "passionate",
-					"value": 5
+					"value": 10
 				},
 				{
 					"type": "dominant",
-					"value": 25
+					"value": 30
 				}
 			],
 			"difficulty": 4
@@ -88,15 +88,15 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 10
+					"value": 30
 				},
 				{
 					"type": "intimate",
-					"value": 15
+					"value": 20
 				},
 				{
 					"type": "dominant",
-					"value": 15
+					"value": 20
 				}
 			],
 			"difficulty": 6
@@ -107,15 +107,15 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 10
+					"value": 40
 				},
 				{
 					"type": "passionate",
-					"value": 25
+					"value": 30
 				},
 				{
 					"type": "intimate",
-					"value": 15
+					"value": 10
 				}
 			],
 			"difficulty": 8
