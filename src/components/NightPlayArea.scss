@@ -1,11 +1,9 @@
 .m-nightPlayArea {
 	display: grid;
 	grid-template-areas:
-		'hud         '
 		'drop        '
 		'characters  ';
 	grid-template-rows:
-		min-content
 		1fr
 		15rem;
 
@@ -15,10 +13,6 @@
 
 	&__log {
 		grid-area: log;
-	}
-
-	&__hud {
-		grid-area: hud;
 	}
 
 	&__drop {

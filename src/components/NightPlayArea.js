@@ -2,7 +2,6 @@ import React from 'react';
 
 import CharacterList from '../components/CharacterList';
 import DroppableCard from '../components/DroppableCard';
-import ShiftHud from './ShiftHud';
 
 import './NightPlayArea.scss';
 import NightLog from './NightLog';
@@ -27,9 +26,6 @@ export default class NightPlayArea extends React.Component {
 
 	render() {
 		const {
-			day,
-			shift,
-			charactersNotDone,
 			charactersUnplaced,
 			nightCharacter,
 			nightTask,
@@ -51,13 +47,6 @@ export default class NightPlayArea extends React.Component {
 		} else {
 			return (
 				<div className={this.classes.join(' ')}>
-					<ShiftHud
-						className="m-nightPlayArea__hud"
-						day={day}
-						shift={shift}
-						charactersNotDone={charactersNotDone}
-						handleFinishShift={null}
-					/>
 					<div className="m-nightPlayArea__drop">
 						<DroppableCard
 							className="o-character -empty"
