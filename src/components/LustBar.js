@@ -29,7 +29,7 @@ export default class LustBar extends React.Component {
 
 		const style = {
 			'--lust-width': `${Math.min(lust, 100)}%`,
-			'--overload-width': `${Math.max(lust - 100, 0)}%`,
+			'--overload-width': `${Math.clamp(lust - 100, 0, 100)}%`,
 		};
 
 		return (
