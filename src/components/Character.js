@@ -21,17 +21,14 @@ export default class Character extends React.Component {
 			id,
 			name,
 			stats,
+			task,
 			taskEffects,
 			clampCharacterStat,
 			children,
 		} = this.props;
 
-		return (
-			<DraggableCard
-				className={this.classes.join(' ')}
-				id={id}
-				children={children}
-			>
+		const guts = (
+			<>
 				<h2 className="o-character__name">{name}</h2>
 				<div className="m-stats o-character__stats">
 					{['stamina', 'pleasure', 'passionate', 'intimate', 'submissive'].map((type, index) => {
@@ -45,7 +42,25 @@ export default class Character extends React.Component {
 						);
 					})}
 				</div>
-			</DraggableCard>
+			</>
 		);
+
+		if (task === '') {
+			return (
+				<DraggableCard
+					className={this.classes.join(' ')}
+					id={id}
+					children={children}
+				>
+					{guts}
+				</DraggableCard>
+			);
+		} else {
+			return (
+				<div className={this.classes.join(' ')}>
+					{guts}
+				</div>
+			);
+		}
 	}
 }

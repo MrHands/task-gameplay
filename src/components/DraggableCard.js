@@ -16,7 +16,7 @@ export default function DraggableCard(props) {
 	}), [id]);
 
 	if (isDragging) {
-		console.log(id);
+		console.log(`dragging ${id}`);
 	}
 
 	return isDragging ? (
