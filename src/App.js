@@ -659,11 +659,11 @@ export default class App extends React.Component {
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'crew': {
-						crewLust = this.clampCharacterStat('crew', crewLust + effect.value);
+						crewLust += effect.value;
 						break;
 					}
 					case 'captain': {
-						captainLust = this.clampCharacterStat('captain', captainLust + effect.value);
+						captainLust += effect.value;
 						break;
 					}
 					case 'sexergy': {
@@ -692,12 +692,17 @@ export default class App extends React.Component {
 
 			nightLog.push(`Changed mood to **${mood}**`);
 
+			const gameOver = captainLust >= 100;
+
 			// crew orgasm!
 
 			if (crewLust >= 200) {
 				const from = sexergyGenerated;
 
-				crewLust = 50;
+				if (!gameOver) {
+					crewLust = 50;
+				}
+
 				sexergyGenerated *= 2;
 
 				nightLog.push(`*${character.name} had an orgasm!*`);
@@ -707,7 +712,7 @@ export default class App extends React.Component {
 
 			// captain orgasm!
 
-			if (captainLust >= 100) {
+			if (gameOver) {
 				sexergyGenerated += 1000;
 				sexergy += sexergyGenerated;
 
@@ -717,6 +722,13 @@ export default class App extends React.Component {
 				nightLog.push(`Sexergy bonus of **1000**`);
 				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
 				nightLog.push(`*End of night shift*`);
+			}
+
+			// clamp stats
+
+			if (!gameOver) {
+				crewLust = this.clampCharacterStat('crew', crewLust);
+				captainLust = this.clampCharacterStat('captain', captainLust);
 			}
 
 			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
