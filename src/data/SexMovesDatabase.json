@@ -8,7 +8,7 @@
 			"lustMinimum": 0,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 20
 				},
 				{
@@ -29,7 +29,7 @@
 			"lustMinimum": 10,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 30
 				},
 				{
@@ -50,7 +50,7 @@
 			"lustMinimum": 50,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 40
 				},
 				{
@@ -72,7 +72,7 @@
 			"lustMinimum": 20,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 5
 				},
 				{
@@ -93,7 +93,7 @@
 			"lustMinimum": 40,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 15
 				},
 				{
@@ -114,7 +114,7 @@
 			"lustMinimum": 60,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 10
 				},
 				{
@@ -136,7 +136,7 @@
 			"lustMinimum": 60,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 40
 				},
 				{
@@ -157,7 +157,7 @@
 			"lustMinimum": 80,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 30
 				},
 				{
@@ -178,7 +178,7 @@
 			"lustMinimum": 100,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 20
 				},
 				{
@@ -200,7 +200,7 @@
 			"lustMinimum": 100,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 30
 				},
 				{
@@ -221,7 +221,7 @@
 			"lustMinimum": 100,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 50
 				},
 				{
@@ -242,7 +242,7 @@
 			"lustMinimum": 100,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 70
 				},
 				{
@@ -264,7 +264,7 @@
 			"lustMinimum": 60,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 50
 				},
 				{
@@ -285,7 +285,7 @@
 			"lustMinimum": 80,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 50
 				},
 				{
@@ -306,7 +306,7 @@
 			"lustMinimum": 100,
 			"effects": [
 				{
-					"type": "lust",
+					"type": "crew",
 					"value": 50
 				},
 				{

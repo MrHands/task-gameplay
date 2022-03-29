@@ -34,11 +34,10 @@ export default class SexMove extends React.Component {
 			value
 		} = effect;
 
-		const valueBonus = (match && type === 'lust') ? (value * 2) : value;
+		const valueBonus = (match && type === 'crew') ? (value * 2) : value;
 		const valueText = (valueBonus > 0) ? `+${valueBonus}` : valueBonus;
 
 		switch (type) {
-			case 'lust':
 			case 'crew':
 			case 'captain':
 			case 'pleasure': {

@@ -81,7 +81,8 @@ export default class App extends React.Component {
 			],
 
 			nightLog: [],
-			lust: 0,
+			crewLust: 0,
+			captainLust: 0,
 			mood: Mood.DOMINANT,
 			sexMoves: [],
 			sexMovesPlayed: [],
@@ -111,7 +112,8 @@ export default class App extends React.Component {
 	startNight() {
 		this.setState({
 			nightLog: [],
-			lust: 0,
+			crewLust: 0,
+			captainLust: 0,
 			mood: 'passionate',
 			sexMovesPlayed: [],
 		});
@@ -139,10 +141,10 @@ export default class App extends React.Component {
 					return clone;
 				}),
 				shift: Shift.NIGHT,
-				lust: 0,
-				sexMovesPlayed: [],
 			};
 		});
+
+		this.startNight();
 
 		this.drawHand();
 	}
@@ -325,7 +327,7 @@ export default class App extends React.Component {
 			this.addToNightLog(`Starting lust at ${character.stats.pleasure}%`);
 
 			this.setState({
-				lust: character.stats.pleasure,
+				crewLust: character.stats.pleasure,
 				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
 					const clone = JSON.parse(JSON.stringify(sexMove));
 
@@ -517,7 +519,7 @@ export default class App extends React.Component {
 		}
 
 		const sexMove = this.getSexMove(sexMoveId);
-		return (this.state.lust >= sexMove.lustMinimum);
+		return (this.state.crewLust >= sexMove.lustMinimum);
 	}
 
 	playSexMove(sexMoveId) {
@@ -531,7 +533,7 @@ export default class App extends React.Component {
 		const sexMove = {...this.getSexMove(sexMoveId)};
 		sexMove.effects.forEach(effect => {
 			switch (effect.type) {
-				case 'lust': {
+				case 'crew': {
 					if (sexMove.type === this.state.mood) {
 						effect.value *= 2;
 					}
@@ -545,7 +547,8 @@ export default class App extends React.Component {
 
 		this.setState(state => {
 			let {
-				lust,
+				crewLust,
+				captainLust,
 				sexergy,
 				mood,
 			} = state;
@@ -561,8 +564,12 @@ export default class App extends React.Component {
 
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
-					case 'lust': {
-						lust = this.clampCharacterStat('lust', lust + effect.value);
+					case 'crew': {
+						crewLust = this.clampCharacterStat('crew', crewLust + effect.value);
+						break;
+					}
+					case 'captain': {
+						captainLust = this.clampCharacterStat('captain', captainLust + effect.value);
 						break;
 					}
 					case 'sexergy': {
@@ -591,20 +598,21 @@ export default class App extends React.Component {
 
 			// orgasm!
 
-			if (lust >= 200) {
+			if (crewLust >= 200) {
 				const sexergyFrom = sexergy;
 
-				lust = 50;
+				crewLust = 50;
 				sexergy *= 2;
 
 				nightLog.push(`*${character.name} had an orgasm!*`);
-				nightLog.push(`Resetting lust to 50%`);
+				nightLog.push(`Resetting ${character.name}'s lust to 50%`);
 				nightLog.push(`Sexergy ${sexergyFrom} => ${sexergy}`);
 			}
 
 			return {
 				nightLog,
-				lust,
+				crewLust,
+				captainLust,
 				sexergy,
 				mood,
 				sexMovesPlayed: [...state.sexMovesPlayed, sexMove]
@@ -649,7 +657,8 @@ export default class App extends React.Component {
 		} else if (shift === Shift.NIGHT) {
 			const {
 				nightLog,
-				lust,
+				crewLust,
+				captainLust,
 				mood,
 				sexMoves,
 				sexMovesPlayed,
@@ -668,7 +677,8 @@ export default class App extends React.Component {
 					nightCharacter={this.nightCharacter}
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
-					lust={lust}
+					crewLust={crewLust}
+					captainLust={captainLust}
 					mood={mood}
 					sexMoves={sexMoves}
 					sexMovesPlayed={sexMovesPlayed}

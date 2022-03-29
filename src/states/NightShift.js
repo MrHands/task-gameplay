@@ -85,7 +85,8 @@ export default class NightShift extends React.Component {
 		const {
 			mood,
 			nightCharacter,
-			lust,
+			crewLust,
+			captainLust,
 			sexMoves,
 			sexMovesPlayed,
 			categoriesExpanded,
@@ -123,12 +124,12 @@ export default class NightShift extends React.Component {
 					<LustBar
 						className="o-nightShift__lust__captain -captain"
 						name={'Captain'}
-						lust={0}
+						lust={captainLust}
 					/>
 					<LustBar
 						className="o-nightShift__lust__crew"
 						name={nightCharacter?.name || 'Crew'}
-						lust={lust}
+						lust={crewLust}
 					/>
 				</div>
 				<div className="o-nightShift__sexergy">
