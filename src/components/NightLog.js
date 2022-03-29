@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import './NightLog.scss';
 
@@ -21,11 +22,9 @@ export default class NightLog extends React.Component {
 		} = this.props;
 
 		return (
-			<ul className={this.classes.join(' ')}>
-				{nightLog.map(entry => {
-					return <li>{entry}</li>;
-				})}
-			</ul>
+			<div className={this.classes.join(' ')}>
+				{nightLog.map(entry => <ReactMarkdown>{entry}</ReactMarkdown>)}
+			</div>
 		);
 	}
 }

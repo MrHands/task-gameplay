@@ -326,7 +326,7 @@ export default class App extends React.Component {
 		if (this.state.shift === Shift.NIGHT) {
 			const character = this.getCharacter(characterId);
 
-			this.addToNightLog(`Selected ${character.name} for night shift`);
+			this.addToNightLog(`Selected **${character.name}** for night shift`);
 			this.addToNightLog(`Starting lust at ${character.stats.pleasure}%`);
 
 			this.setState({
@@ -545,7 +545,7 @@ export default class App extends React.Component {
 			const logEffects = sexMove.effects.map(effect => {
 				return `${effect.type} +${effect.value}`;
 			});
-			nightLog.push(`${sexMove.title} (${logEffects.join(', ')})`);
+			nightLog.push(`Played **${sexMove.title}** (${logEffects.join(', ')})`);
 
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
@@ -571,7 +571,7 @@ export default class App extends React.Component {
 				lust = 50;
 				sexergy *= 2;
 
-				nightLog.push(`${character.name} had an orgasm!`);
+				nightLog.push(`*${character.name} had an orgasm!*`);
 				nightLog.push(`Resetting lust to 50%`);
 				nightLog.push(`Sexergy ${sexergyFrom} => ${sexergy}`);
 			}
