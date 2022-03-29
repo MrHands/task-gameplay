@@ -4,6 +4,17 @@ import { Shift } from '../enums/Shift';
 import './ShiftHud.scss';
 
 export default class ShiftHud extends React.Component {
+	get classes() {
+		const {
+			className,
+		} = this.props;
+
+		const classes = ['m-shiftHud'];
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			day,
@@ -29,7 +40,7 @@ export default class ShiftHud extends React.Component {
 		}
 
 		return (
-			<div className={['m-shiftHud', this.props.className].join(' ')}>
+			<div className={this.classes.join(' ')}>
 				<h2 className="m-shiftHud__title">{`Day ${day} - ${shiftName}`}</h2>
 				{finishButton}
 				<h3 className="m-shiftHud__hint">{hint}</h3>

@@ -5,6 +5,18 @@ import Carousel from './Carousel';
 import './TaskStart.scss';
 
 export default class TaskStart extends React.Component {
+	get classes() {
+		const {
+			className,
+		} = this.props;
+
+		const classes = ['m-taskStart'];
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			handId,
@@ -51,7 +63,7 @@ export default class TaskStart extends React.Component {
 			}
 
 			return (
-				<div className={['m-taskStart', this.props.className].join(' ')}>
+				<div className={this.classes.join(' ')}>
 					{stamina}
 					{carousel}
 					{start}

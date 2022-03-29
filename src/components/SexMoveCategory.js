@@ -5,15 +5,6 @@ import SexMove from './SexMove';
 import './SexMoveCategory.scss';
 
 export default class SexMoveCategory extends React.Component {
-	get sexMovesAvailable() {
-		const {
-			sexMoves,
-			canSexMoveBePlayed,
-		} = this.props;
-
-		return sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove));
-	}
-
 	get classes() {
 		const {
 			className,
@@ -32,6 +23,15 @@ export default class SexMoveCategory extends React.Component {
 		classes.push(className);
 
 		return classes;
+	}
+
+	get sexMovesAvailable() {
+		const {
+			sexMoves,
+			canSexMoveBePlayed,
+		} = this.props;
+
+		return sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove));
 	}
 
 	render() {

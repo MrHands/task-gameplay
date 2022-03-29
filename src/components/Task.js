@@ -7,6 +7,18 @@ import './Task.scss';
 import TaskStart from './TaskStart';
 
 export default class Task extends React.Component {
+	get classes() {
+		const {
+			className,
+		} = this.props;
+
+		const classes = ['o-task'];
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	effectText(effect) {
 		const { type, value } = effect;
 
@@ -58,7 +70,7 @@ export default class Task extends React.Component {
 		}
 
 		return (
-			<div className="o-task">
+			<div className={this.classes.join(' ')}>
 				<h2 className="o-task__title">{task.title}</h2>
 				<div className="o-task__effects">
 					<h3>Rewards</h3>

@@ -5,6 +5,17 @@ import Character from '../components/Character';
 import './CharacterList.scss';
 
 export default class CharacterList extends React.Component {
+	get classes() {
+		const {
+			className
+		} = this.props;
+
+		const classes = ['m-characterList'];
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			characters,
@@ -13,7 +24,7 @@ export default class CharacterList extends React.Component {
 		} = this.props;
 
 		return (
-			<article className={['m-characterList', this.props.className].join(' ')}>
+			<article className={this.classes.join(' ')}>
 				{characters.map(character => {
 					return (
 						<Character

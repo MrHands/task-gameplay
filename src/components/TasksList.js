@@ -5,6 +5,18 @@ import Task from '../components/Task';
 import './TasksList.scss';
 
 export default class TasksList extends React.Component {
+	get classes() {
+		const {
+			className,
+		} = this.props;
+
+		const classes = ['m-tasksList'];
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			handCards,
@@ -17,7 +29,7 @@ export default class TasksList extends React.Component {
 		} = this.props;
 
 		return (
-			<div className={['m-tasksList', this.props.className].join(' ')}>
+			<div className={this.classes.join(' ')}>
 				{ handCards.map((task, index) => {
 					return <Task
 						key={`task-${index}`}

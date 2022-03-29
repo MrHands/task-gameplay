@@ -3,6 +3,40 @@ import React from 'react';
 import './StatsItem.scss';
 
 export default class StatsItem extends React.Component {
+	get classes() {
+		const {
+			className,
+			type,
+			stats,
+			effects,
+			clampCharacterStat,
+		} = this.props;
+
+		const classes = ['m-statsItem'];
+
+		classes.push(`-${type}`);
+
+		if (effects) {
+			const found = effects.find(effect => effect.type === type);
+			if (found) {
+				const value = stats[type];
+				const newValue = clampCharacterStat(type, value + found.value);
+
+				if (newValue > value) {
+					classes.push('-up');
+				} else if (newValue < value) {
+					classes.push('-down');
+				} else {
+					classes.push('-same');
+				}
+			}
+		}
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	effectText(type, value) {
 		switch (type) {
 			case 'stamina': {
@@ -25,9 +59,6 @@ export default class StatsItem extends React.Component {
 			clampCharacterStat,
 		} = this.props;
 
-		const classes = [ 'm-statsItem' ];
-		classes.push(`-${type}`);
-
 		const value = stats[type];
 
 		let result = this.effectText(type, value);
@@ -38,19 +69,16 @@ export default class StatsItem extends React.Component {
 
 				if (newValue > value) {
 					result = `${this.effectText(type, newValue)} ▲`;
-					classes.push('-up');
 				} else if (newValue < value) {
 					result = `${this.effectText(type, newValue)} ▼`;
-					classes.push('-down');
 				} else {
 					result = `${this.effectText(type, newValue)} −`;
-					classes.push('-same');
 				}
 			}
 		}
 
 		return (
-			<div className={classes.join(' ')}>
+			<div className={this.classes.join(' ')}>
 				<div className="m-statsItem__header">{type}</div>
 				<div className="m-statsItem__value">{result}</div>
 			</div>

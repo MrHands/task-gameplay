@@ -4,6 +4,23 @@ import CountUp from 'react-countup';
 import './LustBar.scss';
 
 export default class LustBar extends React.Component {
+	get classes() {
+		const {
+			className,
+			lust
+		} = this.props;
+
+		const classes = ['o-lustBar'];
+
+		if (lust > 100) {
+			classes.push('-overload');
+		}
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			name,
@@ -15,15 +32,9 @@ export default class LustBar extends React.Component {
 			'--overload-width': `${Math.max(lust - 100, 0)}%`,
 		};
 
-		const classes = ['o-lustBar'];
-		if (lust > 100) {
-			classes.push('-overload');
-		}
-		classes.push(this.props.className);
-
 		return (
 			<div
-				className={classes.join(' ')}
+				className={this.classes.join(' ')}
 				style={style}
 			>
 				<h2 className="o-lustBar__title">{name}</h2>

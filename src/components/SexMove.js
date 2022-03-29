@@ -5,6 +5,21 @@ import DroppableCard from './DroppableCard';
 import './SexMove.scss';
 
 export default class SexMove extends React.Component {
+	get classes() {
+		const {
+			className,
+			id,
+		} = this.props;
+
+		const classes = ['m-sexMove'];
+		if (id === -1) {
+			classes.push('-empty');
+		}
+		classes.push(className);
+
+		return classes;
+	}
+
 	effectText(effect) {
 		const {
 			type,
@@ -37,7 +52,10 @@ export default class SexMove extends React.Component {
 
 		if (id === -1) {
 			return (
-				<DroppableCard className="m-sexMove -empty" {...this.props}>
+				<DroppableCard
+					{...this.props}
+					className={this.classes.join(' ')}
+				>
 					<h2 className="m-sexMove__title">Select next move</h2>
 				</DroppableCard>
 			)
@@ -45,7 +63,7 @@ export default class SexMove extends React.Component {
 
 		return (
 			<div
-				className={['m-sexMove', this.props.className].join(' ')}
+				className={this.classes.join(' ')}
 				onClick={(event) => {
 					event.stopPropagation();
 					playSexMove(id);

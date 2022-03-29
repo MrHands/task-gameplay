@@ -5,6 +5,17 @@ import StatsItem from './StatsItem';
 import './Character.scss';
 
 export default class Character extends React.Component {
+	get classes() {
+		const {
+			className
+		} = this.props;
+
+		const classes = ['o-character'];
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			id,
@@ -17,7 +28,7 @@ export default class Character extends React.Component {
 
 		return (
 			<DraggableCard
-				className={['o-character', this.props.className].join(' ')}
+				className={this.classes.join(' ')}
 				id={id}
 				children={children}
 			>

@@ -5,6 +5,17 @@ import { TaskOutcome } from '../enums/TaskOutcome';
 import './Carousel.scss';
 
 export default class Carousel extends React.Component {
+	get classes() {
+		const {
+			className
+		} = this.props;
+
+		const classes = ['m-carousel'];
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			difficulty,
@@ -24,7 +35,7 @@ export default class Carousel extends React.Component {
 			}
 		}
 
-		return (<div className={['m-carousel', this.props.className].join(' ')}>
+		return (<div className={this.classes.join(' ')}>
 			{outcomes.map((outcome, index) => {
 				const classes = ['m-carousel__item', `-${outcome.toLowerCase()}`];
 

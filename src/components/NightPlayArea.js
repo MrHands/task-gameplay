@@ -7,6 +7,23 @@ import ShiftHud from './ShiftHud';
 import './NightPlayArea.scss';
 
 export default class NightPlayArea extends React.Component {
+	get classes() {
+		const {
+			className,
+			nightCharacter
+		} = this.props;
+
+		const classes = ['m-nightPlayArea'];
+
+		if (nightCharacter !== null) {
+			classes.push('-playing');
+		}
+
+		classes.push(className);
+
+		return classes;
+	}
+
 	render() {
 		const {
 			day,
@@ -19,18 +36,11 @@ export default class NightPlayArea extends React.Component {
 			clampCharacterStat,
 			onCharacterDropped,
 			canBePlaced,
-			handleFinishShift
 		} = this.props;
-
-		const classes = ['m-nightPlayArea'];
-		if (nightCharacter !== null) {
-			classes.push('-playing');
-		}
-		classes.push(this.props.className);
 
 		if (nightCharacter !== null) {
 			return (
-				<div className={classes.join(' ')}>
+				<div className={this.classes.join(' ')}>
 					<ul className="m-nightPlayArea__log">
 						{nightLog.map(entry => {
 							return <li>{entry}</li>;
@@ -40,7 +50,7 @@ export default class NightPlayArea extends React.Component {
 			)
 		} else {
 			return (
-				<div className={classes.join(' ')}>
+				<div className={this.classes.join(' ')}>
 					<ShiftHud
 						className="m-nightPlayArea__hud"
 						day={day}
