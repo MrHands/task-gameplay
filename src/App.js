@@ -822,7 +822,13 @@ export default class App extends React.Component {
 				/>
 			);
 		} else {
-			const charactersNotDone = characters.filter(character => !character.task || character.task.outcome === '');
+			const charactersNotDone = characters.filter(character => {
+				return (
+					(!character.task || character.task.outcome === '') &&
+					character.stats.stamina > 0
+				);
+			});
+			console.log(charactersNotDone);
 
 			hud = (
 				<ShiftHud
