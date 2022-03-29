@@ -549,10 +549,13 @@ export default class App extends React.Component {
 			});
 			nightLog.push(`Played **${sexMove.title}** (${logEffects.join(', ')})`);
 
+			// apply effects
+
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'lust': {
-						lust = this.clampCharacterStat('lust', lust + effect.value);
+						const lustBonus = (sexMove.type === mood) ? (effect.value * 2) : effect.value;
+						lust = this.clampCharacterStat('lust', lust + lustBonus);
 						break;
 					}
 					case 'sexergy': {
