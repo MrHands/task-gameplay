@@ -5,27 +5,43 @@ import SexMove from './SexMove';
 import './SexMoveCategory.scss';
 
 export default class SexMoveCategory extends React.Component {
-	render() {
+	get sexMovesAvailable() {
 		const {
-			category,
 			sexMoves,
 			canSexMoveBePlayed,
-			playSexMove,
-			expanded,
-			toggleExpand,
 		} = this.props;
 
-		console.log(this.props);
+		return sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove));
+	}
+
+	get classes() {
+		const {
+			className,
+			expanded,
+		} = this.props;
 
 		const classes = ['m-sexMoveCategory'];
 		if (expanded) {
 			classes.push('-expanded');
 		}
 
-		const sexMovesAvailable = sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove.id));
-		if (sexMovesAvailable.length > 0) {
+		if (this.sexMovesAvailable.length > 0) {
 			classes.push('-available');
 		}
+
+		classes.push(className);
+
+		return classes;
+	}
+
+	render() {
+		const {
+			category,
+			sexMoves,
+			canSexMoveBePlayed,
+			playSexMove,
+			toggleExpand,
+		} = this.props;
 
 		sexMoves.sort((left, right) => {
 			const leftPlayable = canSexMoveBePlayed(left);
@@ -40,10 +56,10 @@ export default class SexMoveCategory extends React.Component {
 
 		return (
 			<div
-				className={classes.join(' ')}
+				className={this.classes.join(' ')}
 				onClick={() => toggleExpand(category)}
 			>
-				<h3 className="m-sexMoveCategory__title">{`${category} (${sexMovesAvailable.length} / ${sexMoves.length})`}</h3>
+				<h3 className="m-sexMoveCategory__title">{`${category} (${this.sexMovesAvailable.length} / ${sexMoves.length})`}</h3>
 				<div className="m-sexMoveCategory__moves">
 					{sexMoves.map((sexMove, index) => {
 						return (

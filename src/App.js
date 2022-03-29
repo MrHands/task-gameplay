@@ -250,6 +250,10 @@ export default class App extends React.Component {
 	}
 
 	getSexMove(id) {
+		if (typeof id !== 'string') {
+			return id;
+		}
+
 		return this.state.sexMoves.find(move => {
 			return move.id === id;
 		}) || null;
@@ -517,10 +521,7 @@ export default class App extends React.Component {
 			return false;
 		}
 
-		const sexMove = typeof sexMoveId === 'string'
-			? this.getSexMove(sexMoveId)
-			: sexMoveId;
-
+		const sexMove = this.getSexMove(sexMoveId);
 		return (this.state.lust >= sexMove.lustMinimum);
 	}
 
