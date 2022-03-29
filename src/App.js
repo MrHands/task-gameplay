@@ -239,15 +239,11 @@ export default class App extends React.Component {
 	}
 
 	getCharacter(id) {
-		return this.state.characters.find(character => {
-			return character.id === id;
-		}) || null;
+		return this.state.characters.find(character => character.id === id) || null;
 	}
 
 	getTask(id) {
-		return TasksDatabase.tasks.find(task => {
-			return task.id === id;
-		}) || null;
+		return TasksDatabase.tasks.find(task => task.id === id) || null;
 	}
 
 	getSexMove(id) {
@@ -255,9 +251,7 @@ export default class App extends React.Component {
 			return id;
 		}
 
-		return this.state.sexMoves.find(move => {
-			return move.id === id;
-		}) || null;
+		return this.state.sexMoves.find(move => move.id === id) || null;
 	}
 
 	clampCharacterStat(type, value) {
@@ -532,7 +526,21 @@ export default class App extends React.Component {
 			return;
 		}
 
+		// apply mood bonus
+
 		const sexMove = {...this.getSexMove(sexMoveId)};
+		sexMove.effects.forEach(effect => {
+			switch (effect.type) {
+				case 'lust': {
+					if (sexMove.type === this.state.mood) {
+						effect.value *= 2;
+					}
+					break;
+				}
+				default:
+					break;
+			}
+		});
 		sexMove.played = true;
 
 		this.setState(state => {
@@ -554,8 +562,7 @@ export default class App extends React.Component {
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'lust': {
-						const lustBonus = (sexMove.type === mood) ? (effect.value * 2) : effect.value;
-						lust = this.clampCharacterStat('lust', lust + lustBonus);
+						lust = this.clampCharacterStat('lust', lust + effect.value);
 						break;
 					}
 					case 'sexergy': {

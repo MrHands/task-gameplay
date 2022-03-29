@@ -31,7 +31,7 @@ export default class SexMoveCategory extends React.Component {
 			canSexMoveBePlayed,
 		} = this.props;
 
-		return sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove));
+		return sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove.id));
 	}
 
 	render() {
