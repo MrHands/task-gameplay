@@ -5,6 +5,7 @@ import DroppableCard from '../components/DroppableCard';
 import ShiftHud from './ShiftHud';
 
 import './NightPlayArea.scss';
+import NightLog from './NightLog';
 
 export default class NightPlayArea extends React.Component {
 	get classes() {
@@ -41,11 +42,10 @@ export default class NightPlayArea extends React.Component {
 		if (nightCharacter !== null) {
 			return (
 				<div className={this.classes.join(' ')}>
-					<ul className="m-nightPlayArea__log">
-						{nightLog.map(entry => {
-							return <li>{entry}</li>;
-						})}
-					</ul>
+					<NightLog
+						className="m-nightPlayArea__log"
+						nightLog={nightLog}
+					/>
 				</div>
 			)
 		} else {
