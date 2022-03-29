@@ -106,7 +106,7 @@ export default class App extends React.Component {
 	}
 
 	startGame() {
-		this.setUpCharacters();
+		this.setUpCharacters(true);
 		this.drawHand();
 	}
 
@@ -122,7 +122,7 @@ export default class App extends React.Component {
 	}
 
 	jumpToNight() {
-		this.setUpCharacters();
+		this.setUpCharacters(true);
 
 		// set up characters
 
@@ -151,7 +151,7 @@ export default class App extends React.Component {
 		this.drawHand();
 	}
 
-	setUpCharacters() {
+	setUpCharacters(newDay) {
 		this.setState(state => {
 			const {
 				characters,
@@ -161,19 +161,25 @@ export default class App extends React.Component {
 				characters: characters.map(character => {
 					const clone = {...character};
 
-					// apply task effects
-	
-					if (clone.task) {
-						clone.task.effects.forEach(effect => {
-							const statValue = clone.stats[effect.type];
-							clone.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
-						});
+					if (newDay) {
 						clone.task = '';
+						clone.stats.stamina = 5;
+					} else {
+						// apply task effects
+		
+						if (clone.task) {
+							clone.task.effects.forEach(effect => {
+								const statValue = clone.stats[effect.type];
+								clone.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+							});
+							clone.task = '';
+						}
+		
+						// modify stamina
+		
+						clone.stats.stamina = this.clampCharacterStat('stamina', clone.stats.stamina - clone.staminaCost);
 					}
-	
-					// modify stamina
-	
-					clone.stats.stamina = this.clampCharacterStat('stamina', clone.stats.stamina - clone.staminaCost);
+
 					clone.staminaCost = 1;
 	
 					return clone;
@@ -496,9 +502,13 @@ export default class App extends React.Component {
 
 		console.log(`finishShift shift ${shift} day ${day}`);
 
+		let newDay = false;
+
 		if (shift === Shift.NIGHT) {
 			shift = Shift.MORNING;
 			day++;
+
+			newDay = true;
 		} else {
 			shift++;
 		}
@@ -514,7 +524,7 @@ export default class App extends React.Component {
 
 		// update characters
 
-		this.setUpCharacters();
+		this.setUpCharacters(newDay);
 
 		// draw new hand
 
