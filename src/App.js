@@ -633,9 +633,11 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				sexMoves,
-				sexMovesPlayed,
 				mood,
 			} = state;
+
+			const sexMovesPlayed = [...state.sexMovesPlayed, sexMove];
+			console.log(sexMovesPlayed);
 
 			// logging
 
@@ -678,61 +680,73 @@ export default class App extends React.Component {
 				}
 			});
 
-			// cycle mood
+			// check game over
 
-			switch (mood) {
-				case Mood.PASSIONATE:
-					mood = Mood.INTIMATE;
-					break;
-				case Mood.INTIMATE:
-					mood = Mood.SUBMISSIVE;
-					break;
-				case Mood.SUBMISSIVE:
-					mood = Mood.PASSIONATE;
-					break;
-				default:
-					break;
+			const captainOrgasm = captainLust >= 100;
+			const crewOrgasm = crewLust >= 200;
+			const gameOver = captainOrgasm;
+
+			// captain orgasm!
+
+			if (captainOrgasm) {
+				nightLog.push(`*Captain had an orgasm!*`);
+
+				const sexergyBonus = sexMovesPlayed.length * 100;
+
+				sexergyGenerated += sexergyBonus;
+				sexergy += sexergyGenerated;
+
+				sexMoves = [];
+
+				nightLog.push(`Sexergy bonus of ${sexMovesPlayed.length} moves played x 100 = **${sexergyBonus}**`);
 			}
-
-			nightLog.push(`${character.name} changed to a(n) **${mood}** mood`);
-
-			const gameOver = captainLust >= 100;
 
 			// crew orgasm!
 
-			if (crewLust >= 200) {
+			if (crewOrgasm) {
+				nightLog.push(`*${character.name} had an orgasm!*`);
+
 				const from = sexergyGenerated;
 
 				if (!gameOver) {
+					nightLog.push(`Resetting ${character.name}'s lust to 50%`);
+
 					crewLust = 50;
 				}
 
 				sexergyGenerated *= 2;
 
-				nightLog.push(`*${character.name} had an orgasm!*`);
-				nightLog.push(`Resetting ${character.name}'s lust to 50%`);
 				nightLog.push(`2x Sexergy generated from ${from} to **${sexergyGenerated}**`);
 			}
 
-			// captain orgasm!
+			// game over
 
 			if (gameOver) {
-				sexergyGenerated += 1000;
-				sexergy += sexergyGenerated;
-
-				sexMoves = [];
-
-				nightLog.push(`*Captain had an orgasm!*`);
-				nightLog.push(`Sexergy bonus of **1000**`);
 				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
 				nightLog.push(`*End of night shift*`);
-			}
+			} else {
+				// clamp stats
 
-			// clamp stats
-
-			if (!gameOver) {
 				crewLust = this.clampCharacterStat('crew', crewLust);
 				captainLust = this.clampCharacterStat('captain', captainLust);
+
+				// cycle mood
+
+				switch (mood) {
+					case Mood.PASSIONATE:
+						mood = Mood.INTIMATE;
+						break;
+					case Mood.INTIMATE:
+						mood = Mood.SUBMISSIVE;
+						break;
+					case Mood.SUBMISSIVE:
+						mood = Mood.PASSIONATE;
+						break;
+					default:
+						break;
+				}
+
+				nightLog.push(`${character.name} changed to a(n) **${mood}** mood`);
 			}
 
 			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
@@ -745,7 +759,7 @@ export default class App extends React.Component {
 				sexergyGenerated,
 				mood,
 				sexMoves,
-				sexMovesPlayed: [...sexMovesPlayed, sexMove]
+				sexMovesPlayed
 			}
 		});
 	}
