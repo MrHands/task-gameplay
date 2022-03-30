@@ -7,18 +7,18 @@
 	justify-items: center;
 	gap: 0.5rem;
 	padding: 1rem;
-	border: 0.1rem solid gray;
+	border: 0.2rem solid gray;
 	border-radius: 0.5rem;
 
 	&.-empty {
 		display: flex;
 		align-items: center;
-		border: 0.1rem dashed gray;
+		border: 0.2rem dashed gray;
 		cursor: initial;
 	}
 	
 	&.-active {
-		border: 0.1rem solid lawngreen;
+		border: 0.2rem solid lawngreen;
 		background: lightgreen;
 	}
 
