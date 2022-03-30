@@ -6,7 +6,7 @@
 		'carousel    carousel    ';
 	grid-template-columns:
 		1fr
-		min-content;
+		12rem;
 	grid-template-rows:
 		min-content
 		min-content
@@ -17,58 +17,60 @@
 	padding: 1rem;
 	border: 0.1rem solid goldenrod;
 	border-radius: 0.5rem;
-}
 
-.o-task__title {
-	grid-area: title;
-	text-align: center;
-}
+	&__title {
+		grid-area: title;
+		text-align: center;
+	}
 
-.o-task__effects {
-	grid-area: effects;
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	justify-content: center;
-	align-items: center;
-}
+	&__effects {
+		grid-area: effects;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		justify-content: center;
+		align-items: center;
+	}
 
-.o-task__rewards {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
+	&__rewards {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 
-.o-task__character {
-	grid-area: character;
-}
+	&__character {
+		grid-area: character;
+	}
 
-.o-task__carousel {
-	grid-area: carousel;
-	align-self: center;
-}
+	&__carousel {
+		grid-area: carousel;
+		align-self: center;
+	}
 
-.o-task__difficulty {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	border: 0.1rem solid lightcoral;
-	color: lightcoral;
-	text-transform: uppercase;
-	font-weight: bold;
-	padding: 0.5rem;
-}
+	&__difficulty {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		border: 0.1rem solid lightcoral;
+		color: lightcoral;
+		text-transform: uppercase;
+		font-weight: bold;
+		padding: 0.5rem;
+	}
 
-.o-task__stamina {
-	display: grid;
-	grid-template-columns:
-		1fr 3fr 1fr;
-	align-items: center;
-	justify-items: center;
-}
+	&__stamina {
+		display: grid;
+		grid-template-columns:
+			1fr
+			3fr
+			1fr;
+		align-items: center;
+		justify-items: center;
 
-.o-task__stamina > button {
-	width: 100%;
-	height: 100%;
-	padding: 0.2rem;
+		> button {
+			width: 100%;
+			height: 100%;
+			padding: 0.2rem;
+		}
+	}
 }
