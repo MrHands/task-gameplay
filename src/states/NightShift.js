@@ -6,6 +6,7 @@ import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
+import shuffleCards from '../helpers/shuffleCards';
 
 import './NightShift.scss';
 
@@ -63,6 +64,7 @@ export default class NightShift extends React.Component {
 
 	render() {
 		const {
+			limitSexMovesHand,
 			mood,
 			nightCharacter,
 			crewLust,
@@ -83,17 +85,50 @@ export default class NightShift extends React.Component {
 			});
 		}
 
-		const categories = [
-			'Petting',
-			'Oral',
-			'Sex',
-			'Anal',
-			'Kinky'
-		];
-		const movesByCategory = {};
-		categories.forEach(category => {
-			movesByCategory[category] = sexMoves.filter(sexMove => sexMove.category === category);
-		});
+		let eleSexMoves = null;
+		if (limitSexMovesHand) {
+			const playable = shuffleCards(sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove)));
+			console.log(playable);
+			playable.length = 3;
+			eleSexMoves = playable.map((sexMove, index) => {
+				return (
+					<SexMove
+						key={`sex-move-${index}`}
+						mood={mood}
+						canSexMoveBePlayed={canSexMoveBePlayed}
+						playSexMove={this.playSexMove.bind(this)}
+						{...sexMove}
+					/>
+				);
+			})
+		} else {
+			const categories = [
+				'Petting',
+				'Oral',
+				'Sex',
+				'Anal',
+				'Kinky'
+			];
+			const movesByCategory = {};
+			categories.forEach(category => {
+				movesByCategory[category] = sexMoves.filter(sexMove => sexMove.category === category);
+			});
+
+			eleSexMoves = Object.entries(movesByCategory).map((category) => {
+				return (
+					<SexMoveCategory
+						key={`category-${category[0]}`}
+						mood={mood}
+						category={category[0]}
+						sexMoves={category[1]}
+						canSexMoveBePlayed={canSexMoveBePlayed}
+						playSexMove={this.playSexMove.bind(this)}
+						expanded={categoriesExpanded[category[0]]}
+						toggleExpand={toggleExpandCategory}
+					/>
+				);
+			});
+		}
 
 		return (
 			<article className="o-nightShift">
@@ -134,20 +169,7 @@ export default class NightShift extends React.Component {
 				<h2 className="o-nightShift__moves__title">Sex Moves</h2>
 					<div className="o-nightShift__moves__container">
 						<div className="o-nightShift__moves__scroll">
-							{Object.entries(movesByCategory).map((category) => {
-								return (
-									<SexMoveCategory
-										key={`category-${category[0]}`}
-										mood={mood}
-										category={category[0]}
-										sexMoves={category[1]}
-										canSexMoveBePlayed={canSexMoveBePlayed}
-										playSexMove={this.playSexMove.bind(this)}
-										expanded={categoriesExpanded[category[0]]}
-										toggleExpand={toggleExpandCategory}
-									/>
-								);
-							})}
+							{eleSexMoves}
 						</div>
 					</div>
 				</div>

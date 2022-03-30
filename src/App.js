@@ -9,6 +9,7 @@ import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
 import { TaskOutcome } from './enums/TaskOutcome';
+import shuffleCards from './helpers/shuffleCards';
 import DayShift from './states/DayShift';
 import GameStart from './states/GameStart';
 import NightShift from './states/NightShift';
@@ -85,6 +86,7 @@ export default class App extends React.Component {
 				}
 			],
 
+			limitSexMovesHand: true,
 			nightLog: [],
 			crewLust: 0,
 			captainLust: 0,
@@ -222,7 +224,7 @@ export default class App extends React.Component {
 				});
 				console.log(deckTasks);
 
-				tasksDeck = this.shuffleCards(deckTasks.tasks.map(id => {
+				tasksDeck = shuffleCards(deckTasks.tasks.map(id => {
 					return deepClone(this.getTask(id));
 				}));
 				console.log(tasksDeck);
@@ -231,7 +233,7 @@ export default class App extends React.Component {
 					return deck.id === 'rest';
 				});
 
-				restDeck = this.shuffleCards(deckRest.tasks.map(id => {
+				restDeck = shuffleCards(deckRest.tasks.map(id => {
 					return deepClone(this.getTask(id));
 				}));
 			}
@@ -257,7 +259,7 @@ export default class App extends React.Component {
 			});
 
 			return {
-				handCards: this.shuffleCards(handCards),
+				handCards: shuffleCards(handCards),
 				tasksDeck,
 				restDeck,
 			}
@@ -303,17 +305,6 @@ export default class App extends React.Component {
 		}
 
 		return Math.clamp(value, 0, maxValue);
-	}
-
-	shuffleCards(cards) {
-		const copy = [];
-
-		for (let n = cards.length; n > 0; n--) {
-			let i = Math.floor(Math.random() * n);
-			copy.push(cards.splice(i, 1)[0]);
-		}
-
-		return copy;
 	}
 
 	canBePlaced(characterId, task) {
@@ -796,6 +787,7 @@ export default class App extends React.Component {
 			);
 		} else if (shift === Shift.NIGHT) {
 			const {
+				limitSexMovesHand,
 				nightLog,
 				crewLust,
 				captainLust,
@@ -811,6 +803,7 @@ export default class App extends React.Component {
 			gameState = (
 				<NightShift
 					className="o-app__state"
+					limitSexMovesHand={limitSexMovesHand}
 					nightLog={nightLog}
 					day={day}
 					shift={shift}
