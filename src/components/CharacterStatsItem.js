@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './StatsItem.scss';
+import './CharacterStatsItem.scss';
 
-export default class StatsItem extends React.Component {
+export default class CharacterStatsItem extends React.Component {
 	get classes() {
 		const {
 			className,
@@ -12,7 +12,7 @@ export default class StatsItem extends React.Component {
 			clampCharacterStat,
 		} = this.props;
 
-		const classes = ['m-statsItem'];
+		const classes = ['m-characterStatsItem'];
 
 		classes.push(`-${type}`);
 
@@ -79,8 +79,8 @@ export default class StatsItem extends React.Component {
 
 		return (
 			<div className={this.classes.join(' ')}>
-				<div className="m-statsItem__header">{type}</div>
-				<div className="m-statsItem__value">{result}</div>
+				<div className="m-characterStatsItem__header">{type}</div>
+				<div className="m-characterStatsItem__value">{result}</div>
 			</div>
 		)
 	}
