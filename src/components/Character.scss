@@ -5,20 +5,20 @@
 	aspect-ratio: 240/320;
 	display: grid;
 	justify-items: center;
-	gap: 12px;
-	padding: 12px;
-	border: 2px solid gray;
-	border-radius: 12px;
+	gap: 0.5rem;
+	padding: 1rem;
+	border: 0.1rem solid gray;
+	border-radius: 0.5rem;
 
 	&.-empty {
 		display: flex;
 		align-items: center;
-		border: 2px dashed gray;
+		border: 0.1rem dashed gray;
 		cursor: initial;
 	}
 	
 	&.-active {
-		border: 2px solid lawngreen;
+		border: 0.1rem solid lawngreen;
 		background: lightgreen;
 	}
 
@@ -38,6 +38,6 @@
 	display: grid;
 	grid-template-columns:
 		1fr 1fr;
-	column-gap: 6px;
+	column-gap: 0.2rem;
 	width: 100%;
 }

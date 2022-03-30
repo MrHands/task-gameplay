@@ -2,9 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 12px;
-}
+	gap: 1rem;
 
-.m-taskStart h3 {
-	text-transform: uppercase;
+	h3 {
+		text-transform: uppercase;
+	}
 }

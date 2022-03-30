@@ -1,31 +1,31 @@
 .m-carousel {
 	display: grid;
-	grid-template-columns: repeat(10, 24px);
-	gap: 6px;
-}
+	grid-template-columns: repeat(10, 1.5rem);
+	gap: 0.4rem;
 
-.m-carousel__item {
-	box-sizing: border-box;
-	width: 24px;
-	height: 24px;
-}
+	&__item {
+		box-sizing: border-box;
+		width: 1.5rem;
+		height: 1.5rem;
 
-.m-carousel__item.-success {
-	background: lightgreen;
-}
+		&.-success {
+			background: lightgreen;
+		}
 
-.m-carousel__item.-fail {
-	background: lightcoral;
-}
+		&.-fail {
+			background: lightcoral;
+		}
 
-.m-carousel__item.-critical_success {
-	background: green;
-}
+		&.-critical_success {
+			background: green;
+		}
 
-.m-carousel__item.-critical_fail {
-	background: red;
-}
+		&.-critical_fail {
+			background: red;
+		}
 
-.m-carousel__item.-selected {
-	border: 4px solid indigo;
+		&.-selected {
+			border: 0.3rem solid indigo;
+		}
+	}
 }
