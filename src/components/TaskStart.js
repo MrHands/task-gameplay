@@ -72,8 +72,8 @@ export default class TaskStart extends React.Component {
 		} else {
 			return (
 				<div className="o-task__difficulty">
-					<span>Difficulty</span>
-					<span>{difficulty} / 20</span>
+					<span>Chance to Succeed</span>
+					<span>{(20 - difficulty) / 20 * 100}%</span>
 				</div>
 			);
 		}
