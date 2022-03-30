@@ -662,6 +662,8 @@ export default class App extends React.Component {
 
 			// apply effects
 
+			let moveSexergy = 0;
+
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'crew': {
@@ -673,7 +675,7 @@ export default class App extends React.Component {
 						break;
 					}
 					case 'sexergy': {
-						sexergyGenerated += effect.value;
+						moveSexergy = effect.value;
 						break;
 					}
 					default: break;
@@ -686,42 +688,41 @@ export default class App extends React.Component {
 			const crewOrgasm = crewLust >= 200;
 			const gameOver = captainOrgasm;
 
-			// captain orgasm!
-
-			if (captainOrgasm) {
-				nightLog.push(`*Captain had an orgasm!*`);
-
-				const sexergyBonus = sexMovesPlayed.length * 100;
-
-				sexergyGenerated += sexergyBonus;
-				sexergy += sexergyGenerated;
-
-				sexMoves = [];
-
-				nightLog.push(`Sexergy bonus of ${sexMovesPlayed.length} moves played x 100 = **${sexergyBonus}**`);
-			}
-
 			// crew orgasm!
 
 			if (crewOrgasm) {
 				nightLog.push(`*${character.name} had an orgasm!*`);
 
-				const from = sexergyGenerated;
+				moveSexergy *= 2;
+
+				nightLog.push(`Doubled sexergy generated from ${sexMove.title}: **+${moveSexergy}**`);
 
 				if (!gameOver) {
 					nightLog.push(`Resetting ${character.name}'s lust to 50%`);
 
 					crewLust = 50;
 				}
-
-				sexergyGenerated *= 2;
-
-				nightLog.push(`2x Sexergy generated from ${from} to **${sexergyGenerated}**`);
 			}
+
+			// captain orgasm!
+
+			if (captainOrgasm) {
+				nightLog.push(`*Captain had an orgasm!*`);
+
+				const sexergyBonus = sexMovesPlayed.length * 100;
+				sexergyGenerated += sexergyBonus;
+
+				nightLog.push(`Sexergy bonus of ${sexMovesPlayed.length} moves played x 100 = **+${sexergyBonus}**`);
+			}
+
+			sexergyGenerated += moveSexergy;
 
 			// game over
 
 			if (gameOver) {
+				sexergy += sexergyGenerated;
+				sexMoves = [];
+
 				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
 				nightLog.push(`*End of night shift*`);
 			} else {
@@ -746,7 +747,7 @@ export default class App extends React.Component {
 						break;
 				}
 
-				nightLog.push(`${character.name} changed to a(n) **${mood}** mood`);
+				nightLog.push(`${character.name}'s mood changed **${mood}**`);
 			}
 
 			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
