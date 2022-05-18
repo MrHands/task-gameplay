@@ -86,6 +86,29 @@ export default class App extends React.Component {
 				}
 			],
 
+			locations: [
+				{
+					id: 'gym',
+					tasks: [],
+				},
+				{
+					id: 'library',
+					tasks: [],
+				},
+				{
+					id: 'dungeon',
+					tasks: [],
+				},
+				{
+					id: 'lounge',
+					tasks: [],
+				},
+				{
+					id: 'spa',
+					tasks: [],
+				},
+			],
+
 			limitSexMovesHand: true,
 			nightLog: [],
 			crewLust: 0,
