@@ -23,10 +23,11 @@ export default class DayShift extends React.Component {
 		return (
 			<article className="o-dayShift">
 				<div className="o-dayShift__dice">
-					{dice.map((value, index) => {
+					{dice.map(({ value, id }, index) => {
 						return <Dice
 							key={`dice-${index}`}
 							value={value}
+							id={id}
 						/>;
 					})}
 				</div>

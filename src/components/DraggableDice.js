@@ -1,6 +1,6 @@
 import { useDrag } from 'react-dnd';
 
-export default function DraggableCard(props) {
+export default function DraggableDice(props) {
 	const {
 		id,
 		className,
@@ -8,16 +8,12 @@ export default function DraggableCard(props) {
 	} = props;
 
 	const [ { isDragging }, drag, dragPreview ] = useDrag(() => ({
-		type: 'character',
+		type: 'dice',
 		item: { id },
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
 		}),
 	}), [id]);
-
-	if (isDragging) {
-		console.log(`dragging ${id}`);
-	}
 
 	return isDragging ? (
 		<div ref={dragPreview} className={className} style={{ opacity: 0.1 }}/>

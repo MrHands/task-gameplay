@@ -51,6 +51,7 @@ export default class Character extends React.Component {
 				<DraggableCard
 					className={this.classes.join(' ')}
 					id={id}
+					type="character"
 					children={children}
 				>
 					{guts}

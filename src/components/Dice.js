@@ -1,19 +1,18 @@
 import React from 'react';
-
-import DraggableCard from './DraggableCard';
+import DraggableDice from './DraggableDice';
 
 import './Dice.scss';
 
 export default class Dice extends React.Component {
 	render() {
 		const {
-			value
+			value,
 		} = this.props;
-
+	
 		return (
-			<DraggableCard className="o-dice" {...this.props}>
+			<DraggableDice className="o-dice" {...this.props}>
 				{value}
-			</DraggableCard>
+			</DraggableDice>
 		)
 	}
 }

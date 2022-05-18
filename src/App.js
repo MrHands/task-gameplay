@@ -243,7 +243,10 @@ export default class App extends React.Component {
 
 			const dice = [];
 			for (let i = 0; i < 6; ++i) {
-				dice.push(Math.floor(Math.random() * 6) + 1);
+				dice.push({
+					id: i,
+					value: Math.floor(Math.random() * 6) + 1,
+				});
 			}
 	
 			const handCards = [];
