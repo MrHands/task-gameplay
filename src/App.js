@@ -44,6 +44,8 @@ export default class App extends React.Component {
 			tasksDeck: [],
 			restDeck: [],
 
+			dice: [],
+
 			characters: [
 				{
 					id: 0,
@@ -236,6 +238,13 @@ export default class App extends React.Component {
 				tasksDeck,
 				restDeck
 			} = state;
+
+			// roll dice
+
+			const dice = [];
+			for (let i = 0; i < 6; ++i) {
+				dice.push(Math.floor(Math.random() * 6) + 1);
+			}
 	
 			const handCards = [];
 
@@ -282,6 +291,7 @@ export default class App extends React.Component {
 			});
 
 			return {
+				dice,
 				handCards: shuffleCards(handCards),
 				tasksDeck,
 				restDeck,
@@ -806,6 +816,7 @@ export default class App extends React.Component {
 		const {
 			sexergy,
 			day,
+			dice,
 			shift,
 			handCards,
 			characters,
@@ -894,6 +905,7 @@ export default class App extends React.Component {
 					characters={characters}
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
+					dice={dice}
 					handCards={handCards}
 					getCharacter={this.getCharacter.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}

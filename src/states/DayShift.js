@@ -9,6 +9,7 @@ import './DayShift.scss';
 export default class DayShift extends React.Component {
 	render() {
 		const {
+			dice,
 			handCards,
 			charactersUnplaced,
 			getCharacter,
@@ -22,9 +23,12 @@ export default class DayShift extends React.Component {
 		return (
 			<article className="o-dayShift">
 				<div className="o-dayShift__dice">
-					<Dice />
-					<Dice />
-					<Dice />
+					{dice.map((value, index) => {
+						return <Dice
+							key={`dice-${index}`}
+							value={value}
+						/>;
+					})}
 				</div>
 				<TasksList 
 					className="o-dayShift__tasks"
