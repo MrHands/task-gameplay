@@ -14,12 +14,6 @@
 		grid-area: hud;
 	}
 
-	&__dice {
-		grid-area: dice;
-		display: flex;
-		gap: 0.5rem;
-	}
-
 	&__tasks {
 		grid-area: tasks;
 	}

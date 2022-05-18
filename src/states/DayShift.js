@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CharacterList from '../components/CharacterList';
-import Dice from '../components/Dice';
+import DiceList from '../components/DiceList';
 import TasksList from '../components/TasksList';
 
 import './DayShift.scss';
@@ -9,7 +9,6 @@ import './DayShift.scss';
 export default class DayShift extends React.Component {
 	render() {
 		const {
-			dice,
 			handCards,
 			charactersUnplaced,
 			getCharacter,
@@ -22,15 +21,6 @@ export default class DayShift extends React.Component {
 
 		return (
 			<article className="o-dayShift">
-				<div className="o-dayShift__dice">
-					{dice.map(({ value, id }, index) => {
-						return <Dice
-							key={`dice-${index}`}
-							value={value}
-							id={id}
-						/>;
-					})}
-				</div>
 				<TasksList 
 					className="o-dayShift__tasks"
 					handCards={handCards}

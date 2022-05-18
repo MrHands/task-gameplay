@@ -15,6 +15,7 @@ import GameStart from './states/GameStart';
 import NightShift from './states/NightShift';
 
 import './App.scss';
+import DiceList from './components/DiceList';
 
 function deepClone(object) {
 	return JSON.parse(JSON.stringify(object));
@@ -925,6 +926,10 @@ export default class App extends React.Component {
 			<DndProvider backend={HTML5Backend}>
 				{hud}
 				{gameState}
+				<DiceList
+					className="o-dayShift__dice"
+					dice={dice}
+				/>
 			</DndProvider>
 		);
 	}
