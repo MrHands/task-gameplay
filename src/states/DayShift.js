@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CharacterList from '../components/CharacterList';
+import Dice from '../components/Dice';
 import TasksList from '../components/TasksList';
 
 import './DayShift.scss';
@@ -20,6 +21,11 @@ export default class DayShift extends React.Component {
 
 		return (
 			<article className="o-dayShift">
+				<div className="o-dayShift__dice">
+					<Dice />
+					<Dice />
+					<Dice />
+				</div>
 				<TasksList 
 					className="o-dayShift__tasks"
 					handCards={handCards}

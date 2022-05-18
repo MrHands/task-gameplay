@@ -4,10 +4,21 @@
 	display: grid;
 	grid-template-areas:
 		'hud     hud         '
+		'dice    dice        '
 		'tasks   characters  ';
 	grid-template-columns: 3fr $card-size;
 	align-items: center;
 	gap: 1rem;
+
+	&__hud {
+		grid-area: hud;
+	}
+
+	&__dice {
+		grid-area: dice;
+		display: flex;
+		gap: 0.5rem;
+	}
 
 	&__tasks {
 		grid-area: tasks;
@@ -15,10 +26,6 @@
 	
 	&__characters {
 		grid-area: characters;
-	}
-	
-	&__hud {
-		grid-area: hud;
 	}
 }
 
