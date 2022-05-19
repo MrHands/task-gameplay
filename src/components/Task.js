@@ -78,6 +78,9 @@ export default class Task extends React.Component {
 					})}
 					</ul>
 				</div>
+				<div className="o-task__required">
+					<h3>Required</h3>
+				</div>
 				<div className="o-task__dice">
 					{diceDropped}
 				</div>

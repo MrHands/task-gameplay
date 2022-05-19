@@ -1,9 +1,12 @@
 .o-task {
 	display: grid;
 	grid-template-areas:
-		'title    '
-		'dice     '
-		'effects  ';
+		'title     title    '
+		'required  dice     '
+		'effects   effects  ';
+	grid-template-columns:
+		1fr
+		1fr;
 	grid-template-rows:
 		min-content
 		min-content
@@ -22,6 +25,11 @@
 	&__title {
 		grid-area: title;
 		text-align: center;
+	}
+
+	&__required {
+		grid-area: required;
+		text-transform: uppercase;
 	}
 
 	&__effects {
