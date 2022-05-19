@@ -50,14 +50,14 @@ export default class Location extends React.Component {
 			);
 		} else {
 			characterDropped = (
-				<DroppableCard className="o-character -empty" {...this.props}>
-					<h3 className="o-character__title">Drag character here</h3>
-				</DroppableCard>
+				<div className="o-character -empty" disabled>
+					<h3 className="o-character__title">No character on location</h3>
+				</div>
 			);
 		}
 
 		return (
-			<div className={this.classes.join(' ')}>
+			<div className={this.classes.join(' ')} disabled={character === null}>
 				<h2 className="m-location__title">{title}</h2>
 				<div className="m-location__character">
 					{characterDropped}

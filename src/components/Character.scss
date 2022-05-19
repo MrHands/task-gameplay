@@ -26,6 +26,11 @@
 		cursor: grabbing;
 	}
 
+	&[disabled] {
+		border-style: solid;
+		border-color: gray;
+	}
+
 	&__title {
 		width: 100%;
 		text-align: center;

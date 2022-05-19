@@ -22,4 +22,10 @@
 	&__character {
 		grid-area: character;
 	}
+
+	&[disabled] {
+		background: lightgray;
+		border-color: gray;
+		color: gray;
+	}
 }

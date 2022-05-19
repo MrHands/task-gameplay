@@ -1,12 +1,9 @@
 import React from 'react';
 
-import Character from './Character';
 import Dice from './Dice';
-import DroppableCard from './DroppableCard';
 import DroppableDice from './DroppableDice';
 
 import './Task.scss';
-import TaskStart from './TaskStart';
 
 export default class Task extends React.Component {
 	get classes() {

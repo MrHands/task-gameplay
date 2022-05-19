@@ -15,6 +15,10 @@
 	border: 0.1rem solid goldenrod;
 	border-radius: 0.5rem;
 
+	[disabled] & {
+		border-color: gray;
+	}
+
 	&__title {
 		grid-area: title;
 		text-align: center;

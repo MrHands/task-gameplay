@@ -1,6 +1,5 @@
 import React from 'react';
 
-import CharacterList from '../components/CharacterList';
 import LocationList from '../components/LocationList';
 
 import './DayShift.scss';
@@ -9,7 +8,6 @@ export default class DayShift extends React.Component {
 	render() {
 		const {
 			locations,
-			charactersUnplaced,
 			getCharacter,
 			clampCharacterStat,
 			canBePlaced,

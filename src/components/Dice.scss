@@ -14,4 +14,10 @@
 		border-style: dashed;
 		border-color: gray;
 	}
+
+	[disabled] & {
+		background: none;
+		border-style: solid;
+		border-color: darkgray;
+	}
 }
