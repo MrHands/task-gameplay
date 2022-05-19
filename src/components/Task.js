@@ -56,6 +56,7 @@ export default class Task extends React.Component {
 		} = task;
 
 		let diceDropped = null;
+		let staminaUsed = character?.stats.stamina || 0;
 
 		if (dice !== null) {
 			diceDropped = (
@@ -64,6 +65,8 @@ export default class Task extends React.Component {
 					value={dice.value}
 				/>
 			);
+
+			staminaUsed = Math.max(0, staminaUsed - dice.value);
 		} else {
 			diceDropped = (
 				<DroppableDice className="a-dice -empty" {...this.props} />
@@ -86,7 +89,7 @@ export default class Task extends React.Component {
 					<h3>Dice</h3>
 					<h3>Required</h3>
 					<div className="o-task__container__stamina">
-						<p>{difficulty}</p>
+						<p>{staminaUsed}</p>
 					</div>
 					<div className="o-task__container__dice">
 						{diceDropped}

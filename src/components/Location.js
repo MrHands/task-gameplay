@@ -22,7 +22,6 @@ export default class Location extends React.Component {
 	render() {
 		const {
 			location,
-			getCharacter,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -65,7 +64,7 @@ export default class Location extends React.Component {
 				<TasksList
 					className="m-location__tasks"
 					handCards={tasks}
-					getCharacter={getCharacter}
+					character={character}
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
 					onCharacterDropped={onCharacterDropped}
