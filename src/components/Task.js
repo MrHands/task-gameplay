@@ -43,9 +43,7 @@ export default class Task extends React.Component {
 		const {
 			task,
 			character,
-			onStaminaChange,
-			onTaskStart,
-			clampCharacterStat,
+			onDiceDropped,
 		} = this.props;
 
 		const {
@@ -69,7 +67,11 @@ export default class Task extends React.Component {
 			staminaUsed = Math.max(0, staminaUsed - dice.value);
 		} else {
 			diceDropped = (
-				<DroppableDice className="a-dice -empty" {...this.props} />
+				<DroppableDice
+					className="a-dice -empty"
+					onDiceDropped={onDiceDropped}
+					{...this.props}
+				/>
 			);
 		}
 

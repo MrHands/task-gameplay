@@ -404,6 +404,10 @@ export default class App extends React.Component {
 		return (task.difficulty === 0) || (character.stats.stamina > 0);
 	}
 
+	setTaskDice(diceId, task) {
+		console.log(`setTaskDice diceId ${diceId} task ${task}`);
+	}
+
 	setCharacterTask(characterId, task) {
 		if (!this.canBePlaced(characterId, task)) {
 			return;
@@ -971,6 +975,7 @@ export default class App extends React.Component {
 					getCharacter={this.getCharacter.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
+					onDiceDropped={this.setTaskDice.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}
 					onStaminaChange={this.staminaChange.bind(this)}
 					onTaskStart={this.startTask.bind(this)}
