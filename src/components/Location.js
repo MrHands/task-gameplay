@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Character from './Character';
+import DroppableCard from './DroppableCard';
+
 import './Location.scss';
 
 export default class Location extends React.Component {
@@ -18,28 +21,40 @@ export default class Location extends React.Component {
 	render() {
 		const {
 			location,
+			clampCharacterStat,
 		} = this.props;
 
-		/* let diceDropped = null;
+		const {
+			title,
+			character,
+		} = location;
 
-		if (dice !== null) {
-			diceDropped = (
-				<Dice
-					id={dice.id}
-					value={dice.value}
+		let characterDropped = null;
+
+		if (character !== null) {
+			// const outcomeEffects = task.outcome !== '' ? task.effects : null;
+
+			characterDropped = (
+				<Character
+					// taskEffects={outcomeEffects}
+					clampCharacterStat={clampCharacterStat}
+					{...character}
 				/>
 			);
 		} else {
-			diceDropped = (
-				<DroppableDice className="m-dice -empty" {...this.props}>
+			characterDropped = (
+				<DroppableCard className="o-character -empty" {...this.props}>
 					<h3 className="o-character__title">Drag character here</h3>
 				</DroppableCard>
 			);
-		} */
+		}
 
 		return (
 			<div className={this.classes.join(' ')}>
-				<h2 className="m-location__title">{location.title}</h2>
+				<h2 className="m-location__title">{title}</h2>
+				<div className="m-location__character">
+					{characterDropped}
+				</div>
 			</div>
 		);
 	}

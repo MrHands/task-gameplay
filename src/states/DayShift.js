@@ -25,6 +25,7 @@ export default class DayShift extends React.Component {
 				<LocationList
 					className="o-dayShift__locations"
 					locations={locations}
+					clampCharacterStat={clampCharacterStat}
 				/>
 				<TasksList 
 					className="o-dayShift__tasks"

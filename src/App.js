@@ -94,26 +94,31 @@ export default class App extends React.Component {
 					id: 'gym',
 					title: 'Gym',
 					tasks: [],
+					character: null,
 				},
 				{
 					id: 'library',
 					title: 'Library',
 					tasks: [],
+					character: null,
 				},
 				{
 					id: 'dungeon',
 					title: 'Dungeon',
 					tasks: [],
+					character: null,
 				},
 				{
 					id: 'lounge',
 					title: 'Lounge',
 					tasks: [],
+					character: null,
 				},
 				{
 					id: 'spa',
 					title: 'Spa',
 					tasks: [],
+					character: null,
 				},
 			],
 

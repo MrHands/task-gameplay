@@ -1,6 +1,24 @@
 .m-location {
+	display: grid;
+	grid-template-columns:
+		1fr
+		min-content;
+	grid-template-rows:
+		min-content
+		1fr;
+	grid-template-areas:
+		'title      title      '
+		'.          character  ';
 	min-height: 13rem;
 	padding: 1rem;
 	border: 0.1rem solid goldenrod;
 	border-radius: 0.5rem;
+
+	&__title {
+		grid-area: title;
+	}
+
+	&__character {
+		grid-area: character;
+	}
 }

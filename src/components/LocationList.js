@@ -20,6 +20,7 @@ export default class LocationList extends React.Component {
 	render() {
 		const {
 			locations,
+			clampCharacterStat,
 		} = this.props;
 
 		return (
@@ -28,6 +29,7 @@ export default class LocationList extends React.Component {
 					return <Location
 						key={`task-${index}`}
 						location={location}
+						clampCharacterStat={clampCharacterStat}
 					/>;
 				})}
 			</div>
