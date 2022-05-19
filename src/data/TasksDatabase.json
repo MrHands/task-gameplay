@@ -3,6 +3,7 @@
 		{
 			"id": "maintenance-1",
 			"title": "Ship 1",
+			"location": "gym",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -14,6 +15,7 @@
 		{
 			"id": "maintenance-2",
 			"title": "Ship 2",
+			"location": "library",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -25,6 +27,7 @@
 		{
 			"id": "maintenance-3",
 			"title": "Ship 3",
+			"location": "dungeon",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -36,6 +39,19 @@
 		{
 			"id": "maintenance-4",
 			"title": "Ship 4",
+			"location": "lounge",
+			"effects": [
+				{
+					"type": "pleasure",
+					"value": 80
+				}
+			],
+			"difficulty": 12
+		},
+		{
+			"id": "maintenance-5",
+			"title": "Ship 5",
+			"location": "spa",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -47,6 +63,7 @@
 		{
 			"id": "personal-1",
 			"title": "Personal 1",
+			"location": "gym",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -66,6 +83,7 @@
 		{
 			"id": "personal-2",
 			"title": "Personal 2",
+			"location": "library",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -85,6 +103,7 @@
 		{
 			"id": "personal-3",
 			"title": "Personal 3",
+			"location": "dungeon",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -104,6 +123,27 @@
 		{
 			"id": "personal-4",
 			"title": "Personal 4",
+			"location": "lounge",
+			"effects": [
+				{
+					"type": "pleasure",
+					"value": 40
+				},
+				{
+					"type": "passionate",
+					"value": 30
+				},
+				{
+					"type": "intimate",
+					"value": 10
+				}
+			],
+			"difficulty": 8
+		},
+		{
+			"id": "personal-5",
+			"title": "Personal 5",
+			"location": "spa",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -123,6 +163,7 @@
 		{
 			"id": "rest",
 			"title": "Rest",
+			"location": "",
 			"effects": [
 				{
 					"type": "stamina",
@@ -138,6 +179,7 @@
 		{
 			"id": "night",
 			"title": "Night",
+			"location": "",
 			"effects": [
 			],
 			"difficulty": 0

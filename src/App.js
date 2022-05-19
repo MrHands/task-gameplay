@@ -257,6 +257,9 @@ export default class App extends React.Component {
 
 			locations.forEach(location => {
 				location.character = null;
+
+				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id);
+				location.tasks.push(this.getTask('rest'));
 			});
 
 			// clear locations from characters
