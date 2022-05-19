@@ -21,10 +21,11 @@ export default class TasksList extends React.Component {
 		const {
 			handCards,
 			character,
-			onDiceDropped,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
+			canDiceBeDropped,
+			onDiceDropped,
 			onStaminaChange,
 			onTaskStart,
 		} = this.props;
@@ -36,10 +37,11 @@ export default class TasksList extends React.Component {
 						key={`task-${index}`}
 						task={task}
 						character={character}
-						onDiceDropped={onDiceDropped}
 						clampCharacterStat={clampCharacterStat}
 						canBePlaced={canBePlaced}
 						onCharacterDropped={onCharacterDropped}
+						canDiceBeDropped={canDiceBeDropped}
+						onDiceDropped={onDiceDropped}
 						onStaminaChange={onStaminaChange}
 						onTaskStart={onTaskStart} />;
 				})}

@@ -43,6 +43,7 @@ export default class Task extends React.Component {
 		const {
 			task,
 			character,
+			canDiceBeDropped,
 			onDiceDropped,
 		} = this.props;
 
@@ -69,6 +70,7 @@ export default class Task extends React.Component {
 			diceDropped = (
 				<DroppableDice
 					className="a-dice -empty"
+					canDiceBeDropped={canDiceBeDropped}
 					onDiceDropped={onDiceDropped}
 					{...this.props}
 				/>

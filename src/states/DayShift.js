@@ -11,8 +11,9 @@ export default class DayShift extends React.Component {
 			getCharacter,
 			clampCharacterStat,
 			canBePlaced,
-			onDiceDropped,
 			onCharacterDropped,
+			canDiceBeDropped,
+			onDiceDropped,
 			onStaminaChange,
 			onTaskStart,
 		} = this.props;
@@ -25,8 +26,9 @@ export default class DayShift extends React.Component {
 					getCharacter={getCharacter}
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
-					onDiceDropped={onDiceDropped}
 					onCharacterDropped={onCharacterDropped}
+					canDiceBeDropped={canDiceBeDropped}
+					onDiceDropped={onDiceDropped}
 					onStaminaChange={onStaminaChange}
 					onTaskStart={onTaskStart}
 				/>

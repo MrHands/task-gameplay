@@ -23,8 +23,9 @@ export default class LocationList extends React.Component {
 			getCharacter,
 			clampCharacterStat,
 			canBePlaced,
-			onDiceDropped,
 			onCharacterDropped,
+			canDiceBeDropped,
+			onDiceDropped,
 			onStaminaChange,
 			onTaskStart,
 		} = this.props;
@@ -38,6 +39,7 @@ export default class LocationList extends React.Component {
 						getCharacter={getCharacter}
 						clampCharacterStat={clampCharacterStat}
 						canBePlaced={canBePlaced}
+						canDiceBeDropped={canDiceBeDropped}
 						onDiceDropped={onDiceDropped}
 						onCharacterDropped={onCharacterDropped}
 						onStaminaChange={onStaminaChange}

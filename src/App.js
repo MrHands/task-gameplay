@@ -362,6 +362,10 @@ export default class App extends React.Component {
 		return this.state.characters.find(character => character.id === id) || null;
 	}
 
+	getLocation(id) {
+		return this.state.locations.find(location => location.id === id) || null;
+	}
+
 	getTask(id) {
 		return TasksDatabase.tasks.find(task => task.id === id) || null;
 	}
@@ -399,12 +403,30 @@ export default class App extends React.Component {
 		return Math.clamp(value, 0, maxValue);
 	}
 
-	canBePlaced(characterId, task) {
-		const character = this.getCharacter(characterId);
-		return (task.difficulty === 0) || (character.stats.stamina > 0);
+	canDiceBeDropped(diceId, task) {
+		const dice = this.state.dice.find(dice => dice.id === diceId) || null;
+		if (!dice) {
+			return false;
+		}
+
+		const location = this.getLocation(task.location);
+		if (!location) {
+			return true;
+		}
+
+		const required = task.difficulty;
+		const stamina = location.character.stats.stamina;
+
+		console.log(`canDiceBeDropped stamina ${stamina} value ${dice.value} required ${required}`);
+
+		return (stamina + dice.value) >= required;
 	}
 
 	setTaskDice(diceId, task) {
+		if (!this.canDiceBeDropped(diceId, task)) {
+			return;
+		}
+
 		console.log(`setTaskDice diceId ${diceId} task ${task}`);
 
 		this.setState(state => {
@@ -414,6 +436,11 @@ export default class App extends React.Component {
 				dice: state.dice.filter(dice => dice.id !== diceId)
 			}
 		});
+	}
+
+	canBePlaced(characterId, task) {
+		const character = this.getCharacter(characterId);
+		return (task.difficulty === 0) || (character.stats.stamina > 0);
 	}
 
 	setCharacterTask(characterId, task) {
@@ -983,8 +1010,9 @@ export default class App extends React.Component {
 					getCharacter={this.getCharacter.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
-					onDiceDropped={this.setTaskDice.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}
+					canDiceBeDropped={this.canDiceBeDropped.bind(this)}
+					onDiceDropped={this.setTaskDice.bind(this)}
 					onStaminaChange={this.staminaChange.bind(this)}
 					onTaskStart={this.startTask.bind(this)}
 					onShiftFinish={this.finishShift.bind(this)}

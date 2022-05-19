@@ -15,6 +15,16 @@
 		border-color: gray;
 	}
 
+	&.-active {
+		border-style: solid;
+		border-color: green;
+	}
+
+	&.-denied {
+		border-style: solid;
+		border-color: red;
+	}
+
 	[disabled] & {
 		background: none;
 		border-style: solid;

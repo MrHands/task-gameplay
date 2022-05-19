@@ -24,8 +24,9 @@ export default class Location extends React.Component {
 			location,
 			clampCharacterStat,
 			canBePlaced,
-			onDiceDropped,
 			onCharacterDropped,
+			canDiceBeDropped,
+			onDiceDropped,
 			onStaminaChange,
 			onTaskStart,
 		} = this.props;
@@ -68,8 +69,9 @@ export default class Location extends React.Component {
 					character={character}
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
-					onDiceDropped={onDiceDropped}
 					onCharacterDropped={onCharacterDropped}
+					canDiceBeDropped={canDiceBeDropped}
+					onDiceDropped={onDiceDropped}
 					onStaminaChange={onStaminaChange}
 					onTaskStart={onTaskStart}
 				/>
