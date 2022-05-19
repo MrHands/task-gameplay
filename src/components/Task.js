@@ -65,7 +65,7 @@ export default class Task extends React.Component {
 				/>
 			);
 
-			staminaUsed = Math.max(0, staminaUsed - dice.value);
+			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - dice.value));
 		} else {
 			diceDropped = (
 				<DroppableDice
