@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CharacterList from '../components/CharacterList';
-import DiceList from '../components/DiceList';
+import LocationList from '../components/LocationList';
 import TasksList from '../components/TasksList';
 
 import './DayShift.scss';
@@ -10,6 +10,7 @@ export default class DayShift extends React.Component {
 	render() {
 		const {
 			handCards,
+			locations,
 			charactersUnplaced,
 			getCharacter,
 			clampCharacterStat,
@@ -21,6 +22,10 @@ export default class DayShift extends React.Component {
 
 		return (
 			<article className="o-dayShift">
+				<LocationList
+					className="o-dayShift__locations"
+					locations={locations}
+				/>
 				<TasksList 
 					className="o-dayShift__tasks"
 					handCards={handCards}

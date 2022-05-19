@@ -92,22 +92,27 @@ export default class App extends React.Component {
 			locations: [
 				{
 					id: 'gym',
+					title: 'Gym',
 					tasks: [],
 				},
 				{
 					id: 'library',
+					title: 'Library',
 					tasks: [],
 				},
 				{
 					id: 'dungeon',
+					title: 'Dungeon',
 					tasks: [],
 				},
 				{
 					id: 'lounge',
+					title: 'Lounge',
 					tasks: [],
 				},
 				{
 					id: 'spa',
+					title: 'Spa',
 					tasks: [],
 				},
 			],
@@ -821,6 +826,7 @@ export default class App extends React.Component {
 			sexergy,
 			day,
 			dice,
+			locations,
 			shift,
 			handCards,
 			characters,
@@ -911,6 +917,7 @@ export default class App extends React.Component {
 					charactersUnplaced={charactersUnplaced}
 					dice={dice}
 					handCards={handCards}
+					locations={locations}
 					getCharacter={this.getCharacter.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
