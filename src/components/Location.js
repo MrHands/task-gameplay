@@ -4,6 +4,7 @@ import Character from './Character';
 import DroppableCard from './DroppableCard';
 
 import './Location.scss';
+import TasksList from './TasksList';
 
 export default class Location extends React.Component {
 	get classes() {
@@ -21,12 +22,18 @@ export default class Location extends React.Component {
 	render() {
 		const {
 			location,
+			getCharacter,
 			clampCharacterStat,
+			canBePlaced,
+			onCharacterDropped,
+			onStaminaChange,
+			onTaskStart,
 		} = this.props;
 
 		const {
 			title,
 			character,
+			tasks,
 		} = location;
 
 		let characterDropped = null;
@@ -55,6 +62,16 @@ export default class Location extends React.Component {
 				<div className="m-location__character">
 					{characterDropped}
 				</div>
+				<TasksList
+					className="m-location__tasks"
+					handCards={tasks}
+					getCharacter={getCharacter}
+					clampCharacterStat={clampCharacterStat}
+					canBePlaced={canBePlaced}
+					onCharacterDropped={onCharacterDropped}
+					onStaminaChange={onStaminaChange}
+					onTaskStart={onTaskStart}
+				/>
 			</div>
 		);
 	}

@@ -80,7 +80,7 @@ export default class Task extends React.Component {
 					})}
 					</ul>
 				</div>
-				<div className="o-task__character">
+				{/* <div className="o-task__character">
 					{characterDropped}
 				</div>
 				<div className="o-task__carousel">
@@ -90,7 +90,7 @@ export default class Task extends React.Component {
 						character={character}
 						{...task}
 					/>
-				</div>
+				</div> */}
 			</div>
 		);
 	}

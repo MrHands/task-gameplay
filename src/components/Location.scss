@@ -9,6 +9,7 @@
 	grid-template-areas:
 		'title      title      '
 		'.          character  ';
+	gap: 1rem;
 	min-height: 13rem;
 	padding: 1rem;
 	border: 0.1rem solid goldenrod;
