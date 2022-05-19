@@ -59,7 +59,8 @@ export default class App extends React.Component {
 						submissive: 0
 					},
 					staminaCost: 0,
-					task: ''
+					task: '',
+					location: '',
 				},
 				{
 					id: 1,
@@ -72,7 +73,8 @@ export default class App extends React.Component {
 						submissive: 0
 					},
 					staminaCost: 0,
-					task: ''
+					task: '',
+					location: '',
 				},
 				{
 					id: 2,
@@ -85,7 +87,8 @@ export default class App extends React.Component {
 						submissive: 0
 					},
 					staminaCost: 0,
-					task: ''
+					task: '',
+					location: '',
 				}
 			],
 
@@ -149,6 +152,7 @@ export default class App extends React.Component {
 
 	startGame() {
 		this.setUpCharacters(true);
+		this.setUpLocations();
 		this.drawHand();
 	}
 
@@ -238,6 +242,44 @@ export default class App extends React.Component {
 	
 					return cloneCharacter;
 				}),
+			}
+		});
+	}
+
+	setUpLocations() {
+		this.setState(state => {
+			const {
+				locations,
+				characters,
+			} = state;
+
+			// clear characters from locations
+
+			locations.forEach(location => {
+				location.character = null;
+			});
+
+			// clear locations from characters
+
+			characters.forEach(character => {
+				character.location = '';
+			});
+
+			// pick random location for character
+
+			characters.forEach(character => {
+				while (character.location === '') {
+					const picked = locations[Math.floor(Math.random() * locations.length)];
+					if (picked.character === null) {
+						picked.character = character;
+						character.location = picked.id;
+					}
+				}
+			});
+
+			return {
+				locations,
+				characters
 			}
 		});
 	}
