@@ -28,7 +28,7 @@ export default class Character extends React.Component {
 			id,
 			name,
 			stats,
-			task,
+			location,
 			taskEffects,
 			clampCharacterStat,
 			children,
@@ -46,7 +46,7 @@ export default class Character extends React.Component {
 			</>
 		);
 
-		if (task === '') {
+		if (location === '') {
 			return (
 				<DraggableCard
 					className={this.classes.join(' ')}
