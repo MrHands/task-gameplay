@@ -41,11 +41,46 @@
 		grid-area: container;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows:
+			min-content
+			1fr;
+		grid-template-areas:
+			'stamina-title  dice-title  required-title'
+			'stamina-value  dice-value  required-value';
 		width: 100%;
 		justify-items: center;
-		gap: 0.5rem;
 		align-items: center;
+		gap: 0.5rem;
 		text-transform: uppercase;
+
+		&__stamina-title {
+			grid-area: stamina-title;
+		}
+
+		&__stamina-value {
+			grid-area: stamina-value;
+		}
+
+		&__dice-title {
+			grid-area: dice-title;
+		}
+
+		&__dice-value {
+			grid-area: dice-value;
+		}
+
+		&__required-title {
+			grid-area: required-title;
+		}
+
+		&__required-value {
+			grid-area: required-value;
+		}
+
+		&__stamina-value,
+		&__required-value {
+			font-size: 1.5rem;
+		}
 	}
 
 	&__required {

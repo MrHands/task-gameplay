@@ -68,7 +68,7 @@ export default function Task(props) {
 		}
 	}
 
-	let staminaUsed = character?.stats.stamina || 0;
+	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
 
 	let eleDice = null;
 
@@ -85,9 +85,44 @@ export default function Task(props) {
 		);
 	}
 
+	let textStamina = staminaUsed;
 	if (diceUsed !== null) {
 		staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
-	} 
+		textStamina = `${staminaUsed} ▼`;
+	}
+
+	let guts = null;
+	if (task.id !== 'rest') {
+		guts = (<>
+			<h3 className="o-task__container__stamina-title">
+				Stamina
+			</h3>
+			<p className="o-task__container__stamina-value">
+				{textStamina}
+			</p>
+			<h3 className="o-task__container__dice-title">
+				Dice
+			</h3>
+			<div className="o-task__container__dice-value">
+				{eleDice}
+			</div>
+			<h3 className="o-task__container__required-title">
+				Required
+			</h3>
+			<p className="o-task__container__required-value">
+				{difficulty}
+			</p>
+		</>);
+	} else {
+		guts = (<>
+			<h3 className="o-task__container__dice-title">
+				Dice
+			</h3>
+			<div className="o-task__container__dice-value">
+				{eleDice}
+			</div>
+		</>)
+	}
 
 	return (
 		<div className={classes.join(' ')} ref={drop}>
@@ -101,18 +136,7 @@ export default function Task(props) {
 				</ul>
 			</div>
 			<div className="o-task__container">
-				<h3>Stamina</h3>
-				<h3>Dice</h3>
-				<h3>Required</h3>
-				<div className="o-task__container__stamina">
-					<p>{staminaUsed}</p>
-				</div>
-				<div className="o-task__container__dice">
-					{eleDice}
-				</div>
-				<div className="o-task__container__required">
-					<p>{difficulty}</p>
-				</div>
+				{guts}
 			</div>
 			{/* 
 			<div className="o-task__carousel">
