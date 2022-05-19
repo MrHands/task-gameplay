@@ -258,8 +258,8 @@ export default class App extends React.Component {
 			locations.forEach(location => {
 				location.character = null;
 
-				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id);
-				location.tasks.push(this.getTask('rest'));
+				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id).map(task => deepClone(task));
+				location.tasks.push(deepClone(this.getTask('rest')));
 			});
 
 			// clear locations from characters

@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Character from './Character';
+import Dice from './Dice';
 import DroppableCard from './DroppableCard';
+import DroppableDice from './DroppableDice';
 
 import './Task.scss';
 import TaskStart from './TaskStart';
@@ -49,23 +51,22 @@ export default class Task extends React.Component {
 			clampCharacterStat,
 		} = this.props;
 
-		let characterDropped = null;
+		const {
+			dice
+		} = task;
 
-		if (character !== null) {
-			const outcomeEffects = task.outcome !== '' ? task.effects : null;
+		let diceDropped = null;
 
-			characterDropped = (
-				<Character
-					taskEffects={outcomeEffects}
-					clampCharacterStat={clampCharacterStat}
-					{...character}
+		if (dice !== null) {
+			diceDropped = (
+				<Dice
+					id={dice.id}
+					value={dice.value}
 				/>
 			);
 		} else {
-			characterDropped = (
-				<DroppableCard className="o-character -empty" {...this.props}>
-					<h3 className="o-character__title">Drag character here</h3>
-				</DroppableCard>
+			diceDropped = (
+				<DroppableDice className="a-dice -empty" {...this.props} />
 			);
 		}
 
@@ -80,9 +81,10 @@ export default class Task extends React.Component {
 					})}
 					</ul>
 				</div>
-				{/* <div className="o-task__character">
-					{characterDropped}
+				<div className="o-task__dice">
+					{diceDropped}
 				</div>
+				{/* 
 				<div className="o-task__carousel">
 					<TaskStart
 						onStaminaChange={onStaminaChange}

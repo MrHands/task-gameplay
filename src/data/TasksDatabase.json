@@ -10,7 +10,8 @@
 					"value": 20
 				}
 			],
-			"difficulty": 6
+			"difficulty": 6,
+			"dice": null
 		},
 		{
 			"id": "maintenance-2",
@@ -22,7 +23,8 @@
 					"value": 40
 				}
 			],
-			"difficulty": 8
+			"difficulty": 8,
+			"dice": null
 		},
 		{
 			"id": "maintenance-3",
@@ -34,7 +36,8 @@
 					"value": 60
 				}
 			],
-			"difficulty": 10
+			"difficulty": 10,
+			"dice": null
 		},
 		{
 			"id": "maintenance-4",
@@ -46,7 +49,8 @@
 					"value": 80
 				}
 			],
-			"difficulty": 12
+			"difficulty": 12,
+			"dice": null
 		},
 		{
 			"id": "maintenance-5",
@@ -58,7 +62,8 @@
 					"value": 80
 				}
 			],
-			"difficulty": 12
+			"difficulty": 12,
+			"dice": null
 		},
 		{
 			"id": "personal-1",
@@ -78,7 +83,8 @@
 					"value": 10
 				}
 			],
-			"difficulty": 2
+			"difficulty": 2,
+			"dice": null
 		},
 		{
 			"id": "personal-2",
@@ -98,7 +104,8 @@
 					"value": 30
 				}
 			],
-			"difficulty": 4
+			"difficulty": 4,
+			"dice": null
 		},
 		{
 			"id": "personal-3",
@@ -118,7 +125,8 @@
 					"value": 20
 				}
 			],
-			"difficulty": 6
+			"difficulty": 6,
+			"dice": null
 		},
 		{
 			"id": "personal-4",
@@ -138,7 +146,8 @@
 					"value": 10
 				}
 			],
-			"difficulty": 8
+			"difficulty": 8,
+			"dice": null
 		},
 		{
 			"id": "personal-5",
@@ -158,7 +167,8 @@
 					"value": 10
 				}
 			],
-			"difficulty": 8
+			"difficulty": 8,
+			"dice": null
 		},
 		{
 			"id": "rest",
@@ -174,7 +184,8 @@
 					"value": -10
 				}
 			],
-			"difficulty": 0
+			"difficulty": 0,
+			"dice": null
 		},
 		{
 			"id": "night",
@@ -182,7 +193,8 @@
 			"location": "",
 			"effects": [
 			],
-			"difficulty": 0
+			"difficulty": 0,
+			"dice": null
 		}
 	]
 }
