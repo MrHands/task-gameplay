@@ -406,6 +406,14 @@ export default class App extends React.Component {
 
 	setTaskDice(diceId, task) {
 		console.log(`setTaskDice diceId ${diceId} task ${task}`);
+
+		this.setState(state => {
+			task.dice = state.dice.find(dice => dice.id === diceId) || null;
+
+			return {
+				dice: state.dice.filter(dice => dice.id !== diceId)
+			}
+		});
 	}
 
 	setCharacterTask(characterId, task) {
