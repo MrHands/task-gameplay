@@ -15,8 +15,18 @@
 	justify-items: center;
 	min-height: 13rem;
 	padding: 1rem;
-	border: 0.1rem solid goldenrod;
+	border: 0.2rem solid steelblue;
 	border-radius: 0.5rem;
+
+	&.-active {
+		border-style: solid;
+		border-color: green;
+	}
+
+	&.-denied {
+		border-style: solid;
+		border-color: red;
+	}
 
 	[disabled] & {
 		border-color: gray;

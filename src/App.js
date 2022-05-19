@@ -370,6 +370,10 @@ export default class App extends React.Component {
 		return TasksDatabase.tasks.find(task => task.id === id) || null;
 	}
 
+	getDice(id) {
+		return this.state.dice.find(dice => dice.id === id) || null;
+	}
+
 	getSexMove(id) {
 		if (typeof id !== 'string') {
 			return id;
@@ -414,12 +418,16 @@ export default class App extends React.Component {
 			return true;
 		}
 
+		if (!location.character) {
+			return false;
+		}
+
 		const required = task.difficulty;
 		const stamina = location.character.stats.stamina;
 
 		console.log(`canDiceBeDropped stamina ${stamina} value ${dice.value} required ${required}`);
 
-		return (stamina + dice.value) >= required;
+		return [(stamina + dice.value) >= required, dice];
 	}
 
 	setTaskDice(diceId, task) {

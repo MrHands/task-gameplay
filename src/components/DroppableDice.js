@@ -19,8 +19,11 @@ export default function DroppableDice(props) {
 		drop: dice => onDiceDropped(dice.id, task),
 	}), [task]);
 
+	let dropValue = 0;
+
 	if (isOver && canDrop) {
 		if (canDiceBeDropped(dice.id, task)) {
+			dropValue = dice.value;
 			className += ' -active';
 		} else {
 			className += ' -denied';
@@ -28,7 +31,7 @@ export default function DroppableDice(props) {
 	}
 
 	return (
-		<div ref={drop} className={className}>
+		<div ref={drop} className={className} data-drop-value={dropValue}>
 			{children}
 		</div>
 	);
