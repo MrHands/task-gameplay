@@ -49,7 +49,10 @@ export default class Task extends React.Component {
 		} = this.props;
 
 		const {
-			dice
+			dice,
+			title,
+			difficulty,
+			effects,
 		} = task;
 
 		let diceDropped = null;
@@ -69,20 +72,28 @@ export default class Task extends React.Component {
 
 		return (
 			<div className={this.classes.join(' ')}>
-				<h2 className="o-task__title">{task.title}</h2>
+				<h2 className="o-task__title">{title}</h2>
 				<div className="o-task__effects">
 					<h3>Rewards</h3>
 					<ul className="o-task__rewards">
-					{ task.effects.map((effect, index) => {
+					{ effects.map((effect, index) => {
 						return <li key={`effect-${index}`}>{effect.type} {this.effectText(effect)}</li>;
 					})}
 					</ul>
 				</div>
-				<div className="o-task__required">
+				<div className="o-task__container">
+					<h3>Stamina</h3>
+					<h3>Dice</h3>
 					<h3>Required</h3>
-				</div>
-				<div className="o-task__dice">
-					{diceDropped}
+					<div className="o-task__container__stamina">
+						<p>{difficulty}</p>
+					</div>
+					<div className="o-task__container__dice">
+						{diceDropped}
+					</div>
+					<div className="o-task__container__required">
+						<p>{difficulty}</p>
+					</div>
 				</div>
 				{/* 
 				<div className="o-task__carousel">
