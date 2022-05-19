@@ -1,18 +1,13 @@
 .o-task {
-	/* display: grid;
+	display: grid;
 	grid-template-areas:
-		'title       title       '
-		'effects     dice        '
-		'carousel    carousel    ';
-	grid-template-columns:
-		1fr
-		12rem;
+		'title    '
+		'dice     '
+		'effects  ';
 	grid-template-rows:
 		min-content
 		min-content
-		1fr; */
-	display: flex;
-	flex-direction: column;
+		1fr;
 	gap: 1rem;
 	justify-items: center;
 	min-height: 13rem;

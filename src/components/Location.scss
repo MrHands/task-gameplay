@@ -1,14 +1,14 @@
 .m-location {
 	display: grid;
 	grid-template-columns:
-		1fr
-		min-content;
+		min-content
+		1fr;
 	grid-template-rows:
 		min-content
 		1fr;
 	grid-template-areas:
 		'title      title      '
-		'.          character  ';
+		'character  .          ';
 	gap: 1rem;
 	min-height: 13rem;
 	padding: 1rem;

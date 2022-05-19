@@ -30,12 +30,6 @@ export default class DayShift extends React.Component {
 					onStaminaChange={onStaminaChange}
 					onTaskStart={onTaskStart}
 				/>
-				<CharacterList
-					className="o-dayShift__characters"
-					characters={charactersUnplaced}
-					clampCharacterStat={clampCharacterStat}
-					canBePlaced={canBePlaced}
-				/>
 			</article>
 		);
 	}

@@ -3,10 +3,9 @@
 .o-dayShift {
 	display: grid;
 	grid-template-areas:
-		'hud     hud         '
-		'dice    dice        '
-		'tasks   characters  ';
-	grid-template-columns: 3fr $card-size;
+		'hud        '
+		'dice       '
+		'locations  ';
 	align-items: center;
 	gap: 1rem;
 
