@@ -100,9 +100,6 @@ export default function Task(props) {
 			<p className="o-task__container__stamina-value">
 				{textStamina}
 			</p>
-			<h3 className="o-task__container__dice-title">
-				Dice
-			</h3>
 			<div className="o-task__container__dice-value">
 				{eleDice}
 			</div>
@@ -115,9 +112,6 @@ export default function Task(props) {
 		</>);
 	} else {
 		guts = (<>
-			<h3 className="o-task__container__dice-title">
-				Dice
-			</h3>
 			<div className="o-task__container__dice-value">
 				{eleDice}
 			</div>
