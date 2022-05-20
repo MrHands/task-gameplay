@@ -4,12 +4,14 @@
 		'title     '
 		'container '
 		'start     '
+		'subheader '
 		'effects   ';
 	grid-template-rows:
 		min-content
 		1fr
 		min-content
-		8rem;
+		min-content
+		4rem;
 	gap: 1rem;
 	justify-items: center;
 	min-height: 13rem;
@@ -38,14 +40,16 @@
 
 	&__container {
 		grid-area: container;
-		display: grid;
+		/* display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows:
 			min-content
 			1fr;
 		grid-template-areas:
 			'stamina-title  dice-title  required-title'
-			'stamina-value  dice-value  required-value';
+			'stamina-value  dice-value  required-value'; */
+		display: flex;
+		place-content: center;
 		width: 100%;
 		justify-items: center;
 		align-items: center;
@@ -87,6 +91,11 @@
 		text-transform: uppercase;
 	}
 
+	&__subheader {
+		grid-area: subheader;
+		text-transform: uppercase;
+	}
+
 	&__effects {
 		grid-area: effects;
 		align-self: flex-start;
@@ -110,7 +119,7 @@
 
 	&__start {
 		grid-area: start;
-		width: 50%;
+		width: 80%;
 	}
 
 	&__carousel {

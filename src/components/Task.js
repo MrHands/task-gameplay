@@ -90,8 +90,6 @@ export default function Task(props) {
 		}
 	}
 
-	const textStamina = (diceUsed !== null) ? `${staminaUsed} ▼` : staminaUsed;
-
 	// dice element
 
 	let eleDice = null;
@@ -138,8 +136,8 @@ export default function Task(props) {
 	return (
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
+			<h3 className="o-task__subheader">Effects</h3>
 			<div className="o-task__effects">
-				<h3>Rewards</h3>
 				<ul className="o-task__rewards">
 				{ copyEffects.map((effect, index) => {
 					return <li key={`effect-${index}`}>{effect.type} {effectText(effect)}</li>;
