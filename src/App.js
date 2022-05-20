@@ -537,11 +537,29 @@ export default class App extends React.Component {
 			return;
 		}
 
-		// apply task effects
-
 		console.log(`applying task ${task.id} to ${character.name}`);
 
 		character.taskEffects = task.effects.map(effect => deepClone(effect));
+
+		// add stamina effect
+
+		if (task.id === 'rest') {
+			character.taskEffects.push({
+				type: 'stamina',
+				value: task.dice.value
+			});
+		} else {
+			let staminaUsed = Math.min(character.stats.stamina, task.difficulty);
+			staminaUsed = Math.max(0, Math.min(staminaUsed, task.difficulty - task.dice.value));
+	
+			character.taskEffects.push({
+				type: 'stamina',
+				value: -staminaUsed
+			});
+		}
+
+		// apply task effects
+
 		character.taskEffects.forEach(effect => {
 			const statValue = character.stats[effect.type];
 			console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);

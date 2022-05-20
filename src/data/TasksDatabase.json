@@ -176,10 +176,6 @@
 			"location": "",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": 2
-				},
-				{
 					"type": "pleasure",
 					"value": -10
 				}
