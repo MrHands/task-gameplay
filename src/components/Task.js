@@ -66,11 +66,11 @@ export default function Task(props) {
 			canDrop: monitor.canDrop(),
 			diceDropped: monitor.getItem(),
 		}),
-		drop: dice => onDiceDropped(dice.id, task),
+		drop: dice => onDiceDropped(dice.id, task, character),
 	}), [task]);
 
 	if (isOver && canDrop) {
-		const result = canDiceBeDropped(diceDropped.id, task);
+		const result = canDiceBeDropped(diceDropped.id, task, character);
 		if (result[0]) {
 			diceUsed = result[1];
 			classes.push('-active');

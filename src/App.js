@@ -8,7 +8,6 @@ import DecksDatabase from './data/DecksDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
-import { TaskOutcome } from './enums/TaskOutcome';
 import shuffleCards from './helpers/shuffleCards';
 import DayShift from './states/DayShift';
 import GameStart from './states/GameStart';
@@ -402,31 +401,26 @@ export default class App extends React.Component {
 		return Math.clamp(value, 0, maxValue);
 	}
 
-	canDiceBeDropped(diceId, task) {
+	canDiceBeDropped(diceId, task, character) {
+		if (!character) {
+			return [false, null];
+		}
+
 		const dice = this.state.dice.find(dice => dice.id === diceId) || null;
 		if (!dice) {
-			return false;
-		}
-
-		const location = this.getLocation(task.location);
-		if (!location) {
-			return true;
-		}
-
-		if (!location.character) {
-			return false;
+			return [false, null];
 		}
 
 		const required = task.difficulty;
-		const stamina = location.character.stats.stamina;
+		const stamina = character.stats.stamina;
 
 		console.log(`canDiceBeDropped stamina ${stamina} value ${dice.value} required ${required}`);
 
 		return [(stamina + dice.value) >= required, dice];
 	}
 
-	setTaskDice(diceId, task) {
-		if (!this.canDiceBeDropped(diceId, task)) {
+	setTaskDice(diceId, task, character) {
+		if (!this.canDiceBeDropped(diceId, task, character)) {
 			return;
 		}
 
@@ -444,6 +438,10 @@ export default class App extends React.Component {
 				dice: state.dice.filter(dice => dice.id !== diceId)
 			}
 		});
+
+		if (task.id !== 'rest' && task.difficulty === 0) {
+			this.startTask(character, task);
+		}
 	}
 
 	canBePlaced(characterId, task) {
