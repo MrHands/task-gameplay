@@ -92,6 +92,11 @@ export default function Task(props) {
 
 	// dice element
 
+	let diceValue = difficulty;
+	if (diceUsed !== null) {
+		diceValue = Math.abs(difficulty - diceUsed.value);
+	}
+
 	let eleDice = null;
 
 	if (task.dice !== null) {
@@ -105,14 +110,9 @@ export default function Task(props) {
 			/>
 		);
 	} else {
-		let diceText = difficulty;
-		if (diceUsed !== null) {
-			diceText = Math.abs(difficulty - diceUsed.value);
-		}
-
 		eleDice = (
 			<div className="a-dice -empty -drop">
-				{diceText}
+				{diceValue}
 			</div>
 		);
 	}
@@ -129,9 +129,9 @@ export default function Task(props) {
 
 	console.log(`task ${task.id} difficulty ${difficulty} staminaUsed ${staminaUsed}`);
 
-	let startDisabled = difficulty > staminaUsed || task.outcome !== '';
+	let startDisabled = diceValue > staminaUsed || task.outcome !== '';
 
-	let startText = `Spend ${Math.min(staminaUsed, difficulty)} Stamina`;
+	let startText = `Spend ${diceValue} Stamina`;
 	if (staminaUsed === 0) {
 		startText = 'Start';
 	}
