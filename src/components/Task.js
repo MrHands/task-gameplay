@@ -79,6 +79,21 @@ export default function Task(props) {
 		}
 	}
 
+	// stamina
+
+	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
+	if (diceUsed !== null) {
+		if (task.id === 'rest') {
+			staminaUsed = -diceUsed.value;
+		} else {
+			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
+		}
+	}
+
+	const textStamina = (diceUsed !== null) ? `${staminaUsed} ▼` : staminaUsed;
+
+	// dice element
+
 	let eleDice = null;
 
 	if (task.dice !== null) {
@@ -93,29 +108,20 @@ export default function Task(props) {
 	} else {
 		eleDice = (
 			<div className="a-dice -empty">
-				{difficulty}
+				{(task.id === 'rest' && diceUsed !== null) ? diceUsed.value : staminaUsed}
 			</div>
 		);
 	}
 
-	// stamina effects
-
-	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
-	if (diceUsed !== null) {
-		if (task.id === 'rest') {
-			staminaUsed = -diceUsed.value;
-		} else {
-			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
-		}
-	}
-
-	const textStamina = (diceUsed !== null) ? `${staminaUsed} ▼` : staminaUsed;
+	// effects
 
 	const copyEffects = effects.map(effect => deepClone(effect));
 	copyEffects.push({
 		type: 'stamina',
 		value: -staminaUsed
 	});
+
+	// start button
 
 	let startDisabled = difficulty > staminaUsed || task.outcome !== '';
 
@@ -128,6 +134,8 @@ export default function Task(props) {
 		startDisabled = task.dice === null || task.outcome !== '';
 		startText = 'Start';
 	}
+
+	// guts
 
 	let guts = null;
 	if (task.id !== 'rest') {
