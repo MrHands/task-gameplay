@@ -11,9 +11,12 @@
 	font-weight: bold;
 
 	&.-empty {
-		width: 6rem;
 		border-style: dashed;
 		border-color: gray;
+	}
+
+	&.-drop {
+		width: 6rem;
 	}
 
 	&.-active {

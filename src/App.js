@@ -576,15 +576,19 @@ export default class App extends React.Component {
 
 		// update task
 
-		task.outcome = TaskOutcome.SUCCESS;
+		if (task.id === 'rest') {
+			task.dice = null;
 
-		location.tasks = location.tasks.map(it => {
-			if (it.id !== task.id) {
-				return it;
-			}
-
-			return task;
-		});
+			location.tasks = location.tasks.map(it => {
+				if (it.id !== task.id) {
+					return it;
+				}
+	
+				return task;
+			});
+		} else {
+			location.tasks = location.tasks.filter(it => it.id !== task.id);
+		}
 
 		this.setState(state => {
 			const {

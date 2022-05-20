@@ -98,6 +98,7 @@ export default function Task(props) {
 		console.log(task);
 		eleDice = (
 			<Dice
+				className="-drop"
 				id={diceUsed.id}
 				value={diceUsed.value}
 				isSpent={task.outcome !== ''}
@@ -105,7 +106,7 @@ export default function Task(props) {
 		);
 	} else {
 		eleDice = (
-			<div className="a-dice -empty">
+			<div className="a-dice -empty -drop">
 				{(task.id === 'rest' && diceUsed !== null) ? diceUsed.value : difficulty}
 			</div>
 		);
