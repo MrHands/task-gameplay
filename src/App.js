@@ -532,8 +532,10 @@ export default class App extends React.Component {
 		}
 	}
 
-	startTask(handId) {
-		console.log(`startTask ${handId}`);
+	startTask(task) {
+		console.log(task);
+
+		/* console.log(`startTask ${handId}`);
 
 		this.setState(state => {
 			let {
@@ -654,7 +656,7 @@ export default class App extends React.Component {
 					return taskClone;
 				}),
 			}
-		});
+		}); */
 	}
 
 	finishShift() {
