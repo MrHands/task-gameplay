@@ -99,20 +99,21 @@ export default function Task(props) {
 	// stamina effects
 
 	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
-
-	let textStamina = staminaUsed;
 	if (diceUsed !== null) {
-		staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
-		textStamina = `${staminaUsed} ▼`;
+		if (task.id === 'rest') {
+			staminaUsed = -diceUsed.value;
+		} else {
+			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
+		}
 	}
+
+	const textStamina = (diceUsed !== null) ? `${staminaUsed} ▼` : staminaUsed;
 
 	const copyEffects = effects.map(effect => deepClone(effect));
-	if (diceUsed !== null) {
-		copyEffects.push({
-			type: 'stamina',
-			value: -staminaUsed
-		});
-	}
+	copyEffects.push({
+		type: 'stamina',
+		value: -staminaUsed
+	});
 
 	const startDisabled = task.dice === null || task.outcome !== '';
 
