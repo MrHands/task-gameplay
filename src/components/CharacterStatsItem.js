@@ -68,11 +68,11 @@ export default class CharacterStatsItem extends React.Component {
 				const newValue = clampCharacterStat(type, value + found.value);
 
 				if (newValue > value) {
-					result = `${this.effectText(type, newValue)} ▲`;
+					result = `${this.effectText(type, value)} ▲`;
 				} else if (newValue < value) {
-					result = `${this.effectText(type, newValue)} ▼`;
+					result = `${this.effectText(type, value)} ▼`;
 				} else {
-					result = `${this.effectText(type, newValue)} −`;
+					result = `${this.effectText(type, value)} −`;
 				}
 			}
 		}
