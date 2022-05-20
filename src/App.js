@@ -881,6 +881,7 @@ export default class App extends React.Component {
 
 		let gameState = null;
 		let hud = null;
+		let eleDice = null;
 
 		if (handCards.length === 0) {
 			gameState = (
@@ -975,16 +976,20 @@ export default class App extends React.Component {
 					onShiftFinish={this.finishShift.bind(this)}
 				/>
 			);
+
+			eleDice = (
+				<DiceList
+					className="o-dayShift__dice"
+					dice={dice}
+				/>
+			);
 		}
 
 		return (
 			<DndProvider backend={HTML5Backend}>
 				{hud}
 				{gameState}
-				<DiceList
-					className="o-dayShift__dice"
-					dice={dice}
-				/>
+				{eleDice}
 			</DndProvider>
 		);
 	}
