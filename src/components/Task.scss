@@ -1,14 +1,13 @@
 .o-task {
 	display: grid;
 	grid-template-areas:
-		'title     title     '
-		'container container '
-		'effects   effects   ';
-	grid-template-columns:
-		1fr
-		1fr;
+		'title     '
+		'container '
+		'start     '
+		'effects   ';
 	grid-template-rows:
 		min-content
+		1fr
 		min-content
 		1fr;
 	gap: 1rem;
@@ -106,6 +105,11 @@
 	&__dice {
 		grid-area: dice;
 		justify-self: center;
+	}
+
+	&__start {
+		grid-area: start;
+		width: 50%;
 	}
 
 	&__carousel {

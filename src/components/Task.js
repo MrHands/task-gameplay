@@ -33,6 +33,7 @@ export default function Task(props) {
 		character,
 		canDiceBeDropped,
 		onDiceDropped,
+		onTaskStart,
 	} = props;
 
 	const classes = ['o-task'];
@@ -91,6 +92,8 @@ export default function Task(props) {
 		textStamina = `${staminaUsed} ▼`;
 	}
 
+	const startDisabled = task.dice === null;
+
 	let guts = null;
 	if (task.id !== 'rest') {
 		guts = (<>
@@ -132,15 +135,13 @@ export default function Task(props) {
 			<div className="o-task__container">
 				{guts}
 			</div>
-			{/* 
-			<div className="o-task__carousel">
-				<TaskStart
-					onStaminaChange={onStaminaChange}
-					onTaskStart={onTaskStart}
-					character={character}
-					{...task}
-				/>
-			</div> */}
+			<button
+				className="o-task__start"
+				onClick={() => onTaskStart(task)}
+				disabled={startDisabled}
+			>
+				Start
+			</button>
 		</div>
 	);
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Character from './Character';
-import DroppableCard from './DroppableCard';
 
 import './Location.scss';
 import TasksList from './TasksList';
