@@ -152,7 +152,7 @@ export default class App extends React.Component {
 
 	startGame() {
 		this.setUpCharacters(true);
-		this.setUpLocations();
+		this.setUpLocations(false);
 		this.drawHand();
 	}
 
@@ -234,7 +234,7 @@ export default class App extends React.Component {
 		});
 	}
 
-	setUpLocations() {
+	setUpLocations(isNightShift) {
 		this.setState(state => {
 			const {
 				locations,
@@ -263,15 +263,17 @@ export default class App extends React.Component {
 
 			// pick random location for character
 
-			characters.forEach(character => {
-				while (character.location === '') {
-					const picked = locations[Math.floor(Math.random() * locations.length)];
-					if (picked.character === null) {
-						picked.character = character;
-						character.location = picked.id;
+			if (!isNightShift) {
+				characters.forEach(character => {
+					while (character.location === '') {
+						const picked = locations[Math.floor(Math.random() * locations.length)];
+						if (picked.character === null) {
+							picked.character = character;
+							character.location = picked.id;
+						}
 					}
-				}
-			});
+				});
+			}
 
 			return {
 				locations,
@@ -650,7 +652,7 @@ export default class App extends React.Component {
 
 		// set up board
 
-		this.setUpLocations();
+		this.setUpLocations(shift === Shift.NIGHT);
 		this.setUpCharacters(newDay);
 		this.drawHand();
 	}
