@@ -5,12 +5,22 @@ import DraggableCard from './DraggableCard';
 
 import './Character.scss';
 
-export default class Character extends React.Component {
-	get classes() {
+export default function Character(props) {
+	const {
+		id,
+		name,
+		stats,
+		location,
+		taskEffects,
+		clampCharacterStat,
+		children,
+	} = props;
+
+	const classes = (() => {
 		const {
 			className,
 			task
-		} = this.props;
+		} = props;
 
 		const classes = ['o-character'];
 
@@ -21,48 +31,36 @@ export default class Character extends React.Component {
 		classes.push(className);
 
 		return classes;
-	}
+	})();
 
-	render() {
-		const {
-			id,
-			name,
-			stats,
-			location,
-			taskEffects,
-			clampCharacterStat,
-			children,
-		} = this.props;
+	const guts = (
+		<>
+			<h2 className="o-character__name">{name}</h2>
+			<CharacterStats
+				className="o-character__stats"
+				stats={stats}
+				taskEffects={taskEffects}
+				clampCharacterStat={clampCharacterStat}
+			/>
+		</>
+	);
 
-		const guts = (
-			<>
-				<h2 className="o-character__name">{name}</h2>
-				<CharacterStats
-					className="o-character__stats"
-					stats={stats}
-					taskEffects={taskEffects}
-					clampCharacterStat={clampCharacterStat}
-				/>
-			</>
+	if (location === '') {
+		return (
+			<DraggableCard
+				className={classes.join(' ')}
+				id={id}
+				type="character"
+				children={children}
+			>
+				{guts}
+			</DraggableCard>
 		);
-
-		if (location === '') {
-			return (
-				<DraggableCard
-					className={this.classes.join(' ')}
-					id={id}
-					type="character"
-					children={children}
-				>
-					{guts}
-				</DraggableCard>
-			);
-		} else {
-			return (
-				<div className={this.classes.join(' ')}>
-					{guts}
-				</div>
-			);
-		}
+	} else {
+		return (
+			<div className={classes.join(' ')}>
+				{guts}
+			</div>
+		);
 	}
 }
