@@ -523,25 +523,25 @@ export default class App extends React.Component {
 		console.log(character);
 		console.log(task);
 
+		// apply task effects
+
 		console.log(`applying task ${task.id} to ${character.name}`);
+
+		task.effects.forEach(effect => {
+			const statValue = character.stats[effect.type];
+			console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
+			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+		});
 
 		this.setState(state => {
 			let {
 				characters,
 			} = state;
 
-			// apply task effects
-
-			task.effects.forEach(effect => {
-				const statValue = character.stats[effect.type];
-				console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
-				character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
-			});
-
 			return {
-				characters: characters.map(copy => {
-					if (copy.id !== character.id) {
-						return copy;
+				characters: characters.map(it => {
+					if (it.id !== character.id) {
+						return it;
 					}
 
 					return character;
