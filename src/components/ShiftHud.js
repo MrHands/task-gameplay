@@ -3,53 +3,51 @@ import { Shift } from '../enums/Shift';
 
 import './ShiftHud.scss';
 
-export default class ShiftHud extends React.Component {
-	get classes() {
+export default function ShiftHud(props) {
+	const {
+		sexergy,
+		day,
+		shift,
+		dice,
+		handleFinishShift 
+	} = props;
+
+	const classes = (() => {
 		const {
 			className,
-		} = this.props;
+		} = props;
 
 		const classes = ['m-shiftHud'];
 		classes.push(className);
 
 		return classes;
+	})();
+
+	const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
+
+	let hint = null;
+	if (dice.length > 0) {
+		hint = 'Spend all your Action Dice to finish the shift.';
 	}
 
-	render() {
-		const {
-			sexergy,
-			day,
-			shift,
-			charactersNotDone,
-			handleFinishShift 
-		} = this.props;
-
-		const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
-
-		let hint = null;
-		if (charactersNotDone.length > 0) {
-			hint = 'All characters must perform a task to finish the shift';
-		}
-
-		return (
-			<div className={this.classes.join(' ')}>
-				<h2 className="m-shiftHud__sexergy">
-					<div className="m-shiftHud__sexergy__title">Sexergy</div>
-					<div className="m-shiftHud__sexergy__value">{sexergy}</div>
-				</h2>
-				<h2 className="m-shiftHud__day">
-					{`Day ${day}`}
-				</h2>
-				<h2 className="m-shiftHud__shift">
-					{`${shiftName}`}
-				</h2>
-				<div className="m-shiftHud__next">
-					<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={charactersNotDone.length > 0}>
-						Finish Shift
-					</button>
-					<h3 className="m-shiftHud__hint">{hint}</h3>
-				</div>
+	return (
+		<div className={classes.join(' ')}>
+			<h2 className="m-shiftHud__sexergy">
+				<div className="m-shiftHud__sexergy__title">Sexergy</div>
+				<div className="m-shiftHud__sexergy__value">{sexergy}</div>
+			</h2>
+			<h2 className="m-shiftHud__day">
+				{`Day ${day}`}
+			</h2>
+			<h2 className="m-shiftHud__shift">
+				{`${shiftName}`}
+			</h2>
+			<div className="m-shiftHud__next">
+				<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={dice.length > 0}>
+					Finish Shift
+				</button>
+				<h3 className="m-shiftHud__hint">{hint}</h3>
 			</div>
-		);
-	}
+		</div>
+	);
 }

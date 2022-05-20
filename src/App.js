@@ -946,6 +946,7 @@ export default class App extends React.Component {
 					sexergy={sexergy}
 					day={day}
 					shift={shift}
+					dice={dice}
 					charactersNotDone={charactersNotDone}
 					handleFinishShift={this.finishShift.bind(this)}
 				/>
