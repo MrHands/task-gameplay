@@ -5,6 +5,10 @@ import Dice from './Dice';
 
 import './Task.scss';
 
+function deepClone(object) {
+	return JSON.parse(JSON.stringify(object));
+}
+
 function effectText(effect) {
 	const { type, value } = effect;
 
@@ -69,14 +73,11 @@ export default function Task(props) {
 		const result = canDiceBeDropped(diceDropped.id, task);
 		if (result[0]) {
 			diceUsed = result[1];
-			console.log(diceDropped);
 			classes.push('-active');
 		} else {
 			classes.push('-denied');
 		}
 	}
-
-	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
 
 	let eleDice = null;
 
@@ -95,10 +96,22 @@ export default function Task(props) {
 		);
 	}
 
+	// stamina effects
+
+	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
+
 	let textStamina = staminaUsed;
 	if (diceUsed !== null) {
 		staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
 		textStamina = `${staminaUsed} ▼`;
+	}
+
+	const copyEffects = effects.map(effect => deepClone(effect));
+	if (diceUsed !== null) {
+		copyEffects.push({
+			type: 'stamina',
+			value: -staminaUsed
+		});
 	}
 
 	const startDisabled = task.dice === null || task.outcome !== '';
@@ -136,7 +149,7 @@ export default function Task(props) {
 			<div className="o-task__effects">
 				<h3>Rewards</h3>
 				<ul className="o-task__rewards">
-				{ effects.map((effect, index) => {
+				{ copyEffects.map((effect, index) => {
 					return <li key={`effect-${index}`}>{effect.type} {effectText(effect)}</li>;
 				})}
 				</ul>

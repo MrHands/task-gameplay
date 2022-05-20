@@ -9,7 +9,7 @@
 		min-content
 		1fr
 		min-content
-		1fr;
+		8rem;
 	gap: 1rem;
 	justify-items: center;
 	min-height: 13rem;
@@ -89,6 +89,7 @@
 
 	&__effects {
 		grid-area: effects;
+		align-self: flex-start;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
