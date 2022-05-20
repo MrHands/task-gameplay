@@ -7,7 +7,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 20
+					"value": 10
 				}
 			],
 			"difficulty": 5,
@@ -20,7 +20,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 40
+					"value": 20
 				}
 			],
 			"difficulty": 6,
@@ -33,7 +33,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 60
+					"value": 30
 				}
 			],
 			"difficulty": 7,
@@ -46,7 +46,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 80
+					"value": 40
 				}
 			],
 			"difficulty": 8,
@@ -59,7 +59,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 80
+					"value": 50
 				}
 			],
 			"difficulty": 6,
@@ -70,10 +70,6 @@
 			"title": "Personal 1",
 			"location": "gym",
 			"effects": [
-				{
-					"type": "pleasure",
-					"value": 10
-				},
 				{
 					"type": "passionate",
 					"value": 10
@@ -92,10 +88,6 @@
 			"location": "library",
 			"effects": [
 				{
-					"type": "pleasure",
-					"value": 20
-				},
-				{
 					"type": "passionate",
 					"value": 10
 				},
@@ -112,10 +104,6 @@
 			"title": "Personal 3",
 			"location": "dungeon",
 			"effects": [
-				{
-					"type": "pleasure",
-					"value": 30
-				},
 				{
 					"type": "intimate",
 					"value": 20
@@ -134,10 +122,6 @@
 			"location": "lounge",
 			"effects": [
 				{
-					"type": "pleasure",
-					"value": 40
-				},
-				{
 					"type": "passionate",
 					"value": 30
 				},
@@ -155,10 +139,6 @@
 			"location": "spa",
 			"effects": [
 				{
-					"type": "pleasure",
-					"value": 40
-				},
-				{
 					"type": "passionate",
 					"value": 30
 				},
@@ -174,12 +154,7 @@
 			"id": "rest",
 			"title": "Rest",
 			"location": "",
-			"effects": [
-				{
-					"type": "pleasure",
-					"value": -10
-				}
-			],
+			"effects": [],
 			"difficulty": 0,
 			"dice": null
 		},
@@ -187,8 +162,7 @@
 			"id": "night",
 			"title": "Night",
 			"location": "",
-			"effects": [
-			],
+			"effects": [],
 			"difficulty": 0,
 			"dice": null
 		}
