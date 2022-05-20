@@ -211,6 +211,7 @@ export default class App extends React.Component {
 						// reset task
 
 						cloneCharacter.task = '';
+						cloneCharacter.taskEffects = [];
 
 						// reset pleasure
 
@@ -647,12 +648,10 @@ export default class App extends React.Component {
 			shift
 		});
 
-		// update characters
+		// set up board
 
+		this.setUpLocations();
 		this.setUpCharacters(newDay);
-
-		// draw new hand
-
 		this.drawHand();
 	}
 
