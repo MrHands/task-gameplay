@@ -39,11 +39,8 @@ export default class Location extends React.Component {
 		let characterDropped = null;
 
 		if (character !== null) {
-			// const outcomeEffects = task.outcome !== '' ? task.effects : null;
-
 			characterDropped = (
 				<Character
-					// taskEffects={outcomeEffects}
 					clampCharacterStat={clampCharacterStat}
 					{...character}
 				/>

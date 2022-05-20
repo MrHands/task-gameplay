@@ -247,6 +247,10 @@ export default class App extends React.Component {
 
 				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id).map(task => deepClone(task));
 				location.tasks.push(deepClone(this.getTask('rest')));
+				
+				location.tasks.forEach(task => {
+					task.outcome = '';
+				});
 			});
 
 			// clear locations from characters
@@ -520,22 +524,46 @@ export default class App extends React.Component {
 	}
 
 	startTask(character, task) {
-		console.log(character);
-		console.log(task);
+		if (task.outcome !== '') {
+			console.log(`Task ${task.id} was already applied.`);
+
+			return;
+		}
+
+		// get location
+
+		const location = this.getLocation(task.location);
+		if (!location) {
+			return;
+		}
 
 		// apply task effects
 
 		console.log(`applying task ${task.id} to ${character.name}`);
 
-		task.effects.forEach(effect => {
+		character.taskEffects = task.effects.map(effect => deepClone(effect));
+		character.taskEffects.forEach(effect => {
 			const statValue = character.stats[effect.type];
 			console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
 			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
 		});
 
+		// update task
+
+		task.outcome = TaskOutcome.SUCCESS;
+
+		location.tasks = location.tasks.map(it => {
+			if (it.id !== task.id) {
+				return it;
+			}
+
+			return task;
+		});
+
 		this.setState(state => {
-			let {
+			const {
 				characters,
+				locations,
 			} = state;
 
 			return {
@@ -545,6 +573,13 @@ export default class App extends React.Component {
 					}
 
 					return character;
+				}),
+				locations: locations.map((it) => {
+					if (it.id !== location.id) {
+						return it;
+					}
+
+					return location;
 				}),
 			}
 		});
