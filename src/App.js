@@ -432,9 +432,14 @@ export default class App extends React.Component {
 
 		console.log(`setTaskDice diceId ${diceId} task ${task}`);
 
-		this.setState(state => {
-			task.dice = state.dice.find(dice => dice.id === diceId) || null;
+		const dice = this.state.dice.find(dice => dice.id === diceId);
+		if (task.id === 'rest') {
+			task.dice = dice;
+		} else {
+			task.difficulty -= dice.value; 
+		}
 
+		this.setState(state => {
 			return {
 				dice: state.dice.filter(dice => dice.id !== diceId)
 			}
@@ -553,8 +558,7 @@ export default class App extends React.Component {
 				value: task.dice.value
 			});
 		} else {
-			let staminaUsed = Math.min(character.stats.stamina, task.difficulty);
-			staminaUsed = Math.max(0, Math.min(staminaUsed, task.difficulty - task.dice.value));
+			const staminaUsed = Math.min(character.stats.stamina, task.difficulty);
 	
 			character.taskEffects.push({
 				type: 'stamina',

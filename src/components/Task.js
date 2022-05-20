@@ -117,15 +117,16 @@ export default function Task(props) {
 		value: -staminaUsed
 	});
 
-	let startDisabled = diceUsed === null || task.outcome !== '';
+	let startDisabled = difficulty > staminaUsed || task.outcome !== '';
 
-	let startText = `Spend ${difficulty} Stamina`;
-	if (diceUsed !== null) {
-		if (staminaUsed > 0) {
-			startText = `Spend ${staminaUsed} Stamina`;
-		} else {
-			startText = 'Start';
-		}
+	let startText = `Spend ${Math.min(staminaUsed, difficulty)} Stamina`;
+	if (staminaUsed === 0) {
+		startText = 'Start';
+	}
+
+	if (task.id === 'rest') {
+		startDisabled = task.dice === null || task.outcome !== '';
+		startText = 'Start';
 	}
 
 	let guts = null;
