@@ -135,35 +135,6 @@ export default function Task(props) {
 		startText = 'Start';
 	}
 
-	// guts
-
-	let guts = null;
-	if (task.id !== 'rest') {
-		guts = (<>
-			<h3 className="o-task__container__stamina-title">
-				Stamina
-			</h3>
-			<p className="o-task__container__stamina-value">
-				{textStamina}
-			</p>
-			<div className="o-task__container__dice-value">
-				{eleDice}
-			</div>
-			<h3 className="o-task__container__required-title">
-				Required
-			</h3>
-			<p className="o-task__container__required-value">
-				{difficulty}
-			</p>
-		</>);
-	} else {
-		guts = (<>
-			<div className="o-task__container__dice-value">
-				{eleDice}
-			</div>
-		</>)
-	}
-
 	return (
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
@@ -176,7 +147,9 @@ export default function Task(props) {
 				</ul>
 			</div>
 			<div className="o-task__container">
-				{guts}
+				<div className="o-task__container__dice-value">
+					{eleDice}
+				</div>
 			</div>
 			<button
 				className="o-task__start"
