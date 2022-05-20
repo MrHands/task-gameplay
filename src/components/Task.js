@@ -115,7 +115,16 @@ export default function Task(props) {
 		value: -staminaUsed
 	});
 
-	const startDisabled = task.dice === null || task.outcome !== '';
+	const startDisabled = diceUsed === null || task.outcome !== '';
+
+	let startText = `Spend ${task.difficulty} Stamina`;
+	if (diceUsed !== null) {
+		if (staminaUsed > 0) {
+			startText = `Spend ${staminaUsed} Stamina`;
+		} else {
+			startText = 'Start';
+		}
+	}
 
 	let guts = null;
 	if (task.id !== 'rest') {
@@ -163,7 +172,7 @@ export default function Task(props) {
 				onClick={() => onTaskStart(character, task)}
 				disabled={startDisabled}
 			>
-				Start
+				{startText}
 			</button>
 		</div>
 	);
