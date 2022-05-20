@@ -1,4 +1,6 @@
 .m-shiftHud {
+	position: sticky;
+	top: 0;
 	display: grid;
 	grid-template-areas:
 		'day   shift   next   sexergy';
@@ -9,7 +11,9 @@
 		1fr;
 	gap: 1rem;
 	place-items: center;
+	background: white;
 	color: gray;
+	padding: 1rem;
 
 	&__sexergy {
 		grid-area: sexergy;
