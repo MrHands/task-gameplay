@@ -28,7 +28,6 @@ function effectText(effect) {
 
 export default function Task(props) {
 	const {
-		className,
 		task,
 		character,
 		canDiceBeDropped,
@@ -36,15 +35,25 @@ export default function Task(props) {
 		onTaskStart,
 	} = props;
 
-	const classes = ['o-task'];
+	const classes = (() => {
+		const {
+			className,
+		} = props;
 
-	classes.push(className);
+		const classes = ['o-task'];
+
+		classes.push(className);
+
+		return classes;
+	})();
 
 	const {
 		title,
 		difficulty,
 		effects,
 	} = task;
+
+	let diceUsed = task.dice;
 
 	const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
 		accept: 'dice',
@@ -55,8 +64,6 @@ export default function Task(props) {
 		}),
 		drop: dice => onDiceDropped(dice.id, task),
 	}), [task]);
-
-	let diceUsed = task.dice;
 
 	if (isOver && canDrop) {
 		const result = canDiceBeDropped(diceDropped.id, task);
@@ -74,10 +81,12 @@ export default function Task(props) {
 	let eleDice = null;
 
 	if (task.dice !== null) {
+		console.log(task);
 		eleDice = (
 			<Dice
 				id={diceUsed.id}
 				value={diceUsed.value}
+				isSpent={task.outcome !== ''}
 			/>
 		);
 	} else {

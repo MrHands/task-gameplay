@@ -26,6 +26,7 @@ export default class DiceList extends React.Component {
 						key={`dice-${index}`}
 						value={value}
 						id={id}
+						isSpent={false}
 					/>;
 				})}
 			</div>
