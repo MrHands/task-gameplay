@@ -92,7 +92,9 @@ export default function Task(props) {
 		);
 	} else {
 		eleDice = (
-			<div className="a-dice -empty" />
+			<div className="a-dice -empty">
+				{difficulty}
+			</div>
 		);
 	}
 
@@ -115,9 +117,9 @@ export default function Task(props) {
 		value: -staminaUsed
 	});
 
-	const startDisabled = diceUsed === null || task.outcome !== '';
+	let startDisabled = diceUsed === null || task.outcome !== '';
 
-	let startText = `Spend ${task.difficulty} Stamina`;
+	let startText = `Spend ${difficulty} Stamina`;
 	if (diceUsed !== null) {
 		if (staminaUsed > 0) {
 			startText = `Spend ${staminaUsed} Stamina`;
