@@ -66,6 +66,7 @@ export default class Location extends React.Component {
 					className="m-location__tasks"
 					handCards={tasks}
 					character={character}
+					location={location}
 					clampCharacterStat={clampCharacterStat}
 					canBePlaced={canBePlaced}
 					onCharacterDropped={onCharacterDropped}

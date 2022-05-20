@@ -221,19 +221,6 @@ export default class App extends React.Component {
 						// add stamina
 
 						cloneCharacter.stats.stamina = this.clampCharacterStat('stamina', cloneCharacter.stats.stamina + 2);
-					} else {
-						// apply task effects
-		
-						if (cloneCharacter.task) {
-							console.log(`applying task ${cloneCharacter.task} to ${cloneCharacter.name}`);
-
-							cloneCharacter.task.effects.forEach(effect => {
-								const statValue = cloneCharacter.stats[effect.type];
-								// console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
-								cloneCharacter.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
-							});
-							cloneCharacter.task = '';
-						}
 					}
 
 					// reset stamina cost
@@ -532,8 +519,35 @@ export default class App extends React.Component {
 		}
 	}
 
-	startTask(task) {
+	startTask(character, task) {
+		console.log(character);
 		console.log(task);
+
+		console.log(`applying task ${task.id} to ${character.name}`);
+
+		this.setState(state => {
+			let {
+				characters,
+			} = state;
+
+			// apply task effects
+
+			task.effects.forEach(effect => {
+				const statValue = character.stats[effect.type];
+				console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
+				character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+			});
+
+			return {
+				characters: characters.map(copy => {
+					if (copy.id !== character.id) {
+						return copy;
+					}
+
+					return character;
+				}),
+			}
+		});
 
 		/* console.log(`startTask ${handId}`);
 

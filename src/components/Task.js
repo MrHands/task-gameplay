@@ -137,7 +137,7 @@ export default function Task(props) {
 			</div>
 			<button
 				className="o-task__start"
-				onClick={() => onTaskStart(task)}
+				onClick={() => onTaskStart(character, task)}
 				disabled={startDisabled}
 			>
 				Start

@@ -21,6 +21,7 @@ export default class TasksList extends React.Component {
 		const {
 			handCards,
 			character,
+			location,
 			clampCharacterStat,
 			canBePlaced,
 			onCharacterDropped,
@@ -37,6 +38,7 @@ export default class TasksList extends React.Component {
 						key={`task-${index}`}
 						task={task}
 						character={character}
+						location={location}
 						clampCharacterStat={clampCharacterStat}
 						canBePlaced={canBePlaced}
 						onCharacterDropped={onCharacterDropped}
