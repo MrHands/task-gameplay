@@ -249,6 +249,7 @@ export default class App extends React.Component {
 				location.tasks.push(deepClone(this.getTask('rest')));
 				
 				location.tasks.forEach(task => {
+					task.location = location.id;
 					task.outcome = '';
 				});
 			});
