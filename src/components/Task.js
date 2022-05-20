@@ -101,7 +101,7 @@ export default function Task(props) {
 		textStamina = `${staminaUsed} ▼`;
 	}
 
-	const startDisabled = task.dice === null;
+	const startDisabled = task.dice === null || task.outcome !== '';
 
 	let guts = null;
 	if (task.id !== 'rest') {
