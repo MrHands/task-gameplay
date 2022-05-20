@@ -206,17 +206,15 @@ export default class App extends React.Component {
 				characters: characters.map(character => {
 					const cloneCharacter = deepClone(character);
 
+					// reset task
+
+					cloneCharacter.task = '';
+					cloneCharacter.taskEffects = [];
+
 					if (newDay) {
-						// reset task
-
-						cloneCharacter.task = '';
-						cloneCharacter.taskEffects = [];
-
 						// reset pleasure
 
-						if (cloneCharacter.id === this.nightCharacter?.id) {
-							cloneCharacter.stats.pleasure = 0;
-						}
+						cloneCharacter.stats.pleasure = 0;
 
 						// add stamina
 
@@ -226,6 +224,8 @@ export default class App extends React.Component {
 					// reset stamina cost
 
 					cloneCharacter.staminaCost = 1;
+
+					console.log(cloneCharacter);
 	
 					return cloneCharacter;
 				}),
@@ -658,8 +658,8 @@ export default class App extends React.Component {
 
 		// set up board
 
-		this.setUpLocations(shift === Shift.NIGHT);
 		this.setUpCharacters(newDay);
+		this.setUpLocations(shift === Shift.NIGHT);
 		this.drawHand();
 	}
 
