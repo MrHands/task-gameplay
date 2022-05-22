@@ -80,7 +80,7 @@ export default function Task(props) {
 		if (task.id === 'rest') {
 			staminaUsed = -diceUsed.value;
 		} else {
-			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
+			staminaUsed = Math.max(0, Math.min(staminaUsed - diceUsed.value, difficulty));
 		}
 	}
 
@@ -88,13 +88,11 @@ export default function Task(props) {
 
 	let diceValue = difficulty;
 	if (diceUsed !== null) {
-		diceValue = Math.abs(difficulty - diceUsed.value);
+		diceValue = Math.max(0, difficulty - diceUsed.value);
 	}
 
 	let eleDice = null;
-
 	if (task.dice !== null) {
-		console.log(task);
 		eleDice = (
 			<Dice
 				className="-drop"

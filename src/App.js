@@ -430,7 +430,7 @@ export default class App extends React.Component {
 		if (task.id === 'rest') {
 			task.dice = dice;
 		} else {
-			task.difficulty -= dice.value; 
+			task.difficulty = Math.max(0, task.difficulty - dice.value);
 		}
 
 		this.setState(state => {
