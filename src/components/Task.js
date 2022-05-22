@@ -133,10 +133,17 @@ export default function Task(props) {
 	if (typeof(description) !== 'undefined') {
 		let descriptionText = description;
 
-		const effectPleasure = copyEffects.find(effect => effect.type === 'pleasure');
-		if (effectPleasure !== null) {
-			descriptionText = reactStringReplace(descriptionText, '{pleasure}', () => (`${effectPleasure.value}%`));
+		const replaceText = (type, postFix) => {
+			const effect = copyEffects.find(effect => effect.type === type);
+			if (effect !== null) {
+				descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => (`${effect.value}${postFix}`));
+			}
 		}
+
+		replaceText('pleasure', '%');
+		replaceText('passionate', '');
+		replaceText('intimate', '');
+		replaceText('submissive', '');
 
 		if (staminaUsed > 0) {
 			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaUsed);
