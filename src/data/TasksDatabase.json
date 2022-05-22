@@ -3,6 +3,7 @@
 		{
 			"id": "maintenance-1",
 			"title": "Ship 1",
+			"description": "Gain {pleasure} Pleasure",
 			"location": "gym",
 			"effects": [
 				{
@@ -15,6 +16,7 @@
 		},
 		{
 			"id": "maintenance-2",
+			"description": "Gain {pleasure} Pleasure",
 			"title": "Ship 2",
 			"location": "library",
 			"effects": [
@@ -29,6 +31,7 @@
 		{
 			"id": "maintenance-3",
 			"title": "Ship 3",
+			"description": "Gain {pleasure} Pleasure",
 			"location": "dungeon",
 			"effects": [
 				{
@@ -43,6 +46,7 @@
 			"id": "maintenance-4",
 			"title": "Ship 4",
 			"location": "lounge",
+			"description": "Gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -56,6 +60,7 @@
 			"id": "maintenance-5",
 			"title": "Ship 5",
 			"location": "spa",
+			"description": "Gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",

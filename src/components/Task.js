@@ -92,21 +92,6 @@ export default function Task(props) {
 		}
 	}
 
-	// description
-
-	let eleDescription = null;
-	if (typeof(description) !== 'undefined') {
-		if (diceUsed !== null) {
-			eleDescription = (<>
-				{description.replace('{stamina}', diceUsed.value)}
-			</>);
-		} else {
-			eleDescription = (<>
-				{reactStringReplace(description, '{stamina}', () => (<span class="a-emptyBox"></span>))}
-			</>);
-		}
-	}
-
 	// dice element
 
 	let diceValue = difficulty;
@@ -141,6 +126,28 @@ export default function Task(props) {
 		type: 'stamina',
 		value: -staminaUsed
 	});
+
+	// description
+
+	let eleDescription = null;
+	if (typeof(description) !== 'undefined') {
+		let descriptionText = description;
+
+		const effectPleasure = copyEffects.find(effect => effect.type === 'pleasure');
+		if (effectPleasure !== null) {
+			descriptionText = reactStringReplace(descriptionText, '{pleasure}', () => (`${effectPleasure.value}%`));
+		}
+
+		if (staminaUsed > 0) {
+			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaUsed);
+		} else {
+			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
+		}
+
+		eleDescription = (<>
+			{descriptionText}
+		</>);
+	}
 
 	// start button
 
