@@ -15,18 +15,10 @@ function effectText(effect) {
 
 	switch (type) {
 		case 'pleasure': {
-			if (value > 0) {
-				return `+${value}%`;
-			} else {
-				return `${value}%`;
-			}
+			return `${value}%`;
 		}
 		default: {
-			if (value > 0) {
-				return `+${value}`;
-			} else {
-				return `${value}`;
-			}
+			return `${value}`;
 		}
 	}
 }
@@ -129,31 +121,24 @@ export default function Task(props) {
 
 	// description
 
-	let eleDescription = null;
-	if (typeof(description) !== 'undefined') {
-		let descriptionText = description;
+	let descriptionText = description;
 
-		const replaceText = (type, postFix) => {
-			const effect = copyEffects.find(effect => effect.type === type);
-			if (effect !== null) {
-				descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => (`${effect.value}${postFix}`));
-			}
+	const replaceText = (type) => {
+		const effect = copyEffects.find(effect => effect.type === type);
+		if (effect !== null) {
+			descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => (effectText(effect)));
 		}
+	}
 
-		replaceText('pleasure', '%');
-		replaceText('passionate', '');
-		replaceText('intimate', '');
-		replaceText('submissive', '');
+	replaceText('pleasure');
+	replaceText('passionate');
+	replaceText('intimate');
+	replaceText('submissive');
 
-		if (diceUsed) {
-			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
-		} else {
-			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
-		}
-
-		eleDescription = (<>
-			{descriptionText}
-		</>);
+	if (diceUsed) {
+		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
+	} else {
+		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
 	}
 
 	// start button
@@ -176,7 +161,7 @@ export default function Task(props) {
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
 			<div className="o-task__description">
-				{eleDescription}
+				{descriptionText}
 			</div>
 			<div className="o-task__container">
 				<div className="o-task__container__dice-value">
