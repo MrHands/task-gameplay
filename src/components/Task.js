@@ -145,8 +145,8 @@ export default function Task(props) {
 		replaceText('intimate', '');
 		replaceText('submissive', '');
 
-		if (staminaUsed > 0) {
-			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaUsed);
+		if (diceUsed) {
+			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 		} else {
 			descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
 		}
@@ -175,16 +175,8 @@ export default function Task(props) {
 	return (
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
-			<h3 className="o-task__subheader">Effects</h3>
 			<div className="o-task__description">
 				{eleDescription}
-			</div>
-			<div className="o-task__effects">
-				<ul className="o-task__rewards">
-				{ copyEffects.map((effect, index) => {
-					return <li key={`effect-${index}`}>{effect.type} {effectText(effect)}</li>;
-				})}
-				</ul>
 			</div>
 			<div className="o-task__container">
 				<div className="o-task__container__dice-value">

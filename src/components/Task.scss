@@ -8,17 +8,15 @@
 .o-task {
 	display: grid;
 	grid-template-areas:
-		'title     '
-		'container '
-		'start     '
-		'subheader '
-		'effects   ';
+		'title      '
+		'container  '
+		'description'
+		'start      ';
 	grid-template-rows:
 		min-content
 		1fr
-		min-content
-		min-content
-		4rem;
+		2rem
+		min-content;
 	gap: 1rem;
 	justify-items: center;
 	min-height: 13rem;
@@ -111,6 +109,11 @@
 		gap: 0.5rem;
 		justify-content: center;
 		align-items: center;
+	}
+
+	&__description {
+		grid-area: description;
+		align-self: center;
 	}
 
 	&__rewards {
