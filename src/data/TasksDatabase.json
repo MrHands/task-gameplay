@@ -153,6 +153,7 @@
 		{
 			"id": "rest",
 			"title": "Rest",
+			"description": "Restore {stamina} stamina",
 			"location": "",
 			"effects": [],
 			"difficulty": 0,

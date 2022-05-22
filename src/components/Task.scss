@@ -1,3 +1,10 @@
+.a-emptyBox {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border: 0.1rem dashed black;
+}
+
 .o-task {
 	display: grid;
 	grid-template-areas:

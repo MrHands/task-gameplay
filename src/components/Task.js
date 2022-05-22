@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
+import reactStringReplace from 'react-string-replace';
 
 import Dice from './Dice';
 
@@ -53,6 +54,7 @@ export default function Task(props) {
 
 	const {
 		title,
+		description,
 		difficulty,
 		effects,
 	} = task;
@@ -87,6 +89,21 @@ export default function Task(props) {
 			staminaUsed = -diceUsed.value;
 		} else {
 			staminaUsed = Math.max(0, Math.min(staminaUsed, difficulty - diceUsed.value));
+		}
+	}
+
+	// description
+
+	let eleDescription = null;
+	if (typeof(description) !== 'undefined') {
+		if (diceUsed !== null) {
+			eleDescription = (<>
+				{description.replace('{stamina}', diceUsed.value)}
+			</>);
+		} else {
+			eleDescription = (<>
+				{reactStringReplace(description, '{stamina}', () => (<span class="a-emptyBox"></span>))}
+			</>);
 		}
 	}
 
@@ -145,6 +162,9 @@ export default function Task(props) {
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
 			<h3 className="o-task__subheader">Effects</h3>
+			<div className="o-task__description">
+				{eleDescription}
+			</div>
 			<div className="o-task__effects">
 				<ul className="o-task__rewards">
 				{ copyEffects.map((effect, index) => {
