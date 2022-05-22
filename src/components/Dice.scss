@@ -10,6 +10,11 @@
 	font-size: 2rem;
 	font-weight: bold;
 
+	&.-task {
+		color: gray;
+		border-color: gray;
+	}
+
 	&.-empty {
 		border-style: dashed;
 		border-color: gray;

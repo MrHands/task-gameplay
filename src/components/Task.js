@@ -102,9 +102,16 @@ export default function Task(props) {
 			/>
 		);
 	} else {
+		const diceClasses = [ 'a-dice', '-drop' ];
+		if (difficulty !== 0) {
+			diceClasses.push('-task');
+		} else {
+			diceClasses.push('-empty');
+		}
+
 		eleDice = (
-			<div className="a-dice -empty -drop">
-				{diceValue}
+			<div className={diceClasses.join(' ')}>
+				{(diceValue > 0 || difficulty > 0) ? diceValue : ''}
 			</div>
 		);
 	}
@@ -124,7 +131,7 @@ export default function Task(props) {
 	const replaceText = (type) => {
 		const effect = copyEffects.find(effect => effect.type === type);
 		if (effect !== null) {
-			descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => (effectText(effect)));
+			descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => effectText(effect));
 		}
 	}
 
@@ -155,6 +162,19 @@ export default function Task(props) {
 		startText = 'Start';
 	}
 
+	let eleStartButton = null;
+	if (difficulty > 0) {
+		eleStartButton = (
+			<button
+				className="o-task__start"
+				onClick={() => onTaskStart(character, task)}
+				disabled={startDisabled}
+			>
+				{startText}
+			</button>
+		);
+	}
+
 	return (
 		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
@@ -166,13 +186,7 @@ export default function Task(props) {
 					{eleDice}
 				</div>
 			</div>
-			<button
-				className="o-task__start"
-				onClick={() => onTaskStart(character, task)}
-				disabled={startDisabled}
-			>
-				{startText}
-			</button>
+			{eleStartButton}
 		</div>
 	);
 }
