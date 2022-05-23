@@ -416,7 +416,7 @@ export default class App extends React.Component {
 
 		console.log(`canDiceBeDropped stamina ${stamina} value ${dice.value} required ${required}`);
 
-		return [(stamina + dice.value) >= required, dice];
+		return [true, dice];
 	}
 
 	setTaskDice(diceId, task, character) {
