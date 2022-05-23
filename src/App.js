@@ -439,7 +439,7 @@ export default class App extends React.Component {
 			}
 		});
 
-		if (task.id !== 'rest' && task.difficulty === 0) {
+		if (task.difficulty === 0) {
 			this.startTask(character, task);
 		}
 	}
