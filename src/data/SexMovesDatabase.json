@@ -13,7 +13,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 20
+					"value": 10
 				},
 				{
 					"type": "sexergy",
@@ -26,7 +26,7 @@
 			"title": "Boob Massage",
 			"category": "Petting",
 			"type": "intimate",
-			"lustMinimum": 20,
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
@@ -34,7 +34,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 30
+					"value": 15
 				},
 				{
 					"type": "sexergy",
@@ -46,8 +46,8 @@
 			"id": "petting-3",
 			"title": "Cunnilingus",
 			"category": "Petting",
-			"type": "submissive",
-			"lustMinimum": 50,
+			"type": "intimate",
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
@@ -55,7 +55,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 40
+					"value": 20
 				},
 				{
 					"type": "sexergy",
@@ -73,7 +73,7 @@
 			"effects": [
 				{
 					"type": "captain",
-					"value": 20
+					"value": 10
 				},
 				{
 					"type": "crew",
@@ -81,7 +81,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 100
+					"value": 50
 				}
 			]
 		},
@@ -90,7 +90,7 @@
 			"title": "Blowjob",
 			"category": "Oral",
 			"type": "passionate",
-			"lustMinimum": 40,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
@@ -102,7 +102,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 200
+					"value": 100
 				}
 			]
 		},
@@ -111,7 +111,7 @@
 			"title": "Deepthroat",
 			"category": "Oral",
 			"type": "submissive",
-			"lustMinimum": 60,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
@@ -123,7 +123,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 300
+					"value": 150
 				}
 			]
 		},
@@ -133,15 +133,15 @@
 			"title": "Missionary",
 			"category": "Sex",
 			"type": "intimate",
-			"lustMinimum": 60,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
-					"value": 20
+					"value": 30
 				},
 				{
 					"type": "crew",
-					"value": 40
+					"value": 20
 				},
 				{
 					"type": "sexergy",
@@ -154,15 +154,15 @@
 			"title": "Cowgirl",
 			"category": "Sex",
 			"type": "passionate",
-			"lustMinimum": 80,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
-					"value": 30
+					"value": 20
 				},
 				{
 					"type": "crew",
-					"value": 30
+					"value": 40
 				},
 				{
 					"type": "sexergy",
@@ -179,7 +179,7 @@
 			"effects": [
 				{
 					"type": "captain",
-					"value": 40
+					"value": 30
 				},
 				{
 					"type": "crew",
@@ -197,7 +197,7 @@
 			"title": "Rimjob",
 			"category": "Anal",
 			"type": "intimate",
-			"lustMinimum": 50,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
@@ -205,7 +205,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 30
+					"value": 15
 				},
 				{
 					"type": "sexergy",
@@ -218,7 +218,7 @@
 			"title": "Anal Fingering",
 			"category": "Anal",
 			"type": "passionate",
-			"lustMinimum": 80,
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
@@ -226,7 +226,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 50
+					"value": 10
 				},
 				{
 					"type": "sexergy",
@@ -238,20 +238,20 @@
 			"id": "anal-3",
 			"title": "Anal Doggy Style",
 			"category": "Anal",
-			"type": "submissive",
+			"type": "passionate",
 			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
-					"value": 50
+					"value": 30
 				},
 				{
 					"type": "crew",
-					"value": 70
+					"value": 25
 				},
 				{
 					"type": "sexergy",
-					"value": 30
+					"value": 300
 				}
 			]
 		},
@@ -265,7 +265,7 @@
 			"effects": [
 				{
 					"type": "captain",
-					"value": 10
+					"value": 20
 				},
 				{
 					"type": "crew",
@@ -282,15 +282,15 @@
 			"title": "Nipple Clamps",
 			"category": "Kinky",
 			"type": "submissive",
-			"lustMinimum": 80,
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
-					"value": 20
+					"value": 10
 				},
 				{
 					"type": "crew",
-					"value": 50
+					"value": 20
 				},
 				{
 					"type": "sexergy",
@@ -311,7 +311,7 @@
 				},
 				{
 					"type": "crew",
-					"value": 60
+					"value": 30
 				},
 				{
 					"type": "sexergy",
