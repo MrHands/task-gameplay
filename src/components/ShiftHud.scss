@@ -40,11 +40,7 @@
 
 	&__next {
 		grid-area: next;
-		display: grid;
-		grid-template-rows:
-			min-content
-			1rem;
-		gap: 1rem;
+		display: flex;
 		place-items: center;
 	}
 }

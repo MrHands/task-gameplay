@@ -25,10 +25,10 @@ export default function ShiftHud(props) {
 
 	const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
 
-	let hint = null;
+	/* let hint = null;
 	if (dice.length > 0) {
 		hint = 'Spend all your Action Dice to finish the shift.';
-	}
+	} */
 
 	return (
 		<div className={classes.join(' ')}>
@@ -43,10 +43,9 @@ export default function ShiftHud(props) {
 				{`${shiftName}`}
 			</h2>
 			<div className="m-shiftHud__next">
-				<button className="m-shiftHud__finish" onClick={handleFinishShift} disabled={dice.length > 0}>
+				<button className="m-shiftHud__finish" onClick={handleFinishShift}>
 					Finish Shift
 				</button>
-				<h3 className="m-shiftHud__hint">{hint}</h3>
 			</div>
 		</div>
 	);
