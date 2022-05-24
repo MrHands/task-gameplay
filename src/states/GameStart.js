@@ -30,14 +30,18 @@ During the _Morning_, _Afternoon_, and _Evening_ shifts, your crew members will 
 to different locations on the ship. Each location has **Tasks** that a crew member can perform, which
 cost **Stamina**. Some tasks will give them **Arousal**, which will help you during the _Night_ shift.
 
-All tasks for your crew members must be started by you. You can either spend their stamina or you
-can use your **Action Dice** to lower the amount of stamina required. If a task reaches 0 stamina
-required, it is started straight away. You can assign more than one Action Dice to a task. 
+As the captain, you decide which tasks your crew members will perform. Tasks have a difficulty that
+must first be whittled down by dragging your **Action Dice** into them. You can drag more than one
+Action Dice into the same task.
 
-Once you've spent all of your Action Dice, you can advance to the next shift.
+Once a task reaches 0 difficulty, you have unlocked it for this shift.
 
-Finally, the **Rest** action is special: it restores stamina for the number of eyes on the
-Action Die that you assign. E.g. assigning a 4 will restore 4 stamina for the crew member.
+Most tasks cost Stamina to perform, but the **Rest** action is
+different: it restores Stamina for the number of eyes on the Action Dice that you assign.
+E.g., assigning a 4 will restore 4 stamina for the crew member.
+
+You can advance to the next shift at any time, which will shuffle your crew members to new locations
+and refresh your hand with new Action Dice.
 
 ## Night shift
 
