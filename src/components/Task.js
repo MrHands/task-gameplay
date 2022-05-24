@@ -130,7 +130,9 @@ export default function Task(props) {
 	replaceText('intimate');
 	replaceText('submissive');
 
-	if (diceUsed) {
+	if (staminaCost > 0) {
+		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaCost);
+	} else if (diceUsed) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));

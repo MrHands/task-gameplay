@@ -3,7 +3,7 @@
 		{
 			"id": "maintenance-1",
 			"title": "Ship 1",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Spend {stamina} Stamina to gain {pleasure} Pleasure",
 			"location": "gym",
 			"effects": [
 				{
@@ -17,7 +17,7 @@
 		},
 		{
 			"id": "maintenance-2",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Spend {stamina} Stamina to gain {pleasure} Pleasure",
 			"title": "Ship 2",
 			"location": "library",
 			"effects": [
@@ -33,7 +33,7 @@
 		{
 			"id": "maintenance-3",
 			"title": "Ship 3",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Spend {stamina} Stamina to gain {pleasure} Pleasure",
 			"location": "dungeon",
 			"effects": [
 				{
@@ -49,7 +49,7 @@
 			"id": "maintenance-4",
 			"title": "Ship 4",
 			"location": "lounge",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Spend {stamina} Stamina to gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -64,7 +64,7 @@
 			"id": "maintenance-5",
 			"title": "Ship 5",
 			"location": "spa",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Spend {stamina} Stamina to gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -78,7 +78,7 @@
 		{
 			"id": "personal-1",
 			"title": "Personal 1",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Spend {stamina} Stamina to learn {passionate} Passionate and {intimate} Intimate",
 			"location": "gym",
 			"effects": [
 				{
@@ -98,7 +98,7 @@
 			"id": "personal-2",
 			"title": "Personal 2",
 			"location": "library",
-			"description": "Learn {passionate} Passionate and {submissive} Submissive",
+			"description": "Spend {stamina} Stamina to learn {passionate} Passionate and {submissive} Submissive",
 			"effects": [
 				{
 					"type": "passionate",
@@ -117,7 +117,7 @@
 			"id": "personal-3",
 			"title": "Personal 3",
 			"location": "dungeon",
-			"description": "Learn {intimate} Intimate and {submissive} Submissive",
+			"description": "Spend {stamina} Stamina to learn {intimate} Intimate and {submissive} Submissive",
 			"effects": [
 				{
 					"type": "intimate",
@@ -136,7 +136,7 @@
 			"id": "personal-4",
 			"title": "Personal 4",
 			"location": "lounge",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Spend {stamina} Stamina to learn {passionate} Passionate and {intimate} Intimate",
 			"effects": [
 				{
 					"type": "passionate",
@@ -147,14 +147,14 @@
 					"value": 10
 				}
 			],
-			"dfficulty": 6,
+			"difficulty": 6,
 			"staminaCost": 2,
 			"dice": null
 		},
 		{
 			"id": "personal-5",
 			"title": "Personal 5",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Spend {stamina} Stamina to learn {passionate} Passionate and {intimate} Intimate",
 			"location": "spa",
 			"effects": [
 				{

@@ -45,14 +45,6 @@
 
 	&__container {
 		grid-area: container;
-		/* display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows:
-			min-content
-			1fr;
-		grid-template-areas:
-			'stamina-title  dice-title  required-title'
-			'stamina-value  dice-value  required-value'; */
 		display: flex;
 		place-content: center;
 		width: 100%;
@@ -114,6 +106,7 @@
 	&__description {
 		grid-area: description;
 		align-self: center;
+		text-align: center;
 	}
 
 	&__rewards {
