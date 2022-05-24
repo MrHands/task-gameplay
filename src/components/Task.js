@@ -145,14 +145,8 @@ export default function Task(props) {
 	const characterStamina = character?.stats.stamina || 0;
 	let startDisabled = diceValue > 0 || staminaCost > characterStamina;
 
-	let startText = `Spend ${staminaCost} Stamina`;
-	if (staminaCost === 0) {
-		startText = 'Start';
-	}
-
 	if (task.id === 'rest') {
 		startDisabled = task.dice === null || task.outcome !== '';
-		startText = 'Start';
 	}
 
 	let eleStartButton = null;
@@ -163,7 +157,7 @@ export default function Task(props) {
 				onClick={() => onTaskStart(character, task)}
 				disabled={startDisabled}
 			>
-				{startText}
+				Start Task
 			</button>
 		);
 	}
