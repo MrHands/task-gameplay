@@ -9,6 +9,14 @@
 	background: white;
 	font-size: 2rem;
 	font-weight: bold;
+	transition-property: margin, transform;
+	transition-duration: 0.5s;
+
+	&[draggable="true"]:hover {
+		margin: 0 1rem;
+		transform: scale(1.5, 1.5);
+		cursor: grab;
+	}
 
 	&.-task {
 		color: gray;
