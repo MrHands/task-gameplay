@@ -439,7 +439,7 @@ export default class App extends React.Component {
 			}
 		});
 
-		if (task.difficulty === 0) {
+		if (task.staminaCost === 0) {
 			this.startTask(character, task);
 		}
 	}
@@ -556,11 +556,11 @@ export default class App extends React.Component {
 				value: task.dice.value
 			});
 		} else {
-			const staminaUsed = Math.min(character.stats.stamina, task.difficulty);
+			// const staminaUsed = Math.min(character.stats.stamina, task.difficulty);
 	
 			character.taskEffects.push({
 				type: 'stamina',
-				value: -staminaUsed
+				value: -task.staminaCost
 			});
 		}
 

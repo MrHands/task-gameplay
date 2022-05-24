@@ -49,6 +49,7 @@ export default function Task(props) {
 		description,
 		difficulty,
 		effects,
+		staminaCost,
 	} = task;
 
 	let diceUsed = task.dice;
@@ -73,17 +74,6 @@ export default function Task(props) {
 		}
 	}
 
-	// stamina
-
-	let staminaUsed = Math.min(character?.stats.stamina || 0, difficulty);
-	if (diceUsed !== null) {
-		if (task.id === 'rest') {
-			staminaUsed = -diceUsed.value;
-		} else {
-			staminaUsed = Math.max(0, Math.min(staminaUsed - diceUsed.value, difficulty));
-		}
-	}
-
 	// dice element
 
 	let diceValue = difficulty;
@@ -103,7 +93,7 @@ export default function Task(props) {
 		);
 	} else {
 		const diceClasses = [ 'a-dice', '-drop' ];
-		if (difficulty !== 0) {
+		if (staminaCost > 0) {
 			diceClasses.push('-task');
 		} else {
 			diceClasses.push('-empty');
@@ -111,7 +101,7 @@ export default function Task(props) {
 
 		eleDice = (
 			<div className={diceClasses.join(' ')}>
-				{(diceValue > 0 || difficulty > 0) ? diceValue : ''}
+				{(diceValue > 0 || staminaCost > 0) ? diceValue : ''}
 			</div>
 		);
 	}
@@ -121,7 +111,7 @@ export default function Task(props) {
 	const copyEffects = effects.map(effect => deepClone(effect));
 	copyEffects.push({
 		type: 'stamina',
-		value: -staminaUsed
+		value: -staminaCost
 	});
 
 	// description
@@ -148,12 +138,13 @@ export default function Task(props) {
 
 	// start button
 
-	console.log(`task ${task.id} difficulty ${difficulty} staminaUsed ${staminaUsed}`);
+	console.log(`task ${task.id} difficulty ${difficulty} staminaCost ${staminaCost}`);
 
-	let startDisabled = diceValue > staminaUsed || task.outcome !== '';
+	const characterStamina = character?.stats.stamina || 0;
+	let startDisabled = difficulty > 0 || staminaCost > characterStamina;
 
-	let startText = `Spend ${diceValue} Stamina`;
-	if (staminaUsed === 0) {
+	let startText = `Spend ${staminaCost} Stamina`;
+	if (staminaCost === 0) {
 		startText = 'Start';
 	}
 
@@ -163,7 +154,7 @@ export default function Task(props) {
 	}
 
 	let eleStartButton = null;
-	if (difficulty > 0) {
+	if (task.id !== 'rest') {
 		eleStartButton = (
 			<button
 				className="o-task__start"

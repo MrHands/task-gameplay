@@ -12,6 +12,7 @@
 				}
 			],
 			"difficulty": 5,
+			"staminaCost": 1,
 			"dice": null
 		},
 		{
@@ -26,6 +27,7 @@
 				}
 			],
 			"difficulty": 6,
+			"staminaCost": 1,
 			"dice": null
 		},
 		{
@@ -40,6 +42,7 @@
 				}
 			],
 			"difficulty": 7,
+			"staminaCost": 1,
 			"dice": null
 		},
 		{
@@ -54,6 +57,7 @@
 				}
 			],
 			"difficulty": 8,
+			"staminaCost": 1,
 			"dice": null
 		},
 		{
@@ -68,6 +72,7 @@
 				}
 			],
 			"difficulty": 6,
+			"staminaCost": 1,
 			"dice": null
 		},
 		{
@@ -86,6 +91,7 @@
 				}
 			],
 			"difficulty": 3,
+			"staminaCost": 2,
 			"dice": null
 		},
 		{
@@ -104,6 +110,7 @@
 				}
 			],
 			"difficulty": 4,
+			"staminaCost": 2,
 			"dice": null
 		},
 		{
@@ -122,6 +129,7 @@
 				}
 			],
 			"difficulty": 5,
+			"staminaCost": 2,
 			"dice": null
 		},
 		{
@@ -139,7 +147,8 @@
 					"value": 10
 				}
 			],
-			"difficulty": 6,
+			"dfficulty": 6,
+			"staminaCost": 2,
 			"dice": null
 		},
 		{
@@ -158,6 +167,7 @@
 				}
 			],
 			"difficulty": 7,
+			"staminaCost": 2,
 			"dice": null
 		},
 		{
@@ -167,6 +177,7 @@
 			"location": "",
 			"effects": [],
 			"difficulty": 0,
+			"staminaCost": 0,
 			"dice": null
 		},
 		{
@@ -175,6 +186,7 @@
 			"location": "",
 			"effects": [],
 			"difficulty": 0,
+			"staminaCost": 0,
 			"dice": null
 		}
 	]
