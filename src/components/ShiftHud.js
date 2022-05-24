@@ -8,7 +8,6 @@ export default function ShiftHud(props) {
 		sexergy,
 		day,
 		shift,
-		dice,
 		handleFinishShift 
 	} = props;
 
@@ -24,11 +23,6 @@ export default function ShiftHud(props) {
 	})();
 
 	const shiftName = Object.keys(Shift).find(key => Shift[key] === shift);
-
-	/* let hint = null;
-	if (dice.length > 0) {
-		hint = 'Spend all your Action Dice to finish the shift.';
-	} */
 
 	return (
 		<div className={classes.join(' ')}>

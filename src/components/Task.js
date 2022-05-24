@@ -141,7 +141,7 @@ export default function Task(props) {
 	console.log(`task ${task.id} difficulty ${difficulty} staminaCost ${staminaCost}`);
 
 	const characterStamina = character?.stats.stamina || 0;
-	let startDisabled = difficulty > 0 || staminaCost > characterStamina;
+	let startDisabled = diceValue > 0 || staminaCost > characterStamina;
 
 	let startText = `Spend ${staminaCost} Stamina`;
 	if (staminaCost === 0) {
