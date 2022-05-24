@@ -11,7 +11,7 @@
 					"value": 10
 				}
 			],
-			"difficulty": 5,
+			"difficulty": 1,
 			"staminaCost": 1,
 			"dice": null
 		},
@@ -26,7 +26,7 @@
 					"value": 20
 				}
 			],
-			"difficulty": 6,
+			"difficulty": 2,
 			"staminaCost": 1,
 			"dice": null
 		},
@@ -41,7 +41,7 @@
 					"value": 30
 				}
 			],
-			"difficulty": 7,
+			"difficulty": 3,
 			"staminaCost": 1,
 			"dice": null
 		},
@@ -56,7 +56,7 @@
 					"value": 40
 				}
 			],
-			"difficulty": 8,
+			"difficulty": 4,
 			"staminaCost": 1,
 			"dice": null
 		},
@@ -71,7 +71,7 @@
 					"value": 50
 				}
 			],
-			"difficulty": 6,
+			"difficulty": 5,
 			"staminaCost": 1,
 			"dice": null
 		},
@@ -90,7 +90,7 @@
 					"value": 10
 				}
 			],
-			"difficulty": 3,
+			"difficulty": 2,
 			"staminaCost": 2,
 			"dice": null
 		},
@@ -109,7 +109,7 @@
 					"value": 30
 				}
 			],
-			"difficulty": 4,
+			"difficulty": 3,
 			"staminaCost": 2,
 			"dice": null
 		},
@@ -128,7 +128,7 @@
 					"value": 20
 				}
 			],
-			"difficulty": 5,
+			"difficulty": 4,
 			"staminaCost": 2,
 			"dice": null
 		},
@@ -147,7 +147,7 @@
 					"value": 10
 				}
 			],
-			"difficulty": 6,
+			"difficulty": 5,
 			"staminaCost": 2,
 			"dice": null
 		},
@@ -166,7 +166,7 @@
 					"value": 10
 				}
 			],
-			"difficulty": 7,
+			"difficulty": 6,
 			"staminaCost": 2,
 			"dice": null
 		},
