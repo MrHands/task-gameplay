@@ -5,10 +5,6 @@
 			"title": "Ship 1",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": -1
-				},
-				{
 					"type": "pleasure",
 					"value": -10
 				}
@@ -18,10 +14,6 @@
 			"id": "maintenance-2",
 			"title": "Ship 2",
 			"effects": [
-				{
-					"type": "stamina",
-					"value": -1
-				},
 				{
 					"type": "pleasure",
 					"value": -20
@@ -33,10 +25,6 @@
 			"title": "Ship 3",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": -1
-				},
-				{
 					"type": "pleasure",
 					"value": -30
 				}
@@ -47,10 +35,6 @@
 			"title": "Ship 4",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": -1
-				},
-				{
 					"type": "pleasure",
 					"value": -40
 				}
@@ -60,10 +44,6 @@
 			"id": "personal-1",
 			"title": "Personal 1",
 			"effects": [
-				{
-					"type": "stamina",
-					"value": -1
-				},
 				{
 					"type": "pleasure",
 					"value": 10
@@ -83,10 +63,6 @@
 			"title": "Personal 2",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": -1
-				},
-				{
 					"type": "pleasure",
 					"value": 30
 				},
@@ -105,10 +81,6 @@
 			"title": "Personal 3",
 			"effects": [
 				{
-					"type": "stamina",
-					"value": -1
-				},
-				{
 					"type": "pleasure",
 					"value": 30
 				},
@@ -126,10 +98,6 @@
 			"id": "personal-4",
 			"title": "Personal 4",
 			"effects": [
-				{
-					"type": "stamina",
-					"value": -1
-				},
 				{
 					"type": "pleasure",
 					"value": 50
