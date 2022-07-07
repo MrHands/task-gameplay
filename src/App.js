@@ -246,7 +246,6 @@ export default class App extends React.Component {
 				location.character = null;
 
 				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id).map(task => deepClone(task));
-				location.tasks.push(deepClone(this.getTask('rest')));
 				
 				location.tasks.forEach(task => {
 					task.location = location.id;
@@ -331,12 +330,6 @@ export default class App extends React.Component {
 				handCards.push(task);
 			}
 	
-			for (let i = 0; i < Math.max(1, characters.length - 1); ++i) {
-				const task = deepClone(restDeck[0]);
-				task.handId = handCards.length;
-				handCards.push(task);
-			}
-	
 			handCards.forEach(task => {
 				task.characterId = null;
 				task.roll = -1;
@@ -412,9 +405,8 @@ export default class App extends React.Component {
 		}
 
 		const required = task.difficulty;
-		const stamina = character.stats.stamina;
 
-		console.log(`canDiceBeDropped stamina ${stamina} value ${dice.value} required ${required}`);
+		console.log(`canDiceBeDropped value ${dice.value} required ${required}`);
 
 		return [true, dice];
 	}
@@ -427,11 +419,7 @@ export default class App extends React.Component {
 		console.log(`setTaskDice diceId ${diceId} task ${task}`);
 
 		const dice = this.state.dice.find(dice => dice.id === diceId);
-		if (task.id === 'rest') {
-			task.dice = dice;
-		} else {
-			task.difficulty = Math.max(0, task.difficulty - dice.value);
-		}
+		task.difficulty = Math.max(0, task.difficulty - dice.value);
 
 		this.setState(state => {
 			return {
@@ -439,9 +427,7 @@ export default class App extends React.Component {
 			}
 		});
 
-		if (task.staminaCost === 0) {
-			this.startTask(character, task);
-		}
+		this.startTask(character, task);
 	}
 
 	canBePlaced(characterId, task) {
@@ -548,22 +534,6 @@ export default class App extends React.Component {
 
 		character.taskEffects = task.effects.map(effect => deepClone(effect));
 
-		// add stamina effect
-
-		if (task.id === 'rest') {
-			character.taskEffects.push({
-				type: 'stamina',
-				value: task.dice.value
-			});
-		} else {
-			// const staminaUsed = Math.min(character.stats.stamina, task.difficulty);
-	
-			character.taskEffects.push({
-				type: 'stamina',
-				value: -task.staminaCost
-			});
-		}
-
 		// apply task effects
 
 		character.taskEffects.forEach(effect => {
@@ -574,19 +544,7 @@ export default class App extends React.Component {
 
 		// update task
 
-		if (task.id === 'rest') {
-			task.dice = null;
-
-			location.tasks = location.tasks.map(it => {
-				if (it.id !== task.id) {
-					return it;
-				}
-	
-				return task;
-			});
-		} else {
-			location.tasks = location.tasks.filter(it => it.id !== task.id);
-		}
+		location.tasks = location.tasks.filter(it => it.id !== task.id);
 
 		this.setState(state => {
 			const {
