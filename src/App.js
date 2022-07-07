@@ -427,7 +427,9 @@ export default class App extends React.Component {
 			}
 		});
 
-		this.startTask(character, task);
+		if (task.difficulty === 0) {
+			this.startTask(character, task);
+		}
 	}
 
 	canBePlaced(characterId, task) {
