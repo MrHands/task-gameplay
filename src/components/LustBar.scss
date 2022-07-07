@@ -2,6 +2,7 @@
 	--color: hotpink;
 	--lust-width: 0%;
 	--overload-width: 0%;
+	--percentage: var(--lust-width);
 
 	display: grid;
 	grid-template-columns:
@@ -22,27 +23,36 @@
 		justify-self: end;
 	}
 
-	&__bar {
+	&__container {
 		position: relative;
 		width: 100%;
 		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+	}
+
+	&__bar {
+		position: relative;
+		width: 100%;
+		min-height: 2rem;
 		border: 0.2rem solid var(--color);
 		border-radius: 2rem;
+
+		&.-overload {
+			--color: gold;
+			--percentage: var(--overload-width);
+		}
 	
 		&__foreground {
 			transition: width 1s;
 			position: absolute;
 			left: 0.2rem;
 			top: 0.2rem;
-			width: calc(var(--lust-width) - 0.4rem);
+			width: calc(var(--percentage) - 0.4rem);
 			height: calc(100% - 0.4rem);
 			border-radius: 2rem;
 			background: var(--color);
-
-			&.-overload {
-				width: calc(var(--overload-width) - 0.4rem);
-				background: gold;
-			}
 		}
 	}
 

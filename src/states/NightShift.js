@@ -136,11 +136,13 @@ export default class NightShift extends React.Component {
 					<LustBar
 						className="o-nightShift__lust__captain -captain"
 						name={'Captain'}
+						overload={false}
 						lust={captainLust}
 					/>
 					<LustBar
 						className="o-nightShift__lust__crew"
 						name={nightCharacter?.name || 'Crew'}
+						overload={true}
 						lust={crewLust}
 					/>
 				</div>

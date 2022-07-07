@@ -25,6 +25,7 @@ export default class LustBar extends React.Component {
 		const {
 			name,
 			lust,
+			overload,
 		} = this.props;
 
 		const style = {
@@ -32,15 +33,26 @@ export default class LustBar extends React.Component {
 			'--overload-width': `${Math.clamp(lust - 100, 0, 100)}%`,
 		};
 
+		let eleOverload = null;
+		if (overload) {
+			eleOverload = (
+				<div className="o-lustBar__bar -overload">
+					<div className="o-lustBar__bar__foreground"></div>
+				</div>
+			)
+		}
+
 		return (
 			<div
 				className={this.classes.join(' ')}
 				style={style}
 			>
 				<h2 className="o-lustBar__title">{name}</h2>
-				<div className="o-lustBar__bar">
-					<div className="o-lustBar__bar__foreground"></div>
-					<div className="o-lustBar__bar__foreground -overload"></div>
+				<div className="o-lustBar__container">
+					<div className="o-lustBar__bar">
+						<div className="o-lustBar__bar__foreground"></div>
+					</div>
+					{eleOverload}
 				</div>
 				<h2 className="o-lustBar__amount">
 					<CountUp
