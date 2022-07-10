@@ -26,7 +26,7 @@ export default class CharacterStats extends React.Component {
 
 		return (
 			<div className={this.classes.join(' ')}>
-				{['stamina', 'pleasure', 'passionate', 'intimate', 'submissive'].map((type, index) => {
+				{['pleasure', 'passionate', 'intimate', 'submissive'].map((type, index) => {
 					return (
 						<CharacterStatsItem
 							className="m-characterStats__item"
