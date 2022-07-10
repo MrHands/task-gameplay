@@ -38,6 +38,7 @@ export default function Character(props) {
 			<h2 className="o-character__name">{name}</h2>
 			<CharacterStats
 				className="o-character__stats"
+				id={id}
 				stats={stats}
 				taskEffects={taskEffects}
 				clampCharacterStat={clampCharacterStat}

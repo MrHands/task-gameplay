@@ -19,14 +19,20 @@ export default class CharacterStats extends React.Component {
 
 	render() {
 		const {
+			id,
 			stats,
 			taskEffects,
 			clampCharacterStat
 		} = this.props;
 
+		let statsList = ['pleasure', 'passionate', 'intimate', 'submissive'];
+		if (id === 1000) {
+			statsList = ['stamina'];
+		}
+
 		return (
 			<div className={this.classes.join(' ')}>
-				{['pleasure', 'passionate', 'intimate', 'submissive'].map((type, index) => {
+				{statsList.map((type, index) => {
 					return (
 						<CharacterStatsItem
 							className="m-characterStats__item"
