@@ -93,6 +93,12 @@ export default class App extends React.Component {
 
 			locations: [
 				{
+					id: 'captain',
+					title: 'Captain\'s Quarters',
+					tasks: [],
+					character: null,
+				},
+				{
 					id: 'gym',
 					title: 'Gym',
 					tasks: [],
@@ -265,7 +271,9 @@ export default class App extends React.Component {
 				characters.forEach(character => {
 					while (character.location === '') {
 						const picked = locations[Math.floor(Math.random() * locations.length)];
-						if (picked.character === null) {
+						console.log(picked);
+						if (picked.id !== 'captain' &&
+							picked.character === null) {
 							picked.character = character;
 							character.location = picked.id;
 						}
