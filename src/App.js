@@ -48,6 +48,16 @@ export default class App extends React.Component {
 
 			characters: [
 				{
+					id: 1000,
+					name: 'Captain',
+					stats: {
+						stamina: 3,
+					},
+					staminaCost: 0,
+					task: '',
+					location: 'captain',
+				},
+				{
 					id: 0,
 					name: 'Chichi',
 					stats: {
@@ -210,6 +220,10 @@ export default class App extends React.Component {
 
 			return {
 				characters: characters.map(character => {
+					if (character.id === 1000) {
+						return character;
+					}
+
 					const cloneCharacter = deepClone(character);
 
 					// reset task
@@ -269,6 +283,12 @@ export default class App extends React.Component {
 
 			if (!isNightShift) {
 				characters.forEach(character => {
+					if (character.id === 1000) {
+						locations[0].character = character;
+						character.location = locations[0].id;
+						return character;
+					}
+
 					while (character.location === '') {
 						const picked = locations[Math.floor(Math.random() * locations.length)];
 						if (picked.id !== 'captain' &&
