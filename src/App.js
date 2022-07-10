@@ -271,7 +271,6 @@ export default class App extends React.Component {
 				characters.forEach(character => {
 					while (character.location === '') {
 						const picked = locations[Math.floor(Math.random() * locations.length)];
-						console.log(picked);
 						if (picked.id !== 'captain' &&
 							picked.character === null) {
 							picked.character = character;

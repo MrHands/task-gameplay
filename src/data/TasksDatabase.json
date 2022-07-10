@@ -171,6 +171,16 @@
 			"dice": null
 		},
 		{
+			"id": "reroll",
+			"title": "Reroll",
+			"description": "Reroll die",
+			"location": "captain",
+			"effects": [],
+			"difficulty": 0,
+			"staminaCost": 1,
+			"dice": null
+		},
+		{
 			"id": "rest",
 			"title": "Rest",
 			"description": "Restore {stamina} stamina",
