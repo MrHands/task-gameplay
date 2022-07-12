@@ -1,0 +1,51 @@
+{
+	"locations": [
+		{
+			"id": "captain",
+			"title": "Captain's Quarters",
+			"tasks": [
+				"reroll"
+			]
+		},
+		{
+			"id": "gym",
+			"title": "Gym",
+			"tasks": [
+				"maintenance-1",
+				"personal-1"
+			]
+		},
+		{
+			"id": "library",
+			"title": "Library",
+			"tasks": [
+				"maintenance-2",
+				"personal-2"
+			]
+		},
+		{
+			"id": "dungeon",
+			"title": "Dungeon",
+			"tasks": [
+				"maintenance-3",
+				"personal-3"
+			]
+		},
+		{
+			"id": "lounge",
+			"title": "Lounge",
+			"tasks": [
+				"maintenance-4",
+				"personal-4"
+			]
+		},
+		{
+			"id": "spa",
+			"title": "Spa",
+			"tasks": [
+				"maintenance-5",
+				"personal-5"
+			]
+		}
+	]
+}

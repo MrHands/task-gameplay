@@ -4,7 +4,6 @@
 			"id": "maintenance-1",
 			"title": "Ship 1",
 			"description": "Gain [SUB] {submissive_lvl} x {dice} Pleasure",
-			"location": "gym",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -19,7 +18,6 @@
 			"id": "maintenance-2",
 			"description": "Gain {pleasure} Pleasure",
 			"title": "Ship 2",
-			"location": "library",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -34,7 +32,6 @@
 			"id": "maintenance-3",
 			"title": "Ship 3",
 			"description": "Gain {pleasure} Pleasure",
-			"location": "dungeon",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -48,7 +45,6 @@
 		{
 			"id": "maintenance-4",
 			"title": "Ship 4",
-			"location": "lounge",
 			"description": "Gain {pleasure} Pleasure",
 			"effects": [
 				{
@@ -63,7 +59,6 @@
 		{
 			"id": "maintenance-5",
 			"title": "Ship 5",
-			"location": "spa",
 			"description": "Gain {pleasure} Pleasure",
 			"effects": [
 				{
@@ -79,7 +74,6 @@
 			"id": "personal-1",
 			"title": "Personal 1",
 			"description": "Learn {passionate} Passionate and {intimate} Intimate",
-			"location": "gym",
 			"effects": [
 				{
 					"type": "passionate",
@@ -155,7 +149,6 @@
 			"id": "personal-5",
 			"title": "Personal 5",
 			"description": "Learn {passionate} Passionate and {intimate} Intimate",
-			"location": "spa",
 			"effects": [
 				{
 					"type": "passionate",
@@ -174,7 +167,6 @@
 			"id": "reroll",
 			"title": "Reroll",
 			"description": "Reroll die",
-			"location": "captain",
 			"effects": [],
 			"difficulty": 0,
 			"staminaCost": 1,
@@ -184,7 +176,6 @@
 			"id": "rest",
 			"title": "Rest",
 			"description": "Restore {stamina} stamina",
-			"location": "",
 			"effects": [],
 			"difficulty": 0,
 			"staminaCost": 0,
@@ -193,7 +184,6 @@
 		{
 			"id": "night",
 			"title": "Night",
-			"location": "",
 			"effects": [],
 			"difficulty": 0,
 			"staminaCost": 0,

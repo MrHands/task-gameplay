@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import ShiftHud from './components/ShiftHud';
 import TasksDatabase from './data/TasksDatabase.json';
 import DecksDatabase from './data/DecksDatabase.json';
+import LocationsDatabase from './data/LocationsDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
@@ -100,45 +101,12 @@ export default class App extends React.Component {
 					location: '',
 				}
 			],
-
-			locations: [
-				{
-					id: 'captain',
-					title: 'Captain\'s Quarters',
+			locations: LocationsDatabase.locations.map((location) => {
+				return Object.assign(deepClone(location), {
 					tasks: [],
 					character: null,
-				},
-				{
-					id: 'gym',
-					title: 'Gym',
-					tasks: [],
-					character: null,
-				},
-				{
-					id: 'library',
-					title: 'Library',
-					tasks: [],
-					character: null,
-				},
-				{
-					id: 'dungeon',
-					title: 'Dungeon',
-					tasks: [],
-					character: null,
-				},
-				{
-					id: 'lounge',
-					title: 'Lounge',
-					tasks: [],
-					character: null,
-				},
-				{
-					id: 'spa',
-					title: 'Spa',
-					tasks: [],
-					character: null,
-				},
-			],
+				});
+			}),
 
 			limitSexMovesHand: true,
 			nightLog: [],
@@ -265,11 +233,14 @@ export default class App extends React.Component {
 			locations.forEach(location => {
 				location.character = null;
 
-				location.tasks = TasksDatabase.tasks.filter(task => task.location === location.id).map(task => deepClone(task));
-				
-				location.tasks.forEach(task => {
-					task.location = location.id;
-					task.outcome = '';
+				const locationDb = LocationsDatabase.locations.find(it => it.id === location.id);
+
+				location.tasks = locationDb.tasks.map(id => {
+					const found = TasksDatabase.tasks.find(it => it.id === id);
+					return Object.assign(deepClone(found), {
+						location: location.id,
+						outcome: ''
+					});
 				});
 			});
 
