@@ -3,6 +3,7 @@ import { useDrop } from 'react-dnd';
 import reactStringReplace from 'react-string-replace';
 
 import Dice from './Dice';
+import DiceSlot from './DiceSlot';
 
 import './Task.scss';
 
@@ -79,31 +80,6 @@ export default function Task(props) {
 	let diceValue = difficulty;
 	if (diceUsed !== null) {
 		diceValue = Math.max(0, difficulty - diceUsed.value);
-	}
-
-	let eleDice = null;
-	if (task.dice !== null) {
-		eleDice = (
-			<Dice
-				className="-drop"
-				id={diceUsed.id}
-				value={diceUsed.value}
-				isSpent={task.outcome !== ''}
-			/>
-		);
-	} else {
-		const diceClasses = [ 'a-dice', '-drop' ];
-		if (staminaCost > 0) {
-			diceClasses.push('-task');
-		} else {
-			diceClasses.push('-empty');
-		}
-
-		eleDice = (
-			<div className={diceClasses.join(' ')}>
-				{(diceValue > 0 || staminaCost > 0) ? diceValue : ''}
-			</div>
-		);
 	}
 
 	// effects
@@ -187,9 +163,16 @@ export default function Task(props) {
 				{descriptionText}
 			</div>
 			<div className="o-task__container">
-				<div className="o-task__container__dice-value">
-					{eleDice}
-				</div>
+				{task.requirements.map((req) => {
+					return (
+						<DiceSlot
+							type={req.type}
+							value={req.value}
+							diceUsed={diceUsed}
+							outcome={task.outcome}
+						/>
+					);
+				})}
 			</div>
 			{eleStartButton}
 		</div>
