@@ -138,13 +138,13 @@ export default function Task(props) {
 	if (isActive) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 	} else {
-		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
+		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span key="icon" className="a-emptyBox" />));
 	}
 
 	if (isActive) {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => diceUsed.value);
 	} else {
-		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span class="a-emptyBox"></span>));
+		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span key="icon" className="a-emptyBox" />));
 	}
 
 	return (
@@ -158,6 +158,7 @@ export default function Task(props) {
 					return (
 						<DiceSlot
 							key={`req-${index}`}
+							slotIndex={index}
 							type={req.type}
 							value={req.value}
 							task={task}

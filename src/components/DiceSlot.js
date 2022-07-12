@@ -5,6 +5,7 @@ import Dice from './Dice';
 
 export default function DiceSlot(props) {
 	const {
+		slotIndex,
 		type,
 		value,
 		task,
@@ -27,7 +28,7 @@ export default function DiceSlot(props) {
 			canDrop: monitor.canDrop(),
 			diceDropped: monitor.getItem(),
 		}),
-		drop: dice => onDiceDropped(dice.id, task, character),
+		drop: dice => onDiceDropped(dice.id, task, character, slotIndex),
 	}), [task]);
 
 	if (isOver && canDrop) {

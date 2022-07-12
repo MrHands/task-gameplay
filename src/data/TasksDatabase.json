@@ -18,6 +18,11 @@
 					"type": "tool",
 					"value": 0,
 					"dice": null
+				},
+				{
+					"type": "gate",
+					"value": 3,
+					"dice": null
 				}
 			]
 		},

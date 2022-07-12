@@ -398,26 +398,20 @@ export default class App extends React.Component {
 		}
 
 		const dice = this.state.dice.find(dice => dice.id === diceId) || null;
-		if (!dice) {
-			return [false, null];
-		}
-
-		const required = task.difficulty;
-
-		console.log(`canDiceBeDropped value ${dice.value} required ${required}`);
-
-		return [true, dice];
+		return [dice !== null, dice];
 	}
 
-	setTaskDice(diceId, task, character) {
+	setTaskDice(diceId, task, character, slotIndex) {
 		if (!this.canDiceBeDropped(diceId, task, character)) {
 			return;
 		}
 
-		console.log(`setTaskDice diceId ${diceId} task ${task}`);
+		console.log(`setTaskDice diceId ${diceId} task ${task} slotIndex ${slotIndex}`);
+		console.log(task);
+
+		// remove die from list
 
 		const dice = this.state.dice.find(dice => dice.id === diceId);
-		task.difficulty = Math.max(0, task.difficulty - dice.value);
 
 		this.setState(state => {
 			return {
@@ -425,7 +419,30 @@ export default class App extends React.Component {
 			}
 		});
 
-		if (task.difficulty === 0) {
+		// set die on slot
+
+		const slot = task.requirements[slotIndex];
+		slot.dice = dice;
+
+		// check if task was completed
+
+		let isDone = task.requirements.reduce((previous, slot, index) => {
+			console.log(`previous ${previous} slot ${index} dice ${slot.dice} type ${slot.type}`);
+
+			if (slot.dice === null) {
+				return false;
+			}
+
+			switch (slot.type) {
+				case 'gate': {
+					return previous && slot.dice.value >= slot.value;
+				}
+				default:
+					return previous;
+			}
+		}, true);
+
+		if (isDone) {
 			this.startTask(character, task);
 		}
 	}
