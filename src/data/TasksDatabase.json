@@ -12,7 +12,14 @@
 			],
 			"difficulty": 4,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 4,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "maintenance-2",
@@ -26,7 +33,14 @@
 			],
 			"difficulty": 4,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 4,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "maintenance-3",
@@ -40,7 +54,14 @@
 			],
 			"difficulty": 5,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 5,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "maintenance-4",
@@ -54,7 +75,14 @@
 			],
 			"difficulty": 5,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 5,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "maintenance-5",
@@ -68,7 +96,14 @@
 			],
 			"difficulty": 6,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 6,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "personal-1",
@@ -86,7 +121,14 @@
 			],
 			"difficulty": 2,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 2,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "personal-2",
@@ -105,7 +147,14 @@
 			],
 			"difficulty": 3,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 3,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "personal-3",
@@ -124,7 +173,14 @@
 			],
 			"difficulty": 4,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 4,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "personal-4",
@@ -143,7 +199,14 @@
 			],
 			"difficulty": 5,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 5,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "personal-5",
@@ -161,25 +224,30 @@
 			],
 			"difficulty": 6,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 6,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "reroll",
-			"title": "Reroll",
-			"description": "Reroll die",
+			"title": "Masturbate",
+			"description": "Restore 1 Stamina",
 			"effects": [],
 			"difficulty": 0,
 			"staminaCost": 1,
-			"dice": null
-		},
-		{
-			"id": "rest",
-			"title": "Rest",
-			"description": "Restore {stamina} stamina",
-			"effects": [],
-			"difficulty": 0,
-			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": [
+				{
+					"type": "tool",
+					"value": 4,
+					"placed": 0
+				}
+			]
 		},
 		{
 			"id": "night",
@@ -187,7 +255,8 @@
 			"effects": [],
 			"difficulty": 0,
 			"staminaCost": 0,
-			"dice": null
+			"dice": null,
+			"requirements": []
 		}
 	]
 }
