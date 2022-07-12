@@ -20,7 +20,7 @@ export default function DiceSlot(props) {
 			<Dice
 				className="-drop"
 				id={diceUsed.id}
-				value={diceUsed.value}
+				value={difficulty}
 				isSpent={outcome !== ''}
 			/>
 		);

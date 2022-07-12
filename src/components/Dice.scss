@@ -8,10 +8,11 @@
 	align-items: center;
 	width: 4rem;
 	aspect-ratio: 1 / 1;
-	border: 0.2rem solid hsl(55, 80%, 30%);
-	border-radius: 25%;
 	background: hsl(55, 80%, 80%);
 	color: hsl(55, 80%, 30%);
+	border: 0.2rem solid currentColor;
+	border-radius: 25%;
+	
 	font-size: 2rem;
 	font-weight: bold;
 	transition-property: margin, transform;
@@ -26,13 +27,11 @@
 	&.-task {
 		color: hsl(55, 80%, 40%);
 		background: hsl(55, 80%, 100%);
-		border-color: hsl(55, 80%, 40%);
 	}
 
 	&.-empty {
 		background: transparent;
 		border-style: dashed;
-		border-color: hsl(55, 80%, 40%);
 	}
 
 	&.-drop {
@@ -50,8 +49,8 @@
 	}
 
 	[disabled] & {
+		color: darkgray;
 		background: none;
 		border-style: solid;
-		border-color: darkgray;
 	}
 }

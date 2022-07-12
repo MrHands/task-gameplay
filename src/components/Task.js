@@ -82,6 +82,26 @@ export default function Task(props) {
 		diceValue = Math.max(0, difficulty - diceUsed.value);
 	}
 
+	// check if task is active
+
+	let isActive = diceUsed !== null;
+	if (isActive) {
+		task.requirements.forEach((req) => {
+			switch (req.type) {
+				case 'gate': {
+					isActive = isActive && diceValue <= 0;
+					break;
+				}
+				case 'tool': {
+					isActive = isActive && diceUsed !== null;
+					break;
+				}
+				default:
+					break;
+			}
+		});
+	}
+
 	// effects
 
 	const copyEffects = effects.map(effect => deepClone(effect));
@@ -118,15 +138,13 @@ export default function Task(props) {
 	replaceStatText('intimate');
 	replaceStatText('submissive');
 
-	if (staminaCost > 0) {
-		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaCost);
-	} else if (diceUsed) {
+	if (isActive) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
 	}
 
-	if (diceUsed) {
+	if (isActive) {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span class="a-emptyBox"></span>));
