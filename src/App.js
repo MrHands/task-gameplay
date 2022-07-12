@@ -870,7 +870,7 @@ export default class App extends React.Component {
 			characters,
 		} = this.state;
 
-		const charactersUnplaced = characters.filter(character => character.task === '');
+		const charactersUnplaced = characters.filter(character => character.id !== 1000 && character.task === '');
 
 		let gameState = null;
 		let hud = null;
