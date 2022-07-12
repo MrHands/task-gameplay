@@ -7,7 +7,8 @@
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 30
+					"multiply": "submissive",
+					"value": 1
 				}
 			],
 			"difficulty": 4,
@@ -18,22 +19,18 @@
 					"type": "tool",
 					"value": 0,
 					"dice": null
-				},
-				{
-					"type": "gate",
-					"value": 3,
-					"dice": null
 				}
 			]
 		},
 		{
 			"id": "maintenance-2",
-			"description": "Gain {pleasure} Pleasure",
 			"title": "Ship 2",
+			"description": "Gain [PAS] {passionate_lvl} x {dice} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 30
+					"multiply": "passionate",
+					"value": 1
 				}
 			],
 			"difficulty": 4,
@@ -41,8 +38,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 4,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				}
 			]
@@ -50,11 +47,12 @@
 		{
 			"id": "maintenance-3",
 			"title": "Ship 3",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Gain [INT] {intimate_lvl} x 2 x {dice} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
-					"value": 40
+					"multiply": "intimate",
+					"value": 2
 				}
 			],
 			"difficulty": 5,
@@ -62,8 +60,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 5,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				}
 			]

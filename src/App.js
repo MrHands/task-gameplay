@@ -551,12 +551,21 @@ export default class App extends React.Component {
 
 		character.taskEffects = task.effects.map(effect => deepClone(effect));
 
+		const slotDice = task.requirements[0].dice;
+
 		// apply task effects
 
 		character.taskEffects.forEach(effect => {
 			const statValue = character.stats[effect.type];
-			console.log(`type ${effect.type} value ${statValue} effect ${effect.value}`);
-			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effect.value);
+
+			let effectValue = effect.value;
+			if ('multiply' in effect) {
+				effectValue *= character.stats[effect.multiply];
+				effectValue *= slotDice.value;
+			}
+
+			console.log(`type ${effect.type} value ${statValue} effect ${effectValue}`);
+			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effectValue);
 		});
 
 		// update task
