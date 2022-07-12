@@ -15,8 +15,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 4,
+					"type": "tool",
+					"value": 0,
 					"placed": 0
 				}
 			]

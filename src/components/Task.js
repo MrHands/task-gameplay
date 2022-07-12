@@ -2,7 +2,6 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import reactStringReplace from 'react-string-replace';
 
-import Dice from './Dice';
 import DiceSlot from './DiceSlot';
 
 import './Task.scss';

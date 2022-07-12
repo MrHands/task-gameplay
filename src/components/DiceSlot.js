@@ -10,15 +10,53 @@ export default function DiceSlot(props) {
 		outcome,
 	} = props;
 
+	// difficulty
+
 	let difficulty = value;
 	if (diceUsed !== null) {
-		difficulty = Math.max(0, difficulty - diceUsed.value);
+		switch (type) {
+			case 'gate': {
+				difficulty = Math.max(0, difficulty - diceUsed.value);
+				break;
+			}
+			case 'tool': {
+				difficulty = diceUsed.value;
+				break;
+			}
+			default:
+				break;
+		}
+	}
+
+	// active
+
+	let isActive = diceUsed !== null;
+	if (isActive) {
+		switch (type) {
+			case 'gate': {
+				isActive = isActive && difficulty <= 0;
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	if (diceUsed !== null) {
+		const diceClasses = [ '-drop' ];
+		if (type === 'tool' && !isActive) {
+			diceClasses.push('-empty');
+		} else {
+			diceClasses.push('-task');
+		}
+
+		if (isActive) {
+			diceClasses.push('-active');
+		}
+
 		return (
 			<Dice
-				className="-drop"
+				className={diceClasses.join(' ')}
 				id={diceUsed.id}
 				value={difficulty}
 				isSpent={outcome !== ''}
@@ -26,7 +64,7 @@ export default function DiceSlot(props) {
 		);
 	} else {
 		const diceClasses = [ 'a-dice', '-drop' ];
-		if (type === 'tool') {
+		if (type === 'gate') {
 			diceClasses.push('-task');
 		} else {
 			diceClasses.push('-empty');

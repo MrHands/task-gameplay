@@ -18,15 +18,17 @@
 	transition-property: margin, transform;
 	transition-duration: 0.5s;
 
-	&[draggable="true"]:hover {
-		margin: 0 1rem;
-		transform: scale(1.5, 1.5);
-		cursor: grab;
-	}
-
 	&.-task {
 		color: hsl(55, 80%, 40%);
 		background: hsl(55, 80%, 100%);
+	}
+
+	&[draggable="true"] {
+		&:hover {
+			margin: 0 1rem;
+			transform: scale(1.5, 1.5);
+			cursor: grab;
+		}
 	}
 
 	&.-empty {
@@ -39,13 +41,15 @@
 	}
 
 	&.-active {
+		background: rgba(green, 30%);
+		color: green;
 		border-style: solid;
-		border-color: green;
 	}
 
 	&.-denied {
+		background: rgba(red, 30%);
+		color: red;
 		border-style: solid;
-		border-color: red;
 	}
 
 	[disabled] & {
