@@ -6,8 +6,7 @@ import Dice from './Dice';
 export default function DiceSlot(props) {
 	const {
 		slotIndex,
-		type,
-		value,
+		requirement,
 		task,
 		character,
 		canDiceBeDropped,
@@ -15,7 +14,12 @@ export default function DiceSlot(props) {
 	} = props;
 
 	const {
-		dice,
+		type,
+		value,
+		dice
+	} = requirement;
+
+	const {
 		outcome
 	} = task;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
 import reactStringReplace from 'react-string-replace';
 
 import DiceSlot from './DiceSlot';
@@ -45,58 +46,42 @@ export default function Task(props) {
 	const {
 		title,
 		description,
-		difficulty,
 		effects,
 		staminaCost,
+		requirements,
 	} = task;
 
-	let diceUsed = task.dice;
+	// check if task is active
 
-	/* const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
+	let isActive = requirements.reduce((previous, req) => {
+		const diceValue = req.dice?.value || 0;
+
+		switch (req.type) {
+			case 'gate': {
+				return previous && diceValue <= 0;
+			}
+			case 'tool': {
+				return previous && req.dice !== null;
+			}
+			default:
+				return previous;
+		}
+	}, true);
+
+	let diceUsed = null;
+
+	const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
 		accept: 'dice',
 		collect: monitor => ({
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
 			diceDropped: monitor.getItem(),
 		}),
-		drop: dice => onDiceDropped(dice.id, task, character),
+		drop: () => {},
 	}), [task]);
 
 	if (isOver && canDrop) {
-		const result = canDiceBeDropped(diceDropped.id, task, character);
-		if (result[0]) {
-			diceUsed = result[1];
-			classes.push('-active');
-		} else {
-			classes.push('-denied');
-		}
-	} */
-
-	// dice element
-
-	let diceValue = difficulty;
-	if (diceUsed !== null) {
-		diceValue = Math.max(0, difficulty - diceUsed.value);
-	}
-
-	// check if task is active
-
-	let isActive = diceUsed !== null;
-	if (isActive) {
-		task.requirements.forEach((req) => {
-			switch (req.type) {
-				case 'gate': {
-					isActive = isActive && diceValue <= 0;
-					break;
-				}
-				case 'tool': {
-					isActive = isActive && diceUsed !== null;
-					break;
-				}
-				default:
-					break;
-			}
-		});
+		diceUsed = canDiceBeDropped(diceDropped.id, task, character)[1];
 	}
 
 	// effects
@@ -135,20 +120,20 @@ export default function Task(props) {
 	replaceStatText('intimate');
 	replaceStatText('submissive');
 
-	if (isActive) {
+	if (diceUsed) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span key="icon" className="a-emptyBox" />));
 	}
 
-	if (isActive) {
+	if (diceUsed) {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span key="icon" className="a-emptyBox" />));
 	}
 
 	return (
-		<div className={classes.join(' ')}>
+		<div className={classes.join(' ')} ref={drop}>
 			<h2 className="o-task__title">{title}</h2>
 			<div className="o-task__description">
 				{descriptionText}
@@ -159,8 +144,7 @@ export default function Task(props) {
 						<DiceSlot
 							key={`req-${index}`}
 							slotIndex={index}
-							type={req.type}
-							value={req.value}
+							requirement={req}
 							task={task}
 							character={character}
 							canDiceBeDropped={canDiceBeDropped}
