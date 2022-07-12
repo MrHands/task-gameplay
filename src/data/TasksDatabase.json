@@ -17,7 +17,7 @@
 				{
 					"type": "tool",
 					"value": 0,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -38,7 +38,7 @@
 				{
 					"type": "gate",
 					"value": 4,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -59,7 +59,7 @@
 				{
 					"type": "gate",
 					"value": 5,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -80,7 +80,7 @@
 				{
 					"type": "gate",
 					"value": 5,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -101,7 +101,7 @@
 				{
 					"type": "gate",
 					"value": 6,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -126,7 +126,7 @@
 				{
 					"type": "gate",
 					"value": 2,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -152,7 +152,7 @@
 				{
 					"type": "gate",
 					"value": 3,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -178,7 +178,7 @@
 				{
 					"type": "gate",
 					"value": 4,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -204,7 +204,7 @@
 				{
 					"type": "gate",
 					"value": 5,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -229,7 +229,7 @@
 				{
 					"type": "gate",
 					"value": 6,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},
@@ -245,7 +245,7 @@
 				{
 					"type": "tool",
 					"value": 4,
-					"placed": 0
+					"dice": null
 				}
 			]
 		},

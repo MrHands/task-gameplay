@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
 
 import Dice from './Dice';
 
@@ -6,9 +7,36 @@ export default function DiceSlot(props) {
 	const {
 		type,
 		value,
-		diceUsed,
-		outcome,
+		task,
+		character,
+		canDiceBeDropped,
+		onDiceDropped,
 	} = props;
+
+	const {
+		dice,
+		outcome
+	} = task;
+
+	let diceUsed = dice;
+
+	const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
+		accept: 'dice',
+		collect: monitor => ({
+			isOver: monitor.isOver(),
+			canDrop: monitor.canDrop(),
+			diceDropped: monitor.getItem(),
+		}),
+		drop: dice => onDiceDropped(dice.id, task, character),
+	}), [task]);
+
+	if (isOver && canDrop) {
+		const result = canDiceBeDropped(diceDropped.id, task, character);
+		console.log(result);
+		if (result[0]) {
+			diceUsed = result[1];
+		}
+	}
 
 	// difficulty
 
@@ -42,6 +70,8 @@ export default function DiceSlot(props) {
 		}
 	}
 
+	let eleDrop = null;
+
 	if (diceUsed !== null) {
 		const diceClasses = [ '-drop' ];
 		if (type === 'tool' && !isActive) {
@@ -54,7 +84,7 @@ export default function DiceSlot(props) {
 			diceClasses.push('-active');
 		}
 
-		return (
+		eleDrop = (
 			<Dice
 				className={diceClasses.join(' ')}
 				id={diceUsed.id}
@@ -70,10 +100,12 @@ export default function DiceSlot(props) {
 			diceClasses.push('-empty');
 		}
 
-		return (
+		eleDrop = (
 			<div className={diceClasses.join(' ')}>
 				{(difficulty > 0) ? difficulty : ''}
 			</div>
 		);
 	}
+
+	return <div ref={drop}>{eleDrop}</div>;
 }

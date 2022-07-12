@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDrop } from 'react-dnd';
 import reactStringReplace from 'react-string-replace';
 
 import DiceSlot from './DiceSlot';
@@ -29,7 +28,6 @@ export default function Task(props) {
 		character,
 		canDiceBeDropped,
 		onDiceDropped,
-		onTaskStart,
 	} = props;
 
 	const classes = (() => {
@@ -54,7 +52,7 @@ export default function Task(props) {
 
 	let diceUsed = task.dice;
 
-	const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
+	/* const [ { isOver, canDrop, diceDropped }, drop ] = useDrop(() => ({
 		accept: 'dice',
 		collect: monitor => ({
 			isOver: monitor.isOver(),
@@ -72,7 +70,7 @@ export default function Task(props) {
 		} else {
 			classes.push('-denied');
 		}
-	}
+	} */
 
 	// dice element
 
@@ -149,49 +147,27 @@ export default function Task(props) {
 		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span class="a-emptyBox"></span>));
 	}
 
-	// start button
-
-	console.log(`task ${task.id} difficulty ${difficulty} staminaCost ${staminaCost}`);
-
-	const characterStamina = character?.stats.stamina || 0;
-	let startDisabled = diceValue > 0 || staminaCost > characterStamina;
-
-	if (task.id === 'rest') {
-		startDisabled = task.dice === null || task.outcome !== '';
-	}
-
-	let eleStartButton = null;
-	if (task.id !== 'rest') {
-		eleStartButton = (
-			<button
-				className="o-task__start"
-				onClick={() => onTaskStart(character, task)}
-				disabled={startDisabled}
-			>
-				Start Task
-			</button>
-		);
-	}
-
 	return (
-		<div className={classes.join(' ')} ref={drop}>
+		<div className={classes.join(' ')}>
 			<h2 className="o-task__title">{title}</h2>
 			<div className="o-task__description">
 				{descriptionText}
 			</div>
 			<div className="o-task__container">
-				{task.requirements.map((req) => {
+				{task.requirements.map((req, index) => {
 					return (
 						<DiceSlot
+							key={`req-${index}`}
 							type={req.type}
 							value={req.value}
-							diceUsed={diceUsed}
-							outcome={task.outcome}
+							task={task}
+							character={character}
+							canDiceBeDropped={canDiceBeDropped}
+							onDiceDropped={onDiceDropped}
 						/>
 					);
 				})}
 			</div>
-			{eleStartButton}
 		</div>
 	);
 }
