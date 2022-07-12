@@ -118,17 +118,29 @@ export default function Task(props) {
 
 	let descriptionText = description;
 
-	const replaceText = (type) => {
+	const replaceEffectText = (type) => {
 		const effect = copyEffects.find(effect => effect.type === type);
 		if (effect !== null) {
 			descriptionText = reactStringReplace(descriptionText, `{${type}}`, () => effectText(effect));
 		}
 	}
 
-	replaceText('pleasure');
-	replaceText('passionate');
-	replaceText('intimate');
-	replaceText('submissive');
+	replaceEffectText('pleasure');
+	replaceEffectText('passionate');
+	replaceEffectText('intimate');
+	replaceEffectText('submissive');
+
+	const replaceStatText = (type) => {
+		let value = 0;
+		if (character !== null && type in character.stats) {
+			value = character.stats[type];
+		}
+		descriptionText = reactStringReplace(descriptionText, `{${type}_lvl}`, () => value);
+	}
+
+	replaceStatText('passionate');
+	replaceStatText('intimate');
+	replaceStatText('submissive');
 
 	if (staminaCost > 0) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => staminaCost);
@@ -136,6 +148,12 @@ export default function Task(props) {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => diceUsed.value);
 	} else {
 		descriptionText = reactStringReplace(descriptionText, '{stamina}', () => (<span class="a-emptyBox"></span>));
+	}
+
+	if (diceUsed) {
+		descriptionText = reactStringReplace(descriptionText, '{dice}', () => diceUsed.value);
+	} else {
+		descriptionText = reactStringReplace(descriptionText, '{dice}', () => (<span class="a-emptyBox"></span>));
 	}
 
 	// start button

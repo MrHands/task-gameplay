@@ -63,9 +63,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 0,
-						intimate: 0,
-						submissive: 0
+						passionate: 1,
+						intimate: 1,
+						submissive: 1
 					},
 					staminaCost: 0,
 					task: '',
@@ -77,9 +77,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 0,
-						intimate: 0,
-						submissive: 0
+						passionate: 1,
+						intimate: 1,
+						submissive: 1
 					},
 					staminaCost: 0,
 					task: '',
@@ -91,9 +91,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 0,
-						intimate: 0,
-						submissive: 0
+						passionate: 1,
+						intimate: 1,
+						submissive: 1
 					},
 					staminaCost: 0,
 					task: '',

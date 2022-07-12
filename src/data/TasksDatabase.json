@@ -3,7 +3,7 @@
 		{
 			"id": "maintenance-1",
 			"title": "Ship 1",
-			"description": "Gain {pleasure} Pleasure",
+			"description": "Gain [SUB] {submissive_lvl} x {dice} Pleasure",
 			"location": "gym",
 			"effects": [
 				{
