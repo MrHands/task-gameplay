@@ -545,7 +545,7 @@ export default class App extends React.Component {
 
 		character.taskEffects = task.effects.map(effect => deepClone(effect));
 
-		const slotDice = task.requirements[0].dice;
+		const slot = task.requirements[0];
 
 		// apply task effects
 
@@ -556,10 +556,13 @@ export default class App extends React.Component {
 
 			if ('multiply' in effect) {
 				effectValue *= character.stats[effect.multiply];
-				effectValue *= slotDice.value;
 			}
 
-			console.log(`type ${effect.type} value ${statValue} effect ${effectValue}`);
+			if (slot.type === 'tool') {
+				effectValue *= slot.dice.value;
+			}
+
+			console.log(`effect ${effect.type} slot ${slot.type} value ${statValue} effect ${effectValue}`);
 			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effectValue);
 		});
 
