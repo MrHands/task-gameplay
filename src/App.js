@@ -64,9 +64,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 1,
-						intimate: 1,
-						submissive: 1
+						passionate: randomValue(1, 6),
+						intimate: randomValue(1, 6),
+						submissive: randomValue(1, 6)
 					},
 					staminaCost: 0,
 					task: '',
@@ -78,9 +78,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 1,
-						intimate: 1,
-						submissive: 1
+						passionate: randomValue(1, 6),
+						intimate: randomValue(1, 6),
+						submissive: randomValue(1, 6)
 					},
 					staminaCost: 0,
 					task: '',
@@ -92,9 +92,9 @@ export default class App extends React.Component {
 					stats: {
 						stamina: 5,
 						pleasure: 0,
-						passionate: 1,
-						intimate: 1,
-						submissive: 1
+						passionate: randomValue(1, 6),
+						intimate: randomValue(1, 6),
+						submissive: randomValue(1, 6)
 					},
 					staminaCost: 0,
 					task: '',
@@ -576,6 +576,12 @@ export default class App extends React.Component {
 			console.log(`effect ${effect.type} slot ${slot.type} value ${statValue} effect ${effectValue}`);
 			character.stats[effect.type] = this.clampCharacterStat(effect.type, statValue + effectValue);
 		});
+
+		// clamp pleasure
+
+		if (this.state.shift !== Shift.NIGHT) {
+			character.stats['pleasure'] = Math.clamp(character.stats['pleasure'], 0, 100);
+		}
 
 		// update task
 
