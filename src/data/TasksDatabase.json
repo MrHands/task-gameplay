@@ -11,7 +11,6 @@
 					"value": 1
 				}
 			],
-			"difficulty": 4,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -33,7 +32,6 @@
 					"value": 1
 				}
 			],
-			"difficulty": 4,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -55,7 +53,6 @@
 					"value": 2
 				}
 			],
-			"difficulty": 5,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -76,7 +73,6 @@
 					"value": 40
 				}
 			],
-			"difficulty": 5,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -97,7 +93,6 @@
 					"value": 50
 				}
 			],
-			"difficulty": 6,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -111,18 +106,13 @@
 		{
 			"id": "personal-1",
 			"title": "Personal 1",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
 					"type": "passionate",
-					"value": 10
-				},
-				{
-					"type": "intimate",
-					"value": 10
+					"value": 1
 				}
 			],
-			"difficulty": 2,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -137,18 +127,13 @@
 			"id": "personal-2",
 			"title": "Personal 2",
 			"location": "library",
-			"description": "Learn {passionate} Passionate and {submissive} Submissive",
+			"description": "Learn {submissive} Submissive",
 			"effects": [
 				{
-					"type": "passionate",
-					"value": 10
-				},
-				{
 					"type": "submissive",
-					"value": 30
+					"value": 1
 				}
 			],
-			"difficulty": 3,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -163,24 +148,19 @@
 			"id": "personal-3",
 			"title": "Personal 3",
 			"location": "dungeon",
-			"description": "Learn {intimate} Intimate and {submissive} Submissive",
+			"description": "Learn {intimate} Intimate",
 			"effects": [
 				{
 					"type": "intimate",
-					"value": 20
-				},
-				{
-					"type": "submissive",
-					"value": 20
+					"value": 2
 				}
 			],
-			"difficulty": 4,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
 				{
 					"type": "gate",
-					"value": 4,
+					"value": 6,
 					"dice": null
 				}
 			]
@@ -189,18 +169,13 @@
 			"id": "personal-4",
 			"title": "Personal 4",
 			"location": "lounge",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
 					"type": "passionate",
-					"value": 30
-				},
-				{
-					"type": "intimate",
-					"value": 10
+					"value": 1
 				}
 			],
-			"difficulty": 5,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
@@ -214,24 +189,19 @@
 		{
 			"id": "personal-5",
 			"title": "Personal 5",
-			"description": "Learn {passionate} Passionate and {intimate} Intimate",
+			"description": "Learn {submissive} Submissive",
 			"effects": [
 				{
-					"type": "passionate",
-					"value": 30
-				},
-				{
-					"type": "intimate",
-					"value": 10
+					"type": "submissive",
+					"value": 1
 				}
 			],
-			"difficulty": 6,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
 				{
 					"type": "gate",
-					"value": 6,
+					"value": 4,
 					"dice": null
 				}
 			]
@@ -241,7 +211,6 @@
 			"title": "Masturbate",
 			"description": "Restore 1 Stamina",
 			"effects": [],
-			"difficulty": 0,
 			"staminaCost": 1,
 			"dice": null,
 			"requirements": [
@@ -256,7 +225,6 @@
 			"id": "night",
 			"title": "Night",
 			"effects": [],
-			"difficulty": 0,
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": []

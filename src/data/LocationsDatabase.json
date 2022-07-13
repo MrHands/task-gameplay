@@ -12,7 +12,7 @@
 			"title": "Gym",
 			"tasks": [
 				"maintenance-1",
-				"personal-1"
+				"personal-4"
 			]
 		},
 		{
@@ -20,7 +20,7 @@
 			"title": "Library",
 			"tasks": [
 				"maintenance-2",
-				"personal-2"
+				"personal-5"
 			]
 		},
 		{
@@ -28,7 +28,7 @@
 			"title": "Dungeon",
 			"tasks": [
 				"maintenance-3",
-				"personal-3"
+				"personal-2"
 			]
 		},
 		{
@@ -36,7 +36,7 @@
 			"title": "Lounge",
 			"tasks": [
 				"maintenance-4",
-				"personal-4"
+				"personal-3"
 			]
 		},
 		{
@@ -44,7 +44,7 @@
 			"title": "Spa",
 			"tasks": [
 				"maintenance-5",
-				"personal-5"
+				"personal-1"
 			]
 		}
 	]

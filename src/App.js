@@ -449,7 +449,7 @@ export default class App extends React.Component {
 
 	canBePlaced(characterId, task) {
 		const character = this.getCharacter(characterId);
-		return (task.difficulty === 0) || (character.stats.stamina > 0);
+		return true;
 	}
 
 	setCharacterTask(characterId, task) {
@@ -468,12 +468,6 @@ export default class App extends React.Component {
 
 					characterClone.task = task;
 					task.characterId = characterClone.id;
-
-					if (task.difficulty === 0) {
-						characterClone.staminaCost = 0;
-					} else {
-						characterClone.staminaCost = 1;
-					}
 
 					return characterClone;
 				})
@@ -559,6 +553,7 @@ export default class App extends React.Component {
 			const statValue = character.stats[effect.type];
 
 			let effectValue = effect.value;
+
 			if ('multiply' in effect) {
 				effectValue *= character.stats[effect.multiply];
 				effectValue *= slotDice.value;
