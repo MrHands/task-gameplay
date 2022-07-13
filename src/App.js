@@ -422,20 +422,31 @@ export default class App extends React.Component {
 		// set die on slot
 
 		const slot = task.requirements[slotIndex];
-		slot.dice = dice;
+
+		switch (slot.type) {
+			case 'tool': {
+				slot.dice = dice;
+				break;
+			}
+			case 'gate': {
+				slot.value -= dice.value;
+				break;
+			}
+			default:
+				break;
+		}
 
 		// check if task was completed
 
 		let isDone = task.requirements.reduce((previous, slot, index) => {
 			console.log(`previous ${previous} slot ${index} dice ${slot.dice} type ${slot.type}`);
 
-			if (slot.dice === null) {
-				return false;
-			}
-
 			switch (slot.type) {
+				case 'tool': {
+					return previous && slot.dice !== null;
+				}
 				case 'gate': {
-					return previous && slot.dice.value >= slot.value;
+					return previous && slot.value <= 0;
 				}
 				default:
 					return previous;
