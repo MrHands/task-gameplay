@@ -11,32 +11,33 @@
 			"id": "gym",
 			"title": "Gym",
 			"tasks": [
-				"maintenance-1",
-				"personal-4"
+				"pleasure-gate-sub",
+				"learn-pas-1"
 			]
 		},
 		{
 			"id": "library",
 			"title": "Library",
 			"tasks": [
-				"maintenance-2",
-				"personal-5"
+				"pleasure-gate-pas",
+				"learn-sub-1",
+				"learn-int-2"
 			]
 		},
 		{
 			"id": "dungeon",
 			"title": "Dungeon",
 			"tasks": [
-				"maintenance-3",
-				"personal-3"
+				"pleasure-gate-int",
+				"learn-int-1"
 			]
 		},
 		{
 			"id": "lounge",
 			"title": "Lounge",
 			"tasks": [
-				"maintenance-4",
-				"personal-4"
+				"pleasure-tool",
+				"learn-pas-2"
 			]
 		}
 	]

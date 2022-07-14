@@ -4,12 +4,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import ShiftHud from './components/ShiftHud';
 import TasksDatabase from './data/TasksDatabase.json';
-import DecksDatabase from './data/DecksDatabase.json';
 import LocationsDatabase from './data/LocationsDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
-import shuffleCards from './helpers/shuffleCards';
 import DayShift from './states/DayShift';
 import GameStart from './states/GameStart';
 import NightShift from './states/NightShift';
@@ -34,6 +32,8 @@ export default class App extends React.Component {
 		super();
 
 		this.state = {
+			gameStarted: false,
+
 			day: 1,
 			shift: Shift.MORNING,
 			sexergy: 0,
@@ -174,6 +174,7 @@ export default class App extends React.Component {
 					return clone;
 				}),
 				shift: Shift.NIGHT,
+				gameStarted: true,
 			};
 		});
 
@@ -283,12 +284,6 @@ export default class App extends React.Component {
 
 	drawHand(diceCount) {
 		this.setState(state => {
-			let {
-				characters,
-				tasksDeck,
-				restDeck
-			} = state;
-
 			// roll dice
 
 			const dice = [];
@@ -298,50 +293,10 @@ export default class App extends React.Component {
 					value: randomValue(1, 7),
 				});
 			}
-	
-			const handCards = [];
-
-			if (tasksDeck.length <= characters.length) {
-				// build deck
-
-				const deckTasks = DecksDatabase.decks.find(deck => {
-					return deck.id === this.state.deck;
-				});
-				console.log(deckTasks);
-
-				tasksDeck = shuffleCards(deckTasks.tasks.map(id => {
-					return deepClone(this.getTask(id));
-				}));
-				console.log(tasksDeck);
-
-				const deckRest = DecksDatabase.decks.find(deck => {
-					return deck.id === 'rest';
-				});
-
-				restDeck = shuffleCards(deckRest.tasks.map(id => {
-					return deepClone(this.getTask(id));
-				}));
-			}
-
-			// deep copy to avoid copying effects array as references!
-	
-			for (let i = 0; i < characters.length; ++i) {
-				const task = deepClone(tasksDeck.pop());
-				task.handId = handCards.length;
-				handCards.push(task);
-			}
-	
-			handCards.forEach(task => {
-				task.characterId = null;
-				task.roll = -1;
-				task.outcome = '';
-			});
 
 			return {
 				dice,
-				handCards: shuffleCards(handCards),
-				tasksDeck,
-				restDeck,
+				gameStarted: true,
 			}
 		});
 	}
@@ -908,12 +863,12 @@ export default class App extends React.Component {
 
 	render() {
 		const {
+			gameStarted,
 			sexergy,
 			day,
 			dice,
 			locations,
 			shift,
-			handCards,
 			characters,
 		} = this.state;
 
@@ -923,7 +878,7 @@ export default class App extends React.Component {
 		let hud = null;
 		let eleDice = null;
 
-		if (handCards.length === 0) {
+		if (!gameStarted) {
 			gameState = (
 				<GameStart
 					onStartGame={this.startGame.bind(this)}
@@ -1003,7 +958,6 @@ export default class App extends React.Component {
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					dice={dice}
-					handCards={handCards}
 					locations={locations}
 					getCharacter={this.getCharacter.bind(this)}
 					clampCharacterStat={this.clampCharacterStat.bind(this)}

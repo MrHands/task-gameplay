@@ -1,8 +1,8 @@
 {
 	"tasks": [
 		{
-			"id": "maintenance-1",
-			"title": "Ship 1",
+			"id": "pleasure-gate-sub",
+			"title": "High intensity training",
 			"description": "Gain [SUB] {submissive_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -22,8 +22,8 @@
 			]
 		},
 		{
-			"id": "maintenance-2",
-			"title": "Ship 2",
+			"id": "pleasure-gate-pas",
+			"title": "Read a romance novel",
 			"description": "Gain [PAS] {passionate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -43,7 +43,7 @@
 			]
 		},
 		{
-			"id": "maintenance-3",
+			"id": "pleasure-gate-int",
 			"title": "Ship 3",
 			"description": "Gain [INT] {intimate_lvl} x {pleasure} Pleasure",
 			"effects": [
@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			"id": "maintenance-4",
+			"id": "pleasure-tool",
 			"title": "Ship 4",
 			"description": "Gain {dice} x {pleasure} Pleasure",
 			"effects": [
@@ -85,27 +85,7 @@
 			]
 		},
 		{
-			"id": "maintenance-5",
-			"title": "Ship 5",
-			"description": "Gain {pleasure} Pleasure",
-			"effects": [
-				{
-					"type": "pleasure",
-					"value": 50
-				}
-			],
-			"staminaCost": 0,
-			"dice": null,
-			"requirements": [
-				{
-					"type": "gate",
-					"value": 6,
-					"dice": null
-				}
-			]
-		},
-		{
-			"id": "personal-1",
+			"id": "learn-pas-1",
 			"title": "Personal 1",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
@@ -125,7 +105,7 @@
 			]
 		},
 		{
-			"id": "personal-2",
+			"id": "learn-sub-1",
 			"title": "Personal 2",
 			"location": "library",
 			"description": "Learn {submissive} Submissive",
@@ -146,9 +126,28 @@
 			]
 		},
 		{
-			"id": "personal-3",
+			"id": "learn-int-1",
+			"title": "learn-int-1",
+			"description": "Learn {intimate} Intimate",
+			"effects": [
+				{
+					"type": "intimate",
+					"value": 1
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 6,
+					"dice": null
+				}
+			]
+		},
+		{
+			"id": "learn-int-2",
 			"title": "Personal 3",
-			"location": "dungeon",
 			"description": "Learn {intimate} Intimate",
 			"effects": [
 				{
@@ -167,14 +166,13 @@
 			]
 		},
 		{
-			"id": "personal-4",
-			"title": "Personal 4",
-			"location": "lounge",
+			"id": "learn-pas-2",
+			"title": "Hot Yoga",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
 					"type": "passionate",
-					"value": 1
+					"value": 2
 				}
 			],
 			"staminaCost": 0,
@@ -188,7 +186,7 @@
 			]
 		},
 		{
-			"id": "personal-5",
+			"id": "learn-sub-1",
 			"title": "Personal 5",
 			"description": "Learn {submissive} Submissive",
 			"effects": [
