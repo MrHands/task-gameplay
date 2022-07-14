@@ -2,7 +2,7 @@
 	"tasks": [
 		{
 			"id": "pleasure-gate-sub",
-			"title": "High intensity training",
+			"title": "Watch dirty movie",
 			"description": "Gain [SUB] {submissive_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -44,7 +44,7 @@
 		},
 		{
 			"id": "pleasure-gate-int",
-			"title": "Ship 3",
+			"title": "pleasure-gate-int",
 			"description": "Gain [INT] {intimate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -65,12 +65,11 @@
 		},
 		{
 			"id": "pleasure-tool",
-			"title": "Ship 4",
+			"title": "Play with vibrator",
 			"description": "Gain {dice} x {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
-					"multiply": "submissive",
 					"value": 5
 				}
 			],
@@ -86,7 +85,7 @@
 		},
 		{
 			"id": "learn-pas-1",
-			"title": "Personal 1",
+			"title": "learn-pas-1",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
@@ -100,67 +99,6 @@
 				{
 					"type": "gate",
 					"value": 2,
-					"dice": null
-				}
-			]
-		},
-		{
-			"id": "learn-sub-1",
-			"title": "Personal 2",
-			"location": "library",
-			"description": "Learn {submissive} Submissive",
-			"effects": [
-				{
-					"type": "submissive",
-					"value": 1
-				}
-			],
-			"staminaCost": 0,
-			"dice": null,
-			"requirements": [
-				{
-					"type": "gate",
-					"value": 3,
-					"dice": null
-				}
-			]
-		},
-		{
-			"id": "learn-int-1",
-			"title": "learn-int-1",
-			"description": "Learn {intimate} Intimate",
-			"effects": [
-				{
-					"type": "intimate",
-					"value": 1
-				}
-			],
-			"staminaCost": 0,
-			"dice": null,
-			"requirements": [
-				{
-					"type": "gate",
-					"value": 6,
-					"dice": null
-				}
-			]
-		},
-		{
-			"id": "learn-int-2",
-			"title": "Personal 3",
-			"description": "Learn {intimate} Intimate",
-			"effects": [
-				{
-					"type": "intimate",
-					"value": 2
-				}
-			],
-			"staminaCost": 0,
-			"dice": null,
-			"requirements": [
-				{
-					"type": "gate",
-					"value": 6,
 					"dice": null
 				}
 			]
@@ -180,14 +118,66 @@
 			"requirements": [
 				{
 					"type": "gate",
+					"value": 1,
+					"dice": null
+				},
+				{
+					"type": "gate",
+					"value": 6,
+					"dice": null
+				}
+			]
+		},
+
+		{
+			"id": "learn-int-1",
+			"title": "learn-int-1",
+			"description": "Learn {intimate} Intimate",
+			"effects": [
+				{
+					"type": "intimate",
+					"value": 1
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
 					"value": 5,
 					"dice": null
 				}
 			]
 		},
 		{
+			"id": "learn-int-2",
+			"title": "Read a romance novel",
+			"description": "Learn {intimate} Intimate",
+			"effects": [
+				{
+					"type": "intimate",
+					"value": 2
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 4,
+					"dice": null
+				},
+				{
+					"type": "gate",
+					"value": 4,
+					"dice": null
+				}
+			]
+		},
+
+		{
 			"id": "learn-sub-1",
-			"title": "Personal 5",
+			"title": "learn-sub-1",
 			"description": "Learn {submissive} Submissive",
 			"effects": [
 				{
@@ -200,11 +190,32 @@
 			"requirements": [
 				{
 					"type": "gate",
-					"value": 4,
+					"value": 3,
 					"dice": null
 				}
 			]
 		},
+		{
+			"id": "learn-sub-2",
+			"title": "learn-sub-2",
+			"description": "Learn {submissive} Submissive",
+			"effects": [
+				{
+					"type": "submissive",
+					"value": 2
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 3,
+					"dice": null
+				}
+			]
+		},
+
 		{
 			"id": "reroll",
 			"title": "Masturbate",

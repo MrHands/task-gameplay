@@ -11,33 +11,35 @@
 			"id": "gym",
 			"title": "Gym",
 			"tasks": [
-				"pleasure-gate-sub",
-				"learn-pas-1"
+				"pleasure-gate-pas",
+				"learn-sub-1",
+				"learn-int-1"
 			]
 		},
 		{
 			"id": "library",
 			"title": "Library",
 			"tasks": [
-				"pleasure-gate-pas",
+				"learn-pas-1",
 				"learn-sub-1",
 				"learn-int-2"
 			]
 		},
 		{
 			"id": "dungeon",
-			"title": "Dungeon",
+			"title": "Kitchen",
 			"tasks": [
 				"pleasure-gate-int",
-				"learn-int-1"
+				"learn-sub-2",
+				"learn-pas-2"
 			]
 		},
 		{
 			"id": "lounge",
 			"title": "Lounge",
 			"tasks": [
-				"pleasure-tool",
-				"learn-pas-2"
+				"pleasure-gate-sub",
+				"pleasure-tool"
 			]
 		}
 	]
