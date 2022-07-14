@@ -3,6 +3,7 @@
 	$clr-500: hsl(55, 80%, 50%);
 	$clr-800: hsl(55, 80%, 80%);
 
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,11 +13,26 @@
 	color: hsl(55, 80%, 30%);
 	border: 0.2rem solid currentColor;
 	border-radius: 25%;
-	
 	font-size: 2rem;
 	font-weight: bold;
 	transition-property: margin, transform;
 	transition-duration: 0.5s;
+	z-index: -1;
+
+	&:before {
+		$border: 0.2rem;
+
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: calc(100% - #{2 * $border});
+		height: calc(100% - #{2 * $border});
+		margin: $border;
+		background: transparent;
+		border-radius: inherit;
+		z-index: -1;
+	}
 
 	&[draggable="true"] {
 		&:hover {
@@ -28,7 +44,10 @@
 
 	&.-task {
 		color: hsl(55, 80%, 40%);
-		background: hsl(55, 80%, 100%);
+
+		&:before {
+			background: hsl(55, 80%, 100%);
+		}
 	}
 
 	&.-empty {
@@ -37,24 +56,38 @@
 	}
 
 	&.-drop {
+		background: transparent;
 		width: 6rem;
 	}
 
 	&.-active {
-		background: rgba(green, 30%);
+		background: transparent;
 		color: green;
 		border-style: solid;
+
+		&:before {
+			background: rgba(green, 30%);
+		}
 	}
 
 	&.-denied {
-		background: rgba(red, 30%);
+		background: transparent;
 		color: red;
 		border-style: solid;
+
+		&:before {
+			background: rgba(red, 30%);
+		}
 	}
 
 	[disabled] & {
+		background: transparent;
 		color: darkgray;
-		background: none;
 		border-style: solid;
+		z-index: initial;
+
+		&:before {
+			background: transparent;
+		}
 	}
 }
