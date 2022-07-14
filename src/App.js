@@ -416,12 +416,6 @@ export default class App extends React.Component {
 
 		const dice = this.state.dice.find(dice => dice.id === diceId);
 
-		this.setState(state => {
-			return {
-				dice: state.dice.filter(dice => dice.id !== diceId)
-			}
-		});
-
 		// set die on slot
 
 		const slot = task.requirements[slotIndex];
@@ -455,6 +449,14 @@ export default class App extends React.Component {
 					return previous;
 			}
 		}, true);
+
+		// update state
+
+		this.setState(state => {
+			return {
+				dice: state.dice.filter(dice => dice.id !== diceId)
+			}
+		});
 
 		if (isDone) {
 			this.startTask(character, task);

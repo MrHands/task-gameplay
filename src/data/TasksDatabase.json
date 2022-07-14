@@ -24,7 +24,7 @@
 		{
 			"id": "maintenance-2",
 			"title": "Ship 2",
-			"description": "Gain [PAS] {passionate_lvl} x {dice} x 10% Pleasure",
+			"description": "Gain [PAS] {passionate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
@@ -36,8 +36,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "tool",
-					"value": 0,
+					"type": "gate",
+					"value": 2,
 					"dice": null
 				}
 			]
@@ -45,12 +45,33 @@
 		{
 			"id": "maintenance-3",
 			"title": "Ship 3",
-			"description": "Gain [INT] {intimate_lvl} x 2 x {dice} x 10% Pleasure",
+			"description": "Gain [INT] {intimate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "pleasure",
 					"multiply": "intimate",
-					"value": 20
+					"value": 10
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "gate",
+					"value": 1,
+					"dice": null
+				}
+			]
+		},
+		{
+			"id": "maintenance-4",
+			"title": "Ship 4",
+			"description": "Gain {dice} x {pleasure} Pleasure",
+			"effects": [
+				{
+					"type": "pleasure",
+					"multiply": "submissive",
+					"value": 5
 				}
 			],
 			"staminaCost": 0,
@@ -59,27 +80,6 @@
 				{
 					"type": "tool",
 					"value": 0,
-					"dice": null
-				}
-			]
-		},
-		{
-			"id": "maintenance-4",
-			"title": "Ship 4",
-			"description": "Gain [SUB] {submissive_lvl} x {pleasure} Pleasure",
-			"effects": [
-				{
-					"type": "pleasure",
-					"multiply": "submissive",
-					"value": 20
-				}
-			],
-			"staminaCost": 0,
-			"dice": null,
-			"requirements": [
-				{
-					"type": "gate",
-					"value": 5,
 					"dice": null
 				}
 			]

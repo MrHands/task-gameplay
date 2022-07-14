@@ -28,7 +28,7 @@
 			"title": "Dungeon",
 			"tasks": [
 				"maintenance-3",
-				"personal-2"
+				"personal-3"
 			]
 		},
 		{
@@ -36,15 +36,7 @@
 			"title": "Lounge",
 			"tasks": [
 				"maintenance-4",
-				"personal-3"
-			]
-		},
-		{
-			"id": "spa",
-			"title": "Spa",
-			"tasks": [
-				"maintenance-5",
-				"personal-1"
+				"personal-4"
 			]
 		}
 	]
