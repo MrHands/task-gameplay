@@ -52,7 +52,7 @@ export default class App extends React.Component {
 					id: 1000,
 					name: 'Captain',
 					stats: {
-						stamina: 3,
+						stamina: 4,
 					},
 					staminaCost: 0,
 					task: '',
@@ -286,13 +286,15 @@ export default class App extends React.Component {
 				restDeck
 			} = state;
 
+			const captain = this.getCharacter(1000);
+
 			// roll dice
 
 			const dice = [];
-			for (let i = 0; i < 6; ++i) {
+			for (let i = 0; i < captain.stats.stamina + 1; ++i) {
 				dice.push({
 					id: i,
-					value: Math.floor(Math.random() * 6) + 1,
+					value: randomValue(1, 7),
 				});
 			}
 	
@@ -635,15 +637,44 @@ export default class App extends React.Component {
 			this.setState(state => {
 				const {
 					sexergy,
-					sexergyGenerated
+					sexergyGenerated,
+					characters,
+				} = state;
+
+				const newCharacters = characters.map((character) => {
+					if (character.id === 1000) {
+						character.stats.stamina = 4;
+					} else {
+						character.stats.pleasure = 0;
+					}
+					return character;
+				});
+
+				return {
+					sexergy: sexergy + sexergyGenerated,
+					characters: newCharacters
+				}
+			});
+		} else {
+			shift++;
+
+			this.setState(state => {
+				const {
+					characters,
 				} = state;
 
 				return {
-					sexergy: sexergy + sexergyGenerated
+					characters: characters.map((character) => {
+						const clone = deepClone(character);
+
+						if (clone.id === 1000) {
+							clone.stats.stamina--;
+						}
+
+						return clone;
+					})
 				}
-			})
-		} else {
-			shift++;
+			});
 		}
 
 		if (shift === Shift.NIGHT) {
