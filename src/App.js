@@ -136,7 +136,9 @@ export default class App extends React.Component {
 	startGame() {
 		this.setUpCharacters(true);
 		this.setUpLocations(false);
-		this.drawHand();
+
+		const captain = this.getCharacter(1000);
+		this.drawHand(captain.stats.stamina + 1);
 	}
 
 	startNight() {
@@ -177,7 +179,8 @@ export default class App extends React.Component {
 
 		this.startNight();
 
-		this.drawHand();
+		const captain = this.getCharacter(1000);
+		this.drawHand(captain.stats.stamina);
 	}
 
 	setUpCharacters(newDay) {
@@ -278,7 +281,7 @@ export default class App extends React.Component {
 		});
 	}
 
-	drawHand() {
+	drawHand(diceCount) {
 		this.setState(state => {
 			let {
 				characters,
@@ -286,12 +289,10 @@ export default class App extends React.Component {
 				restDeck
 			} = state;
 
-			const captain = this.getCharacter(1000);
-
 			// roll dice
 
 			const dice = [];
-			for (let i = 0; i < captain.stats.stamina + 1; ++i) {
+			for (let i = 0; i < diceCount; ++i) {
 				dice.push({
 					id: i,
 					value: randomValue(1, 7),
@@ -461,7 +462,6 @@ export default class App extends React.Component {
 	}
 
 	canBePlaced(characterId, task) {
-		const character = this.getCharacter(characterId);
 		return true;
 	}
 
@@ -690,7 +690,9 @@ export default class App extends React.Component {
 
 		this.setUpCharacters(newDay);
 		this.setUpLocations(shift === Shift.NIGHT);
-		this.drawHand();
+
+		const captain = this.getCharacter(1000);
+		this.drawHand(captain.stats.stamina);
 	}
 
 	staminaChange(character, amount) {
