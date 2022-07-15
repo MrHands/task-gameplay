@@ -11,17 +11,17 @@
 			"id": "gym",
 			"title": "Gym",
 			"tasks": [
-				"pleasure-gate-pas",
+				"pleasure-gate-int",
 				"learn-sub-1",
-				"learn-int-2"
+				"learn-pas-2"
 			]
 		},
 		{
 			"id": "library",
 			"title": "Library",
 			"tasks": [
-				"learn-int-1",
-				"learn-pas-2",
+				"learn-pas-1",
+				"learn-int-2",
 				"learn-sub-3"
 			]
 		},
@@ -29,8 +29,8 @@
 			"id": "dungeon",
 			"title": "Kitchen",
 			"tasks": [
-				"pleasure-gate-int",
-				"learn-pas-1",
+				"pleasure-gate-pas",
+				"learn-int-1",
 				"learn-sub-2"
 			]
 		},

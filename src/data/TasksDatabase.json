@@ -23,7 +23,7 @@
 		},
 		{
 			"id": "pleasure-gate-pas",
-			"title": "Run on the treadmill",
+			"title": "Eat a muffin",
 			"description": "Gain [PAS] {passionate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -36,15 +36,15 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "min",
-					"value": 4,
+					"type": "max",
+					"value": 3,
 					"dice": null
 				}
 			]
 		},
 		{
 			"id": "pleasure-gate-int",
-			"title": "pleasure-gate-int",
+			"title": "Run on the treadmill",
 			"description": "Gain [INT] {intimate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -58,7 +58,7 @@
 			"requirements": [
 				{
 					"type": "gate",
-					"value": 1,
+					"value": 7,
 					"dice": null
 				}
 			]
@@ -86,7 +86,7 @@
 		},
 		{
 			"id": "learn-pas-1",
-			"title": "Research dance moves",
+			"title": "Read a romance novel",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
@@ -106,7 +106,7 @@
 		},
 		{
 			"id": "learn-pas-2",
-			"title": "Hot Yoga",
+			"title": "Research dance moves",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
@@ -118,13 +118,13 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 1,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				},
 				{
-					"type": "gate",
-					"value": 6,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				}
 			]
@@ -132,7 +132,7 @@
 
 		{
 			"id": "learn-int-1",
-			"title": "Hot yoga",
+			"title": "Make pancakes",
 			"description": "Learn {dice} Intimate",
 			"effects": [
 				{
@@ -154,19 +154,23 @@
 		{
 			"id": "learn-int-2",
 			"title": "Read a romance novel",
-			"description": "Learn {intimate} Intimate",
+			"description": "Learn {intimate} Intimate and gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "intimate",
 					"value": 2
+				},
+				{
+					"type": "pleasure",
+					"value": 10
 				}
 			],
 			"staminaCost": 0,
 			"dice": null,
 			"requirements": [
 				{
-					"type": "min",
-					"value": 4,
+					"type": "max",
+					"value": 2,
 					"dice": null
 				}
 			]
@@ -174,7 +178,7 @@
 
 		{
 			"id": "learn-sub-1",
-			"title": "learn-sub-1",
+			"title": "Practice deadlifts",
 			"description": "Learn {submissive} Submissive",
 			"effects": [
 				{
@@ -194,7 +198,7 @@
 		},
 		{
 			"id": "learn-sub-2",
-			"title": "learn-sub-2",
+			"title": "Clean the dishes",
 			"description": "Learn {submissive} Submissive",
 			"effects": [
 				{
@@ -207,19 +211,23 @@
 			"requirements": [
 				{
 					"type": "gate",
-					"value": 3,
+					"value": 8,
 					"dice": null
 				}
 			]
 		},
 		{
 			"id": "learn-sub-3",
-			"title": "learn-sub-3",
-			"description": "Learn {submissive} Submissive",
+			"title": "Practice rope bondage",
+			"description": "Learn {submissive} Submissive and gain {pleasure} Pleasure",
 			"effects": [
 				{
 					"type": "submissive",
 					"value": 3
+				},
+				{
+					"type": "pleasure",
+					"value": 40
 				}
 			],
 			"staminaCost": 0,
