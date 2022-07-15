@@ -36,8 +36,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 4,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				}
 			]
@@ -86,7 +86,7 @@
 		},
 		{
 			"id": "learn-pas-1",
-			"title": "learn-pas-1",
+			"title": "Research dance moves",
 			"description": "Learn {passionate} Passionate",
 			"effects": [
 				{
@@ -98,7 +98,7 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
+					"type": "min",
 					"value": 2,
 					"dice": null
 				}
@@ -132,7 +132,7 @@
 
 		{
 			"id": "learn-int-1",
-			"title": "Hot Yoga",
+			"title": "Hot yoga",
 			"description": "Learn {dice} Intimate",
 			"effects": [
 				{

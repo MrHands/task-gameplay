@@ -153,6 +153,7 @@ export default function Task(props) {
 					);
 				})}
 			</div>
+			<h4 className="o-task__id">{task.id}</h4>
 		</div>
 	);
 }

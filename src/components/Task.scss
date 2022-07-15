@@ -6,21 +6,22 @@
 }
 
 .o-task {
+	position: relative;
 	display: grid;
 	grid-template-areas:
 		'title      '
 		'container  '
-		'description'
-		'start      ';
+		'description';
 	grid-template-rows:
 		min-content
 		1fr
-		2rem
-		min-content;
+		2rem;
 	gap: 1rem;
 	justify-items: center;
 	min-height: 13rem;
-	padding: 1rem;
+	padding:
+		1.5rem
+		1rem;
 	border: 0.2rem solid steelblue;
 	border-radius: 0.5rem;
 
@@ -41,6 +42,18 @@
 	&__title {
 		grid-area: title;
 		text-align: center;
+	}
+
+	&__id {
+		position: absolute;
+		right: 0.4rem;
+		bottom: 0.4rem;
+		font-weight: initial;
+		color: transparent;
+
+		&:hover {
+			color: gray;
+		}
 	}
 
 	&__container {
