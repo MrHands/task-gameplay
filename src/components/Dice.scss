@@ -1,7 +1,15 @@
+@use 'sass:color';
+
+@function get-shade($color, $lightness) {
+	@return hsl(color.hue($color), color.saturation($color), $lightness);
+}
+
 .a-dice {
 	$clr-300: hsl(55, 80%, 30%);
 	$clr-500: hsl(55, 80%, 50%);
 	$clr-800: hsl(55, 80%, 80%);
+
+	--bg-color: transparent;
 
 	position: relative;
 	display: flex;
@@ -10,8 +18,8 @@
 	align-items: center;
 	width: 4rem;
 	aspect-ratio: 1 / 1;
-	background: hsl(55, 80%, 80%);
-	color: hsl(55, 80%, 30%);
+	background: get-shade(gold, 80%);
+	color: get-shade(gold, 30%);
 	border: 0.2rem solid currentColor;
 	border-radius: 25%;
 	font-size: 2rem;
@@ -30,7 +38,7 @@
 		width: calc(100% - #{2 * $border});
 		height: calc(100% - #{2 * $border});
 		margin: $border;
-		background: transparent;
+		background: var(--bg-color);
 		border-radius: inherit;
 		z-index: -1;
 	}
@@ -48,11 +56,9 @@
 	}
 
 	&.-task {
-		color: hsl(55, 80%, 40%);
+		--bg-color: #{get-shade(gold, 100%)};
 
-		&:before {
-			background: hsl(55, 80%, 100%);
-		}
+		color: get-shade(gold, 40%);
 	}
 
 	&.-empty {
@@ -66,28 +72,39 @@
 		font-size: 3.5rem;
 	}
 
+	&.-minmax {
+		--bg-color: #{get-shade(gold, 80%)};
+
+		font-size: 2rem;
+		color: get-shade(gold, 40%);
+
+		&:before {
+			$stripe-size: 6px;
+
+			background: repeating-linear-gradient(
+				135deg,
+				var(--bg-color),
+				var(--bg-color) #{$stripe-size},
+				transparent #{$stripe-size},
+				transparent #{$stripe-size * 2}
+			);
+		}
+	}
+
 	&.-active {
+		--bg-color: #{get-shade(green, 80%)};
+
 		background: transparent;
 		color: green;
 		border-style: solid;
-
-		&:before {
-			background: rgba(green, 30%);
-		}
 	}
 
 	&.-denied {
+		--bg-color: #{get-shade(red, 80%)};
+
 		background: transparent;
 		color: red;
 		border-style: solid;
-
-		&:before {
-			background: rgba(red, 30%);
-		}
-	}
-
-	&.-minmax {
-		font-size: 2rem;
 	}
 
 	[disabled] & {

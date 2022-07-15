@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 
-import Dice from './Dice';
-
 export default function DiceSlot(props) {
 	const {
 		slotIndex,
@@ -18,10 +16,6 @@ export default function DiceSlot(props) {
 		value,
 		dice
 	} = requirement;
-
-	const {
-		outcome
-	} = task;
 
 	let diceUsed = dice;
 
@@ -107,30 +101,19 @@ export default function DiceSlot(props) {
 		diceClasses.push('-active');
 	}
 
-	if (diceUsed !== null) {
-		eleDrop = (
-			<Dice
-				className={diceClasses.join(' ')}
-				id={diceUsed.id}
-				value={difficulty}
-				isSpent={outcome !== ''}
-			/>
-		);
-	} else {
-		diceClasses = [ 'a-dice' ].concat(diceClasses);
+	diceClasses = [ 'a-dice' ].concat(diceClasses);
 
-		let eleTitle = null;
-		if (type === 'min' || type === 'max') {
-			eleTitle = <span className="a-dice__title">{type}</span>
-		}
-
-		eleDrop = (
-			<div className={diceClasses.join(' ')}>
-				{eleTitle}
-				<span>{(difficulty > 0) ? difficulty : ''}</span>
-			</div>
-		);
+	let eleTitle = null;
+	if (type === 'min' || type === 'max') {
+		eleTitle = <span className="a-dice__title">{type}</span>
 	}
+
+	eleDrop = (
+		<div className={diceClasses.join(' ')}>
+			{eleTitle}
+			<span>{(difficulty > 0) ? difficulty : ''}</span>
+		</div>
+	);
 
 	return <div ref={drop}>{eleDrop}</div>;
 }
