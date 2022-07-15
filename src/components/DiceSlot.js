@@ -30,7 +30,7 @@ export default function DiceSlot(props) {
 	}), [task]);
 
 	if (isOver && canDrop) {
-		const result = canDiceBeDropped(diceDropped.id, task, character);
+		const result = canDiceBeDropped(diceDropped.id, task, character, slotIndex);
 		console.log(result);
 		if (result[0]) {
 			diceUsed = result[1];
@@ -60,25 +60,23 @@ export default function DiceSlot(props) {
 	let isActive = false;
 	let isDenied = false;
 
-	if (diceUsed !== null) {
-		switch (type) {
-			case 'gate': {
-				isActive = difficulty <= 0;
-				break;
-			}
-			case 'min': {
-				isActive = diceUsed.value >= value;
-				isDenied = !isActive;
-				break;
-			}
-			case 'max': {
-				isActive = diceUsed.value <= value;
-				isDenied = !isActive;
-				break;
-			}
-			default:
-				break;
+	switch (type) {
+		case 'gate': {
+			isActive = diceUsed !== null && difficulty <= 0;
+			break;
 		}
+		case 'min': {
+			isActive = diceUsed !== null && diceUsed.value >= value;
+			isDenied = isOver && !isActive;
+			break;
+		}
+		case 'max': {
+			isActive = diceUsed !== null && diceUsed.value <= value;
+			isDenied = isOver && !isActive;
+			break;
+		}
+		default:
+			break;
 	}
 
 	let eleDrop = null;

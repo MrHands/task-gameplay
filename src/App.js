@@ -350,17 +350,34 @@ export default class App extends React.Component {
 		return Math.clamp(value, 0, maxValue);
 	}
 
-	canDiceBeDropped(diceId, task, character) {
+	canDiceBeDropped(diceId, task, character, slotIndex) {
 		if (!character) {
 			return [false, null];
 		}
 
 		const dice = this.state.dice.find(dice => dice.id === diceId) || null;
-		return [dice !== null, dice];
+		if (dice === null) {
+			return [false, null];
+		}
+
+		slotIndex = slotIndex || 0;
+		const slot = task.requirements[slotIndex];
+
+		switch (slot.type) {
+			case 'min': {
+				return [dice.value >= slot.value, dice];
+			}
+			case 'max': {
+				return [dice.value <= slot.value, dice];
+			}
+			default:
+				return [dice !== null, dice];
+		}
 	}
 
 	setTaskDice(diceId, task, character, slotIndex) {
-		if (!this.canDiceBeDropped(diceId, task, character)) {
+		const result = this.canDiceBeDropped(diceId, task, character);
+		if (!result[0]) {
 			return;
 		}
 
@@ -376,15 +393,12 @@ export default class App extends React.Component {
 		const slot = task.requirements[slotIndex];
 
 		switch (slot.type) {
-			case 'tool': {
-				slot.dice = dice;
-				break;
-			}
 			case 'gate': {
 				slot.value -= dice.value;
 				break;
 			}
 			default:
+				slot.dice = dice;
 				break;
 		}
 
@@ -399,6 +413,12 @@ export default class App extends React.Component {
 				}
 				case 'gate': {
 					return previous && slot.value <= 0;
+				}
+				case 'min': {
+					return previous && slot.dice !== null && slot.dice.value >= slot.value;
+				}
+				case 'max': {
+					return previous && slot.dice !== null && slot.dice.value <= slot.value;
 				}
 				default:
 					return previous;
