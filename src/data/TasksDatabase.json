@@ -23,7 +23,7 @@
 		},
 		{
 			"id": "pleasure-gate-pas",
-			"title": "Read a romance novel",
+			"title": "Run a mile",
 			"description": "Gain [PAS] {passionate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -36,8 +36,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "max",
-					"value": 2,
+					"type": "gate",
+					"value": 4,
 					"dice": null
 				}
 			]
@@ -70,6 +70,7 @@
 			"effects": [
 				{
 					"type": "pleasure",
+					"multiply": "dice",
 					"value": 5
 				}
 			],
@@ -131,11 +132,12 @@
 
 		{
 			"id": "learn-int-1",
-			"title": "learn-int-1",
-			"description": "Learn {intimate} Intimate",
+			"title": "Hot Yoga",
+			"description": "Learn {dice} Intimate",
 			"effects": [
 				{
 					"type": "intimate",
+					"multiply": "dice",
 					"value": 1
 				}
 			],
@@ -143,8 +145,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 5,
+					"type": "max",
+					"value": 2,
 					"dice": null
 				}
 			]
@@ -184,7 +186,7 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
+					"type": "min",
 					"value": 3,
 					"dice": null
 				}

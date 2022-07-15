@@ -544,12 +544,20 @@ export default class App extends React.Component {
 
 			let effectValue = effect.value;
 
-			if ('multiply' in effect) {
-				effectValue *= character.stats[effect.multiply];
+			if ('add' in effect) {
+				if (effect.add === 'dice') {
+					effectValue += slot.dice.value;
+				} else {
+					effectValue += character.stats[effect.add];
+				}
 			}
 
-			if (slot.type === 'tool') {
-				effectValue *= slot.dice.value;
+			if ('multiply' in effect) {
+				if (effect.multiply === 'dice') {
+					effectValue *= slot.dice.value;
+				} else {
+					effectValue *= character.stats[effect.multiply];
+				}
 			}
 
 			console.log(`effect ${effect.type} slot ${slot.type} value ${statValue} effect ${effectValue}`);
