@@ -23,7 +23,7 @@
 		},
 		{
 			"id": "pleasure-gate-pas",
-			"title": "Run a mile",
+			"title": "Run on the treadmill",
 			"description": "Gain [PAS] {passionate_lvl} x {pleasure} Pleasure",
 			"effects": [
 				{
@@ -36,8 +36,8 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "tool",
-					"value": 0,
+					"type": "min",
+					"value": 4,
 					"dice": null
 				}
 			]
@@ -208,6 +208,26 @@
 				{
 					"type": "gate",
 					"value": 3,
+					"dice": null
+				}
+			]
+		},
+		{
+			"id": "learn-sub-3",
+			"title": "learn-sub-3",
+			"description": "Learn {submissive} Submissive",
+			"effects": [
+				{
+					"type": "submissive",
+					"value": 3
+				}
+			],
+			"staminaCost": 0,
+			"dice": null,
+			"requirements": [
+				{
+					"type": "min",
+					"value": 5,
 					"dice": null
 				}
 			]

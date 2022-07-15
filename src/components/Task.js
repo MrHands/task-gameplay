@@ -48,25 +48,7 @@ export default function Task(props) {
 		description,
 		effects,
 		staminaCost,
-		requirements,
 	} = task;
-
-	// check if task is active
-
-	let isActive = requirements.reduce((previous, req) => {
-		const diceValue = req.dice?.value || 0;
-
-		switch (req.type) {
-			case 'gate': {
-				return previous && diceValue <= 0;
-			}
-			case 'tool': {
-				return previous && req.dice !== null;
-			}
-			default:
-				return previous;
-		}
-	}, true);
 
 	let diceUsed = null;
 

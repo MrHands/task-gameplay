@@ -13,16 +13,16 @@
 			"tasks": [
 				"pleasure-gate-pas",
 				"learn-sub-1",
-				"learn-int-1"
+				"learn-int-2"
 			]
 		},
 		{
 			"id": "library",
 			"title": "Library",
 			"tasks": [
-				"learn-pas-1",
-				"learn-sub-1",
-				"learn-int-2"
+				"learn-int-1",
+				"learn-pas-2",
+				"learn-sub-3"
 			]
 		},
 		{
@@ -30,8 +30,8 @@
 			"title": "Kitchen",
 			"tasks": [
 				"pleasure-gate-int",
-				"learn-sub-2",
-				"learn-pas-2"
+				"learn-pas-1",
+				"learn-sub-2"
 			]
 		},
 		{
