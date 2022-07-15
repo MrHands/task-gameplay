@@ -55,21 +55,25 @@ export default function DiceSlot(props) {
 		}
 	}
 
-	// active
+	// active and denied
 
-	let isActive = diceUsed !== null;
-	if (isActive) {
+	let isActive = false;
+	let isDenied = false;
+
+	if (diceUsed !== null) {
 		switch (type) {
 			case 'gate': {
-				isActive = isActive && difficulty <= 0;
+				isActive = difficulty <= 0;
 				break;
 			}
 			case 'min': {
 				isActive = diceUsed.value >= value;
+				isDenied = !isActive;
 				break;
 			}
 			case 'max': {
 				isActive = diceUsed.value <= value;
+				isDenied = !isActive;
 				break;
 			}
 			default:
@@ -97,7 +101,9 @@ export default function DiceSlot(props) {
 		}
 	}
 
-	if (isActive) {
+	if (isDenied) {
+		diceClasses.push('-denied');
+	} else if (isActive) {
 		diceClasses.push('-active');
 	}
 
@@ -111,7 +117,7 @@ export default function DiceSlot(props) {
 	eleDrop = (
 		<div className={diceClasses.join(' ')}>
 			{eleTitle}
-			<span>{(difficulty > 0) ? difficulty : ''}</span>
+			<span>{difficulty}</span>
 		</div>
 	);
 
