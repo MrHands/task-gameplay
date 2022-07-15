@@ -92,9 +92,14 @@ export default function DiceSlot(props) {
 			diceClasses.push('-empty');
 			break;
 		}
-		case 'min':
+		case 'min': {
+			diceClasses.push('-minmax');
+			diceClasses.push('-min');
+			break;
+		}
 		case 'max': {
 			diceClasses.push('-minmax');
+			diceClasses.push('-max');
 			break;
 		}
 		default: {

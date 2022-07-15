@@ -91,6 +91,10 @@
 		}
 	}
 
+	&.-max {
+		flex-direction: column-reverse;
+	}
+
 	&.-active {
 		--bg-color: #{get-shade(green, 80%)};
 
@@ -108,7 +112,6 @@
 	[disabled] & {
 		background: transparent;
 		color: darkgray;
-		border-style: solid;
 		z-index: initial;
 
 		&:before {
