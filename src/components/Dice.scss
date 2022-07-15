@@ -96,7 +96,6 @@
 
 		background: transparent;
 		color: green;
-		border-style: solid;
 	}
 
 	&.-denied {
@@ -104,7 +103,6 @@
 
 		background: transparent;
 		color: red;
-		border-style: solid;
 	}
 
 	[disabled] & {

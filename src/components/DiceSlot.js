@@ -65,6 +65,10 @@ export default function DiceSlot(props) {
 			isActive = diceUsed !== null && difficulty <= 0;
 			break;
 		}
+		case 'tool': {
+			isActive = diceUsed !== null;
+			break;
+		}
 		case 'min': {
 			isActive = diceUsed !== null && diceUsed.value >= value;
 			isDenied = isOver && !isActive;
@@ -85,7 +89,7 @@ export default function DiceSlot(props) {
 
 	switch (type) {
 		case 'tool': {
-			diceClasses.push(isActive ? '-task' : '-empty');
+			diceClasses.push('-empty');
 			break;
 		}
 		case 'min':
@@ -107,6 +111,11 @@ export default function DiceSlot(props) {
 
 	diceClasses = [ 'a-dice' ].concat(diceClasses);
 
+	let eleValue = <span>{difficulty}</span>;
+	if (type === 'tool' && difficulty === 0) {
+		eleValue = null;
+	}
+
 	let eleTitle = null;
 	if (type === 'min' || type === 'max') {
 		eleTitle = <span className="a-dice__title">{type}</span>
@@ -115,7 +124,7 @@ export default function DiceSlot(props) {
 	eleDrop = (
 		<div className={diceClasses.join(' ')}>
 			{eleTitle}
-			<span>{difficulty}</span>
+			{eleValue}
 		</div>
 	);
 
