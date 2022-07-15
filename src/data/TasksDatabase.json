@@ -36,7 +36,7 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
+					"type": "max",
 					"value": 2,
 					"dice": null
 				}
@@ -163,12 +163,7 @@
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 4,
-					"dice": null
-				},
-				{
-					"type": "gate",
+					"type": "min",
 					"value": 4,
 					"dice": null
 				}
