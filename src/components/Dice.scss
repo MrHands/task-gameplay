@@ -18,8 +18,8 @@
 	align-items: center;
 	width: 4rem;
 	aspect-ratio: 1 / 1;
-	background: get-shade(gold, 80%);
 	color: get-shade(gold, 30%);
+	background: currentColor;
 	border: 0.2rem solid currentColor;
 	border-radius: 25%;
 	font-size: 2rem;
@@ -58,6 +58,7 @@
 	&__graphic {
 		width: 100%;
 		height: 100%;
+		fill: get-shade(gold, 80%);
 	}
 
 	&.-task {
