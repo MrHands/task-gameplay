@@ -52,7 +52,7 @@ export default class App extends React.Component {
 					id: 1000,
 					name: 'Captain',
 					stats: {
-						stamina: 4,
+						stamina: 5,
 					},
 					staminaCost: 0,
 					task: '',
@@ -138,7 +138,7 @@ export default class App extends React.Component {
 		this.setUpLocations(false);
 
 		const captain = this.getCharacter(1000);
-		this.drawHand(captain.stats.stamina + 1);
+		this.drawHand(captain.stats.stamina);
 	}
 
 	startNight() {
@@ -642,24 +642,6 @@ export default class App extends React.Component {
 			});
 		} else {
 			shift++;
-
-			this.setState(state => {
-				const {
-					characters,
-				} = state;
-
-				return {
-					characters: characters.map((character) => {
-						const clone = deepClone(character);
-
-						if (clone.id === 1000) {
-							clone.stats.stamina--;
-						}
-
-						return clone;
-					})
-				}
-			});
 		}
 
 		if (shift === Shift.NIGHT) {

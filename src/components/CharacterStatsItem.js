@@ -40,7 +40,7 @@ export default class CharacterStatsItem extends React.Component {
 	effectText(type, value) {
 		switch (type) {
 			case 'stamina': {
-				return `${value} / 4`
+				return `${value} / 5`
 			}
 			case 'pleasure': {
 				return `${value}%`;
