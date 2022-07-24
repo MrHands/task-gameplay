@@ -425,6 +425,34 @@ export default class App extends React.Component {
 			}
 		}, true);
 
+		// special tasks
+
+		if (task.id === 'reroll') {
+			this.setState(state => {
+				return {
+					dice: state.dice.map(it => {
+						if (it.id !== diceId) {
+							return it;
+						}
+
+						let value = dice.value;
+						do {
+							value = randomValue(1, 7);
+						} while(value === dice.value)
+
+						return {
+							id: diceId,
+							value,
+						};
+					})
+				}
+			});
+
+			slot.dice = null;
+
+			return;
+		}
+
 		// update state
 
 		this.setState(state => {

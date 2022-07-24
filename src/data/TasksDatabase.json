@@ -244,14 +244,14 @@
 		{
 			"id": "reroll",
 			"title": "Masturbate",
-			"description": "Restore 1 Stamina",
+			"description": "Spend 1 Stamina to reroll a die",
 			"effects": [],
 			"staminaCost": 1,
 			"dice": null,
 			"requirements": [
 				{
-					"type": "gate",
-					"value": 4,
+					"type": "tool",
+					"value": 0,
 					"dice": null
 				}
 			]
