@@ -363,6 +363,10 @@ export default class App extends React.Component {
 		slotIndex = slotIndex || 0;
 		const slot = task.requirements[slotIndex];
 
+		if (task.id === 'reroll') {
+			return [character.stats.stamina > 0, dice];
+		}
+
 		switch (slot.type) {
 			case 'min': {
 				return [dice.value >= slot.value, dice];
@@ -430,6 +434,16 @@ export default class App extends React.Component {
 		if (task.id === 'reroll') {
 			this.setState(state => {
 				return {
+					characters: state.characters.map(it => {
+						if (it.id !== character.id) {
+							return it;
+						}
+
+						const clone = deepClone(character);
+						console.log(clone);
+						clone.stats.stamina -= 1;
+						return clone;
+					}),
 					dice: state.dice.map(it => {
 						if (it.id !== diceId) {
 							return it;
