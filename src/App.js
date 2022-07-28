@@ -291,6 +291,7 @@ export default class App extends React.Component {
 				dice.push({
 					id: i,
 					value: randomValue(1, 7),
+					isSpent: false,
 				});
 			}
 
@@ -440,7 +441,6 @@ export default class App extends React.Component {
 						}
 
 						const clone = deepClone(character);
-						console.log(clone);
 						clone.stats.stamina -= 1;
 						return clone;
 					}),
@@ -471,7 +471,15 @@ export default class App extends React.Component {
 
 		this.setState(state => {
 			return {
-				dice: state.dice.filter(dice => dice.id !== diceId)
+				dice: state.dice.map(it => {
+					if (it.id !== diceId) {
+						return it;
+					}
+
+					const clone = deepClone(it);
+					clone.isSpent = true;
+					return clone;
+				})
 			}
 		});
 

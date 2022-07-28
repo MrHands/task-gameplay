@@ -21,12 +21,12 @@ export default class DiceList extends React.Component {
 	
 		return (
 			<div className={this.classes.join(' ')}>
-				{dice.map(({ value, id }, index) => {
+				{dice.map(({ value, id, isSpent }, index) => {
 					return <Dice
 						key={`dice-${index}`}
 						value={value}
 						id={id}
-						isSpent={false}
+						isSpent={isSpent}
 					/>;
 				})}
 			</div>

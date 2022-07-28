@@ -115,6 +115,15 @@
 		color: red;
 	}
 
+	&.-spent {
+		color: gray;
+		background: lightgray;
+
+		&:before {
+			background: transparent;
+		}
+	}
+
 	[disabled] & {
 		background: transparent;
 		color: darkgray;
