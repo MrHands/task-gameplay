@@ -15,6 +15,8 @@ import NightShift from './states/NightShift';
 import './App.scss';
 import DiceList from './components/DiceList';
 
+const STAMINA_MAXIMUM = 5;
+
 function deepClone(object) {
 	return JSON.parse(JSON.stringify(object));
 }
@@ -52,7 +54,7 @@ export default class App extends React.Component {
 					id: 1000,
 					name: 'Captain',
 					stats: {
-						stamina: 5,
+						stamina: STAMINA_MAXIMUM,
 					},
 					staminaCost: 0,
 					task: '',
@@ -137,8 +139,7 @@ export default class App extends React.Component {
 		this.setUpCharacters(true);
 		this.setUpLocations(false);
 
-		const captain = this.getCharacter(1000);
-		this.drawHand(captain.stats.stamina);
+		this.drawHand(STAMINA_MAXIMUM);
 	}
 
 	startNight() {
@@ -180,8 +181,7 @@ export default class App extends React.Component {
 
 		this.startNight();
 
-		const captain = this.getCharacter(1000);
-		this.drawHand(captain.stats.stamina);
+		this.drawHand(STAMINA_MAXIMUM);
 	}
 
 	setUpCharacters(newDay) {
@@ -207,17 +207,7 @@ export default class App extends React.Component {
 						// reset pleasure
 
 						cloneCharacter.stats.pleasure = 0;
-
-						// add stamina
-
-						cloneCharacter.stats.stamina = this.clampCharacterStat('stamina', cloneCharacter.stats.stamina + 2);
 					}
-
-					// reset stamina cost
-
-					cloneCharacter.staminaCost = 1;
-
-					console.log(cloneCharacter);
 	
 					return cloneCharacter;
 				}),
@@ -331,7 +321,7 @@ export default class App extends React.Component {
 
 		switch (type) {
 			case 'stamina': {
-				maxValue = 5;
+				maxValue = STAMINA_MAXIMUM;
 				break;
 			}
 			case 'pleasure':
@@ -678,7 +668,7 @@ export default class App extends React.Component {
 
 				const newCharacters = characters.map((character) => {
 					if (character.id === 1000) {
-						character.stats.stamina = 4;
+						character.stats.stamina = STAMINA_MAXIMUM;
 					} else {
 						character.stats.pleasure = 0;
 					}
@@ -707,9 +697,7 @@ export default class App extends React.Component {
 
 		this.setUpCharacters(newDay);
 		this.setUpLocations(shift === Shift.NIGHT);
-
-		const captain = this.getCharacter(1000);
-		this.drawHand(captain.stats.stamina);
+		this.drawHand(STAMINA_MAXIMUM);
 	}
 
 	staminaChange(character, amount) {
