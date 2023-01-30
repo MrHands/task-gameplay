@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"react-scripts",
+				"build",
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"clear": false,
+			}
+		},
+		{
+			"label": "Start Server",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"react-scripts",
+				"start",
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"clear": false,
+			}
+		},
+	]
+}
