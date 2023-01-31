@@ -6,6 +6,7 @@ import ShiftHud from './components/ShiftHud';
 import TasksDatabase from './data/TasksDatabase.json';
 import LocationsDatabase from './data/LocationsDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
+import SexMovesDeck from './data/SexMovesDeck.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
 import shuffleCards from './helpers/shuffleCards';
@@ -298,7 +299,34 @@ export default class App extends React.Component {
 		});
 	}
 
+	fillSexMovesDeck(character) {
+		this.setState({
+			sexMoves: SexMovesDeck.decks[0].sexMoves.map(id => {
+				const sexMove = deepClone(SexMovesDatabase.sexMoves.find(move => move.id === id));
+
+				sexMove.effects.forEach(effect => {
+					switch (effect.type) {
+						case 'sexergy': {
+							if (effect.value > 0) {
+								effect.value += character.stats[sexMove.type];
+							}
+							break;
+						}
+						default:
+							break;
+					}
+				});
+
+				return sexMove;
+			})
+		});
+	}
+
 	drawSexMoveHand(cardCount) {
+		if (this.state.sexMoves.length <= cardCount) {
+			this.fillSexMovesDeck(this.nightCharacter);
+		}
+
 		this.setState(state => {
 			let {
 				sexMoves,
@@ -373,7 +401,7 @@ export default class App extends React.Component {
 			return id;
 		}
 
-		return SexMovesDatabase.sexMoves.find(move => move.id === id) || null;
+		return this.state.sexMoves.find(move => move.id === id) || null;
 	}
 
 	clampCharacterStat(type, value) {
@@ -595,28 +623,11 @@ export default class App extends React.Component {
 			this.setState({
 				mood,
 				crewLust: character.stats.pleasure,
-				sexMoves: SexMovesDatabase.sexMoves.map(sexMove => {
-					const clone = deepClone(sexMove);
-
-					clone.effects.forEach(effect => {
-						switch (effect.type) {
-							case 'sexergy': {
-								if (effect.value > 0) {
-									effect.value += character.stats[clone.type];
-								}
-								break;
-							}
-							default:
-								break;
-						}
-					});
-
-					return clone;
-				}),
 				sexMovesInHand: [],
 				sexMovesPlayed: [],
 			});
 
+			this.fillSexMovesDeck(character);
 			this.endNightTurn(SEX_MOVES_INITIAL_HAND);
 		}
 	}
