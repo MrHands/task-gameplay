@@ -68,6 +68,7 @@ export default class NightShift extends React.Component {
 			nightCharacter,
 			crewLust,
 			captainLust,
+			sexMovePlaysLeft,
 			sexMoves,
 			sexMovesInHand,
 			sexMovesPlayed,
@@ -175,7 +176,7 @@ export default class NightShift extends React.Component {
 					<h2 className="o-nightShift__mood__value">{mood}</h2>
 				</div>
 				<div className="o-nightShift__moves">
-				<h2 className="o-nightShift__moves__title">Sex Moves</h2>
+					<h2 className="o-nightShift__moves__remaining">{sexMovePlaysLeft} sex moves left this turn</h2>
 					<div className="o-nightShift__moves__container">
 						<div className="o-nightShift__moves__scroll">
 							{eleSexMoves}

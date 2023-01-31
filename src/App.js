@@ -17,7 +17,9 @@ import './App.scss';
 import DiceList from './components/DiceList';
 
 const STAMINA_MAXIMUM = 5;
+const SEX_MOVES_INITIAL_HAND = 5;
 const SEX_MOVES_DRAW_HAND = 3;
+const PLAY_SEX_MOVES_MAXIMUM = 3;
 
 function deepClone(object) {
 	return JSON.parse(JSON.stringify(object));
@@ -117,6 +119,7 @@ export default class App extends React.Component {
 			crewLust: 0,
 			captainLust: 0,
 			mood: Mood.SUBMISSIVE,
+			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
 			sexMoves: [],
 			sexMovesInHand: [],
 			sexMovesPlayed: [],
@@ -295,7 +298,7 @@ export default class App extends React.Component {
 		});
 	}
 
-	drawSexMoveHand() {
+	drawSexMoveHand(cardCount) {
 		this.setState(state => {
 			let {
 				sexMoves,
@@ -314,7 +317,7 @@ export default class App extends React.Component {
 			
 			console.log(`BEFORE cardsHand ${cardsHand.length} cardsDeck ${cardsDeck.length} playable ${playable}`);
 
-			for (let i = 0; i < SEX_MOVES_DRAW_HAND - 1; i += 1) {
+			for (let i = 0; i < cardCount - 1; i += 1) {
 				const nextCard = cardsDeck[0];
 				cardsDeck.splice(0, 1);
 
@@ -614,7 +617,7 @@ export default class App extends React.Component {
 				sexMovesPlayed: [],
 			});
 
-			this.drawSexMoveHand();
+			this.endNightTurn(SEX_MOVES_INITIAL_HAND);
 		}
 	}
 
@@ -700,8 +703,12 @@ export default class App extends React.Component {
 		});
 	}
 
-	endTurn() {
-		this.drawSexMoveHand();
+	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
+		this.drawSexMoveHand(cardCount);
+
+		this.setState({
+			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
+		});
 	}
 
 	finishShift() {
@@ -794,12 +801,21 @@ export default class App extends React.Component {
 			return false;
 		}
 
+		const {
+			crewLust,
+			sexMovePlaysLeft,
+		} = this.state;
+
+		if (sexMovePlaysLeft <= 0) {
+			return false;
+		}
+
 		const sexMove = this.getSexMove(sexMoveId);
 		if (sexMove == null) {
 			return false;
 		}
 
-		return (this.state.crewLust >= sexMove.lustMinimum);
+		return sexMove.lustMinimum < crewLust;
 	}
 
 	playSexMove(sexMoveId) {
@@ -831,6 +847,7 @@ export default class App extends React.Component {
 				captainLust,
 				sexergy,
 				sexergyGenerated,
+				sexMovePlaysLeft,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
@@ -960,6 +977,7 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				mood,
+				sexMovePlaysLeft: sexMovePlaysLeft - 1,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
@@ -1012,6 +1030,7 @@ export default class App extends React.Component {
 				crewLust,
 				captainLust,
 				mood,
+				sexMovePlaysLeft,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
@@ -1035,6 +1054,7 @@ export default class App extends React.Component {
 					crewLust={crewLust}
 					captainLust={captainLust}
 					mood={mood}
+					sexMovePlaysLeft={sexMovePlaysLeft}
 					sexMoves={sexMoves}
 					sexMovesInHand={sexMovesInHand}
 					sexMovesPlayed={sexMovesPlayed}
@@ -1047,7 +1067,7 @@ export default class App extends React.Component {
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}
-					onEndTurn={this.endTurn.bind(this)}
+					onEndTurn={this.endNightTurn.bind(this, SEX_MOVES_DRAW_HAND)}
 					onShiftFinish={this.finishShift.bind(this)}
 				/>
 			);

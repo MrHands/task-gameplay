@@ -11,8 +11,7 @@ export default class SexMove extends React.Component {
 			mood,
 			id,
 			type,
-			crewLust,
-			getSexMove,
+			canSexMoveBePlayed,
 		} = this.props;
 
 		const classes = ['m-sexMove'];
@@ -25,8 +24,7 @@ export default class SexMove extends React.Component {
 			classes.push('-match');
 		}
 
-		const sexMove = getSexMove(id);
-		if (sexMove && sexMove.lustMinimum > crewLust) {
+		if (!canSexMoveBePlayed(id)) {
 			classes.push('m-sexMove--disabled');
 		}
 
