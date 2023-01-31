@@ -8,6 +8,7 @@ import LocationsDatabase from './data/LocationsDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
+import shuffleCards from './helpers/shuffleCards';
 import DayShift from './states/DayShift';
 import GameStart from './states/GameStart';
 import NightShift from './states/NightShift';
@@ -116,6 +117,7 @@ export default class App extends React.Component {
 			captainLust: 0,
 			mood: Mood.SUBMISSIVE,
 			sexMoves: [],
+			sexMovesInHand: [],
 			sexMovesPlayed: [],
 			categoriesExpanded: {
 				Petting: false,
@@ -288,6 +290,17 @@ export default class App extends React.Component {
 			return {
 				dice,
 				gameStarted: true,
+			}
+		});
+	}
+
+	drawSexMoveHand() {
+		this.setState(state => {
+			const newHand = shuffleCards(state.sexMoves.filter(sexMove => this.canSexMoveBePlayed(sexMove)));
+			newHand.length = 3;
+
+			return {
+				sexMovesInHand: state.sexMovesInHand.concat(newHand),
 			}
 		});
 	}
@@ -553,7 +566,11 @@ export default class App extends React.Component {
 
 					return clone;
 				}),
+				sexMovesInHand: [],
+				sexMovesPlayed: [],
 			});
+
+			this.drawSexMoveHand();
 		}
 	}
 
@@ -941,6 +958,7 @@ export default class App extends React.Component {
 				captainLust,
 				mood,
 				sexMoves,
+				sexMovesInHand,
 				sexMovesPlayed,
 				sexergyGenerated,
 				categoriesExpanded,
@@ -963,6 +981,7 @@ export default class App extends React.Component {
 					captainLust={captainLust}
 					mood={mood}
 					sexMoves={sexMoves}
+					sexMovesInHand={sexMovesInHand}
 					sexMovesPlayed={sexMovesPlayed}
 					sexergyGenerated={sexergyGenerated}
 					categoriesExpanded={categoriesExpanded}

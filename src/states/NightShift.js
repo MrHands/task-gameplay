@@ -6,7 +6,6 @@ import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
-import shuffleCards from '../helpers/shuffleCards';
 
 import './NightShift.scss';
 
@@ -70,6 +69,7 @@ export default class NightShift extends React.Component {
 			crewLust,
 			captainLust,
 			sexMoves,
+			sexMovesInHand,
 			sexMovesPlayed,
 			sexergyGenerated,
 			categoriesExpanded,
@@ -87,10 +87,7 @@ export default class NightShift extends React.Component {
 
 		let eleSexMoves = null;
 		if (limitSexMovesHand) {
-			const playable = shuffleCards(sexMoves.filter(sexMove => canSexMoveBePlayed(sexMove)));
-			console.log(playable);
-			playable.length = 3;
-			eleSexMoves = playable.map((sexMove, index) => {
+			eleSexMoves = sexMovesInHand.map((sexMove, index) => {
 				return (
 					<SexMove
 						key={`sex-move-${index}`}
