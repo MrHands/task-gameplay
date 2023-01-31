@@ -74,6 +74,7 @@ export default class NightShift extends React.Component {
 			sexergyGenerated,
 			categoriesExpanded,
 			toggleExpandCategory,
+			getSexMove,
 			canSexMoveBePlayed,
 			onEndTurn,
 			onShiftFinish,
@@ -93,6 +94,8 @@ export default class NightShift extends React.Component {
 					<SexMove
 						key={`sex-move-${index}`}
 						mood={mood}
+						crewLust={crewLust}
+						getSexMove={getSexMove}
 						canSexMoveBePlayed={canSexMoveBePlayed}
 						playSexMove={this.playSexMove.bind(this)}
 						{...sexMove}

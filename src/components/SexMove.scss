@@ -40,7 +40,8 @@
 		border-color: gold;
 	}
 
-	&[disabled] {
+	&--disabled {
+		pointer-events: none;
 		color: darkgray;
 		background: lightgray;
 		border-color: darkgray;

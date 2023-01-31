@@ -17,6 +17,7 @@ import './App.scss';
 import DiceList from './components/DiceList';
 
 const STAMINA_MAXIMUM = 5;
+const SEX_MOVES_DRAW_HAND = 3;
 
 function deepClone(object) {
 	return JSON.parse(JSON.stringify(object));
@@ -296,11 +297,54 @@ export default class App extends React.Component {
 
 	drawSexMoveHand() {
 		this.setState(state => {
-			const newHand = shuffleCards(state.sexMoves.filter(sexMove => this.canSexMoveBePlayed(sexMove)));
-			newHand.length = 3;
+			let {
+				sexMoves,
+				sexMovesInHand
+			} = state;
+
+			const cardsDeck = shuffleCards([...sexMoves]);
+			const cardsHand = [...sexMovesInHand];
+			
+			let playable = 0;
+			for (const card in cardsHand) {
+				if (this.canSexMoveBePlayed(card)) {
+					playable += 1;
+				}
+			}
+			
+			console.log(`BEFORE cardsHand ${cardsHand.length} cardsDeck ${cardsDeck.length} playable ${playable}`);
+
+			for (let i = 0; i < SEX_MOVES_DRAW_HAND - 1; i += 1) {
+				const nextCard = cardsDeck[0];
+				cardsDeck.splice(0, 1);
+
+				if (this.canSexMoveBePlayed(nextCard)) {
+					playable += 1;
+				}
+
+				cardsHand.push(nextCard);
+			}
+
+			console.log(`BETWEEN cardsHand ${cardsHand.length} cardsDeck ${cardsDeck.length} playable ${playable}`);
+
+			// ensure at least one card is playable
+
+			for (let i = 0; i < cardsDeck.length; i += 1) {
+				const nextCard = cardsDeck[i];
+				if (playable > 0 || this.canSexMoveBePlayed(nextCard)) {
+					cardsHand.push(nextCard);
+					cardsDeck.splice(0, 1);
+					playable += 1;
+
+					break;
+				}
+			}
+
+			console.log(`AFTER cardsHand ${cardsHand.length} cardsDeck ${cardsDeck.length} playable ${playable}`);
 
 			return {
-				sexMovesInHand: state.sexMovesInHand.concat(newHand),
+				sexMoves: cardsDeck,
+				sexMovesInHand: cardsHand,
 			}
 		});
 	}
@@ -326,7 +370,7 @@ export default class App extends React.Component {
 			return id;
 		}
 
-		return this.state.sexMoves.find(move => move.id === id) || null;
+		return SexMovesDatabase.sexMoves.find(move => move.id === id) || null;
 	}
 
 	clampCharacterStat(type, value) {
@@ -751,6 +795,10 @@ export default class App extends React.Component {
 		}
 
 		const sexMove = this.getSexMove(sexMoveId);
+		if (sexMove == null) {
+			return false;
+		}
+
 		return (this.state.crewLust >= sexMove.lustMinimum);
 	}
 
