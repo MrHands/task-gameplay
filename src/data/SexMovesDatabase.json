@@ -1,6 +1,42 @@
 {
 	"sexMoves": [
 		{
+			"id": "change-to-passionate-1",
+			"title": "Change to Passionate",
+			"type": "none",
+			"lustMinimum": 0,
+			"effects": [
+				{
+					"type": "mood",
+					"value": "passionate"
+				}
+			]
+		},
+		{
+			"id": "change-to-intimate-1",
+			"title": "Change to Intimate",
+			"type": "none",
+			"lustMinimum": 0,
+			"effects": [
+				{
+					"type": "mood",
+					"value": "intimate"
+				}
+			]
+		},
+		{
+			"id": "change-to-submissive-1",
+			"title": "Change to Submissive",
+			"type": "none",
+			"lustMinimum": 0,
+			"effects": [
+				{
+					"type": "mood",
+					"value": "submissive"
+				}
+			]
+		},
+		{
 			"id": "petting-1",
 			"title": "Kissing",
 			"category": "Petting",

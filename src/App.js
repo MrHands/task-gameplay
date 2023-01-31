@@ -854,6 +854,7 @@ export default class App extends React.Component {
 				mood,
 			} = state;
 
+			sexMovePlaysLeft -= 1;
 			sexMovesInHand = sexMovesInHand.filter(it => it.id !== sexMove.id);
 			sexMovesPlayed.push(sexMove);
 
@@ -867,6 +868,10 @@ export default class App extends React.Component {
 					case 'crew':
 					case 'captain': {
 						result += `+${effect.value}%`;
+						break;
+					}
+					case 'mood': {
+						result += ` = ${effect.value}`;
 						break;
 					}
 					default: {
@@ -894,6 +899,11 @@ export default class App extends React.Component {
 					}
 					case 'sexergy': {
 						moveSexergy = effect.value;
+						break;
+					}
+					case 'mood': {
+						mood = effect.value;
+						nightLog.push(`${character.name}'s mood changed to **${mood}**`);
 						break;
 					}
 					default: break;
@@ -940,6 +950,8 @@ export default class App extends React.Component {
 			if (gameOver) {
 				sexergy += sexergyGenerated;
 				sexMoves = [];
+				sexMovesInHand = [];
+				sexMovePlaysLeft = 0;
 
 				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
 				nightLog.push(`*End of night shift*`);
@@ -948,24 +960,6 @@ export default class App extends React.Component {
 
 				crewLust = this.clampCharacterStat('crew', crewLust);
 				captainLust = this.clampCharacterStat('captain', captainLust);
-
-				// cycle mood
-
-				switch (mood) {
-					case Mood.PASSIONATE:
-						mood = Mood.INTIMATE;
-						break;
-					case Mood.INTIMATE:
-						mood = Mood.SUBMISSIVE;
-						break;
-					case Mood.SUBMISSIVE:
-						mood = Mood.PASSIONATE;
-						break;
-					default:
-						break;
-				}
-
-				nightLog.push(`${character.name}'s mood changed **${mood}**`);
 			}
 
 			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
@@ -977,7 +971,7 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				mood,
-				sexMovePlaysLeft: sexMovePlaysLeft - 1,
+				sexMovePlaysLeft,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
