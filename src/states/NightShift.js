@@ -75,6 +75,7 @@ export default class NightShift extends React.Component {
 			categoriesExpanded,
 			toggleExpandCategory,
 			canSexMoveBePlayed,
+			onEndTurn,
 			onShiftFinish,
 		} = this.props;
 
@@ -154,10 +155,16 @@ export default class NightShift extends React.Component {
 				</div>
 				<div className="o-nightShift__shift">
 					<button
+						className="o-nightShift__shift__turn"
+						onClick={onEndTurn}
+					>
+						End Turn
+					</button>
+					<button
 						className="o-nightShift__shift__finish"
 						onClick={onShiftFinish}
 					>
-						End Night
+						Finish Night
 					</button>
 				</div>
 				<div className="o-nightShift__mood">

@@ -656,6 +656,10 @@ export default class App extends React.Component {
 		});
 	}
 
+	endTurn() {
+		this.drawSexMoveHand();
+	}
+
 	finishShift() {
 		// update shift
 
@@ -780,11 +784,13 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				sexMoves,
+				sexMovesInHand,
+				sexMovesPlayed,
 				mood,
 			} = state;
 
-			const sexMovesPlayed = [...state.sexMovesPlayed, sexMove];
-			console.log(sexMovesPlayed);
+			sexMovesInHand = sexMovesInHand.filter(it => it.id !== sexMove.id);
+			sexMovesPlayed.push(sexMove);
 
 			// logging
 
@@ -907,7 +913,8 @@ export default class App extends React.Component {
 				sexergyGenerated,
 				mood,
 				sexMoves,
-				sexMovesPlayed
+				sexMovesInHand,
+				sexMovesPlayed,
 			}
 		});
 	}
@@ -992,6 +999,7 @@ export default class App extends React.Component {
 					clampCharacterStat={this.clampCharacterStat.bind(this)}
 					canBePlaced={this.canBePlaced.bind(this)}
 					onCharacterDropped={this.setCharacterTask.bind(this)}
+					onEndTurn={this.endTurn.bind(this)}
 					onShiftFinish={this.finishShift.bind(this)}
 				/>
 			);
