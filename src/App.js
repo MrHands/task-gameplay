@@ -301,9 +301,9 @@ export default class App extends React.Component {
 
 	fillSexMovesDeck(character) {
 		this.setState({
-			sexMoves: SexMovesDeck.decks[0].sexMoves.map(id => {
+			sexMoves: SexMovesDeck.decks[0].sexMoves.map((id, index) => {
 				const sexMove = deepClone(SexMovesDatabase.sexMoves.find(move => move.id === id));
-
+				sexMove.id = `${id}-deck-${index}`;
 				sexMove.effects.forEach(effect => {
 					switch (effect.type) {
 						case 'sexergy': {
@@ -401,7 +401,12 @@ export default class App extends React.Component {
 			return id;
 		}
 
-		return this.state.sexMoves.find(move => move.id === id) || null;
+		let sexMove = this.state.sexMoves.find(move => move.id === id) || null;
+		if (!sexMove) {
+			sexMove = this.state.sexMovesInHand.find(move => move.id === id) || null;
+		}
+
+		return sexMove;
 	}
 
 	clampCharacterStat(type, value) {
