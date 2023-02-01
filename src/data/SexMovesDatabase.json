@@ -57,7 +57,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 10
+					"value": 20
 				}
 			],
 			"description": "Add $crew arousal."
@@ -67,7 +67,7 @@
 			"title": "Blowjob",
 			"category": "Oral",
 			"type": "passionate",
-			"lustMinimum": 100,
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
@@ -80,13 +80,17 @@
 				{
 					"type": "sexergy",
 					"value": 100
+				},
+				{
+					"type": "mood",
+					"value": "intimate"
 				}
 			],
 			"description": "Add $crew arousal and change mood to $mood."
 		},
 		{
 			"id": "passionate-3",
-			"title": "Cowgirl",
+			"title": "Piledriver",
 			"category": "Sex",
 			"type": "passionate",
 			"lustMinimum": 100,
@@ -135,7 +139,7 @@
 			"title": "Cowgirl",
 			"category": "Sex",
 			"type": "intimate",
-			"lustMinimum": 100,
+			"lustMinimum": 0,
 			"effects": [
 				{
 					"type": "captain",
@@ -143,11 +147,15 @@
 				},
 				{
 					"type": "crew",
-					"value": 40
+					"value": 20
 				},
 				{
 					"type": "sexergy",
-					"value": 160
+					"value": 80
+				},
+				{
+					"type": "mood",
+					"value": "submissive"
 				}
 			],
 			"description": "Add $crew arousal and change mood to $mood."
@@ -157,7 +165,7 @@
 			"title": "Cunnilingus",
 			"category": "Petting",
 			"type": "intimate",
-			"lustMinimum": 0,
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
@@ -165,11 +173,11 @@
 				},
 				{
 					"type": "crew",
-					"value": 20
+					"value": 40
 				},
 				{
 					"type": "sexergy",
-					"value": 20
+					"value": 160
 				}
 			],
 			"description": "Add $crew arousal."
@@ -184,7 +192,7 @@
 			"effects": [
 				{
 					"type": "captain",
-					"value": 20
+					"value": 10
 				},
 				{
 					"type": "crew",
@@ -192,7 +200,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 10
+					"value": 20
 				}
 			],
 			"description": "Add $crew arousal."
@@ -210,11 +218,15 @@
 				},
 				{
 					"type": "crew",
-					"value": 10
+					"value": 40
 				},
 				{
 					"type": "sexergy",
-					"value": 20
+					"value": 80
+				},
+				{
+					"type": "mood",
+					"value": "passionate"
 				}
 			],
 			"description": "Add $crew arousal and change mood to $mood."
@@ -228,11 +240,11 @@
 			"effects": [
 				{
 					"type": "captain",
-					"value": 40
+					"value": 20
 				},
 				{
 					"type": "crew",
-					"value": 30
+					"value": 50
 				},
 				{
 					"type": "sexergy",

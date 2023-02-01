@@ -9,20 +9,18 @@ export default class SexMove extends React.Component {
 	get classes() {
 		const {
 			className,
-			mood,
 			id,
-			type,
 			canSexMoveBePlayed,
 		} = this.props;
 
 		const classes = ['m-sexMove'];
 
 		if (id === -1) {
-			classes.push('-empty');
+			classes.push('m-sexMove--empty');
 		}
 
-		if (mood === type) {
-			classes.push('-match');
+		if (this.isMatch) {
+			classes.push('m-sexMove--match');
 		}
 
 		if (!canSexMoveBePlayed(id)) {
@@ -49,6 +47,15 @@ export default class SexMove extends React.Component {
 		return modified;
 	}
 
+	get isMatch() {
+		const {
+			mood,
+			type,
+		} = this.props;
+
+		return mood === type;
+	}
+
 	getEffect(type) {
 		const {
 			effects
@@ -65,22 +72,21 @@ export default class SexMove extends React.Component {
 		}
 
 		const {
-			mood,
-		} = this.props;
-
-		const {
-			type,
+			type: effectType,
 			value,
 		} = effect;
 
-		if (type === 'mood') {
+		if (effectType === 'mood') {
 			return value.toUpperCase();
 		}
 
-		const valueBonus = (mood === type && type === 'crew') ? (value * 2) : value;
+		const valueBonus = this.isMatch && effectType === 'crew'
+			? (value * 2)
+			: value;
+
 		const valueText = (valueBonus > 0) ? `+${valueBonus}` : valueBonus;
 
-		switch (type) {
+		switch (effectType) {
 			case 'crew':
 			case 'captain':
 			case 'pleasure': {
