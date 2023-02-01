@@ -131,6 +131,7 @@ export default class App extends React.Component {
 				Anal: false,
 				Kinky: false,
 			},
+			shiftHeld: false,
 		};
 	}
 
@@ -1009,6 +1010,19 @@ export default class App extends React.Component {
 		})
 	}
 
+	componentDidMount() {
+		window.addEventListener('keydown', ({key}) => {
+			if (key === 'Shift') {
+				this.setState({ shiftHeld: true });
+			}
+		});
+		window.addEventListener('keyup', ({key}) => {
+			if (key === 'Shift') {
+				this.setState({ shiftHeld: false });
+			}
+		});
+	}
+
 	render() {
 		const {
 			gameStarted,
@@ -1046,6 +1060,7 @@ export default class App extends React.Component {
 				sexMovesPlayed,
 				sexergyGenerated,
 				categoriesExpanded,
+				shiftHeld,
 			} = this.state;
 
 			const charactersNotDone = [];
@@ -1070,6 +1085,7 @@ export default class App extends React.Component {
 					sexMovesPlayed={sexMovesPlayed}
 					sexergyGenerated={sexergyGenerated}
 					categoriesExpanded={categoriesExpanded}
+					shiftHeld={shiftHeld}
 					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
 					getSexMove={this.getSexMove.bind(this)}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}

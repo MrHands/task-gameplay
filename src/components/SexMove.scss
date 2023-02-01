@@ -47,6 +47,12 @@
 		border-color: darkgray;
 	}
 
+	&--redraw {
+		color: blueviolet;
+		background: transparent;
+		border-color: blueviolet;
+	}
+
 	&__title {
 		grid-area: title;
 		justify-self: center;

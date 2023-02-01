@@ -11,20 +11,25 @@ export default class SexMove extends React.Component {
 			className,
 			id,
 			canSexMoveBePlayed,
+			shiftHeld,
 		} = this.props;
 
 		const classes = ['m-sexMove'];
 
 		if (id === -1) {
 			classes.push('m-sexMove--empty');
-		}
+		} else {
+			if (this.isMatch) {
+				classes.push('m-sexMove--match');
+			}
+	
+			if (!canSexMoveBePlayed(id)) {
+				classes.push('m-sexMove--disabled');
+			}
 
-		if (this.isMatch) {
-			classes.push('m-sexMove--match');
-		}
-
-		if (!canSexMoveBePlayed(id)) {
-			classes.push('m-sexMove--disabled');
+			if (shiftHeld) {
+				classes.push('m-sexMove--redraw');
+			}
 		}
 
 		classes.push(className);

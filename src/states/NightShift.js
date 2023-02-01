@@ -79,6 +79,7 @@ export default class NightShift extends React.Component {
 			canSexMoveBePlayed,
 			onEndTurn,
 			onShiftFinish,
+			shiftHeld,
 		} = this.props;
 
 		const movesSelected = [...sexMovesPlayed];
@@ -99,6 +100,7 @@ export default class NightShift extends React.Component {
 						getSexMove={getSexMove}
 						canSexMoveBePlayed={canSexMoveBePlayed}
 						playSexMove={this.playSexMove.bind(this)}
+						shiftHeld={shiftHeld}
 						{...sexMove}
 					/>
 				);
