@@ -10,7 +10,8 @@
 					"type": "mood",
 					"value": "passionate"
 				}
-			]
+			],
+			"description": "Change mood to $mood."
 		},
 		{
 			"id": "change-to-intimate-1",
@@ -22,7 +23,8 @@
 					"type": "mood",
 					"value": "intimate"
 				}
-			]
+			],
+			"description": "Change mood to $mood."
 		},
 		{
 			"id": "change-to-submissive-1",
@@ -34,7 +36,8 @@
 					"type": "mood",
 					"value": "submissive"
 				}
-			]
+			],
+			"description": "Change mood to $mood."
 		},
 		{
 			"id": "petting-1",
@@ -55,7 +58,8 @@
 					"type": "sexergy",
 					"value": 10
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "petting-2",
@@ -76,7 +80,8 @@
 					"type": "sexergy",
 					"value": 15
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "petting-3",
@@ -97,7 +102,8 @@
 					"type": "sexergy",
 					"value": 20
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 
 		{
@@ -119,7 +125,8 @@
 					"type": "sexergy",
 					"value": 50
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "oral-2",
@@ -140,7 +147,8 @@
 					"type": "sexergy",
 					"value": 100
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "oral-3",
@@ -161,7 +169,8 @@
 					"type": "sexergy",
 					"value": 150
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 
 		{
@@ -183,7 +192,8 @@
 					"type": "sexergy",
 					"value": 80
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "sex-2",
@@ -204,7 +214,8 @@
 					"type": "sexergy",
 					"value": 160
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "sex-3",
@@ -225,7 +236,8 @@
 					"type": "sexergy",
 					"value": 240
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 
 		{
@@ -247,7 +259,8 @@
 					"type": "sexergy",
 					"value": 10
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "anal-2",
@@ -268,7 +281,8 @@
 					"type": "sexergy",
 					"value": 20
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "anal-3",
@@ -289,7 +303,8 @@
 					"type": "sexergy",
 					"value": 300
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 
 		{
@@ -311,7 +326,8 @@
 					"type": "sexergy",
 					"value": 10
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "kinky-2",
@@ -332,7 +348,8 @@
 					"type": "sexergy",
 					"value": 15
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "kinky-3",
@@ -353,7 +370,8 @@
 					"type": "sexergy",
 					"value": 120
 				}
-			]
+			],
+			"description": "Add $crew arousal."
 		}
 	]
 }

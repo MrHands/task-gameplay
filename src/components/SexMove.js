@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import DroppableCard from './DroppableCard';
 
@@ -33,13 +34,50 @@ export default class SexMove extends React.Component {
 		return classes;
 	}
 
-	effectText(effect, match) {
+	get descriptionText() {
+		const {
+			description,
+		} = this.props;
+
+		/** @type {string} */
+		let modified = description;
+		modified = modified.replace(/\$captain/g, `**${this.getEffectText('captain')}**`);
+		modified = modified.replace(/\$crew/g, `**${this.getEffectText('crew')}**`);
+		modified = modified.replace(/\$sexergy/g, `**${this.getEffectText('sexergy')}**`);
+		modified = modified.replace(/\$mood/g, `**${this.getEffectText('mood')}**`);
+
+		return modified;
+	}
+
+	getEffect(type) {
+		const {
+			effects
+		} = this.props;
+
+		return effects.find((effect) => effect.type === type) ?? null;
+	}
+
+	getEffectText(effect) {
+		if (typeof effect === 'string') {
+			return this.getEffectText(this.getEffect(effect));
+		} else if (!effect) {
+			return '';
+		}
+
+		const {
+			mood,
+		} = this.props;
+
 		const {
 			type,
-			value
+			value,
 		} = effect;
 
-		const valueBonus = (match && type === 'crew') ? (value * 2) : value;
+		if (type === 'mood') {
+			return value.toUpperCase();
+		}
+
+		const valueBonus = (mood === type && type === 'crew') ? (value * 2) : value;
 		const valueText = (valueBonus > 0) ? `+${valueBonus}` : valueBonus;
 
 		switch (type) {
@@ -56,7 +94,6 @@ export default class SexMove extends React.Component {
 
 	render() {
 		const {
-			mood,
 			id,
 			title,
 			type,
@@ -89,6 +126,11 @@ export default class SexMove extends React.Component {
 				<h2 className="m-sexMove__title">{title}</h2>
 				<div className="m-sexMove__type">{type}</div>
 				<h3 className="m-sexMove__requirements">{`Lust >= ${lustMinimum}`}</h3>
+				<div className="m-sexMove__description">
+					<ReactMarkdown>
+						{this.descriptionText}
+					</ReactMarkdown>
+				</div>
 				<ul className="m-sexMove__effects">
 					{effects.map((effect, index) => {
 						return (
@@ -101,7 +143,7 @@ export default class SexMove extends React.Component {
 									{effect.type}
 								</p>
 								<p className="m-sexMove__effects__item__value">
-									{this.effectText(effect, mood === type)}
+									{this.getEffectText(effect)}
 								</p>
 							</li>
 						);
