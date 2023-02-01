@@ -160,6 +160,7 @@ export default class SexMove extends React.Component {
 						);
 					})}
 				</ul>
+				<div className="m-sexMove__overlay">Redraw?</div>
 			</div>
 		);
 	}

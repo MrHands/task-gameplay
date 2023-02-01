@@ -1,6 +1,7 @@
 @import '../globals';
 
 .m-sexMove {
+	position: relative;
 	display: grid;
 	grid-template-areas:
 		'title         '
@@ -20,6 +21,7 @@
 	transition: background-color 0.4s;
 
 	&:hover {
+		cursor: pointer;
 		background: pink;
 	}
 
@@ -51,6 +53,29 @@
 		color: blueviolet;
 		background: transparent;
 		border-color: blueviolet;
+
+		&:hover {
+			background: rgba(blueviolet, 20%);
+		}
+	}
+
+	&__overlay {
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		text-transform: uppercase;
+		font-size: 2rem;
+		font-weight: bold;
+
+		.m-sexMove--redraw:hover & {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			backdrop-filter: blur(2px);
+		}
 	}
 
 	&__title {
