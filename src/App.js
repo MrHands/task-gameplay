@@ -337,7 +337,7 @@ export default class App extends React.Component {
 			const cardsHand = [...sexMovesInHand];
 			
 			let playable = 0;
-			for (const card in cardsHand) {
+			for (const card of cardsHand) {
 				if (this.canSexMoveBePlayed(card)) {
 					playable += 1;
 				}
