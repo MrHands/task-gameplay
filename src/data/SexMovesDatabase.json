@@ -39,8 +39,9 @@
 			],
 			"description": "Change mood to $mood."
 		},
+
 		{
-			"id": "petting-1",
+			"id": "passionate-1",
 			"title": "Kissing",
 			"category": "Petting",
 			"type": "passionate",
@@ -62,11 +63,79 @@
 			"description": "Add $crew arousal."
 		},
 		{
-			"id": "petting-2",
-			"title": "Boob Massage",
-			"category": "Petting",
+			"id": "passionate-2",
+			"title": "Blowjob",
+			"category": "Oral",
+			"type": "passionate",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "captain",
+					"value": 30
+				},
+				{
+					"type": "crew",
+					"value": 20
+				},
+				{
+					"type": "sexergy",
+					"value": 100
+				}
+			],
+			"description": "Add $crew arousal and change mood to $mood."
+		},
+		{
+			"id": "passionate-3",
+			"title": "Cowgirl",
+			"category": "Sex",
+			"type": "passionate",
+			"lustMinimum": 100,
+			"effects": [
+				{
+					"type": "captain",
+					"value": 30
+				},
+				{
+					"type": "crew",
+					"value": 20
+				},
+				{
+					"type": "sexergy",
+					"value": 240
+				}
+			],
+			"description": "Add $crew arousal."
+		},
+		
+
+		{
+			"id": "intimate-1",
+			"title": "Shaft Licking",
+			"category": "Oral",
 			"type": "intimate",
 			"lustMinimum": 0,
+			"effects": [
+				{
+					"type": "captain",
+					"value": 10
+				},
+				{
+					"type": "crew",
+					"value": 10
+				},
+				{
+					"type": "sexergy",
+					"value": 50
+				}
+			],
+			"description": "Add $crew arousal."
+		},
+		{
+			"id": "intimate-2",
+			"title": "Cowgirl",
+			"category": "Sex",
+			"type": "intimate",
+			"lustMinimum": 100,
 			"effects": [
 				{
 					"type": "captain",
@@ -74,17 +143,17 @@
 				},
 				{
 					"type": "crew",
-					"value": 15
+					"value": 40
 				},
 				{
 					"type": "sexergy",
-					"value": 15
+					"value": 160
 				}
 			],
-			"description": "Add $crew arousal."
+			"description": "Add $crew arousal and change mood to $mood."
 		},
 		{
-			"id": "petting-3",
+			"id": "intimate-3",
 			"title": "Cunnilingus",
 			"category": "Petting",
 			"type": "intimate",
@@ -107,208 +176,7 @@
 		},
 
 		{
-			"id": "oral-1",
-			"title": "Shaft Licking",
-			"category": "Oral",
-			"type": "intimate",
-			"lustMinimum": 0,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 10
-				},
-				{
-					"type": "crew",
-					"value": 10
-				},
-				{
-					"type": "sexergy",
-					"value": 50
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "oral-2",
-			"title": "Blowjob",
-			"category": "Oral",
-			"type": "passionate",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 30
-				},
-				{
-					"type": "crew",
-					"value": 20
-				},
-				{
-					"type": "sexergy",
-					"value": 100
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "oral-3",
-			"title": "Deepthroat",
-			"category": "Oral",
-			"type": "submissive",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 40
-				},
-				{
-					"type": "crew",
-					"value": 30
-				},
-				{
-					"type": "sexergy",
-					"value": 150
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-
-		{
-			"id": "sex-1",
-			"title": "Missionary",
-			"category": "Sex",
-			"type": "intimate",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 30
-				},
-				{
-					"type": "crew",
-					"value": 20
-				},
-				{
-					"type": "sexergy",
-					"value": 80
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "sex-2",
-			"title": "Cowgirl",
-			"category": "Sex",
-			"type": "passionate",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 20
-				},
-				{
-					"type": "crew",
-					"value": 40
-				},
-				{
-					"type": "sexergy",
-					"value": 160
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "sex-3",
-			"title": "Piledriver",
-			"category": "Sex",
-			"type": "submissive",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 30
-				},
-				{
-					"type": "crew",
-					"value": 20
-				},
-				{
-					"type": "sexergy",
-					"value": 240
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-
-		{
-			"id": "anal-1",
-			"title": "Rimjob",
-			"category": "Anal",
-			"type": "intimate",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 10
-				},
-				{
-					"type": "crew",
-					"value": 15
-				},
-				{
-					"type": "sexergy",
-					"value": 10
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "anal-2",
-			"title": "Anal Fingering",
-			"category": "Anal",
-			"type": "passionate",
-			"lustMinimum": 0,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 10
-				},
-				{
-					"type": "crew",
-					"value": 10
-				},
-				{
-					"type": "sexergy",
-					"value": 20
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-		{
-			"id": "anal-3",
-			"title": "Anal Doggy Style",
-			"category": "Anal",
-			"type": "passionate",
-			"lustMinimum": 100,
-			"effects": [
-				{
-					"type": "captain",
-					"value": 30
-				},
-				{
-					"type": "crew",
-					"value": 25
-				},
-				{
-					"type": "sexergy",
-					"value": 300
-				}
-			],
-			"description": "Add $crew arousal."
-		},
-
-		{
-			"id": "kinky-1",
+			"id": "submissive-1",
 			"title": "Spanking",
 			"category": "Kinky",
 			"type": "submissive",
@@ -330,9 +198,9 @@
 			"description": "Add $crew arousal."
 		},
 		{
-			"id": "kinky-2",
-			"title": "Nipple Clamps",
-			"category": "Kinky",
+			"id": "submissive-2",
+			"title": "Anal Fingering",
+			"category": "Anal",
 			"type": "submissive",
 			"lustMinimum": 0,
 			"effects": [
@@ -342,19 +210,19 @@
 				},
 				{
 					"type": "crew",
-					"value": 20
+					"value": 10
 				},
 				{
 					"type": "sexergy",
-					"value": 15
+					"value": 20
 				}
 			],
-			"description": "Add $crew arousal."
+			"description": "Add $crew arousal and change mood to $mood."
 		},
 		{
-			"id": "kinky-3",
-			"title": "Hogtied Sex",
-			"category": "Kinky",
+			"id": "submissive-3",
+			"title": "Deepthroat",
+			"category": "Oral",
 			"type": "submissive",
 			"lustMinimum": 100,
 			"effects": [
@@ -368,7 +236,7 @@
 				},
 				{
 					"type": "sexergy",
-					"value": 120
+					"value": 150
 				}
 			],
 			"description": "Add $crew arousal."
