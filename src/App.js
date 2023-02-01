@@ -21,6 +21,7 @@ const STAMINA_MAXIMUM = 5;
 const SEX_MOVES_INITIAL_HAND = 5;
 const SEX_MOVES_DRAW_HAND = 3;
 const PLAY_SEX_MOVES_MAXIMUM = 3;
+const REDRAW_MAXIMUM = 2;
 
 function deepClone(object) {
 	return JSON.parse(JSON.stringify(object));
@@ -132,6 +133,7 @@ export default class App extends React.Component {
 				Kinky: false,
 			},
 			shiftHeld: false,
+			redrawsRemaining: REDRAW_MAXIMUM,
 		};
 	}
 
@@ -725,6 +727,7 @@ export default class App extends React.Component {
 
 		this.setState({
 			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
+			redrawsRemaining: REDRAW_MAXIMUM,
 		});
 	}
 
@@ -838,6 +841,39 @@ export default class App extends React.Component {
 	playSexMove(sexMoveId) {
 		const character = this.nightCharacter;
 		if (!character) {
+			return;
+		}
+
+		const {
+			shiftHeld,
+			redrawsRemaining,
+		} = this.state;
+
+		// redraw card when holding shift
+
+		if (shiftHeld) {
+			if (redrawsRemaining <= 0) {
+				return;
+			}
+
+			this.setState(state => {
+				let {
+					sexMoves,
+					sexMovesInHand
+				} = state;
+
+				const cardsDeck = [...sexMoves];
+	
+				const cardsHand = sexMovesInHand.filter((it) => it.id !== sexMoveId);
+				cardsHand.push(cardsDeck.splice(0, 1)[0]);
+	
+				return {
+					redrawsRemaining: redrawsRemaining - 1,
+					sexMoves: cardsDeck,
+					sexMovesInHand: cardsHand,
+				}
+			});
+
 			return;
 		}
 
@@ -1061,6 +1097,7 @@ export default class App extends React.Component {
 				sexergyGenerated,
 				categoriesExpanded,
 				shiftHeld,
+				redrawsRemaining,
 			} = this.state;
 
 			const charactersNotDone = [];
@@ -1086,6 +1123,7 @@ export default class App extends React.Component {
 					sexergyGenerated={sexergyGenerated}
 					categoriesExpanded={categoriesExpanded}
 					shiftHeld={shiftHeld}
+					redrawsRemaining={redrawsRemaining}
 					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
 					getSexMove={this.getSexMove.bind(this)}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}

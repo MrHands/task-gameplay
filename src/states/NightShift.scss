@@ -89,9 +89,10 @@
 			place-self: center;
 		}
 
-		&__remaining {
+		&__text {
 			text-transform: uppercase;
 			place-self: center;
+			text-align: center;
 		}
 
 		&__container {
@@ -108,7 +109,6 @@
 			gap: 1rem;
 		}
 	}
-
 
 	&__selected {
 		grid-area: selected;

@@ -80,6 +80,7 @@ export default class NightShift extends React.Component {
 			onEndTurn,
 			onShiftFinish,
 			shiftHeld,
+			redrawsRemaining,
 		} = this.props;
 
 		const movesSelected = [...sexMovesPlayed];
@@ -178,7 +179,8 @@ export default class NightShift extends React.Component {
 					<h2 className="o-nightShift__mood__value">{mood}</h2>
 				</div>
 				<div className="o-nightShift__moves">
-					<h2 className="o-nightShift__moves__remaining">{sexMovePlaysLeft} sex moves left this turn</h2>
+					<h2 className="o-nightShift__moves__text">{sexMovePlaysLeft} plays left this turn</h2>
+					<h3 className="o-nightShift__moves__text">Hold Shift to redraw sex move ({redrawsRemaining} redraws remaining)</h3>
 					<div className="o-nightShift__moves__container">
 						<div className="o-nightShift__moves__scroll">
 							{eleSexMoves}
