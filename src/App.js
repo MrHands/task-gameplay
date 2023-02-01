@@ -831,7 +831,7 @@ export default class App extends React.Component {
 			return false;
 		}
 
-		return sexMove.lustMinimum < crewLust;
+		return sexMove.lustMinimum <= crewLust;
 	}
 
 	playSexMove(sexMoveId) {
