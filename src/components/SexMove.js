@@ -22,13 +22,11 @@ export default class SexMove extends React.Component {
 			if (this.isMatch) {
 				classes.push('m-sexMove--match');
 			}
-	
-			if (!canSexMoveBePlayed(id)) {
-				classes.push('m-sexMove--disabled');
-			}
 
 			if (shiftHeld) {
 				classes.push('m-sexMove--redraw');
+			} else if (!canSexMoveBePlayed(id)) {
+				classes.push('m-sexMove--disabled');
 			}
 		}
 
