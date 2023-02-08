@@ -723,7 +723,22 @@ export default class App extends React.Component {
 	}
 
 	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
+		// play random card from hand
+
+		const cardsHand = shuffleCards([...this.state.sexMovesInHand]);
+		for (const card of cardsHand) {
+			if (this.canSexMoveBePlayed(card)) {
+				this.playSexMove(card);
+
+				break;
+			}
+		}
+
+		// draw new cards
+
 		this.drawSexMoveHand(cardCount);
+
+		// update state
 
 		this.setState({
 			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
