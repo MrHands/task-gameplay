@@ -1,0 +1,54 @@
+.o-crewLustBar {
+	--color: hotpink;
+
+	display: grid;
+	grid-template-columns:
+		1fr
+		4fr
+		5rem;
+	justify-items: center;
+	align-items: center;
+	gap: 1rem;
+	// grid-template-areas: 'title  bar  amount';
+
+	&__title {
+		// grid-area: title;
+		text-transform: uppercase;
+		justify-self: end;
+	}
+
+	&__container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	&__hearts {
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	&__bar {
+		--lust-width: 0%;
+
+		position: relative;
+		width: 100%;
+		min-height: 2rem;
+		border: 0.2rem solid var(--color);
+		border-radius: 2rem;
+
+		&__foreground {
+			transition: width 1s;
+			position: absolute;
+			left: 0.2rem;
+			top: 0.2rem;
+			width: calc(var(--lust-width) - 0.4rem);
+			height: calc(100% - 0.4rem);
+			border-radius: 2rem;
+			background: var(--color);
+		}
+	}
+}

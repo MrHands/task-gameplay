@@ -2,6 +2,7 @@ import React from 'react';
 import CountUp from 'react-countup';
 
 import CharacterList from '../components/CharacterList';
+import CrewLustBar from '../components/CrewLustBar';
 import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
@@ -144,10 +145,9 @@ export default class NightShift extends React.Component {
 						overload={false}
 						lust={captainLust}
 					/>
-					<LustBar
+					<CrewLustBar
 						className="o-nightShift__lust__crew"
 						name={nightCharacter?.name || 'Crew'}
-						overload={true}
 						lust={crewLust}
 					/>
 				</div>
