@@ -93,7 +93,7 @@
 			"title": "Piledriver",
 			"category": "Sex",
 			"type": "passionate",
-			"lustMinimum": 100,
+			"lustMinimum": 4,
 			"effects": [
 				{
 					"type": "captain",
@@ -165,7 +165,7 @@
 			"title": "Cunnilingus",
 			"category": "Petting",
 			"type": "intimate",
-			"lustMinimum": 100,
+			"lustMinimum": 4,
 			"effects": [
 				{
 					"type": "captain",
@@ -236,7 +236,7 @@
 			"title": "Deepthroat",
 			"category": "Oral",
 			"type": "submissive",
-			"lustMinimum": 100,
+			"lustMinimum": 4,
 			"effects": [
 				{
 					"type": "captain",

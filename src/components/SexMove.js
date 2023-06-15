@@ -83,14 +83,20 @@ export default class SexMove extends React.Component {
 			return value.toUpperCase();
 		}
 
-		const valueBonus = this.isMatch && effectType === 'crew'
+		let valueBonus = this.isMatch && effectType === 'crew'
 			? (value * 2)
 			: value;
+
+		if (effectType === 'crew') {
+			valueBonus /= 10;
+		}
 
 		const valueText = (valueBonus > 0) ? `+${valueBonus}` : valueBonus;
 
 		switch (effectType) {
 			case 'crew':
+				return `${valueText}`;
+
 			case 'captain':
 			case 'pleasure': {
 				return `${valueText}%`;
