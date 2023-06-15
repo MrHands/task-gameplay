@@ -25,9 +25,19 @@ export default class CrewLustBar extends React.Component {
 
 		const widths = [];
 
-		LustBalancing.lustLevelsXp.forEach((xp, index) => {
+		let xpCurrent = lust;
+		let xpNext = 0;
+
+		LustBalancing.lustLevelsXp.forEach((levelXp, index) => {
 			const previous = (index > 0) ? LustBalancing.lustLevelsXp[index - 1] : 0;
-			const needed = xp - previous;
+			const needed = levelXp - previous;
+
+			if (index === 0) {
+				xpNext = levelXp;
+			} else if (lust >= previous && lust < levelXp) {
+				xpCurrent = lust - previous;
+				xpNext = needed;
+			}
 
 			widths.push(Math.clamp(lust - previous, 0, needed) / needed * 100);
 		});
@@ -58,9 +68,9 @@ export default class CrewLustBar extends React.Component {
 				</div>
 				<h2 className="o-crewLustBar__amount">
 					<CountUp
-						end={lust}
+						end={xpCurrent}
 						duration={1}
-						suffix={` / ${4}`}
+						suffix={` / ${xpNext}`}
 					/>
 				</h2>
 			</div>
