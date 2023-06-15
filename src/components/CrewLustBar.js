@@ -1,6 +1,7 @@
 import React from 'react';
 import CountUp from 'react-countup';
 
+import LustBalancing from '../data/LustBalancing.json';
 import './CrewLustBar.scss';
 
 export default class CrewLustBar extends React.Component {
@@ -22,8 +23,14 @@ export default class CrewLustBar extends React.Component {
 			lust,
 		} = this.props;
 
-		const lustWidth = Math.min(lust, 100);
-		const heartWidth = Math.clamp(lust - 100, 0, 100);
+		const widths = [];
+
+		LustBalancing.lustLevelsXp.forEach((xp, index) => {
+			const previous = (index > 0) ? LustBalancing.lustLevelsXp[index - 1] : 0;
+			const needed = xp - previous;
+
+			widths.push(Math.clamp(lust - previous, 0, needed) / needed * 100);
+		});
 
 		return (
 			<div
@@ -31,20 +38,20 @@ export default class CrewLustBar extends React.Component {
 			>
 				<h2 className="o-crewLustBar__title">{name}</h2>
 				<div className="o-crewLustBar__container">
-					<div className="o-crewLustBar__bar" style={{'--lust-width': `${lustWidth}%`}}>
+					<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[0]}%`}}>
 						<div className="o-crewLustBar__bar__foreground"></div>
 					</div>
 					<div className="o-crewLustBar__hearts">
-						<div className="o-crewLustBar__bar" style={{'--lust-width': `${lustWidth}%`}}>
+						<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[0]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar" style={{'--lust-width': `${heartWidth}%`}}>
+						<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[1]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar" style={{'--lust-width': heartWidth}}>
+						<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[2]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar" style={{'--lust-width': heartWidth}}>
+						<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[3]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
 					</div>
@@ -53,7 +60,7 @@ export default class CrewLustBar extends React.Component {
 					<CountUp
 						end={lust}
 						duration={1}
-						suffix="%"
+						suffix={` / ${4}`}
 					/>
 				</h2>
 			</div>

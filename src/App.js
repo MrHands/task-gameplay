@@ -7,6 +7,7 @@ import TasksDatabase from './data/TasksDatabase.json';
 import LocationsDatabase from './data/LocationsDatabase.json';
 import SexMovesDatabase from './data/SexMovesDatabase.json';
 import SexMovesDeck from './data/SexMovesDeck.json';
+import LustBalancing from './data/LustBalancing.json';
 import { Mood } from './enums/Mood';
 import { Shift } from './enums/Shift';
 import shuffleCards from './helpers/shuffleCards';
@@ -630,7 +631,7 @@ export default class App extends React.Component {
 
 			this.setState({
 				mood,
-				crewLust: character.stats.pleasure,
+				crewLust: Math.floor(character.stats.pleasure / 100 * LustBalancing.lustLevelsXp[0]),
 				sexMovesInHand: [],
 				sexMovesPlayed: [],
 			});
@@ -901,6 +902,7 @@ export default class App extends React.Component {
 					if (sexMove.type === this.state.mood) {
 						effect.value *= 2;
 					}
+					effect.value /= 10;
 					break;
 				}
 				default:
