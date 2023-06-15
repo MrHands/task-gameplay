@@ -32,8 +32,11 @@
 	}
 
 	&__bar {
-		--lust-width: 0%;
+		--filled: 0%;
 
+		$this: &;
+
+		display: flex;
 		position: relative;
 		width: 100%;
 		min-height: 2rem;
@@ -45,10 +48,24 @@
 			position: absolute;
 			left: 0.2rem;
 			top: 0.2rem;
-			width: calc(var(--lust-width) - 0.4rem);
+			width: calc(var(--filled) - 0.4rem);
 			height: calc(100% - 0.4rem);
 			border-radius: 2rem;
 			background: var(--color);
+
+			#{$this}--heart & {
+				transition: height 1s;
+				top: auto;
+				bottom: 0.2rem;
+				width: calc(100% - 0.4rem);
+				height: calc(var(--filled) - 0.4rem);
+				border-radius: 0.25rem;
+			}
+		}
+
+		&--heart {
+			min-height: 3rem;
+			border-radius: 0.5rem;
 		}
 
 		&--orgasm {

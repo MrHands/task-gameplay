@@ -48,22 +48,22 @@ export default class CrewLustBar extends React.Component {
 			>
 				<h2 className="o-crewLustBar__title">{name}</h2>
 				<div className="o-crewLustBar__container">
-					<div className="o-crewLustBar__bar" style={{'--lust-width': `${(xpCurrent / xpNext) * 100}%`}}>
-						<div className="o-crewLustBar__bar__foreground"></div>
-					</div>
 					<div className="o-crewLustBar__hearts">
-						<div className="o-crewLustBar__bar" style={{'--lust-width': `${widths[0]}%`}}>
+						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart" style={{'--filled': `${widths[0]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--orgasm" style={{'--lust-width': `${widths[1]}%`}}>
+						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[1]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--orgasm" style={{'--lust-width': `${widths[2]}%`}}>
+						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[2]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--orgasm" style={{'--lust-width': `${widths[3]}%`}}>
+						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[3]}%`}}>
 							<div className="o-crewLustBar__bar__foreground"></div>
 						</div>
+					</div>
+					<div className="o-crewLustBar__bar" style={{'--filled': `${(xpCurrent / xpNext) * 100}%`}}>
+						<div className="o-crewLustBar__bar__foreground"></div>
 					</div>
 				</div>
 				<h2 className="o-crewLustBar__amount">
