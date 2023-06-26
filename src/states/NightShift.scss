@@ -58,10 +58,14 @@
 		flex-direction: column;
 		place-content: center;
 		text-align: center;
-		text-transform: uppercase;
+
+		&__title {
+			text-transform: uppercase;
+		}
 
 		&__value {
 			color: gray;
+			text-transform: uppercase;
 		}
 	}
 

@@ -935,9 +935,12 @@ export default class App extends React.Component {
 			const logEffects = sexMove.effects.map(effect => {
 				let result = `${effect.type} `;
 				switch (effect.type) {
-					case 'crew':
 					case 'captain': {
 						result += `+${effect.value}%`;
+						break;
+					}
+					case 'crew': {
+						result += `+${effect.value}`;
 						break;
 					}
 					case 'mood': {

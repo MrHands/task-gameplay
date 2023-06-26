@@ -7,6 +7,7 @@ import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
+import { Mood } from '../enums/Mood';
 
 import './NightShift.scss';
 
@@ -136,6 +137,24 @@ export default class NightShift extends React.Component {
 			});
 		}
 
+		let moodEffect = '';
+		switch (mood) {
+			case Mood.INTIMATE: {
+				moodEffect = 'She will add 2 shield on her turn.';
+				break;
+			}
+			case Mood.PASSIONATE: {
+				moodEffect = 'She will add 20% to Captain bar.';
+				break;
+			}
+			case Mood.SUBMISSIVE: {
+				moodEffect = 'She will gain 2 Orgasm.';
+				break;
+			}
+			default:
+				break;
+		}
+
 		return (
 			<article className="o-nightShift">
 				<div className="o-nightShift__lust">
@@ -177,6 +196,7 @@ export default class NightShift extends React.Component {
 				<div className="o-nightShift__mood">
 					<h3 className="o-nightShift__mood__title">Mood</h3>
 					<h2 className="o-nightShift__mood__value">{mood}</h2>
+					<p className="o-nightShift__mood__effect">{moodEffect}</p>
 				</div>
 				<div className="o-nightShift__moves">
 					<h2 className="o-nightShift__moves__text">{sexMovePlaysLeft} plays left this turn</h2>
