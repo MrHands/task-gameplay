@@ -120,6 +120,7 @@ export default class App extends React.Component {
 			limitSexMovesHand: true,
 			nightLog: [],
 			crewLust: 0,
+			crewShield: 0,
 			captainLust: 0,
 			mood: Mood.SUBMISSIVE,
 			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
@@ -158,6 +159,7 @@ export default class App extends React.Component {
 			nightLog: [],
 			sexergyGenerated: 0,
 			crewLust: 0,
+			crewShield: 0,
 			captainLust: 0,
 			mood: '',
 			sexMovesPlayed: [],
@@ -914,6 +916,7 @@ export default class App extends React.Component {
 		this.setState(state => {
 			let {
 				crewLust,
+				crewShield,
 				captainLust,
 				sexergy,
 				sexergyGenerated,
@@ -1040,6 +1043,7 @@ export default class App extends React.Component {
 			return {
 				nightLog,
 				crewLust,
+				crewShield,
 				captainLust,
 				sexergy,
 				sexergyGenerated,
@@ -1108,6 +1112,7 @@ export default class App extends React.Component {
 				limitSexMovesHand,
 				nightLog,
 				crewLust,
+				crewShield,
 				captainLust,
 				mood,
 				sexMovePlaysLeft,
@@ -1134,6 +1139,7 @@ export default class App extends React.Component {
 					charactersNotDone={charactersNotDone}
 					charactersUnplaced={charactersUnplaced}
 					crewLust={crewLust}
+					crewShield={crewShield}
 					captainLust={captainLust}
 					mood={mood}
 					sexMovePlaysLeft={sexMovePlaysLeft}

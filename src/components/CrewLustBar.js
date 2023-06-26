@@ -21,6 +21,7 @@ export default class CrewLustBar extends React.Component {
 		const {
 			name,
 			lust,
+			shield,
 		} = this.props;
 
 		const widths = [];
@@ -61,7 +62,7 @@ export default class CrewLustBar extends React.Component {
 						<div className="o-crewLustBar__bar__foreground"></div>
 					</div>
 				</div>
-				<div className="o-crewLustBar__bar o-crewLustBar__bar--shield" style={{'--filled': `${(xpCurrent / xpNext) * 100}%`}}>
+				<div className="o-crewLustBar__bar o-crewLustBar__bar--shield" style={{'--filled': `${(shield / 5) * 100}%`}}>
 					<div className="o-crewLustBar__bar__foreground"></div>
 				</div>
 				<h3 className="o-crewLustBar__amount o-crewLustBar__amount--lust">
