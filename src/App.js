@@ -856,6 +856,30 @@ export default class App extends React.Component {
 		return sexMove.lustMinimum <= crewLust;
 	}
 
+	getLustLevel(lust) {
+		const result = {
+			xpCurrent: 0,
+			xpNext: 0,
+			level: 0
+		};
+
+		LustBalancing.lustLevelsXp.forEach((levelXp, index) => {
+			// console.log(`lust ${lust} index ${index} levelXp ${levelXp} xpCurrent ${result.xpCurrent} xpNext ${result.xpNext} level ${result.level}`);
+
+			if (index === 0) {
+				result.xpNext = levelXp;
+			} else if (lust >= result.xpNext) {
+				result.xpCurrent = lust - result.xpNext;
+				result.xpNext = levelXp;
+				result.level += 1;
+			} else {
+				return;
+			}
+		});
+
+		return result;
+	}
+
 	playSexMove(sexMoveId) {
 		const character = this.nightCharacter;
 		if (!character) {
@@ -959,6 +983,8 @@ export default class App extends React.Component {
 			});
 			nightLog.push(`Played **${sexMove.title}** (${logEffects.join(', ')})`);
 
+			const lustBefore = this.getLustLevel(crewLust);
+
 			// apply effects
 
 			let moveSexergy = 0;
@@ -985,6 +1011,20 @@ export default class App extends React.Component {
 					default: break;
 				}
 			});
+
+			// lust message
+
+			const lustAfter = this.getLustLevel(crewLust);
+
+			if (lustAfter.level > lustBefore.level) {
+				if (lustBefore.level === 0) {
+					nightLog.push(`${character.name} is ready to **fuck!**`);
+				} else {
+					nightLog.push(`${character.name} had an **orgasm**!`);
+				}
+			}
+
+			// nightLog.push(`before (${lustBefore.level}, ${lustBefore.xpCurrent}, ${lustBefore.xpNext}) after (${lustAfter.level}, ${lustAfter.xpCurrent}, ${lustAfter.xpNext})`);
 
 			// check game over
 
