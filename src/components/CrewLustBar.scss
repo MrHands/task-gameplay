@@ -6,13 +6,18 @@
 		1fr
 		4fr
 		5rem;
+	grid-template-rows:
+		1fr
+		1fr;
 	justify-items: center;
 	align-items: center;
-	gap: 1rem;
-	// grid-template-areas: 'title  bar  amount';
+	gap: 0rem 1rem;
+	grid-template-areas:
+		'title  hearts      lust-amount'
+		'title  shield      shield-amount';
 
 	&__title {
-		// grid-area: title;
+		grid-area: title;
 		text-transform: uppercase;
 		justify-self: end;
 	}
@@ -27,8 +32,11 @@
 	}
 
 	&__hearts {
+		grid-area: hearts;
 		display: flex;
 		gap: 0.25rem;
+		width: 100%;
+		height: 100%;
 	}
 
 	&__bar {
@@ -68,8 +76,34 @@
 			border-radius: 0.5rem;
 		}
 
+		&--shield {
+			--color: gray;
+
+			grid-area: shield;
+		}
+
 		&--orgasm {
 			--color: gold;
+		}
+	}
+
+	&__amount {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&--lust {
+			grid-area: lust-amount;
+		}
+
+		&--shield {
+			grid-area: shield-amount;
+			color: gray;
+		}
+
+		&__title {
+			text-transform: uppercase;
 		}
 	}
 }

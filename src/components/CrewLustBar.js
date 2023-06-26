@@ -47,32 +47,40 @@ export default class CrewLustBar extends React.Component {
 				className={this.classes.join(' ')}
 			>
 				<h2 className="o-crewLustBar__title">{name}</h2>
-				<div className="o-crewLustBar__container">
-					<div className="o-crewLustBar__hearts">
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart" style={{'--filled': `${widths[0]}%`}}>
-							<div className="o-crewLustBar__bar__foreground"></div>
-						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[1]}%`}}>
-							<div className="o-crewLustBar__bar__foreground"></div>
-						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[2]}%`}}>
-							<div className="o-crewLustBar__bar__foreground"></div>
-						</div>
-						<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[3]}%`}}>
-							<div className="o-crewLustBar__bar__foreground"></div>
-						</div>
+				<div className="o-crewLustBar__hearts">
+					<div className="o-crewLustBar__bar o-crewLustBar__bar--heart" style={{'--filled': `${widths[0]}%`}}>
+						<div className="o-crewLustBar__bar__foreground"></div>
 					</div>
-					<div className="o-crewLustBar__bar" style={{'--filled': `${(xpCurrent / xpNext) * 100}%`}}>
+					<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[1]}%`}}>
+						<div className="o-crewLustBar__bar__foreground"></div>
+					</div>
+					<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[2]}%`}}>
+						<div className="o-crewLustBar__bar__foreground"></div>
+					</div>
+					<div className="o-crewLustBar__bar o-crewLustBar__bar--heart o-crewLustBar__bar--orgasm" style={{'--filled': `${widths[3]}%`}}>
 						<div className="o-crewLustBar__bar__foreground"></div>
 					</div>
 				</div>
-				<h2 className="o-crewLustBar__amount">
+				<div className="o-crewLustBar__bar o-crewLustBar__bar--shield" style={{'--filled': `${(xpCurrent / xpNext) * 100}%`}}>
+					<div className="o-crewLustBar__bar__foreground"></div>
+				</div>
+				<h3 className="o-crewLustBar__amount o-crewLustBar__amount--lust">
+					<div className="o-crewLustBar__amount__title">LUST</div>
 					<CountUp
+					 	className="o-crewLustBar__amount__value"
 						end={xpCurrent}
 						duration={1}
 						suffix={` / ${xpNext}`}
 					/>
-				</h2>
+				</h3>
+				<h3 className="o-crewLustBar__amount o-crewLustBar__amount--shield">
+					<div className="o-crewLustBar__amount__title">Shield</div>
+					<CountUp
+					 	className="o-crewLustBar__amount__value"
+						end={0}
+						duration={1}
+					/>
+				</h3>
 			</div>
 		);
 	}
