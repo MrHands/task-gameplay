@@ -20,7 +20,7 @@ import DiceList from './components/DiceList';
 
 const STAMINA_MAXIMUM = 5;
 const SEX_MOVES_INITIAL_HAND = 5;
-const SEX_MOVES_DRAW_HAND = 3;
+const SEX_MOVES_DRAW_HAND = 5;
 const PLAY_SEX_MOVES_MAXIMUM = 3;
 const REDRAW_MAXIMUM = 2;
 
@@ -328,7 +328,7 @@ export default class App extends React.Component {
 		});
 	}
 
-	drawSexMoveHand(cardCount) {
+	drawSexMoveHand(cardCount, keepHandCards = false) {
 		if (this.state.sexMoves.length <= cardCount) {
 			this.fillSexMovesDeck(this.nightCharacter);
 		}
@@ -340,7 +340,7 @@ export default class App extends React.Component {
 			} = state;
 
 			const cardsDeck = shuffleCards([...sexMoves]);
-			const cardsHand = [...sexMovesInHand];
+			const cardsHand = keepHandCards ? [...sexMovesInHand] : [];
 			
 			let playable = 0;
 			for (const card of cardsHand) {
@@ -728,18 +728,18 @@ export default class App extends React.Component {
 	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
 		// play random card from hand
 
-		const cardsHand = shuffleCards([...this.state.sexMovesInHand]);
+		/* const cardsHand = shuffleCards([...this.state.sexMovesInHand]);
 		for (const card of cardsHand) {
 			if (this.canSexMoveBePlayed(card)) {
 				this.playSexMove(card);
 
 				break;
 			}
-		}
+		} */
 
 		// draw new cards
 
-		this.drawSexMoveHand(cardCount);
+		this.drawSexMoveHand(cardCount, false);
 
 		// update state
 
