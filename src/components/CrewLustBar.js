@@ -4,6 +4,22 @@ import CountUp from 'react-countup';
 import './CrewLustBar.scss';
 
 export default class CrewLustBar extends React.Component {
+	constructor() {
+		super();
+
+		this.lustPrevious = {
+			xpCurrent: 0,
+			xpNext: 0,
+			level: 0,
+		};
+
+		this.lustCurrent = {
+			xpCurrent: 0,
+			xpNext: 0,
+			level: 0,
+		};
+	}
+
 	get classes() {
 		const {
 			className,
@@ -24,14 +40,22 @@ export default class CrewLustBar extends React.Component {
 			getLustLevel,
 		} = this.props;
 
-		const lustLevel = getLustLevel(lust);
+		this.lustPrevious = JSON.parse(JSON.stringify(this.lustCurrent));
+		this.lustCurrent = getLustLevel(lust);
+
+		let xpFrom = this.lustPrevious.xpCurrent;
+		const xpTo = this.lustCurrent.xpCurrent;
+
+		if (this.lustCurrent.level !== this.lustPrevious.level) {
+			xpFrom = 0;
+		}
 
 		const widths = [];
 
-		for (let i = 0; i < lustLevel.level; ++i) {
+		for (let i = 0; i < this.lustCurrent.level; ++i) {
 			widths[i] = 100;
 		}
-		widths[lustLevel.level] = (lustLevel.xpCurrent / lustLevel.xpNext) * 100;
+		widths[this.lustCurrent.level] = (this.lustCurrent.xpCurrent / this.lustCurrent.xpNext) * 100;
 
 		return (
 			<div
@@ -59,9 +83,10 @@ export default class CrewLustBar extends React.Component {
 					<div className="o-crewLustBar__amount__title">LUST</div>
 					<CountUp
 					 	className="o-crewLustBar__amount__value"
-						end={lustLevel.xpCurrent}
+						start={xpFrom}
+						end={xpTo}
 						duration={1}
-						suffix={` / ${lustLevel.xpNext}`}
+						suffix={` / ${this.lustCurrent.xpNext}`}
 					/>
 				</h3>
 				<h3 className="o-crewLustBar__amount o-crewLustBar__amount--shield">
