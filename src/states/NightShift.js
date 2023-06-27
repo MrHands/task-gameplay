@@ -84,6 +84,7 @@ export default class NightShift extends React.Component {
 			onShiftFinish,
 			shiftHeld,
 			redrawsRemaining,
+			getLustLevel,
 		} = this.props;
 
 		const movesSelected = [...sexMovesPlayed];
@@ -170,6 +171,7 @@ export default class NightShift extends React.Component {
 						name={nightCharacter?.name || 'Crew'}
 						lust={crewLust}
 						shield={crewShield}
+						getLustLevel={getLustLevel}
 					/>
 				</div>
 				<div className="o-nightShift__sexergy">

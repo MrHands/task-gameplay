@@ -1,7 +1,6 @@
 import React from 'react';
 import CountUp from 'react-countup';
 
-import LustBalancing from '../data/LustBalancing.json';
 import './CrewLustBar.scss';
 
 export default class CrewLustBar extends React.Component {
@@ -22,26 +21,17 @@ export default class CrewLustBar extends React.Component {
 			name,
 			lust,
 			shield,
+			getLustLevel,
 		} = this.props;
+
+		const lustLevel = getLustLevel(lust);
 
 		const widths = [];
 
-		let xpCurrent = lust;
-		let xpNext = 0;
-
-		LustBalancing.lustLevelsXp.forEach((levelXp, index) => {
-			const previous = (index > 0) ? LustBalancing.lustLevelsXp[index - 1] : 0;
-			const needed = levelXp - previous;
-
-			if (index === 0) {
-				xpNext = levelXp;
-			} else if (lust >= previous && lust < levelXp) {
-				xpCurrent = lust - previous;
-				xpNext = needed;
-			}
-
-			widths.push(Math.clamp(lust - previous, 0, needed) / needed * 100);
-		});
+		for (let i = 0; i < lustLevel.level; ++i) {
+			widths[i] = 100;
+		}
+		widths[lustLevel.level] = (lustLevel.xpCurrent / lustLevel.xpNext) * 100;
 
 		return (
 			<div
@@ -69,9 +59,9 @@ export default class CrewLustBar extends React.Component {
 					<div className="o-crewLustBar__amount__title">LUST</div>
 					<CountUp
 					 	className="o-crewLustBar__amount__value"
-						end={xpCurrent}
+						end={lustLevel.xpCurrent}
 						duration={1}
-						suffix={` / ${xpNext}`}
+						suffix={` / ${lustLevel.xpNext}`}
 					/>
 				</h3>
 				<h3 className="o-crewLustBar__amount o-crewLustBar__amount--shield">

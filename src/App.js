@@ -633,7 +633,7 @@ export default class App extends React.Component {
 
 			this.setState({
 				mood,
-				crewLust: Math.floor(character.stats.pleasure / 100 * LustBalancing.lustLevelsXp[0]),
+				crewLust: Math.round(character.stats.pleasure / 100 * LustBalancing.lustLevelsXp[0]),
 				sexMovesInHand: [],
 				sexMovesPlayed: [],
 			});
@@ -867,13 +867,12 @@ export default class App extends React.Component {
 			// console.log(`lust ${lust} index ${index} levelXp ${levelXp} xpCurrent ${result.xpCurrent} xpNext ${result.xpNext} level ${result.level}`);
 
 			if (index === 0) {
+				result.xpCurrent = lust;
 				result.xpNext = levelXp;
 			} else if (lust >= result.xpNext) {
 				result.xpCurrent = lust - result.xpNext;
-				result.xpNext = levelXp;
+				result.xpNext = levelXp - result.xpNext;
 				result.level += 1;
-			} else {
-				return;
 			}
 		});
 
@@ -1190,6 +1189,7 @@ export default class App extends React.Component {
 					categoriesExpanded={categoriesExpanded}
 					shiftHeld={shiftHeld}
 					redrawsRemaining={redrawsRemaining}
+					getLustLevel={this.getLustLevel.bind(this)}
 					toggleExpandCategory={this.toggleExpandCategory.bind(this)}
 					getSexMove={this.getSexMove.bind(this)}
 					canSexMoveBePlayed={this.canSexMoveBePlayed.bind(this)}
