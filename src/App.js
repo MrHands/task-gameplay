@@ -841,12 +841,7 @@ export default class App extends React.Component {
 
 		const {
 			crewLust,
-			sexMovePlaysLeft,
 		} = this.state;
-
-		if (sexMovePlaysLeft <= 0) {
-			return false;
-		}
 
 		const sexMove = this.getSexMove(sexMoveId);
 		if (sexMove == null) {
@@ -943,14 +938,12 @@ export default class App extends React.Component {
 				captainLust,
 				sexergy,
 				sexergyGenerated,
-				sexMovePlaysLeft,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
 				mood,
 			} = state;
 
-			sexMovePlaysLeft -= 1;
 			sexMovesInHand = sexMovesInHand.filter(it => it.id !== sexMove.id);
 			sexMovesPlayed.push(sexMove);
 
@@ -1066,7 +1059,6 @@ export default class App extends React.Component {
 				sexergy += sexergyGenerated;
 				sexMoves = [];
 				sexMovesInHand = [];
-				sexMovePlaysLeft = 0;
 
 				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
 				nightLog.push(`*End of night shift*`);
@@ -1087,7 +1079,6 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				mood,
-				sexMovePlaysLeft,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,

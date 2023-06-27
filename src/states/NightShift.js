@@ -203,8 +203,6 @@ export default class NightShift extends React.Component {
 					<p className="o-nightShift__mood__effect">{moodEffect}</p>
 				</div>
 				<div className="o-nightShift__moves">
-					<h2 className="o-nightShift__moves__text">{sexMovePlaysLeft} plays left this turn</h2>
-					<h3 className="o-nightShift__moves__text">Hold Shift to redraw sex move ({redrawsRemaining} redraws remaining)</h3>
 					<div className="o-nightShift__moves__container">
 						<div className="o-nightShift__moves__scroll">
 							{eleSexMoves}
