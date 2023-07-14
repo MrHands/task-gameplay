@@ -71,7 +71,6 @@ export default class NightShift extends React.Component {
 			crewLust,
 			crewShield,
 			captainLust,
-			sexMovePlaysLeft,
 			sexMoves,
 			sexMovesInHand,
 			sexMovesPlayed,
@@ -83,7 +82,6 @@ export default class NightShift extends React.Component {
 			onEndTurn,
 			onShiftFinish,
 			shiftHeld,
-			redrawsRemaining,
 			getLustLevel,
 		} = this.props;
 
