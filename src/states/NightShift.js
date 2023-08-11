@@ -181,20 +181,14 @@ export default class NightShift extends React.Component {
 						/>
 					</h2>
 				</div>
-				<div className="o-nightShift__shift">
-					<button
-						className="o-nightShift__shift__turn"
-						onClick={onEndTurn}
-					>
-						End Turn
-					</button>
-					<button
-						className="o-nightShift__shift__finish"
-						onClick={onShiftFinish}
-					>
+				<div className="o-nightShift__end">
+					<button onClick={onShiftFinish}>
 						Finish Night
 					</button>
 				</div>
+				<button className="o-nightShift__turn" onClick={onEndTurn}>
+					End Turn
+				</button>
 				<div className="o-nightShift__mood">
 					<h3 className="o-nightShift__mood__title">Mood</h3>
 					<h2 className="o-nightShift__mood__value">{mood}</h2>
