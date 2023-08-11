@@ -13,7 +13,7 @@
 	grid-template-areas:
 		'mood     lust     lust     moves  '
 		'play     play     play     moves  '
-		'end      sexergy  sexergy  turn   ';
+		'bar      bar  bar  bar   ';
 	grid-template-columns:
 		1fr
 		3fr
@@ -37,8 +37,14 @@
 		gap: 0.4rem;
 	}
 
+	&__bar {
+		grid-area: bar;
+		display: grid;
+		grid-template-columns: 1fr 4fr 1fr;
+		gap: 1rem;
+	}
+
 	&__sexergy {
-		grid-area: sexergy;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -70,15 +76,18 @@
 	}
 
 	&__end {
-		grid-area: end;
-		@include stat-bar();
 		display: flex;
-		gap: 1rem;
-		place-content: center;
+		justify-content: center;
+		align-items: center;
+		border: 0.2rem solid red;
+		background: rgba(red, 20%);
+
+		&:hover {
+			background: rgba(red, 50%);
+		}
 	}
 
 	&__turn {
-		grid-area: turn;
 		display: flex;
 		justify-content: center;
 		align-items: center;

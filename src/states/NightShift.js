@@ -172,23 +172,24 @@ export default class NightShift extends React.Component {
 						getLustLevel={getLustLevel}
 					/>
 				</div>
-				<div className="o-nightShift__sexergy">
-					<h2 className="o-nightShift__sexergy__title">Sexergy Generated</h2>
-					<h2 className="o-nightShift__sexergy__value">
-						<CountUp
-							end={sexergyGenerated}
-							duration={1}
-						/>
-					</h2>
-				</div>
-				<div className="o-nightShift__end">
-					<button onClick={onShiftFinish}>
+				<div class="o-nightShift__bar">
+					<button className="o-nightShift__end" onClick={onShiftFinish}>
 						Finish Night
 					</button>
+					<div className="o-nightShift__sexergy">
+						<h2 className="o-nightShift__sexergy__title">Sexergy Generated</h2>
+						<h2 className="o-nightShift__sexergy__value">
+							<CountUp
+								end={sexergyGenerated}
+								duration={1}
+							/>
+						</h2>
+					</div>
+					
+					<button className="o-nightShift__turn" onClick={onEndTurn}>
+						End Turn
+					</button>
 				</div>
-				<button className="o-nightShift__turn" onClick={onEndTurn}>
-					End Turn
-				</button>
 				<div className="o-nightShift__mood">
 					<h3 className="o-nightShift__mood__title">Mood</h3>
 					<h2 className="o-nightShift__mood__value">{mood}</h2>
