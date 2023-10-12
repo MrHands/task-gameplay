@@ -121,6 +121,7 @@ export default class App extends React.Component {
 			nightLog: [],
 			crewLust: 0,
 			crewShield: 0,
+			crewNextMood: 0,
 			captainLust: 0,
 			mood: Mood.SUBMISSIVE,
 			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
@@ -160,6 +161,7 @@ export default class App extends React.Component {
 			sexergyGenerated: 0,
 			crewLust: 0,
 			crewShield: 0,
+			crewNextMood: 3,
 			captainLust: 0,
 			mood: '',
 			sexMovesPlayed: [],
@@ -876,8 +878,8 @@ export default class App extends React.Component {
 	}
 
 	playSexMove(sexMoveId) {
-		const character = this.nightCharacter;
-		if (!character) {
+		const crewMember = this.nightCharacter;
+		if (!crewMember) {
 			return;
 		}
 
@@ -937,6 +939,7 @@ export default class App extends React.Component {
 				crewLust,
 				crewShield,
 				captainLust,
+				crewNextMood,
 				sexergy,
 				sexergyGenerated,
 				sexMoves,
@@ -996,14 +999,37 @@ export default class App extends React.Component {
 						moveSexergy = effect.value;
 						break;
 					}
-					case 'mood': {
+					/* case 'mood': {
 						mood = effect.value;
-						nightLog.push(`${character.name}'s mood changed to **${mood}**`);
+						nightLog.push(`${crewMember.name}'s mood changed to **${mood}**`);
 						break;
-					}
+					} */
 					default: break;
 				}
 			});
+
+			// switch moods
+
+			crewNextMood -= 1;
+			if (crewNextMood <= 0) {
+				switch (mood) {
+					case Mood.SUBMISSIVE:
+						mood = Mood.PASSIONATE;
+						break;
+					case Mood.PASSIONATE:
+						mood = Mood.INTIMATE;
+						break;
+					case Mood.INTIMATE:
+						mood = Mood.SUBMISSIVE;
+						break;
+					default:
+						break;
+				}
+
+				nightLog.push(`${crewMember.name}'s mood changed to **${mood}**`);
+
+				crewNextMood = 3;
+			}
 
 			// lust message
 
@@ -1011,9 +1037,9 @@ export default class App extends React.Component {
 
 			if (lustAfter.level > lustBefore.level) {
 				if (lustBefore.level === 0) {
-					nightLog.push(`${character.name} is ready to **fuck!**`);
+					nightLog.push(`${crewMember.name} is ready to **fuck!**`);
 				} else {
-					nightLog.push(`${character.name} had an **orgasm**!`);
+					nightLog.push(`${crewMember.name} had an **orgasm**!`);
 				}
 			}
 
@@ -1028,14 +1054,14 @@ export default class App extends React.Component {
 			// crew orgasm!
 
 			if (crewOrgasm) {
-				nightLog.push(`*${character.name} had an orgasm!*`);
+				nightLog.push(`*${crewMember.name} had an orgasm!*`);
 
 				moveSexergy *= 2;
 
 				nightLog.push(`Doubled sexergy generated from ${sexMove.title}: **+${moveSexergy}**`);
 
 				if (!gameOver) {
-					nightLog.push(`Resetting ${character.name}'s lust to 50%`);
+					nightLog.push(`Resetting ${crewMember.name}'s lust to 50%`);
 
 					crewLust = 50;
 				}
@@ -1076,6 +1102,7 @@ export default class App extends React.Component {
 				nightLog,
 				crewLust,
 				crewShield,
+				crewNextMood,
 				captainLust,
 				sexergy,
 				sexergyGenerated,
@@ -1144,6 +1171,7 @@ export default class App extends React.Component {
 				nightLog,
 				crewLust,
 				crewShield,
+				crewNextMood,
 				captainLust,
 				mood,
 				sexMovePlaysLeft,
@@ -1171,6 +1199,7 @@ export default class App extends React.Component {
 					charactersUnplaced={charactersUnplaced}
 					crewLust={crewLust}
 					crewShield={crewShield}
+					crewNextMood={crewNextMood}
 					captainLust={captainLust}
 					mood={mood}
 					sexMovePlaysLeft={sexMovePlaysLeft}
