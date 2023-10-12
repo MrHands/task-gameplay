@@ -727,30 +727,6 @@ export default class App extends React.Component {
 		});
 	}
 
-	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
-		// play random card from hand
-
-		/* const cardsHand = shuffleCards([...this.state.sexMovesInHand]);
-		for (const card of cardsHand) {
-			if (this.canSexMoveBePlayed(card)) {
-				this.playSexMove(card);
-
-				break;
-			}
-		} */
-
-		// draw new cards
-
-		this.drawSexMoveHand(cardCount, false);
-
-		// update state
-
-		this.setState({
-			sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
-			redrawsRemaining: REDRAW_MAXIMUM,
-		});
-	}
-
 	finishShift() {
 		// update shift
 
@@ -988,7 +964,17 @@ export default class App extends React.Component {
 			sexMove.effects.forEach(effect => {
 				switch (effect.type) {
 					case 'crew': {
-						crewLust += effect.value;
+						let lust = effect.value;
+
+						if (crewShield > 0) {
+							const damage = Math.min(crewShield, lust);
+							lust -= damage;
+							crewShield -= damage;
+						}
+
+						if (crewShield <= 0) {
+							crewLust += lust;
+						}
 						break;
 					}
 					case 'captain': {
@@ -1007,6 +993,8 @@ export default class App extends React.Component {
 					default: break;
 				}
 			});
+
+			sexergyGenerated += moveSexergy;
 
 			// switch moods
 
@@ -1045,58 +1033,7 @@ export default class App extends React.Component {
 
 			// nightLog.push(`before (${lustBefore.level}, ${lustBefore.xpCurrent}, ${lustBefore.xpNext}) after (${lustAfter.level}, ${lustAfter.xpCurrent}, ${lustAfter.xpNext})`);
 
-			// check game over
-
-			const captainOrgasm = captainLust >= 100;
-			const crewOrgasm = crewLust >= 200;
-			const gameOver = captainOrgasm;
-
-			// crew orgasm!
-
-			if (crewOrgasm) {
-				nightLog.push(`*${crewMember.name} had an orgasm!*`);
-
-				moveSexergy *= 2;
-
-				nightLog.push(`Doubled sexergy generated from ${sexMove.title}: **+${moveSexergy}**`);
-
-				if (!gameOver) {
-					nightLog.push(`Resetting ${crewMember.name}'s lust to 50%`);
-
-					crewLust = 50;
-				}
-			}
-
-			// captain orgasm!
-
-			if (captainOrgasm) {
-				nightLog.push(`*Captain had an orgasm!*`);
-
-				const sexergyBonus = sexMovesPlayed.length * 100;
-				sexergyGenerated += sexergyBonus;
-
-				nightLog.push(`Sexergy bonus of ${sexMovesPlayed.length} moves played x 100 = **+${sexergyBonus}**`);
-			}
-
-			sexergyGenerated += moveSexergy;
-
-			// game over
-
-			if (gameOver) {
-				sexergy += sexergyGenerated;
-				sexMoves = [];
-				sexMovesInHand = [];
-
-				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
-				nightLog.push(`*End of night shift*`);
-			} else {
-				// clamp stats
-
-				crewLust = this.clampCharacterStat('crew', crewLust);
-				captainLust = this.clampCharacterStat('captain', captainLust);
-			}
-
-			console.log(`sexergy ${sexergy} generated ${sexergyGenerated}`);
+			console.log(`sexergy ${sexergy} generated ${sexergyGenerated} crewLust ${crewLust} crewShield ${crewShield}`);
 
 			return {
 				nightLog,
@@ -1112,6 +1049,111 @@ export default class App extends React.Component {
 				sexMovesPlayed,
 			}
 		});
+	}
+
+	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
+		// play random card from hand
+
+		/* const cardsHand = shuffleCards([...this.state.sexMovesInHand]);
+		for (const card of cardsHand) {
+			if (this.canSexMoveBePlayed(card)) {
+				this.playSexMove(card);
+
+				break;
+			}
+		} */
+
+		const crewMember = this.nightCharacter;
+		if (!crewMember) {
+			return;
+		}
+
+		this.setState(state => {
+			let {
+				nightLog,
+				crewShield,
+				captainLust,
+				sexergy,
+				sexergyGenerated,
+				sexMoves,
+				sexMovesInHand,
+				sexMovesPlayed,
+				mood,
+				shift,
+			} = state;
+
+			// apply mood effect
+
+			switch (mood) {
+				case Mood.SUBMISSIVE:
+				case Mood.PASSIONATE:
+				case Mood.INTIMATE:
+					crewShield += randomValue(1, 3);
+					break;
+				default:
+					break;
+			}
+
+			console.log(`crewShield ${crewShield}`);
+
+			// check game over
+
+			const captainOrgasm = captainLust >= 100;
+			const gameOver = captainOrgasm;
+
+			// captain orgasm!
+
+			if (captainOrgasm) {
+				nightLog.push(`*Captain had an orgasm!*`);
+
+				const sexergyBonus = sexMovesPlayed.length * 100;
+				sexergyGenerated += sexergyBonus;
+
+				nightLog.push(`Sexergy bonus of ${sexMovesPlayed.length} moves played x 100 = **+${sexergyBonus}**`);
+			}
+
+			// game over
+
+			if (gameOver) {
+				sexergy += sexergyGenerated;
+				sexMoves = [];
+				sexMovesInHand = [];
+
+				nightLog.push(`Total sexergy generated: **${sexergyGenerated}**`);
+				nightLog.push(`*End of night shift*`);
+
+				shift = Shift.MORNING;
+			} else {
+				// clamp stats
+
+				captainLust = this.clampCharacterStat('captain', captainLust);
+			}
+
+			return {
+				nightLog,
+				crewShield,
+				captainLust,
+				sexergy,
+				sexergyGenerated,
+				mood,
+				sexMoves,
+				sexMovesInHand,
+				sexMovesPlayed,
+				sexMovePlaysLeft: PLAY_SEX_MOVES_MAXIMUM,
+				redrawsRemaining: REDRAW_MAXIMUM,
+				shift,
+			}
+		});
+
+		if (this.state.shift !== Shift.NIGHT) {
+			this.startGame();
+
+			return;
+		}
+
+		// draw new cards
+
+		this.drawSexMoveHand(cardCount, false);
 	}
 
 	toggleExpandCategory(category) {

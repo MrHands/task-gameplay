@@ -93,7 +93,7 @@ export default class CrewLustBar extends React.Component {
 					<div className="o-crewLustBar__amount__title">Shield</div>
 					<CountUp
 					 	className="o-crewLustBar__amount__value"
-						end={0}
+						end={shield}
 						duration={1}
 					/>
 				</h3>
