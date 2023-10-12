@@ -853,23 +853,24 @@ export default class App extends React.Component {
 
 	getLustLevel(lust) {
 		const result = {
-			xpCurrent: 0,
-			xpNext: 0,
+			xpCurrent: lust,
+			xpNext: LustBalancing.lustLevelsXp[0],
 			level: 0
 		};
 
-		LustBalancing.lustLevelsXp.forEach((levelXp, index) => {
-			// console.log(`lust ${lust} index ${index} levelXp ${levelXp} xpCurrent ${result.xpCurrent} xpNext ${result.xpNext} level ${result.level}`);
+		for (let i = 1; i < LustBalancing.lustLevelsXp.length; ++i) {
+			const levelXp = LustBalancing.lustLevelsXp[i];
 
-			if (index === 0) {
-				result.xpCurrent = lust;
-				result.xpNext = levelXp;
-			} else if (lust >= result.xpNext) {
-				result.xpCurrent = lust - result.xpNext;
-				result.xpNext = levelXp - result.xpNext;
-				result.level += 1;
+			// console.log(`lust ${lust} index ${i} levelXp ${levelXp} xpCurrent ${result.xpCurrent} xpNext ${result.xpNext} level ${result.level}`);
+
+			if (result.xpCurrent < result.xpNext) {
+				break;
 			}
-		});
+
+			result.xpCurrent -= result.xpNext;
+			result.xpNext = levelXp - result.xpNext;
+			result.level += 1;
+		}
 
 		return result;
 	}
