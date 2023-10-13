@@ -8,6 +8,8 @@
 }
 
 .o-nightShift {
+	$this: &;
+
 	grid-row: 1 / 3;
 	display: grid;
 	grid-template-areas:
@@ -25,6 +27,13 @@
 		min-content;
 	gap: 1rem;
 
+	&--start {
+		grid-template-areas:
+			'play  play  play  play  '
+			'play  play  play  play  '
+			'play  play  play  play  ';
+	}
+
 	&__play {
 		grid-area: play;
 	}
@@ -35,6 +44,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
+
+		#{$this}--start & {
+			display: none;
+		}
 	}
 
 	&__bar {
@@ -42,6 +55,10 @@
 		display: grid;
 		grid-template-columns: 1fr 4fr 1fr;
 		gap: 1rem;
+
+		#{$this}--start & {
+			display: none;
+		}
 	}
 
 	&__sexergy {
@@ -64,6 +81,10 @@
 		flex-direction: column;
 		place-content: center;
 		text-align: center;
+
+		#{$this}--start & {
+			display: none;
+		}
 
 		&__title {
 			text-transform: uppercase;
@@ -103,6 +124,10 @@
 		overflow-y: scroll;
 		@include stat-bar($color: gray);
 		color: gray;
+
+		#{$this}--start & {
+			display: none;
+		}
 
 		&__title {
 			text-transform: uppercase;

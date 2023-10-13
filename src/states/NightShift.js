@@ -156,8 +156,13 @@ export default class NightShift extends React.Component {
 				break;
 		}
 
+		const classNames = ['o-nightShift'];
+		if (nightCharacter == null) {
+			classNames.push('o-nightShift--start');
+		}
+
 		return (
-			<article className="o-nightShift">
+			<article className={classNames.join(' ')}>
 				<div className="o-nightShift__lust">
 					<LustBar
 						className="o-nightShift__lust__captain -captain"
