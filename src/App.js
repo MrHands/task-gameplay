@@ -985,11 +985,11 @@ export default class App extends React.Component {
 						moveSexergy = effect.value;
 						break;
 					}
-					/* case 'mood': {
+					case 'mood': {
 						mood = effect.value;
 						nightLog.push(`${crewMember.name}'s mood changed to **${mood}**`);
 						break;
-					} */
+					}
 					default: break;
 				}
 			});

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 
 import DroppableCard from './DroppableCard';
 
@@ -107,6 +106,10 @@ export default class SexMove extends React.Component {
 		}
 	}
 
+	getRequirementsText(lustMinimum) {
+		return lustMinimum >= 4 ? 'Hardcore': 'Foreplay';
+	}
+
 	render() {
 		const {
 			id,
@@ -140,12 +143,7 @@ export default class SexMove extends React.Component {
 			>
 				<h2 className="m-sexMove__title">{title}</h2>
 				<div className="m-sexMove__type">{type}</div>
-				<h3 className="m-sexMove__requirements">{`Lust >= ${lustMinimum}`}</h3>
-				<div className="m-sexMove__description">
-					<ReactMarkdown>
-						{this.descriptionText}
-					</ReactMarkdown>
-				</div>
+				<h3 className="m-sexMove__requirements">{this.getRequirementsText(lustMinimum)}</h3>
 				<ul className="m-sexMove__effects">
 					{effects.map((effect, index) => {
 						return (

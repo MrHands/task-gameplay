@@ -80,13 +80,9 @@
 				{
 					"type": "sexergy",
 					"value": 100
-				},
-				{
-					"type": "mood",
-					"value": "intimate"
 				}
 			],
-			"description": "Add $crew arousal and change mood to $mood."
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "passionate-3",
@@ -152,13 +148,9 @@
 				{
 					"type": "sexergy",
 					"value": 80
-				},
-				{
-					"type": "mood",
-					"value": "submissive"
 				}
 			],
-			"description": "Add $crew arousal and change mood to $mood."
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "intimate-3",
@@ -223,13 +215,9 @@
 				{
 					"type": "sexergy",
 					"value": 80
-				},
-				{
-					"type": "mood",
-					"value": "passionate"
 				}
 			],
-			"description": "Add $crew arousal and change mood to $mood."
+			"description": "Add $crew arousal."
 		},
 		{
 			"id": "submissive-3",
