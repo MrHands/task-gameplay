@@ -120,6 +120,7 @@ export default class App extends React.Component {
 			limitSexMovesHand: true,
 			nightLog: [],
 			crewLust: 0,
+			crewIntent: null,
 			crewShield: 0,
 			crewNextMood: 0,
 			captainLust: 0,
@@ -643,7 +644,7 @@ export default class App extends React.Component {
 			// draw new cards
 
 			this.fillSexMovesDeck(character);
-			this.drawSexMoveHand(SEX_MOVES_INITIAL_HAND, false);
+			this.endNightTurn(SEX_MOVES_INITIAL_HAND);
 		}
 	}
 
@@ -1051,6 +1052,66 @@ export default class App extends React.Component {
 				sexMovesPlayed,
 			}
 		});
+
+		this.setupCrewIntent();
+	}
+
+	setupCrewIntent() {
+		const crewMember = this.nightCharacter;
+		if (!crewMember) {
+			return;
+		}
+
+		this.setState(state => {
+			let {
+				nightLog,
+				mood,
+				crewIntent,
+			} = state;
+
+			switch (mood) {
+				case Mood.SUBMISSIVE:
+					crewIntent = {
+						crewShield: randomValue(1, 3)
+					}
+					break;
+				case Mood.PASSIONATE:
+					crewIntent = {
+						crewLust: randomValue(1, 3)
+					};
+					break;
+				case Mood.INTIMATE:
+					crewIntent = {
+						captainLust: randomValue(1, 3) * 10
+					}
+					break;
+				default:
+					break;
+			}
+
+			console.log(`crewIntent ${JSON.stringify(crewIntent)}`);
+
+			return {
+				nightLog,
+				crewIntent,
+			}
+		});
+
+		const { nightLog, crewIntent, mood } = this.state;
+
+		switch (mood) {
+			case Mood.SUBMISSIVE:
+				nightLog.push(`${crewMember.name} will add **${crewIntent.crewShield} Shield** on her turn`);
+				break;
+			case Mood.PASSIONATE:
+				nightLog.push(`${crewMember.name} will add **${crewIntent.crewLust} Lust** on her turn`);
+				break;
+			case Mood.INTIMATE:
+				nightLog.push(`${crewMember.name} will add **${crewIntent.crewShield}% Lust** to Captain on her turn`);
+				break;
+			default:
+				break;
+		}
 	}
 
 	endNightTurn(cardCount = SEX_MOVES_DRAW_HAND) {
@@ -1074,6 +1135,8 @@ export default class App extends React.Component {
 			let {
 				nightLog,
 				crewShield,
+				crewIntent,
+				crewLust,
 				captainLust,
 				sexergy,
 				sexergyGenerated,
@@ -1086,17 +1149,25 @@ export default class App extends React.Component {
 
 			// apply mood effect
 
-			switch (mood) {
-				case Mood.SUBMISSIVE:
-				case Mood.PASSIONATE:
-				case Mood.INTIMATE:
-					crewShield += randomValue(1, 3);
-					break;
-				default:
-					break;
-			}
+			if (crewIntent) {
+				if ('crewShield' in crewIntent) {
+					crewShield += crewIntent.crewShield;
 
-			console.log(`crewShield ${crewShield}`);
+					nightLog.push(`${crewMember.name} added **${crewIntent.crewShield} Shield**`);
+				}
+
+				if ('crewLust' in crewIntent) {
+					crewLust += crewIntent.crewLust;
+
+					nightLog.push(`${crewMember.name} added **${crewIntent.crewLust} Lust**`);
+				}
+
+				if ('captainLust' in crewIntent) {
+					captainLust += crewIntent.captainLust;
+
+					nightLog.push(`${crewMember.name} added **${crewIntent.captainLust}% Lust** to Captain`);
+				}
+			}
 
 			// check game over
 
@@ -1134,6 +1205,8 @@ export default class App extends React.Component {
 			return {
 				nightLog,
 				crewShield,
+				crewIntent,
+				crewLust,
 				captainLust,
 				sexergy,
 				sexergyGenerated,
@@ -1152,6 +1225,8 @@ export default class App extends React.Component {
 
 			return;
 		}
+
+		this.setupCrewIntent();
 
 		// draw new cards
 
@@ -1215,6 +1290,7 @@ export default class App extends React.Component {
 				nightLog,
 				crewLust,
 				crewShield,
+				crewIntent,
 				crewNextMood,
 				captainLust,
 				mood,
@@ -1244,6 +1320,7 @@ export default class App extends React.Component {
 					crewLust={crewLust}
 					crewShield={crewShield}
 					crewNextMood={crewNextMood}
+					crewIntent={crewIntent}
 					captainLust={captainLust}
 					mood={mood}
 					sexMovePlaysLeft={sexMovePlaysLeft}
