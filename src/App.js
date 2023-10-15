@@ -640,8 +640,10 @@ export default class App extends React.Component {
 				sexMovesPlayed: [],
 			});
 
+			// draw new cards
+
 			this.fillSexMovesDeck(character);
-			this.endNightTurn(SEX_MOVES_INITIAL_HAND);
+			this.drawSexMoveHand(SEX_MOVES_INITIAL_HAND, false);
 		}
 	}
 
