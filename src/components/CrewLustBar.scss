@@ -8,13 +8,15 @@
 		5rem;
 	grid-template-rows:
 		1fr
-		1fr;
+		1fr
+		min-content;
 	justify-items: center;
 	align-items: center;
 	gap: 0rem 1rem;
 	grid-template-areas:
 		'title  hearts      lust-amount'
-		'title  shield      shield-amount';
+		'title  shield      shield-amount'
+		'.      effect      effect';
 
 	&__title {
 		grid-area: title;
@@ -105,5 +107,9 @@
 		&__title {
 			text-transform: uppercase;
 		}
+	}
+
+	&__effect {
+		grid-area: effect;
 	}
 }

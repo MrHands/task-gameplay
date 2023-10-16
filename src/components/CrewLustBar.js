@@ -38,6 +38,7 @@ export default class CrewLustBar extends React.Component {
 			lust,
 			shield,
 			getLustLevel,
+			moodEffect,
 		} = this.props;
 
 		this.lustPrevious = JSON.parse(JSON.stringify(this.lustCurrent));
@@ -97,6 +98,7 @@ export default class CrewLustBar extends React.Component {
 						duration={1}
 					/>
 				</h3>
+				<p className="o-crewLustBar__effect">INTENT: {moodEffect}</p>
 			</div>
 		);
 	}

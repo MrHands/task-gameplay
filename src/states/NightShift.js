@@ -7,7 +7,6 @@ import LustBar from '../components/LustBar';
 import NightPlayArea from '../components/NightPlayArea';
 import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
-import { Mood } from '../enums/Mood';
 
 import './NightShift.scss';
 
@@ -70,6 +69,7 @@ export default class NightShift extends React.Component {
 			nightCharacter,
 			crewLust,
 			crewShield,
+			crewIntent,
 			crewNextMood,
 			captainLust,
 			sexMoves,
@@ -139,21 +139,19 @@ export default class NightShift extends React.Component {
 		}
 
 		let moodEffect = '';
-		switch (mood) {
-			case Mood.INTIMATE: {
-				moodEffect = 'She will add 2 shield on her turn.';
-				break;
+
+		if (crewIntent) {
+			if ('crewShield' in crewIntent) {
+				moodEffect = `+${crewIntent.crewShield} Shield`;
 			}
-			case Mood.PASSIONATE: {
-				moodEffect = 'She will add 20% to Captain bar.';
-				break;
+
+			if ('crewLust' in crewIntent) {
+				moodEffect = `+${crewIntent.crewLust} Lust`;
 			}
-			case Mood.SUBMISSIVE: {
-				moodEffect = 'She will gain 2 Orgasm.';
-				break;
+
+			if ('captainLust' in crewIntent) {
+				moodEffect = `+${crewIntent.captainLust}% Captain Arousal`;
 			}
-			default:
-				break;
 		}
 
 		const classNames = ['o-nightShift'];
@@ -173,6 +171,7 @@ export default class NightShift extends React.Component {
 					<CrewLustBar
 						className="o-nightShift__lust__crew"
 						name={nightCharacter?.name || 'Crew'}
+						moodEffect={moodEffect}
 						lust={crewLust}
 						shield={crewShield}
 						getLustLevel={getLustLevel}
@@ -197,9 +196,8 @@ export default class NightShift extends React.Component {
 					</button>
 				</div>
 				<div className="o-nightShift__mood">
-					<h3 className="o-nightShift__mood__title">Mood</h3>
-					<h2 className="o-nightShift__mood__value">{mood}</h2>
-					<p className="o-nightShift__mood__effect">{crewNextMood}</p>
+					<h2 className="o-nightShift__mood__title">{mood}</h2>
+					<p className="o-nightShift__mood__effect">Will change mood in {crewNextMood} card(s)</p>
 				</div>
 				<div className="o-nightShift__moves">
 					<div className="o-nightShift__moves__container">
