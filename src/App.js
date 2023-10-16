@@ -1090,19 +1090,16 @@ export default class App extends React.Component {
 						crewIntent = {
 							crewShield: randomValue(1, 3)
 						}
-						nightLog.push(`${crewMember.name} will add **${crewIntent.crewShield} Shield** on her turn`);
 						break;
 					case Mood.PASSIONATE:
 						crewIntent = {
-							crewLust: randomValue(1, 3)
+							crewLust: randomValue(1, 3) * -1
 						}
-						nightLog.push(`${crewMember.name} will add **${crewIntent.crewLust} Lust** on her turn`);
 						break;
 					case Mood.INTIMATE:
 						crewIntent = {
 							captainLust: randomValue(1, 3) * 10
 						}
-						nightLog.push(`${crewMember.name} will add **${crewIntent.captainLust}% Lust** to Captain on her turn`);
 						break;
 					default:
 						crewIntent = null;
@@ -1164,15 +1161,15 @@ export default class App extends React.Component {
 				}
 
 				if ('crewLust' in crewIntent) {
-					crewLust += crewIntent.crewLust;
+					crewLust = Math.max(crewLust - crewIntent.crewLust, 0);
 
-					nightLog.push(`${crewMember.name} added **${crewIntent.crewLust} Lust**`);
+					nightLog.push(`${crewMember.name} removed **${crewIntent.crewLust} Lust**`);
 				}
 
 				if ('captainLust' in crewIntent) {
 					captainLust += crewIntent.captainLust;
 
-					nightLog.push(`${crewMember.name} added **${crewIntent.captainLust}% Lust** to Captain`);
+					nightLog.push(`${crewMember.name} added **${crewIntent.captainLust}% Captain Arousal**`);
 				}
 
 				crewIntent = null;

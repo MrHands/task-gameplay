@@ -13,7 +13,8 @@
 	grid-row: 1 / 3;
 	display: grid;
 	grid-template-areas:
-		'lust     mood     moves  '
+		'lust     lust     moves  '
+		'mood     mood     moves'
 		'play     play     moves  '
 		'bar      bar      bar   ';
 	grid-template-columns:
@@ -22,15 +23,14 @@
 		2fr;
 	grid-template-rows:
 		min-content
+		min-content
 		1fr
 		min-content;
 	gap: 1rem;
 
 	&--start {
-		grid-template-areas:
-			'play  play  play  '
-			'play  play  play  '
-			'play  play  play  ';
+		display: flex;
+		justify-content: center;
 	}
 
 	&__play {

@@ -146,7 +146,7 @@ export default class NightShift extends React.Component {
 			}
 
 			if ('crewLust' in crewIntent) {
-				moodEffect = `+${crewIntent.crewLust} Lust`;
+				moodEffect = `${crewIntent.crewLust} Lust`;
 			}
 
 			if ('captainLust' in crewIntent) {
