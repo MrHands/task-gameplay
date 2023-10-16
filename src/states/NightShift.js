@@ -178,7 +178,7 @@ export default class NightShift extends React.Component {
 						getLustLevel={getLustLevel}
 					/>
 				</div>
-				<div class="o-nightShift__bar">
+				<div className="o-nightShift__bar">
 					<button className="o-nightShift__end" onClick={onShiftFinish}>
 						Finish Night
 					</button>

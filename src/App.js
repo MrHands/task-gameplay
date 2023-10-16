@@ -637,6 +637,7 @@ export default class App extends React.Component {
 
 			this.setState({
 				mood,
+				moodChanged: true,
 				crewLust: Math.round(character.stats.pleasure / 100 * LustBalancing.lustLevelsXp[0]),
 				sexMovesInHand: [],
 				sexMovesPlayed: [],
@@ -646,6 +647,7 @@ export default class App extends React.Component {
 
 			this.fillSexMovesDeck(character);
 			this.endNightTurn(SEX_MOVES_INITIAL_HAND);
+			this.setupCrewIntent();
 		}
 	}
 
@@ -1075,66 +1077,46 @@ export default class App extends React.Component {
 
 		this.setState(state => {
 			let {
+				moodChanged,
 				crewIntent,
 				mood,
-				moodChanged,
 			} = state;
 
-			switch (mood) {
-				case Mood.SUBMISSIVE:
-					crewIntent = {
-						crewShield: randomValue(1, 3)
-					}
-					break;
-				case Mood.PASSIONATE:
-					crewIntent = {
-						crewLust: randomValue(1, 3)
-					}
-					break;
-				case Mood.INTIMATE:
-					crewIntent = {
-						captainLust: randomValue(1, 3) * 10
-					}
-					break;
-				default:
-					break;
-			}
+			const nightLog = [...state.nightLog];
 
-			console.log(`crewIntent ${JSON.stringify(crewIntent)}`);
-
-			moodChanged = false;
-
-			return {
-				crewIntent,
-				moodChanged,
-			}
-		}, () => {
-			this.setState(state => {
-				let {
-					nightLog,
-					crewIntent,
-					mood,
-				} = state;
-
+			if (moodChanged) {
 				switch (mood) {
 					case Mood.SUBMISSIVE:
+						crewIntent = {
+							crewShield: randomValue(1, 3)
+						}
 						nightLog.push(`${crewMember.name} will add **${crewIntent.crewShield} Shield** on her turn`);
 						break;
 					case Mood.PASSIONATE:
+						crewIntent = {
+							crewLust: randomValue(1, 3)
+						}
 						nightLog.push(`${crewMember.name} will add **${crewIntent.crewLust} Lust** on her turn`);
 						break;
 					case Mood.INTIMATE:
+						crewIntent = {
+							captainLust: randomValue(1, 3) * 10
+						}
 						nightLog.push(`${crewMember.name} will add **${crewIntent.captainLust}% Lust** to Captain on her turn`);
 						break;
 					default:
+						crewIntent = null;
 						break;
 				}
 
-				return {
-					crewIntent,
-					nightLog,
-				}
-			});
+				console.log(`mood ${mood} crewIntent ${JSON.stringify(crewIntent)}`);
+			}
+
+			return {
+				crewIntent,
+				moodChanged: false,
+				nightLog,
+			}
 		});
 	}
 
@@ -1157,7 +1139,6 @@ export default class App extends React.Component {
 
 		this.setState(state => {
 			let {
-				nightLog,
 				crewShield,
 				crewIntent,
 				crewLust,
@@ -1170,6 +1151,8 @@ export default class App extends React.Component {
 				mood,
 				shift,
 			} = state;
+
+			const nightLog = [...state.nightLog];
 
 			// apply mood effect
 
@@ -1237,6 +1220,7 @@ export default class App extends React.Component {
 				sexergy,
 				sexergyGenerated,
 				mood,
+				moodChanged: true,
 				sexMoves,
 				sexMovesInHand,
 				sexMovesPlayed,
