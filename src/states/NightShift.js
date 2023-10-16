@@ -9,6 +9,7 @@ import SexMove from '../components/SexMove';
 import SexMoveCategory from '../components/SexMoveCategory';
 
 import './NightShift.scss';
+import { Mood } from '../enums/Mood';
 
 export default class NightShift extends React.Component {
 	playSexMove(sexMoveId) {
@@ -138,6 +139,21 @@ export default class NightShift extends React.Component {
 			});
 		}
 
+		let nextMood = '';
+		switch (mood) {
+			case Mood.SUBMISSIVE:
+				nextMood = Mood.PASSIONATE;
+				break;
+			case Mood.PASSIONATE:
+				nextMood = Mood.INTIMATE;
+				break;
+			case Mood.INTIMATE:
+				nextMood = Mood.SUBMISSIVE;
+				break;
+			default:
+				break;
+		}
+
 		let moodEffect = '';
 
 		if (crewIntent) {
@@ -159,6 +175,8 @@ export default class NightShift extends React.Component {
 			classNames.push('o-nightShift--start');
 		}
 
+		const crewName = nightCharacter?.name || 'Crew';
+
 		return (
 			<article className={classNames.join(' ')}>
 				<div className="o-nightShift__lust">
@@ -170,7 +188,7 @@ export default class NightShift extends React.Component {
 					/>
 					<CrewLustBar
 						className="o-nightShift__lust__crew"
-						name={nightCharacter?.name || 'Crew'}
+						name={crewName}
 						moodEffect={moodEffect}
 						lust={crewLust}
 						shield={crewShield}
@@ -196,8 +214,8 @@ export default class NightShift extends React.Component {
 					</button>
 				</div>
 				<div className="o-nightShift__mood">
-					<h2 className="o-nightShift__mood__title">{mood}</h2>
-					<p className="o-nightShift__mood__effect">Will change mood in {crewNextMood} card(s)</p>
+					<h2 className="o-nightShift__mood__title">{crewName} is feeling {mood}</h2>
+					<p className="o-nightShift__mood__effect">Will change to {nextMood.toUpperCase()} in {crewNextMood} card(s)</p>
 				</div>
 				<div className="o-nightShift__moves">
 					<div className="o-nightShift__moves__container">
